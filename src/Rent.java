@@ -4,16 +4,15 @@ import java.util.Date;
 
 public class Rent
 {
-    private int deviceId;
-    private int projectId;
-    private String username;
-    private String entryDate;
-    private String exitDate;
-    private Date dateEntryDate;
-    private Date dateExitDate;
+    private final int deviceId;
+    private final int projectId;
+    private final String username;
+    private final String entryDate;
+    private final String exitDate;
+    private final Date dateEntryDate;
+    private final Date dateExitDate;
     private long duration;
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
+    final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Constructor od Rent/Booking
@@ -32,12 +31,16 @@ public class Rent
         this.exitDate   = exitDate;
         dateEntryDate   = transformStringDateToRealDate(entryDate);
         dateExitDate    = transformStringDateToRealDate(exitDate);
-        this.duration   = (dateExitDate.getTime()-dateEntryDate.getTime())/86400000; //Calculation to get the rentduration in days 24*60*60*1000
+        this.duration   = calcDuration(dateEntryDate,dateExitDate);
     }
 
+    private long calcDuration(Date firstDay, Date lastDay)
+    {
+        return duration= (lastDay.getTime()-firstDay.getTime())/86400000;
+    }
 
     /**
-     *
+     * method to change from string to date
      * @param stringToChange
      * @return the date from the sql-String
      */
@@ -47,7 +50,6 @@ public class Rent
         try
         {
             date = format.parse(stringToChange);
-            System.out.println(date);
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -55,14 +57,65 @@ public class Rent
         return date;
     }
 
-    public String bookDevice() //TODO
-    {
-        String sqlStatement= "INSERT INTO ";
-        return sqlStatement;
+    /**
+     * method which checks if an deviceId is already in rent
+     * @param array deviceId from the database
+     * @param v id which is compared to the deviceId in the database
+     * @return true if the deviceId is already in the database / false if there is no entry for this deviceId
+     */
+    private static boolean contains(int[] array,int v) {
+
+        boolean result = false;
+        for(int i : array)
+        {
+            if(i == v)
+            {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
+
+    private boolean checkSomething(Date firstDayOfRent, Date lastDayOfRent)
+    {
+        return dateEntryDate.after(firstDayOfRent) && dateEntryDate.before(lastDayOfRent);
+    }
+
+    /**
+     * method to check if a rent is available for this time
+     * @param data
+     * @param firstDateOfRent
+     * @param lastDateOfRent
+     * Method needs to be transformed to work with SQL
+     */
+    public void bookDevice(int[] data, Date firstDateOfRent, Date lastDateOfRent)
+    {
+        String sqlstatement = "INSERT INTO Reservierung VALUES("+deviceId+","+projectId+","+username+","+entryDate+","+exitDate+");";
+        if(!contains(data,deviceId))
+        {
+            System.out.println("Für dieses Gerät liegt noch keine Reservierung vor.");
+            System.out.println(sqlstatement);
+
+        }else
+            {
+                if (checkSomething(firstDateOfRent,lastDateOfRent))
+                {
+                    System.out.println("Dieses Gerät kann in diesem Zeitraum nicht reserviert werden, bitte wählen Sie ein anderes Gerät oder einen anderen Zeitraum.");
+                }else
+                    {
+                        System.out.println("Dieses Gerät ist bereits für einen anderen Zeitraum reserviert, kann aber in diesem Zeitraum ausgeliehen werden.");
+                        System.out.println(sqlstatement);
+                    }
+            }
+    }
+
+
+
 
     public String deleteReservation() //TODO
     {
+        return null;
 
     }
 
