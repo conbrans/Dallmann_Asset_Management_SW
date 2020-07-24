@@ -6,8 +6,8 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 100%;
+    line-height: 190%;
     font-family: "acumin-pro", sans-serif;
     color: #0d0d0d;
     font-weight: 300;
@@ -23,28 +23,42 @@ header {
     border-bottom: 1px solid #d0d0d0;
 }
 
+footer
+{
+    font-size: 15px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #d0d0d0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+
 #menu {
     margin: 0 auto;
     max-width: 1900px;
-    background: #fff;
+    background: #ffffff;
     padding: 0;
 }
 
-
+/* Dallmann Logo*/
 #header-logo {
-    margin: 15px 0 30px 30px;
+    margin: 1.5% 0 3.0% 3.0%;
     width: auto;
     float: left;
 }
 
-#header-caption
-{
+/* Caption of Asset-Management */
+
+#header-caption {
     width: auto;
     float: left;
-    padding: 2em 0 0 25%;
+    margin: 1.5% 0 3.0% 25%;
     font-size: medium;
 
 }
+
+/* Menu with "Reservierung", "Benutzerprofil", "Suche" und Logout */
 
 #header-menu {
     width: auto;
@@ -52,21 +66,20 @@ header {
     padding: 0 30px 0 0;
 }
 
+
 #main-menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.header-icons
-{
+.header-icons {
     height: 25px;
     width: 25px;
 }
 
-#header-Search
-{
-display: inline-block;
+#header-Search {
+    display: inline-block;
     width: 5em;
 
 }
@@ -120,7 +133,6 @@ display: inline-block;
 #main-menu .main-menu-sub > li {
     display: block;
     float: none;
-    padding: 0;
     width: 100%;
     background: #f1f1f1;
     padding: 0 30px;
@@ -148,4 +160,51 @@ hr {
 
 .clear {
     clear: both;
+}
+
+
+
+/* Media Screens */
+
+@media screen and (max-width: 1630px) {
+    li p a {
+        font-size: 30px;
+    }
+
+    #header-caption {
+        width: auto;
+        float: left;
+        margin: 2.5% 0 0 8%;
+        font-size: small;
+
+    }
+
+    .header-icons-description {
+        display: none;
+
+    }
+
+    #main-menu .main-menu-sub > li a {
+        height: 50px;
+        line-height: 50px;
+        text-decoration: none;
+        color: #0d0d0d;
+        font-weight: 600;
+        font-size: 16px;
+        display: block;
+        text-align: left;
+        margin-left: 1%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #header-caption {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    #header-logo {
+        display: none;
+    }
 }
