@@ -1,0 +1,71 @@
+#Content
+{
+    border: 1px solid #fbbb11;
+    width: 20%;
+    margin-left: 5%;
+    margin-top: 2.5%;
+    text-align: center;
+    background-color: #fbbb11;
+    float: left;
+
+}
+
+#Content1
+{
+
+    border: 1px solid #2F62FF ;
+    width: 20%;
+    margin-left: 5%;
+    margin-top: 2.5%;
+    text-align: center;
+    background-color: #2F62FF;
+    float: left;
+
+}
+
+#Content1 img
+{
+    width: 25px;
+    height: 25px;
+}
+
+#Content-link td
+{
+    color: black;
+    width: 20%;
+    border-top: solid #fbbb11 1px;
+
+}
+
+
+#Content1-link td
+{
+    color: black;
+    width: 20%;
+    border-top: solid #2F62FF 1px;
+
+}
+
+#firstContent-link a
+{
+    text-decoration: none;
+    color: black;
+}
+
+#firstContent-icon
+{
+    width: 20%;
+    height: 20%;
+    margin-right: -50%;
+    padding-bottom: -25%
+}
+
+#firstContent-link :hover
+{
+    zoom: 101%;
+}
+
+
+
+
+
