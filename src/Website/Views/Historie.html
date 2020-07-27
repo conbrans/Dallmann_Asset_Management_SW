@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Willkommen zurück</title>
+    <title>Standortverlauf 1234543</title>
     <link rel="stylesheet" type="text/css" href="../public/stylesheets/navigationBar.css">
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/startseite.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/table.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/historie.css">
+    <script src="../public/javascript/sortTable.js"></script>
+    <script src="../public/javascript/historie.js"></script>
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -76,7 +79,7 @@
                             <img class="header-icons" src="../public/picture/Search%20Icon.png">
                         </a>
                         <tab class="header-icons-description">
-                            <input type="number" name="search" id="header-Search" value="123456" >
+                            <input type="number" name="search" id="header-Search" value="123456">
                         </tab>
 
                     </li>
@@ -93,41 +96,86 @@
     </div>
 </header>
 <hr class="clear">
-
 <!-- NavigationBar Ende -->
+<div id="historycontent">
+<h1>Standorthistorie für das Gerät 320-400-673</h1>
 
-<div id="main">
-  <div id="Content">
-      <h3>bereits hinzugefügte Geräte</h3>
-      <p>4000</p>
-     <img id="firstContent-icon" src="https://img.icons8.com/metro/100/000000/device-manager.png">
 
-      <div id="Content-link">
-          <table>
-              <tr>
-                  <td>
-                      <a href="Startseite.html" >Geräte anzeigen</a>
+<!-- Sortieren/Filter Start -->
 
-                  </td>
-              </tr>
-          </table>
-      </div>
-  </div>
-    <div id="Content1">
-        <h3>kürzlich hinzugefügt</h3>
-        <p>Bohrmaschine</p>
+    <p>
+        <label>Sortieren nach:
+            <select id="sort" onclick="getSelectedOption()">
+                <option value="0">Datum</option>
+                <option value="1">BaustellenID</option>
+                <option value="2">Baustellen Bezeichnung</option>
+                <option value="3">Standort</option>
+                <option value="4">vorheriger Standort</option>
+            </select>
 
-        <div id="Content1-link">
-            <table>
-                <tr>
-                    <td>
-                        <a href="Startseite.html" >Geräte anzeigen</a>
+        </label>
+    </p>
 
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+
+<!-- Sortieren/Filter Ende -->
+
+<table id="table">
+    <thead>
+    <tr>
+        <th onclick="sortTable(0)">Datum</th>
+        <th onclick="sortTable(1)">BaustellenID</th>
+        <th onclick="sortTable(2)">Baustellen Bezeichnung</th>
+        <th onclick="sortTable(3)">Standort</th>
+        <th onclick="sortTable(4)">vorheriger Standort</th>
+        <th style="text-align: center">Karte</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>01.01.2020</td>
+        <td>20000</td>
+        <td>Parkplatz, Dallmann</td>
+        <td>Bramsche</td>
+        <td>Lingen</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>01.02.2020</td>
+        <td>20001</td>
+        <td>Lingen, Hochschule Osnabrück</td>
+        <td> Lingen</td>
+        <td>BLingen</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>01.03.2020</td>
+        <td >20002</td>
+        <td>Lingen2, Hochschule Osnabrück</td>
+        <td>
+            <a href="https://www.google.com/maps/place/Heywinkelstra%C3%9Fe+3,+49565+Bramsche/data=!4m2!3m1!1s0x47b9e34c6c73762b:0x279684778d10c089?sa=X&ved=2ahUKEwiksIOeje3qAhWOjKQKHcocBYgQ8gEwAHoECAkQAQ">CBramsche</a>
+        </td>
+        <td>CLingen</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td >01.04.2020</td>
+        <td >20003</td>
+        <td>Lingen3, Hochschule Osnabrück</td>
+        <td></td>
+        <td>DLingen</td>
+        <td></td>
+    </tr>
+
+    </tbody>
+
+</table>
 </div>
+<div id="historyMap">
+    <iframe width="" height="500" src=https://maps.google.de/maps?hl=de&q=%20Heywinkelstraße+3%20Bramsche&t=&z=14&ie=utf8&iwloc=b&output=embed frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style='height:500px;width:100%;'></iframe>
+    </div>
+
 </body>
 </html>

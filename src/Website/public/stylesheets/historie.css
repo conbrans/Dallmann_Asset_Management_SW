@@ -1,0 +1,29 @@
+#historycontent
+{
+    float: left;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}
+
+#historycontent table
+{
+
+}
+
+#historyMap
+{
+    border: 1px solid black;
+    height: 100%;
+    width: 45%;
+    float: right;
+}
+
+#historyMap frame
+{
+    height:500px;
+    width:100%;
+}
+
+
+
