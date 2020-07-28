@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservierung</title>
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/navigationBar.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/headFootDesign.css">
 </head>
 <body>
 <!-- Menu Start -->
@@ -13,12 +13,23 @@
             <a href="Startseite.html">
                 <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"></a>
         </div>
-        <div id="header-caption">
-            <h1>Asset-Management</h1>
-        </div>
         <div id="header-menu">
             <nav id="main-menu">
                 <ul>
+                    <li>
+                        <a href="GeräteAnzeige.html">
+                            <img src="../public/picture/device.jpg" class="header-icons">
+                            <tab>
+                                Geräte
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Gerät hinzufügen</a>
+                            </li>
+                        </ul>
+
+                    </li>
                     <!-- Reservierung -->
                     <li>
                         <a href="Reservierung.html">
@@ -61,7 +72,7 @@
                             <img class="header-icons" src="../public/picture/Search%20Icon.png">
                         </a>
                         <tab class="header-icons-description">
-                            <input type="number" name="search" id="header-Search" value="123456" >
+                            <input id="header-Search" class="form-control" type="text" placeholder="Search" aria-label="Search">
                         </tab>
 
                     </li>

@@ -2,7 +2,10 @@
  * calls the sortTable method with the value selected to which the table
  */
 function getSelectedOption() {
-    sortTable(document.getElementById("sort").value);
+    if (document.getElementById("sort").value>0)
+    {
+        sortTable(document.getElementById("sort").value);
+    }
 }
 
 

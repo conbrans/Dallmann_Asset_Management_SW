@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Willkommen zurück</title>
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/navigationBar.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/headFootDesign.css">
     <link rel="stylesheet" type="text/css" href="../public/stylesheets/startseite.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -13,9 +15,6 @@
         <div id="header-logo">
             <a href="Startseite.html">
                 <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"></a>
-        </div>
-        <div id="header-caption">
-            <h1>Asset-Management</h1>
         </div>
         <div id="header-menu">
             <nav id="main-menu">
@@ -76,7 +75,7 @@
                             <img class="header-icons" src="../public/picture/Search%20Icon.png">
                         </a>
                         <tab class="header-icons-description">
-                            <input type="number" name="search" id="header-Search" value="123456" >
+                            <input id="header-Search" class="form-control" type="text" placeholder="Search" aria-label="Search">
                         </tab>
 
                     </li>
@@ -94,25 +93,25 @@
 </header>
 <hr class="clear">
 
-<!-- NavigationBar Ende -->
+<!-- NavigationBar Ende / Inhalt Start -->
 
 <div id="main">
-  <div id="Content">
-      <h3>bereits hinzugefügte Geräte</h3>
-      <p>4000</p>
-     <img id="firstContent-icon" src="https://img.icons8.com/metro/100/000000/device-manager.png">
+    <div id="Content">
+        <h3>bereits hinzugefügte Geräte</h3>
+        <p>4000</p>
+        <img id="firstContent-icon" src="https://img.icons8.com/metro/100/000000/device-manager.png">
 
-      <div id="Content-link">
-          <table>
-              <tr>
-                  <td>
-                      <a href="Startseite.html" >Geräte anzeigen</a>
+        <div id="Content-link">
+            <table>
+                <tr>
+                    <td>
+                        <a href="Startseite.html">Geräte anzeigen</a>
 
-                  </td>
-              </tr>
-          </table>
-      </div>
-  </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     <div id="Content1">
         <h3>kürzlich hinzugefügt</h3>
         <p>Bohrmaschine</p>
@@ -121,7 +120,7 @@
             <table>
                 <tr>
                     <td>
-                        <a href="Startseite.html" >Geräte anzeigen</a>
+                        <a href="Startseite.html">Geräte anzeigen</a>
 
                     </td>
                 </tr>
@@ -129,5 +128,10 @@
         </div>
     </div>
 </div>
+
+<!-- Inhalt Ende / Footer Start -->
+<footer>
+    <p>Softwareentwicklungsprojekt 2020 Bosse, Brans, Dziersan, Eickmann, Kottmann, Petersen </p>
+</footer>
 </body>
 </html>
