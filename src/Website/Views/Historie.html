@@ -17,15 +17,15 @@
     <div id="menu">
         <div id="header-logo">
             <a href="Startseite.html">
-                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"></a>
+                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png" alt="Firmenlogo Dallmann"></a>
         </div>
         <div id="header-menu">
             <nav id="main-menu">
                 <ul>
                     <li>
                         <a href="GeräteAnzeige.html">
-                            <img src="../public/picture/device.jpg" class="header-icons">
-                            <tab>
+                            <img src="../public/picture/device.jpg" class="header-icons" alt="Geräte Icon">
+                            <tab class="header-icons-description">
                                 Geräte
                             </tab>
                         </a>
@@ -39,7 +39,7 @@
                     <!-- Reservierung -->
                     <li>
                         <a href="Reservierung.html">
-                            <img src="../public/picture/calendar.png" class="header-icons">
+                            <img src="../public/picture/calendar.png" class="header-icons" alt="Kalender Icon">
                             <tab class="header-icons-description">
                                 Reservierung
                             </tab>
@@ -57,7 +57,7 @@
                     <!-- Benutzer -->
                     <li>
                         <a href="Startseite.html">
-                            <img src="../public/picture/worker.jpg" class="header-icons">
+                            <img src="../public/picture/worker.jpg" class="header-icons" alt="Bauarbeiter Icon">
                             <tab class="header-icons-description">
                                 Benutzerprofil
                             </tab>
@@ -75,7 +75,7 @@
                     <!-- Suche -->
                     <li>
                         <a href="/">
-                            <img class="header-icons" src="../public/picture/Search%20Icon.png">
+                            <img class="header-icons" src="../public/picture/Search%20Icon.png" alt="Such Icon">
                         </a>
                         <tab class="header-icons-description">
                             <input id="header-Search" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -86,7 +86,7 @@
                     <!-- Logout -->
                     <li>
                         <a href="/">
-                            <img class="header-icons" src="../public/picture/powerButton.png">
+                            <img class="header-icons" src="../public/picture/powerButton.png" alt="Ein/Aus Icon">
                         </a>
                     </li>
                 </ul>
@@ -105,16 +105,19 @@
 
 
 <!-- Sortieren/Filter Start -->
-    <p>
+    <div id="select">
+        <p>
             <select class="browser-default custom-select" id="sort" onchange="getSelectedOption()" style="width: 50%">
-                <option value="0" selected disabled>Sortieren nach</option>
-                <option value="1">Datum</option>
-                <option value="2">BaustellenID</option>
-                <option value="3">BaustellenBez.</option>
-                <option value="4">akuteller Standort</option>
-                <option value="5">vorheriger Standort</option>
-            </select>
-    </p>
+            <option value="0" selected disabled>Sortieren nach</option>
+            <option value="1">Datum</option>
+            <option value="2">BaustellenID</option>
+            <option value="3">BaustellenBez.</option>
+            <option value="4">akuteller Standort</option>
+            <option value="5">vorheriger Standort</option>
+        </select>
+        </p>
+    </div>
+
 <!-- Sortieren/Filter Ende -->
 
 <table id="table">
@@ -134,7 +137,7 @@
         <td>20000</td>
         <td>Parkplatz, Dallmann</td>
         <td>Bramsche</td>
-        <td>Lingen</td>
+        <td>/</td>
         <td></td>
     </tr>
 
@@ -142,8 +145,8 @@
         <td>01.02.2020</td>
         <td>20001</td>
         <td>Lingen, Hochschule Osnabrück</td>
-        <td> Lingen</td>
-        <td>BLingen</td>
+        <td>Lingen</td>
+        <td>Bramsche</td>
         <td></td>
     </tr>
 
@@ -151,18 +154,17 @@
         <td>01.03.2020</td>
         <td >20002</td>
         <td>Musterbaustelle, Münster</td>
-        <td>
-        </td>
-        <td>CLingen</td>
+        <td>Münster</td>
+        <td>Lingen</td>
         <td></td>
     </tr>
 
     <tr>
         <td >01.04.2020</td>
         <td >20003</td>
-        <td>Lingen3, Hochschule Osnabrück</td>
-        <td></td>
-        <td>DLingen</td>
+        <td>Schanze, Hamburg</td>
+        <td>Hamburg</td>
+        <td>Münster</td>
         <td></td>
     </tr>
 
@@ -171,7 +173,7 @@
 </table>
 </div>
 <div id="historyMap">
-    <iframe width="" height="500" src=https://maps.google.de/maps?hl=de&q=%20Heywinkelstraße+3%20Bramsche&t=&z=14&ie=utf8&iwloc=b&output=embed frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style='height:500px;width:100%;'></iframe>
+    <iframe width="" height="500" src=https://maps.google.de/maps?hl=de&q=%20Heywinkelstraße+3%20Bramsche&t=&z=14&ie=utf8&iwloc=b&output=embed   style='height:500px;width:100%;'></iframe>
     </div>
 
 
