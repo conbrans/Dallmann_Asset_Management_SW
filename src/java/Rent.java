@@ -1,3 +1,5 @@
+package java;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +17,7 @@ public class Rent
     final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
-     * Constructor od Rent/Booking
+     * Constructor od java.Rent/Booking
      * @param deviceId
      * @param projectId
      * @param username

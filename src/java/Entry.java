@@ -1,3 +1,5 @@
+package java;
+
 import java.util.regex.Pattern;
 
 public class Entry
