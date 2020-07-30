@@ -13,15 +13,16 @@
 <header>
     <div id="menu">
         <div id="header-logo">
-            <a href="Startseite.html">
-                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png" alt="Firmenlogo Dallmann"></a>
+            <a href="index.html">
+                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
+                     alt="Firmenlogo Dallmann"></a>
         </div>
         <div id="header-menu">
             <nav id="main-menu">
                 <ul>
                     <li>
                         <a href="GeräteAnzeige.html">
-                            <img src="../public/picture/device.jpg" class="header-icons" alt="Geräte Icon">
+                            <i class="fas fa-briefcase"></i>
                             <tab class="header-icons-description">
                                 Geräte
                             </tab>
@@ -36,7 +37,7 @@
                     <!-- Reservierung -->
                     <li>
                         <a href="Reservierung.html">
-                            <img src="../public/picture/calendar.png" class="header-icons" alt="Kalender Icon">
+                            <i class="fas fa-calendar-alt"></i>
                             <tab class="header-icons-description">
                                 Reservierung
                             </tab>
@@ -53,8 +54,10 @@
                     </li>
                     <!-- Benutzer -->
                     <li>
-                        <a href="Startseite.html">
-                            <img src="../public/picture/worker.jpg" class="header-icons" alt="Bauarbeiter Icon">
+                        <a href="index.html">
+                            <!--<img src="../public/picture/worker.jpg" class="header-icons"
+                                 alt="Bauarbeiter Icon">-->
+                            <i class="fas fa-user"></i>
                             <tab class="header-icons-description">
                                 Benutzerprofil
                             </tab>
@@ -72,10 +75,11 @@
                     <!-- Suche -->
                     <li>
                         <a href="/">
-                            <img class="header-icons" src="../public/picture/Search%20Icon.png" alt="Such Icon">
+                            <i class="fas fa-search"></i>
                         </a>
                         <tab class="header-icons-description">
-                            <input id="header-Search" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <input id="header-Search" class="form-control" type="text"
+                                   placeholder="Search" aria-label="Search">
                         </tab>
 
                     </li>
@@ -83,7 +87,7 @@
                     <!-- Logout -->
                     <li>
                         <a href="/">
-                            <img class="header-icons" src="../public/picture/powerButton.png" alt="Ein/Aus Icon">
+                            <i class="fas fa-power-off fa-1x"></i>
                         </a>
                     </li>
                 </ul>
@@ -99,13 +103,14 @@
     <div id="Content">
         <h3>bereits hinzugefügte Geräte</h3>
         <p>4000</p>
-        <img id="firstContent-icon" src="https://img.icons8.com/metro/100/000000/device-manager.png">
+        <i class="fas fa-barcode fa-3x"></i>
 
-        <div id="Content-link">
+        <div class="Content-link" >
             <table>
                 <tr>
                     <td>
-                        <a href="Startseite.html">Geräte anzeigen</a>
+                        <a href="index.html">Geräte anzeigen</a>
+                        <i class="fas fa-chevron-circle-right"></i>
 
                     </td>
                 </tr>
@@ -115,13 +120,14 @@
     <div id="Content1">
         <h3>kürzlich hinzugefügt</h3>
         <p>Bohrmaschine</p>
+        <i class="fas fa-briefcase fa-3x"></i>
 
-        <div id="Content1-link">
+        <div class="Content-link">
             <table>
                 <tr>
                     <td>
-                        <a href="Startseite.html">Geräte anzeigen</a>
-
+                        <a href="Reservierung.html">Geräte anzeigen</a>
+                        <i class="fas fa-chevron-circle-right"></i>
                     </td>
                 </tr>
             </table>
@@ -131,10 +137,15 @@
 
 <!-- Inhalt Ende / Footer Start -->
 <footer>
-    <p>Softwareentwicklungsprojekt 2020 Bosse, Brans, Dziersan, Eickmann, Kottmann, Petersen </p>
+    <div id="footer-bez">
+        Softwareentwicklungsprojekt 2020
+    </div>
+
+    <div id="footer-infos">
+        Support
+    </div>
+
 </footer>
 </body>
 </html>
 
-
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=8.037537038326265%2C52.14977952120862%2C8.042016327381136%2C52.151278821439874&amp;layer=mapnik&amp;marker=52.1505291776354%2C8.039776682853699"

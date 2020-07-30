@@ -39,10 +39,14 @@ footer
 
 }
 
-footer p
+#footer-bez
 {
-   margin-top: 20px;
-    margin-left: 20px;
+   margin-top: 0.75%;
+    margin-left: 1.5%;
+}
+
+#footer-infos
+{
 }
 
 
@@ -108,7 +112,7 @@ footer p
 }
 
 #main-menu li:last-child {
-    padding-right: 0px;
+    padding-right: 0;
 }
 
 #main-menu li a {
