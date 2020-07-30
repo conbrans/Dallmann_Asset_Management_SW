@@ -2,24 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Standortverlauf 1234543</title>
+    <title>Willkommen zurück</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/headFootDesign.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/table.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/historie.css">
-    <script src="javascript/sortTable.js"></script>
-    <script src="javascript/historie.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="stylesheets/startseite.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-
 </head>
 <body>
-
 <!-- NavigationBar Start -->
 <header>
     <div id="menu">
         <div id="header-logo">
-            <a href="index.html">
+            <a href="/index">
                 <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
                      alt="Firmenlogo Dallmann"></a>
         </div>
@@ -35,7 +29,7 @@
                         </a>
                         <ul class="main-menu-sub">
                             <li>
-                                <a href="/">Gerät hinzufügen</a>
+                                <a href="/index">Gerät hinzufügen</a>
                             </li>
                         </ul>
 
@@ -102,89 +96,56 @@
     </div>
 </header>
 <hr class="clear">
-<!--Nav Ende -->
-<div id="historycontent">
-    <div id="menu-caption">
-        <h1>Standorthistorie für das Gerät 320-400-673:</h1>
 
+<!-- NavigationBar Ende / Inhalt Start -->
+
+<div id="main">
+    <div id="Content">
+        <h3>bereits hinzugefügte Geräte</h3>
+        <p>4000</p>
+        <i class="fas fa-list-ol fa-3x"></i>
+
+        <div class="Content-link" >
+            <table>
+                <tr>
+                    <td>
+                        <a href="index">Geräte anzeigen<i class="fas fa-chevron-circle-right"></i></a>
+
+
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
+    <div id="Content1">
+        <h3>kürzlich hinzugefügt</h3>
+        <p>Bohrmaschine</p>
+        <i class="fas fa-briefcase fa-3x"></i>
 
+        <div class="Content-link">
+            <table>
+                <tr>
+                    <td>
+                        <a href="Reservierung.html">Geräte anzeigen<i id="i-link" class="fas fa-chevron-circle-right"></i></a>
 
-
-<!-- Sortieren/java.Filter Start -->
-    <div id="select">
-        <p>
-            <select class="browser-default custom-select" id="sort" onchange="getSelectedOption()" style="width: 50%">
-            <option value="0" selected disabled>Sortieren nach</option>
-            <option value="1">Datum</option>
-            <option value="2">BaustellenID</option>
-            <option value="3">BaustellenBez.</option>
-            <option value="4">akuteller Standort</option>
-            <option value="5">vorheriger Standort</option>
-        </select>
-        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-
-<!-- Sortieren/java.Filter Ende -->
-
-<table id="table">
-    <thead>
-    <tr>
-        <th onclick="sortTable(1)">Datum</th>
-        <th onclick="sortTable(2)">Baustellen ID</th>
-        <th onclick="sortTable(3)">Baustellen Bezeichnung</th>
-        <th onclick="sortTable(4)">Standort</th>
-        <th onclick="sortTable(5)">vorheriger<br> Standort</th>
-        <th style="text-align: center">Karte</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>01.01.2020</td>
-        <td>20000</td>
-        <td>Parkplatz, Dallmann</td>
-        <td>Bramsche</td>
-        <td>/</td>
-        <td></td>
-    </tr>
-
-    <tr>
-        <td>01.02.2020</td>
-        <td>20001</td>
-        <td>Lingen, Hochschule Osnabrück</td>
-        <td>Lingen</td>
-        <td>Bramsche</td>
-        <td></td>
-    </tr>
-
-    <tr>
-        <td>01.03.2020</td>
-        <td >20002</td>
-        <td>Musterbaustelle, Münster</td>
-        <td>Münster</td>
-        <td>Lingen</td>
-        <td></td>
-    </tr>
-
-    <tr>
-        <td >01.04.2020</td>
-        <td >20003</td>
-        <td>Schanze, Hamburg</td>
-        <td>Hamburg</td>
-        <td>Münster</td>
-        <td></td>
-    </tr>
-
-    </tbody>
-
-</table>
-</div>
-<div id="historyMap">
- <iframe width="" height="500" src=""  style='height:500px;width:100%;'></iframe>
 </div>
 
+<!-- Inhalt Ende / Footer Start -->
+<footer>
+    <div id="footer-bez">
+        Softwareentwicklungsprojekt 2020
+    </div>
 
+    <div id="footer-infos">
+        Support
+    </div>
 
-
+</footer>
 </body>
 </html>
+

@@ -192,7 +192,7 @@
 
     // Define markers as "features" of the vector layer:
     var feature = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Point(-0.1279688, 51.5077286).transform(epsg4326, projectTo),
+        new OpenLayers.Geometry.Point(8.062129, 52.404950).transform(epsg4326, projectTo),
         {description: 'This is the value of<br>the description attribute'},
         {
             externalGraphic: '../public/picture/powerButton.png',
@@ -205,7 +205,7 @@
     vectorLayer.addFeatures(feature);
 
     var feature = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Point(-0.1244324, 51.5006728).transform(epsg4326, projectTo),
+        new OpenLayers.Geometry.Point(7.322685, 52.519718).transform(epsg4326, projectTo),
         {description: 'Big Ben'},
         {
             externalGraphic: '../public/picture/powerButton.png',
@@ -218,7 +218,20 @@
     vectorLayer.addFeatures(feature);
 
     var feature = new OpenLayers.Feature.Vector(
-        new OpenLayers.Geometry.Point(-0.119623, 51.503308).transform(epsg4326, projectTo),
+        new OpenLayers.Geometry.Point(7.634803, 51.956928).transform(epsg4326, projectTo),
+        {description: 'London Eye'},
+        {
+            externalGraphic: '../public/picture/powerButton.png',
+            graphicHeight: 25,
+            graphicWidth: 21,
+            graphicXOffset: -12,
+            graphicYOffset: -25
+        }
+    );
+    vectorLayer.addFeatures(feature);
+
+    var feature = new OpenLayers.Feature.Vector(
+        new OpenLayers.Geometry.Point(9.965848, 53.562287).transform(epsg4326, projectTo),
         {description: 'London Eye'},
         {
             externalGraphic: '../public/picture/powerButton.png',

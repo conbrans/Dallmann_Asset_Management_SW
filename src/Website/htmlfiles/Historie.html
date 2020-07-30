@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Standortverlauf 1234543</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/headFootDesign.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/table.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/historie.css">
+    <script src="javascript/sortTable.js"></script>
+    <script src="javascript/historie.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+</head>
+<body>
+
+<!-- NavigationBar Start -->
+<header>
+    <div id="menu">
+        <div id="header-logo">
+            <a href="index.html">
+                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
+                     alt="Firmenlogo Dallmann"></a>
+        </div>
+        <div id="header-menu">
+            <nav id="main-menu">
+                <ul>
+                    <li>
+                        <a href="GeräteAnzeige.html">
+                            <i class="fas fa-briefcase"></i>
+                            <tab class="header-icons-description">
+                                Geräte
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Gerät hinzufügen</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <!-- Reservierung -->
+                    <li>
+                        <a href="Reservierung.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <tab class="header-icons-description">
+                                Reservierung
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Reservierung vornehmen</a>
+                            </li>
+                            <li>
+                                <a href="/">Reservierungsliste einsehen</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <!-- Benutzer -->
+                    <li>
+                        <a href="index.html">
+                            <!--<img src="../public/picture/worker.jpg" class="header-icons"
+                                 alt="Bauarbeiter Icon">-->
+                            <i class="fas fa-user"></i>
+                            <tab class="header-icons-description">
+                                Benutzerprofil
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Berechtigungen</a>
+                            </li>
+                            <li>
+                                <a href="/">Benutzername</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Suche -->
+                    <li>
+                        <a href="/">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <tab class="header-icons-description">
+                            <input id="header-Search" class="form-control" type="text"
+                                   placeholder="java.Search" aria-label="java.Search">
+                        </tab>
+
+                    </li>
+
+                    <!-- Logout -->
+                    <li>
+                        <a href="/">
+                            <i class="fas fa-power-off fa-1x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<hr class="clear">
+<!--Nav Ende -->
+<div id="historycontent">
+    <div id="menu-caption">
+        <h1>Standorthistorie für das Gerät 320-400-673:</h1>
+
+    </div>
+
+
+
+<!-- Sortieren/java.Filter Start -->
+    <div id="select">
+        <p>
+            <select class="browser-default custom-select" id="sort" onchange="getSelectedOption()" style="width: 50%">
+            <option value="0" selected disabled>Sortieren nach</option>
+            <option value="1">Datum</option>
+            <option value="2">BaustellenID</option>
+            <option value="3">BaustellenBez.</option>
+            <option value="4">akuteller Standort</option>
+            <option value="5">vorheriger Standort</option>
+        </select>
+        </p>
+    </div>
+
+<!-- Sortieren/java.Filter Ende -->
+
+<table id="table">
+    <thead>
+    <tr>
+        <th onclick="sortTable(1)">Datum</th>
+        <th onclick="sortTable(2)">Baustellen ID</th>
+        <th onclick="sortTable(3)">Baustellen Bezeichnung</th>
+        <th onclick="sortTable(4)">Standort</th>
+        <th onclick="sortTable(5)">vorheriger<br> Standort</th>
+        <th style="text-align: center">Karte</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>01.01.2020</td>
+        <td>20000</td>
+        <td>Parkplatz, Dallmann</td>
+        <td>Bramsche</td>
+        <td>/</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>01.02.2020</td>
+        <td>20001</td>
+        <td>Lingen, Hochschule Osnabrück</td>
+        <td>Lingen</td>
+        <td>Bramsche</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>01.03.2020</td>
+        <td >20002</td>
+        <td>Musterbaustelle, Münster</td>
+        <td>Münster</td>
+        <td>Lingen</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td >01.04.2020</td>
+        <td >20003</td>
+        <td>Schanze, Hamburg</td>
+        <td>Hamburg</td>
+        <td>Münster</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td >01.04.2020</td>
+        <td >20003</td>
+        <td>Schanze, Hamburg</td>
+        <td>Hamburg</td>
+        <td>Beispiek</td>
+        <td></td>
+    </tr>
+
+    </tbody>
+
+</table>
+</div>
+<div id="historyMap">
+ <iframe width="" height="500" src=""  style='height:500px;width:100%;'></iframe>
+</div>
+
+
+
+
+</body>
+</html>
