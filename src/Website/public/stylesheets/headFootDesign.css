@@ -23,40 +23,13 @@ header{
     border-bottom: 1px solid #d0d0d0;
 }
 
-
-footer
-{
-    background: #f1f1f1;
-    width: 100%;
-    height: 5%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid #d0d0d0;
-    font-size: 11px;
-    text-align: left;
-
-}
-
-#footer-bez
-{
-   margin-top: 0.75%;
-    margin-left: 1.5%;
-}
-
-#footer-infos
-{
-}
-
-
-
 #menu {
     margin: 0 auto;
     max-width: 1900px;
     background: #ffffff;
     padding: 0;
 }
+
 
 /* Dallmann Logo*/
 #header-logo {
@@ -177,6 +150,54 @@ footer
     border: none;
     margin: 0;
 }
+
+footer
+{
+    background: #f1f1f1;
+    width: 100%;
+    height: 5%;
+    position: fixed;
+    float: left;
+    bottom: 0;
+    border-top: 1px solid #d0d0d0;
+    text-align: left;
+    font-size: 16px;
+
+}
+
+.zweiwerte
+{
+    width: 50%;
+    float: left;
+    position: relative;
+}
+
+
+#footer-infos
+{
+    float: right;
+    margin-right: 2%;
+    margin-top: 1%;
+}
+
+
+#footer-caption
+{
+    float: left;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+#footer-infos a
+{
+    color: black;
+}
+
+#footer-infos a:hover
+{
+    color: #fbbb11;
+}
+
 
 
 

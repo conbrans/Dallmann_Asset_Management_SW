@@ -20,6 +20,20 @@
     float: left;
 }
 
+.warum
+{
+    border: 1px solid black;
+    width: 20%;
+    margin-left: 5%;
+    margin-top: 2.5%;
+    text-align: center;
+    background-color: #f1f1f1 ;
+    float: left;
+
+}
+
+
+
 .Content-link
 {
    border-top: 1px solid black;
