@@ -1,7 +1,6 @@
 const app = require('../../app');
 const homepage = require('../routes/homepage');
 const historie = require('../routes/historie');
-
 app.use(homepage);
 app.use(historie);
 

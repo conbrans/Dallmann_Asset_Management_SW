@@ -6,9 +6,9 @@ const bodyParser = require('body-parser');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'Website\\Views'));
+app.set('views', path.join(__dirname, 'Website/Views'));
 app.set('view engine', 'ejs');
-console.log(path.join(__dirname,'Website\\views'));
+console.log(path.join(__dirname,'Website/views'));
 
 
 app.use(express.json());
