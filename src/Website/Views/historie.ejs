@@ -16,97 +16,11 @@
 <body>
 
 <!-- NavigationBar Start -->
-<header>
-    <div id="menu">
-        <div id="header-logo">
-            <a href="/">
-                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
-                     alt="Firmenlogo Dallmann"></a>
-        </div>
-        <div id="header-menu">
-            <nav id="main-menu">
-                <ul>
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-briefcase"></i>
-                            <tab class="header-icons-description">
-                                Geräte
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Gerät hinzufügen</a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <!-- Reservierung -->
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-calendar-alt"></i>
-                            <tab class="header-icons-description">
-                                Reservierung
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Reservierung vornehmen</a>
-                            </li>
-                            <li>
-                                <a href="/">Reservierungsliste einsehen</a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <!-- Benutzer -->
-                    <li>
-                        <a href="/">
-                            <!--<img src="../public/picture/worker.jpg" class="header-icons"
-                                 alt="Bauarbeiter Icon">-->
-                            <i class="fas fa-user"></i>
-                            <tab class="header-icons-description">
-                                Benutzerprofil
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Berechtigungen</a>
-                            </li>
-                            <li>
-                                <a href="/"><%= benutzername %></a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- Suche -->
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-search"></i>
-                        </a>
-                        <tab class="header-icons-description">
-                            <input id="header-Search" class="form-control" type="text"
-                                   placeholder="java.Search" aria-label="java.Search">
-                        </tab>
-
-                    </li>
-
-                    <!-- Logout -->
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-power-off fa-1x"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</header>
-<hr class="clear">
+<%- include('../Views/header.ejs'); -%>
 <!--Nav Ende -->
 <div id="historycontent">
     <div id="menu-caption">
-        <h1>Standorthistorie für das Gerät <%= geraetenummer %>:</h1>
-
+        <h1>Standorthistorie für das Gerät: <%= geratenummer %></h1>
     </div>
 
 
@@ -148,33 +62,8 @@
             <td><%= vorStandort[i] %></td>
             <td></td>
         </tr>
+         <% } %>
 
-        <tr>
-            <td>01.02.2020</td>
-            <td>20001</td>
-            <td>Lingen, Hochschule Osnabrück</td>
-            <td>Lingen</td>
-            <td>Bramsche</td>
-            <td></td>
-        </tr>
-
-        <tr>
-            <td>01.03.2020</td>
-            <td >20002</td>
-            <td>Musterbaustelle, Münster</td>
-            <td>Münster</td>
-            <td>Lingen</td>
-            <td></td>
-        </tr>
-
-        <tr>
-            <td >01.04.2020</td>
-            <td >20003</td>
-            <td>Schanze, Hamburg</td>
-            <td>Hamburg</td>
-            <td>Münster</td>
-            <td></td>
-        </tr>
 
         </tbody>
 
@@ -185,7 +74,7 @@
 </div>
 
 
-
+<%- include('../Views/footer.ejs'); -%>
 
 </body>
 </html>

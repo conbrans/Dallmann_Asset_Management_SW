@@ -130,7 +130,7 @@ header{
 }
 
 #main-menu .main-menu-sub > li a {
-    height: 50px;
+    height: 5%;
     line-height: 50px;
     text-decoration: none;
     color: #0d0d0d;
@@ -141,6 +141,7 @@ header{
 
 #main-menu .main-menu-sub li:hover a, #main-menu .main-menu-sub li.active a {
     color: #fbbb11;
+    height: 5%;
 }
 
 
@@ -191,11 +192,13 @@ footer
 #footer-infos a
 {
     color: black;
+    height: 5%;
 }
 
 #footer-infos a:hover
 {
     color: #fbbb11;
+    height: 5%;
 }
 
 

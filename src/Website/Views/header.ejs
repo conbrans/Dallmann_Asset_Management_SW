@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Willkommen zurück</title>
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/headFootDesign.css">
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/startseite.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/headFootDesign.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 </head>
 <body>
-<!-- NavigationBar Start -->
 <header>
     <div id="menu">
         <div id="header-logo">
-            <a href="/index">
+            <a href="/">
                 <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
                      alt="Firmenlogo Dallmann"></a>
         </div>
@@ -21,7 +16,7 @@
             <nav id="main-menu">
                 <ul>
                     <li>
-                        <a href="GeräteAnzeige.html">
+                        <a href="/Device">
                             <i class="fas fa-briefcase"></i>
                             <tab class="header-icons-description">
                                 Geräte
@@ -49,6 +44,7 @@
                                 <a href="/">Reservierungsliste einsehen</a>
                             </li>
                         </ul>
+
                     </li>
                     <!-- Benutzer -->
                     <li>
@@ -63,10 +59,11 @@
                                 <a href="/">Berechtigungen</a>
                             </li>
                             <li>
-                                <a href="/">Benutzername</a>
+                                <a href="/"><%= benutzername %></a>
                             </li>
                         </ul>
                     </li>
+
                     <!-- Suche -->
                     <li>
                         <a href="/">
@@ -75,7 +72,9 @@
                         <tab class="header-icons-description">
                             <input id="header-Search" class="form-control" type="text" placeholder="123456">
                         </tab>
+
                     </li>
+
                     <!-- Logout -->
                     <li>
                         <a href="/">
@@ -88,56 +87,5 @@
     </div>
 </header>
 <hr class="clear">
-
-<!-- NavigationBar Ende / Inhalt Start -->
-
-<div id="main">
-    <div id="Content">
-        <h3>bereits hinzugefügte Geräte</h3>
-        <p>4000</p>
-        <i class="fas fa-list-ol fa-3x"></i>
-
-        <div class="Content-link" >
-            <table>
-                <tr>
-                    <td>
-                        <a href="index">Geräte anzeigen
-                            <i class="fas fa-chevron-circle-right"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div id="Content1">
-        <h3>kürzlich hinzugefügt</h3>
-        <p>Bohrmaschine</p>
-        <i class="fas fa-briefcase fa-3x"></i>
-
-        <div class="Content-link">
-            <table>
-                <tr>
-                    <td>
-                        <a href="Reservierung.html">Geräte anzeigen
-                            <i  class="fas fa-chevron-circle-right"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- Inhalt Ende / Footer Start -->
-<footer id="footer">
-    <div id="wert1" class="zweiwerte">
-    <p id="footer-caption">Softwareentwicklungsprojekt 2020</p>
-    </div>
-    <div id="wert2" class="zweiwerte">
-       <p id="footer-infos"><a href="/">Support </a>|<a href="/"> Lizenz</a>  </p>
-    </div>
-</footer>
 </body>
 </html>
-

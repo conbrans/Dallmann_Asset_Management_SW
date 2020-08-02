@@ -7,6 +7,7 @@
     text-align: center;
     background-color: #fbbb11;
     float: left;
+    border-radius: 27px 27px 27px 27px;
 }
 
 #Content1
@@ -18,20 +19,8 @@
     text-align: center;
     background-color: #f1f1f1 ;
     float: left;
+    border-radius: 27px 27px 27px 27px;
 }
-
-.warum
-{
-    border: 1px solid black;
-    width: 20%;
-    margin-left: 5%;
-    margin-top: 2.5%;
-    text-align: center;
-    background-color: #f1f1f1 ;
-    float: left;
-
-}
-
 
 
 .Content-link
@@ -43,7 +32,7 @@
 {
     text-decoration: none;
     color: black;
-    margin:120px;
+    margin:50px;
 }
 
 .Content-link a:hover

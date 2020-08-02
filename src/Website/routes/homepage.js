@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get("/", function (request,result)
+router.post("/home", function (request,result)
 {
     result.render('index.ejs',
         {

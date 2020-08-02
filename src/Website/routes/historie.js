@@ -37,6 +37,12 @@ router.get("/historie", function (request,result)
     result.render("historie.ejs",
         {
             benutzername : "Testname",
+            geratenummer : "320-400-673",
+            datum : datum,
+            bauId :bauId,
+            bauBZ : bauBZ,
+            standort : standort,
+            vorStandort : vorStandort,
         });
 });
 
