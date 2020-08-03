@@ -5,6 +5,7 @@
     <title>Willkommen zurück</title>
     <link rel="stylesheet" type="text/css" href="../public/stylesheets/headFootDesign.css">
     <link rel="stylesheet" type="text/css" href="../public/stylesheets/startseite.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 </head>
@@ -92,41 +93,69 @@
 <!-- NavigationBar Ende / Inhalt Start -->
 
 <div id="main">
-    <div id="Content">
-        <h3>bereits hinzugefügte Geräte</h3>
-        <p>4000</p>
-        <i class="fas fa-list-ol fa-3x"></i>
+    <span>
+    <div id="overview">
+        <div id="overview-box">
+            <a href="home" style="text-decoration: none; color: #0d0d0d">
+                <h3>bereits hinzugefügte</br> Geräte</h3>
+                <p>4000</p>
+                <i class="fas fa-list-ol fa-3x"></i>
 
-        <div class="Content-link" >
-            <table>
-                <tr>
-                    <td>
-                        <a href="index">Geräte anzeigen
-                            <i class="fas fa-chevron-circle-right"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
+                <div id="link-box">
+                                <a href="home">Geräte anzeigen
+                                    <i class="fas fa-chevron-circle-right"></i>
+                                </a>
+                </div>
+            </a>
         </div>
     </div>
 
-    <div id="Content1">
-        <h3>kürzlich hinzugefügt</h3>
-        <p>Bohrmaschine</p>
-        <i class="fas fa-briefcase fa-3x"></i>
-
-        <div class="Content-link">
-            <table>
-                <tr>
-                    <td>
-                        <a href="Reservierung.html">Geräte anzeigen
-                            <i  class="fas fa-chevron-circle-right"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
+    <div id="overview">
+        <div id="overview-box1">
+            <a href="home" style="text-decoration: none; color: #0d0d0d">
+                <h3>kürzlich</br> hinzugefügt</h3>
+                <p>Bohrmaschine</p>
+                <i class="fas fa-briefcase fa-3x"></i>
+                <div id="link-box1">
+                    <a href="home">Geräte anzeigen
+                        <i class="fas fa-chevron-circle-right"></i>
+                    </a>
+                </div>
+            </a>
         </div>
     </div>
+
+    <div id="overview">
+        <div id="overview-box2">
+            <a href="home" style="text-decoration: none; color: #0d0d0d">
+                <h3>Anzahl Reservierungen</br> (insges.)</h3>
+                <p>400</p>
+                <i class="fas fa-calendar-alt fa-3x"></i>
+
+                <div id="link-box2">
+                    <a href="home">Geräte anzeigen
+                        <i class="fas fa-chevron-circle-right"></i>
+                    </a>
+
+                </div>
+            </a>
+        </div>
+    </div>
+    </span>
+    <hr class="clear">
+    <br>
+    <table style="width: 80%; margin-left: 10%;margin-right: 10%; padding-top:30% ">
+        <thead>
+        <tr>
+            <th><span>Nr.</span></th>
+            <th><span>Inventarnummer</span></th>
+            <th><span>Kategorie</span></th>
+            <th><span>Produktbezeichnung</span></th>
+            <th><span>Status</span></th>
+        </tr>
+        </thead>
+    </table>
+
 </div>
 
 <!-- Inhalt Ende / Footer Start -->

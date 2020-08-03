@@ -2,6 +2,7 @@
  * calls the sortTable method with the value selected to which the table
  */
 function getSelectedOption() {
+
     if (document.getElementById("sort").value>0)
     {
         sortTable(document.getElementById("sort").value);
@@ -18,8 +19,6 @@ function sortTable(number) {
     var table = document.getElementById("table");
     var  rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
 
-    switching = true;
-    dir = "asc";
     switching = true;
     dir = "asc";
 

@@ -1,47 +1,66 @@
-#Content
+body
 {
-    border: 1px solid black;
+    background-color: #f1f1f1;
+}
+
+
+#overview
+{
     width: 20%;
-    margin-left: 5%;
-    margin-top: 2.5%;
+    margin-left: 10%;
+    margin-top: 2.0%;
     text-align: center;
+    float: left;
+}
+
+#overview-box  { border: 1px solid #fbbb12; background-color: #fbbb11; border-radius: 27px 27px 27px 27px;}
+#overview-box1 { border: 1px solid #f1f1f1; background-color: #f1f1f1; border-radius: 27px 27px 27px 27px;}
+#overview-box2 { border: 1px solid #0b9a2f; background-color: #0b9a2f; border-radius: 27px 27px 27px 27px;}
+
+
+ #overview:hover{
+    transform: scale(1.02) ;
+}
+
+
+
+#link-box #link-box1 #link-box2
+{
+    border-top: 1px solid black;
     background-color: #fbbb11;
-    float: left;
-    border-radius: 27px 27px 27px 27px;
-}
+    border-radius: 0px 0px 27px 27px;
 
-#Content1
-{
-    border: 1px solid black;
-    width: 20%;
-    margin-left: 5%;
-    margin-top: 2.5%;
-    text-align: center;
-    background-color: #f1f1f1 ;
-    float: left;
-    border-radius: 27px 27px 27px 27px;
 }
 
 
-.Content-link
+#link-box a
 {
-   border-top: 1px solid black;
-}
 
-.Content-link a
-{
     text-decoration: none;
     color: black;
-    margin:50px;
+    margin:120px;
+}
+#link-box1 a
+{
+
+    text-decoration: none;
+    color: black;
+    margin:120px;
+}
+#link-box2 a
+{
+
+    text-decoration: none;
+    color: black;
+    margin:120px;
 }
 
 .Content-link a:hover
 {
+
     color: black;
+    border: none;
+
 }
 
-#i-link
-{
-    padding: 0;
-}
 

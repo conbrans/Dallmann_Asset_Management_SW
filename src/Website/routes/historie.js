@@ -7,30 +7,49 @@ let bauBZ = [];
 let standort = [];
 let vorStandort = [];
 
-datum[0] = "01.01.2020";
-datum[1] = "01.02.2020";
-datum[2] = "01.03.2020";
-datum[3] = "01.04.2020";
 
-bauId[0] = 20000;
-bauId[1] = 20001;
-bauId[2] = 20002;
-bauId[3] = 20003;
+var test = [
+    {
+        "date" : "01.01.2020",
+        "bau_ID" : 20000,
+        "bauBz" : "Parkplatz, Dallmann",
+        "location" : "Bramsche",
+        "lastLocation" : "Hof"
+    },
+    {
+        "date" : "01.02.2020",
+        "bau_ID" : 20001,
+        "bauBz" : "Lingen, Hochschule Osnabrück",
+        "location" : "Lingen",
+        "lastLocation" : "Bramsche"
+    },
+    {
+        "date" : "01.03.2020",
+        "bau_ID" : 20002,
+        "bauBz" : "Musterbaustelle, Münster",
+        "location" : "Münster",
+        "lastLocation" : "Lingen"
+    },
+    {
+        "date" : "01.04.2020",
+        "bau_ID" : 20003,
+        "bauBz" : "Schanze, Hamburg",
+        "location" : "Hamburg",
+        "lastLocation" : "Münster"
+    }
+]
 
-bauBZ[0] = "Parkplatz, Dallmann";
-bauBZ[1] = "Lingen, Hochschule Osnabrück";
-bauBZ[2] = "Musterbaustelle, Münster";
-bauBZ[3] = "Schanze, Hamburg";
 
-standort[0] = "Bramsche";
-standort[1] = "Lingen";
-standort[2] = "Münster";
-standort[3] = "Hamburg";
+for (var i=0;i<test.length;i++)
+{
+    datum[i] = test[i].date;
+    bauId[i] = test[i].bau_ID;
+    bauBZ[i] = test[i].bauBz;
+    standort[i] = test[i].location;
+    vorStandort[i] = test[i].lastLocation;
+}
 
-vorStandort[0] = "Hof";
-vorStandort[1] = "Bramsche";
-vorStandort[2] = "Lingen";
-vorStandort[3] = "Münster";
+
 
 router.get("/historie", function (request,result)
 {
@@ -39,10 +58,10 @@ router.get("/historie", function (request,result)
             benutzername : "Testname",
             geratenummer : "320-400-673",
             datum : datum,
-            bauId :bauId,
+            bau_ID :bauId,
             bauBZ : bauBZ,
-            standort : standort,
-            vorStandort : vorStandort,
+            location : standort,
+            lastLocation : vorStandort,
         });
 });
 
