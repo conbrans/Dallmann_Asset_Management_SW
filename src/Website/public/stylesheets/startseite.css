@@ -16,6 +16,9 @@ body
 #overview-box  { border: 1px solid #fbbb12; background-color: #fbbb11; border-radius: 27px 27px 27px 27px;}
 #overview-box1 { border: 1px solid #f1f1f1; background-color: #f1f1f1; border-radius: 27px 27px 27px 27px;}
 #overview-box2 { border: 1px solid #0b9a2f; background-color: #0b9a2f; border-radius: 27px 27px 27px 27px;}
+#overview-box3 { border: 1px solid #0b9a2f; background-color: #0b9a2f; border-radius: 27px 27px 27px 27px;}
+#overview-box4 { border: 1px solid #0b9a2f; background-color: #0b9a2f; border-radius: 27px 27px 27px 27px;}
+#overview-box5 { border: 1px solid #0b9a2f; background-color: #0b9a2f; border-radius: 27px 27px 27px 27px;}
 
 
  #overview:hover{

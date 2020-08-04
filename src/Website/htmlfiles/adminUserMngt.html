@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/headFootDesign.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/table.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/historie.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/adminUserMngt.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/javascript/adminUserMngt.js"></script>
+</head>
+<body>
+<!-- NavigationBar Start -->
+<header>
+    <div id="menu">
+        <div id="header-logo">
+            <a href="home">
+                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
+                     alt="Firmenlogo Dallmann"></a>
+        </div>
+        <div id="header-menu">
+            <nav id="main-menu">
+                <ul>
+                    <li>
+                        <a href="/home">
+                            <i class="fas fa-briefcase"></i>
+                            <tab class="header-icons-description">
+                                Geräte
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/home">Gerät hinzufügen</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Reservierung -->
+                    <li>
+                        <a href="/home">
+                            <i class="fas fa-calendar-alt"></i>
+                            <tab class="header-icons-description">
+                                Reservierung
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/home">Reservierung vornehmen</a>
+                            </li>
+                            <li>
+                                <a href="/home">Reservierungsliste einsehen</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <!-- Benutzer -->
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-user"></i>
+                            <tab class="header-icons-description">
+                                Benutzerprofil
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Berechtigungen</a>
+                            </li>
+                            <li>
+                                <a href="/"><%= benutzername %></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Suche -->
+                    <li>
+                        <a href="/">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <tab class="header-icons-description">
+                            <input id="header-Search" class="form-control" type="text" placeholder="123456">
+                        </tab>
+
+                    </li>
+
+                    <!-- Logout -->
+                    <li>
+                        <a href="/">
+                            <i class="fas fa-power-off fa-1x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<hr class="clear">
+<!--Nav Ende -->
+<h2 style="margin-left: 10%">Nutzer anlegen</h2>
+<div id="form">
+    <div class="tab">
+        <button class="tablinks" id="defaultOpen" onclick="openTab(event ,'infos')">Benutzerdaten</button>
+        <button class="tablinks" onclick="openTab(event, 'permission')">Rechte</button>
+    </div>
+    <br>
+    <div id="infos" class="tabcontent">
+        <h3 style="text-align: center">Benutzer Daten</h3>
+        <form class="userProfilContent">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="md-form mt-0">
+                            <label for="firstName">Vorname</label>
+                            <input type="text" class="form-control" placeholder="Vorname" id="firstName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="md-form mt-0">
+                            <label for="lastName">Nachname</label>
+                            <input type="text" class="form-control" placeholder="Nachname" id="lastName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="md-form mt-0">
+                            <label for="role">Rolle</label>
+                            <select class="custom-select" id="role">
+                                <option disabled selected>Rolle</option>
+                                <option value="admin">Administration</option>
+                                <option value="werkstatt">Werkstatt</option>
+                                <option value="polier">Poliere</option>
+                                <option value="buchhaltung">Buchhaltung</option>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" class="form-control" placeholder="E-Mail" id="email" onclick="setEmail()">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="text" class="form-control" placeholder="Passwort">
+
+            </div>
+
+            <button id="submit" class="btn btn-outline-primary" onclick="" style="margin-left: ">Neuen Benutzer hinzufügen
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="glyphicon glyphicon-pencil"
+                     fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                    <path fill-rule="evenodd"
+                          d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                </svg>
+            </button>
+            <br>
+        </form>
+    </div>
+
+    <div id="permission" class="tabcontent">
+        <h3 style="text-align: center">Rechte des Benutzers</h3>
+        <table id="permissiontable">
+            <tr>
+                <th>Rechte</th>
+                <th>erhalten</th>
+                <th>verwehrt</th>
+                <th>von Rolle</br> geerbt</th>
+            </tr>
+
+            <tr>
+                <td>Admin</td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="erhalten"
+                               name="adminPermission">
+                        <label class="custom-control-label" for="erhalten"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="verwehrt"
+                               name="adminPermission">
+                        <label class="custom-control-label" for="verwehrt"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="geerbt"
+                               name="adminPermission" checked>
+                        <label class="custom-control-label" for="geerbt"></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Werkstatt</td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="erhalten"
+                               name="workshopPermission">
+                        <label class="custom-control-label" for="erhalten"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="verwehrt"
+                               name="workshopPermission">
+                        <label class="custom-control-label" for="verwehrt"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="geerbt"
+                               name="workshopPermission" checked>
+                        <label class="custom-control-label" for="geerbt"></label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Polier</td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="erhalten"
+                               name="foremanPermission">
+                        <label class="custom-control-label" for="erhalten"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="verwehrt"
+                               name="foremanPermission">
+                        <label class="custom-control-label" for="verwehrt"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="geerbt"
+                               name="foremanmission" checked>
+                        <label class="custom-control-label" for="geerbt"></label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Buchhaltung</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Nutzer wurde erfolgreich hinzugefügt.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<footer id="footer">
+    <div id="wert1" class="zweiwerte">
+        <p id="footer-caption">Softwareentwicklungsprojekt 2020</p>
+    </div>
+    <div id="wert2" class="zweiwerte">
+        <p id="footer-infos"><a href="/">Support </a>|<a href="/"> Lizenz</a></p>
+    </div>
+</footer>
+</body>
+</html>
+
+
+

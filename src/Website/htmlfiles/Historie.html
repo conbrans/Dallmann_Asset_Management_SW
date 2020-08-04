@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../public/stylesheets/table.css">
     <link rel="stylesheet" type="text/css" href="../public/stylesheets/historie.css">
     <script src="javascript/sortTable.js"></script>
-    <script src="javascript/historie.js"></script>
+    <script src="../public/javascript/historie.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -19,7 +19,7 @@
 <header>
     <div id="menu">
         <div id="header-logo">
-            <a href="index.html">
+            <a href="home">
                 <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
                      alt="Firmenlogo Dallmann"></a>
         </div>
@@ -27,7 +27,7 @@
             <nav id="main-menu">
                 <ul>
                     <li>
-                        <a href="GeräteAnzeige.html">
+                        <a href="/home">
                             <i class="fas fa-briefcase"></i>
                             <tab class="header-icons-description">
                                 Geräte
@@ -35,14 +35,13 @@
                         </a>
                         <ul class="main-menu-sub">
                             <li>
-                                <a href="/">Gerät hinzufügen</a>
+                                <a href="/home">Gerät hinzufügen</a>
                             </li>
                         </ul>
-
                     </li>
                     <!-- Reservierung -->
                     <li>
-                        <a href="Reservierung.html">
+                        <a href="/home">
                             <i class="fas fa-calendar-alt"></i>
                             <tab class="header-icons-description">
                                 Reservierung
@@ -50,10 +49,10 @@
                         </a>
                         <ul class="main-menu-sub">
                             <li>
-                                <a href="/">Reservierung vornehmen</a>
+                                <a href="/home">Reservierung vornehmen</a>
                             </li>
                             <li>
-                                <a href="/">Reservierungsliste einsehen</a>
+                                <a href="/home">Reservierungsliste einsehen</a>
                             </li>
                         </ul>
 
@@ -61,8 +60,6 @@
                     <!-- Benutzer -->
                     <li>
                         <a href="index.html">
-                            <!--<img src="../public/picture/worker.jpg" class="header-icons"
-                                 alt="Bauarbeiter Icon">-->
                             <i class="fas fa-user"></i>
                             <tab class="header-icons-description">
                                 Benutzerprofil
@@ -73,7 +70,7 @@
                                 <a href="/">Berechtigungen</a>
                             </li>
                             <li>
-                                <a href="/">Benutzername</a>
+                                <a href="/"><%= benutzername %></a>
                             </li>
                         </ul>
                     </li>
@@ -84,8 +81,7 @@
                             <i class="fas fa-search"></i>
                         </a>
                         <tab class="header-icons-description">
-                            <input id="header-Search" class="form-control" type="text"
-                                   placeholder="java.Search" aria-label="java.Search">
+                            <input id="header-Search" class="form-control" type="text" placeholder="123456">
                         </tab>
 
                     </li>
