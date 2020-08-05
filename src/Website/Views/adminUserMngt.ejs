@@ -4,105 +4,21 @@
     <meta charset="UTF-8">
     <meta name="author" content="Constantin Brans">
     <title>User Management</title>
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/headFootDesign.css">
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/table.css">
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/historie.css">
-    <link rel="stylesheet" type="text/css" href="../public/stylesheets/adminUserMngt.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/headFootDesign.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/table.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/historie.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/adminUserMngt.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../public/javascript/adminUserMngt.js"></script>
+    <script src="javascript/adminUserMngt.js"></script>
 </head>
 <body>
 <!-- NavigationBar Start -->
-
-
-<header>
-    <div id="menu">
-        <div id="header-logo">
-            <a href="home">
-                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
-                     alt="Firmenlogo Dallmann"></a>
-        </div>
-        <div id="header-menu">
-            <nav id="main-menu">
-                <ul>
-                    <li>
-                        <a href="/home">
-                            <i class="fas fa-briefcase"></i>
-                            <tab class="header-icons-description">
-                                Geräte
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/home">Gerät hinzufügen</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Reservierung -->
-                    <li>
-                        <a href="/home">
-                            <i class="fas fa-calendar-alt"></i>
-                            <tab class="header-icons-description">
-                                Reservierung
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/home">Reservierung vornehmen</a>
-                            </li>
-                            <li>
-                                <a href="/home">Reservierungsliste einsehen</a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <!-- Benutzer -->
-                    <li>
-                        <a href="index.html">
-                            <i class="fas fa-user"></i>
-                            <tab class="header-icons-description">
-                                Benutzerprofil
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Berechtigungen</a>
-                            </li>
-                            <li>
-                                <a href="/"><%= benutzername %></a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- Suche -->
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-search"></i>
-                        </a>
-                        <tab class="header-icons-description">
-                            <input id="header-Search" class="form-control" type="text"
-                                   placeholder="123456">
-                        </tab>
-
-                    </li>
-
-                    <!-- Logout -->
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-power-off fa-1x"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</header>
-<hr class="clear">
+<%- include('../Views/header.ejs'); -%>
 <!--Nav Ende -->
 
 
@@ -351,15 +267,7 @@
     </button>
 </div>
 
-
-<footer id="footer">
-    <div id="wert1" class="zweiwerte">
-        <p id="footer-caption">Softwareentwicklungsprojekt 2020</p>
-    </div>
-    <div id="wert2" class="zweiwerte">
-        <p id="footer-infos"><a href="/">Support </a>|<a href="/"> Lizenz</a></p>
-    </div>
-</footer>
+<%- include('../Views/footer.ejs'); -%>
 </body>
 </html>
 

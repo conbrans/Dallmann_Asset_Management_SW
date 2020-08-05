@@ -1,3 +1,6 @@
+/**
+ * author = Constantin Brans
+ */
 let rows;
 setTimeout(() => {
         setTimeout(() => {

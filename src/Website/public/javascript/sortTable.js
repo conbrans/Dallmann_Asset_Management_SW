@@ -1,4 +1,8 @@
 /**
+ * author = Constantin Brans
+ */
+
+/**
  * calls the sortTable method with the value selected to which the table
  */
 function getSelectedOption() {
