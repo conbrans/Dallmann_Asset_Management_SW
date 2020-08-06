@@ -15,7 +15,7 @@
 <header>
     <div id="menu">
         <div id="header-logo">
-            <a href="/index">
+            <a href="home">
                 <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
                      alt="Firmenlogo Dallmann"></a>
         </div>
@@ -23,7 +23,7 @@
             <nav id="main-menu">
                 <ul>
                     <li>
-                        <a href="GeräteAnzeige.html">
+                        <a href="/home">
                             <i class="fas fa-briefcase"></i>
                             <tab class="header-icons-description">
                                 Geräte
@@ -31,13 +31,13 @@
                         </a>
                         <ul class="main-menu-sub">
                             <li>
-                                <a href="/index">Gerät hinzufügen</a>
+                                <a href="/home">Gerät hinzufügen</a>
                             </li>
                         </ul>
                     </li>
                     <!-- Reservierung -->
                     <li>
-                        <a href="Reservierung.html">
+                        <a href="/home">
                             <i class="fas fa-calendar-alt"></i>
                             <tab class="header-icons-description">
                                 Reservierung
@@ -45,12 +45,13 @@
                         </a>
                         <ul class="main-menu-sub">
                             <li>
-                                <a href="/">Reservierung vornehmen</a>
+                                <a href="/home">Reservierung vornehmen</a>
                             </li>
                             <li>
-                                <a href="/">Reservierungsliste einsehen</a>
+                                <a href="/home">Reservierungsliste einsehen</a>
                             </li>
                         </ul>
+
                     </li>
                     <!-- Benutzer -->
                     <li>
@@ -65,25 +66,48 @@
                                 <a href="/">Berechtigungen</a>
                             </li>
                             <li>
-                                <a href="/">Benutzername</a>
+                                <a href="/"><%= benutzername %></a>
                             </li>
                         </ul>
                     </li>
-                    <!-- Suche -->
+                    <!-- Komissionieren -->
                     <li>
                         <a href="/">
+                            <i class="fas fa-list"></i>
+                            <tab class="header-icons-description">
+                                Komissonieren
+                            </tab>
+                        </a>
+                    </li>
+                    <!-- Hinzufügen von Nutzern/Rechten -->
+                    <li>
+                        <a href="/add">
+                            <i class="fas fa-cogs"></i>
+                            <tab class="header-icons-description">
+                                Nutzer hinzufügen
+                            </tab>
+                        </a>
+                    </li>
+
+                    <!-- Suche -->
+                    <li>
+                        <a href="/search">
                             <i class="fas fa-search"></i>
                         </a>
                         <tab class="header-icons-description">
                             <input id="header-Search" class="form-control" type="text" placeholder="123456">
                         </tab>
+
                     </li>
+
                     <!-- Logout -->
                     <li>
                         <a href="/">
                             <i class="fas fa-power-off fa-1x"></i>
                         </a>
                     </li>
+
+
                 </ul>
             </nav>
         </div>
@@ -94,127 +118,110 @@
 <!-- NavigationBar Ende / Inhalt Start -->
 
 <div id="main">
-    <span>
     <div id="overview">
-        <div id="overview-box">
-            <a href="home" style="text-decoration: none; color: #0d0d0d">
-                <h3>Alle Geräte anzeigen</h3>
+        <div id="showDevices">
+            <a href="/devices" style="text-decoration: none; color: #0d0d0d">
+                <h3>Geräte anzeigen</h3>
                 <p>400</p>
                 <i class="fas fa-briefcase fa-3x"></i>
 
                 <!--<i class="fas fa-calendar-alt fa-3x"></i>-->
 
                 <div id="link-box2">
-                    <a href="home">Geräte anzeigen
+                    <a href="/devices">Geräte anzeigen
                         <i class="fas fa-chevron-circle-right"></i>
                     </a>
 
                 </div>
             </a>
         </div>
-
     </div>
 
     <div id="overview">
-          <div id="overview-box1">
-            <a href="home" style="text-decoration: none; color: #0d0d0d">
+        <div id="reservations">
+            <a href="/reservation" style="text-decoration: none; color: #0d0d0d">
                 <h3>Reservieren</h3>
-                <p>400</p>
+                <p>&nbsp;</p>
                 <i class="fas fa-calendar-alt fa-3x"></i>
 
                 <div id="link-box2">
-                    <a href="home">Geräte anzeigen
+                    <a href="/reservation">Gerät reservieren
                         <i class="fas fa-chevron-circle-right"></i>
                     </a>
 
                 </div>
             </a>
         </div>
-
     </div>
 
     <div id="overview">
-        <div id="overview-box2">
-            <a href="home" style="text-decoration: none; color: #0d0d0d">
+        <div id="userProfil">
+            <a href="/profil" style="text-decoration: none; color: #0d0d0d">
+                <h3>Benutzerprofil</h3>
+                <p>&nbsp;</p>
+                <i class="fas fa-user fa-3x"></i><div id="link-box1">
+                    <a href="/profil">Profil anzeigen
+                        <i class="fas fa-chevron-circle-right"></i>
+                    </a>
+                </div>
+            </a>
+        </div>
+
+    </div>
+        <div id="overview">
+            <div id="picking">
+                <a href="/picking" style="text-decoration: none; color: #0d0d0d">
+                    <h3>Komissionieren</h3>
+                    <p>&nbsp;</p>
+                    <i class="fas fa-list fa-3x"></i>
+                    <div id="link-box">
+                        <a href="/picking">Komissionieren
+                            <i class="fas fa-chevron-circle-right"></i>
+                        </a>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div id="overview">
+        <div id="search">
+            <a href="/search" style="text-decoration: none; color: #0d0d0d">
                 <h3>Suchen</h3>
-                <p>400</p>
-                 <i class="fas fa-search fa-3x"></i>
+                <p>&nbsp;</p>
+                <i class="fas fa-search fa-3x"></i>
                 <div id="link-box2">
-                    <a href="home">Geräte anzeigen
-                        <i class="fas fa-chevron-circle-right"></i>
-                    </a>
-
-                </div>
-            </a>
-        </div>
-    </div>
-
-            <div id="overview">
-                <div id="overview-box3">
-            <a href="home" style="text-decoration: none; color: #0d0d0d">
-                <h3>bereits hinzugefügte</br> Geräte</h3>
-                <p>4000</p>
-                 <i class="fas fa-list-ol fa-3x"></i>
-
-
-                <div id="link-box">
-                                <a href="home">Geräte anzeigen
-                                    <i class="fas fa-chevron-circle-right"></i>
-                                </a>
-                </div>
-            </a>
-        </div>
-
-    </div>
-
-            <div id="overview">
-                 <div id="overview-box4">
-            <a href="home" style="text-decoration: none; color: #0d0d0d">
-                <h3>kürzlich</br> hinzugefügt</h3>
-                <p>Bohrmaschine</p>
-                <i class="fas fa-check fa-3x"></i>
-
-                <div id="link-box1">
-                    <a href="home">Geräte anzeigen
+                    <a href="/search">Suchen
                         <i class="fas fa-chevron-circle-right"></i>
                     </a>
                 </div>
             </a>
         </div>
-
     </div>
 
-            <div id="overview">
+    <div id="overview">
         <div id="overview-box5">
             <a href="home" style="text-decoration: none; color: #0d0d0d">
-                <h3>Anzahl Reservierungen</br> (insges.)</h3>
-                <p>400</p>
-                <i class="fas fa-calendar-alt fa-3x"></i>
-
+                <h3>Nutzerverwaltung</h3>
+                <p>&nbsp;</p>
+                <i class="fas fa-cogs fa-3x"></i>
                 <div id="link-box2">
-                    <a href="home">Geräte anzeigen
+                    <a href="home">Nutzerverwaltung
                         <i class="fas fa-chevron-circle-right"></i>
                     </a>
-
                 </div>
             </a>
         </div>
     </div>
-    </span>
-    <hr class="clear">
-    <br>
-
 </div>
 
-<!-- Inhalt Ende / Footer Start -->
-<footer id="footer">
+<footer>
     <div id="wert1" class="zweiwerte">
         <p id="footer-caption">Softwareentwicklungsprojekt 2020</p>
     </div>
     <div id="wert2" class="zweiwerte">
-        <p id="footer-infos"><a href="/">Support </a>|<a href="/"> Lizenz</a></p>
+        <p id="footer-infos"><a href="/">Support </a>|<a href="/"> Lizenz</a>  </p>
     </div>
 </footer>
+
 </body>
 </html>
-
