@@ -7,23 +7,22 @@
     <link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
     <link rel="stylesheet" type="text/css" href="css/table.css">
     <link rel="stylesheet" type="text/css" href="css/historie.css">
-    <link rel="stylesheet" type="text/css" href="css/adminCreateUser.css">
+    <link rel="stylesheet" type="text/css" href="css/adminUpdateUser.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <script src="javascript/adminCreateUser.js"></script>
-    <script src="javascript/functionTab.js"></script>
+
+    <script src="../javascript/adminUpdateUser.js"></script>
+    <script src="../javascript/functionTab.js"></script>
 </head>
 <body>
 <!-- NavigationBar Start -->
 <%- include('../Views/header.ejs'); -%>
 <!--Nav Ende -->
-
-
-<h2 style="margin-left: 10%">Nutzer anlegen</h2>
+<h2 style="margin-left: 10%">Nutzerdaten ändern</h2>
 
 <div id="form">
 
@@ -34,13 +33,12 @@
         </button>
         <button class="tablinks" onclick="openTab(event, 'permission')">Rechte</button>
     </div>
-
     <br>
     <div id="infos" class="tabcontent">
 
         <h3 style="text-align: center">Benutzer Daten</h3>
 
-        <form class="userProfilContent" action="http://127.0.0.1:1234/addUser" method="post">
+        <form class="userProfilContent" action="/addUser" method="post">
             <div class="form-group">
 
                 <div class="form-row">
@@ -50,7 +48,7 @@
                         <div class="md-form mt-0">
 
                             <label for="firstName">Vorname:</label>
-                            <input type="text" class="form-control" placeholder="Vorname"
+                            <input type="text" class="form-control" value=""
                                    id="firstName">
                         </div>
                     </div>
@@ -62,7 +60,7 @@
                     <div class="col">
                         <div class="md-form mt-0">
                             <label for="lastName">Nachname:</label>
-                            <input type="text" class="form-control" placeholder="Nachname" id="lastName">
+                            <input type="text" class="form-control" value="" id="lastName">
                         </div>
                     </div>
                 </div>
@@ -87,15 +85,20 @@
 
             <div class="form-group">
                 <label for="email">E-Mail:</label>
-                <input type="text" class="form-control" placeholder="E-Mail" id="email" onclick="setEmail()">
+                <input type="text" class="form-control" value="" id="email" onclick="setEmail()">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input id="password" type="text" class="form-control" placeholder="Passwort" onclick="setDefaultPassword()">
+                <input id="password" type="password" class="form-control" value="" required onkeyup="checkPasswordRequirements()" >
+            </div>
+            <progress id="strength" max="100" onmouseover="" value="0"></progress>
 
+            <div class="form-group">
+                <label for="passwordCorrect">Password bestätigen:</label>
+                <input id="passwordCorrect" type="password" class="form-control" value="" required onkeyup="checkPasswords()">
             </div>
 
-            <button id="submit" class="btn btn-outline-primary" onclick="">Neuen Benutzer hinzufügen
+            <button id="submit" class="btn btn-outline-primary" onclick="">Benutzerdaten ändern
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="glyphicon glyphicon-pencil"
                      fill="currentColor"
                      xmlns="http://www.w3.org/2000/svg">
@@ -106,8 +109,9 @@
                 </svg>
             </button>
             <br>
-
+        </form>
     </div>
+
 
     <div id="permission" class="tabcontent">
         <h3 style="text-align: center">Rechte des Benutzers</h3>
@@ -260,13 +264,6 @@
     </div>
 </div>
 
-
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    Nutzer wurde erfolgreich hinzugefügt.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
 
 <%- include('../Views/footer.ejs'); -%>
 </body>

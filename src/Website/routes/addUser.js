@@ -11,14 +11,8 @@ router.get("/add", function (request,result)
 
 });
 
-router.post("/addUser", function (request,result)
+router.post("/addUser", function (request)
 {
-    result.render("adminCreateUser.ejs",
-        {
-            benutzername : "Testname",
-        })
-
-    console.log(request.body);
 
 });
 
