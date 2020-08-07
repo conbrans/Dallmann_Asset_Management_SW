@@ -4,7 +4,7 @@ input:focus {
     outline: none;
 }
 
-:-webkit-input-placeholder {
+::-webkit-input-placeholder {
     color:#888;
     font-style:italic;
 }
@@ -33,7 +33,7 @@ body {
 }
 
 #brickwall {
-    background-image: url(../picture/background_uebergang.jpg);
+    background-image: url(../../public/image/background_uebergang.jpg);
 
     -webkit-background-size: cover;
        -moz-background-size: cover;
@@ -62,7 +62,7 @@ body {
     right: 0;
     bottom: 0;
     z-index: -1;
-    background-image: url(../logo.php?backdrop);
+    background-image: url();
     -webkit-background-size: cover;
        -moz-background-size: cover;
          -o-background-size: cover;

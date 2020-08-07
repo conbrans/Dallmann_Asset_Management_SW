@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html">
+    <link type="text/css" rel="stylesheet" href="../css/userManagement.css" >
+    <link type="text/css" rel="stylesheet" href="../css/navigationBar.css">
+    <link  rel="stylesheet" type="text/css" href="../css/table.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" language="JavaScript" src="../javascript/userManagement.js"></script>
+    <script src="../../../javascript/adminView.js"></script>
+
+    <title>Benutzerverwaltung</title>
+</head>
+
+<body onload="">
+
+<div id="UserMenu_All_Header">
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img id="oscaImagelogo" class="oscaLogo">
+                </div>
+            </div>
+        </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                            <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                        </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/showUsers">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout" method="post">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="outerBox">
+    <div class="wrapper">
+        <div id="content" style="overflow-x: auto">
+            <h3>Benutzerliste</h3>
+            <div style="text-align: right">
+                <form onclick="addUserPopUp()">
+                    <button class="header_button">Neuen Benutzer hinzufügen
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class='fas fa-pencil'
+                             fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            <table id="userlist" width="100%" class="table user-list" onload>
+                <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Vorname</th>
+                    <th onclick="sortTable(1)">Nachname</th>
+                    <th onclick="sortTable(2)">E-Mail</th>
+                    <th onclick="sortTable(3)">Rolle</th>
+                    <th onclick="sortTable(4)">Verifiziert</th>
+                    <th style="display: none">ID</th>
+                </tr>
+                </thead>
+                <tbody id="userListContent"></tbody>
+            </table>
+
+        </div>
+        <div>
+            <form class="box" action="">
+                <h3>Benutzerinfomationen</h3>
+                <br>
+                <div class="box1">
+
+                    <div class="deviceInfoBoxes">
+                        <label for="Vorname" style="float: left"> Vorname: </label>
+                        <div>
+                            <input class="inputBox" type="text" value="Vorname" id="vorname" readonly>
+                            <button id="vornameBtn" type="button" onclick="changeFieldStatus('vorname')"
+                                    class="btn btn-default" aria-label="Left Align"
+                                    style="float: left; border: none">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label for="nachname"> Nachname: </label>
+                        <div>
+                            <input class="inputBox" type="text" value="Nachname" id="nachname" readonly>
+                            <button id="nachnameBtn" type="button" onclick="changeFieldStatus('nachname')"
+                                    class="btn btn-default" aria-label="Left Align"
+                                    style="float: left; border: none">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label for="e-Mail">E-Mail:</label>
+                        <div>
+                            <input class="inputBox" type="text" value="E-Mail" id="e-Mail" readonly>
+                            <button id="emailBtn" type="button"  onclick="changeFieldStatus('e-Mail')"
+                                    class="btn btn-default" aria-label="Left Align"
+                                    style="float: left; border: none">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label for="rolleBtn"> Rolle:</label>
+                        <div>
+
+                            <select class="inputBox" id="rolle" disabled="disabled">
+                                <option selected>Rolle</option>
+                                <option value="admin">Admin</option>
+                                <option value="mechanic">Werkstatt</option>
+                                <option value="foreman">Polier</option>
+                                <option value="accounting">Buchhaltung</option>
+                            </select>
+                            <button id="rolleBtn" type="button" onclick="changeSelectStatus('rolle')" class="btn btn-default" aria-label="Left Align"
+                                    style="border: none">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="deviceInfoBoxes">
+                        <label for="verfiedBtn"> Verifiziert:</label>
+                        <div>
+
+                            <select class="inputBox" id="verified" disabled="disabled">
+                                <option value="1">Ja</option>
+                                <option value="0">Nein</option>
+                            </select>
+                            <button id="verfiedBtn" type="button" onclick="changeSelectStatus('verified')" class="btn btn-default" aria-label="Left Align"
+                                    style="border: none">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1em">
+                        <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
+                            Bestätigen
+                        </button>
+                    </div>
+                    <hr><br>
+                    <div>
+                        <h2>Passwort zurücksetzen</h2>
+                        <div>Hier können Sie das Passwort des User's zurücksetzen
+                        </div>
+                        <div style="margin-top: 1em">
+                            <button  type="button" class="btn btn-outline-danger" onclick="resetUserPasswordMessage()">
+                                Passwort zurücksetzen
+                            </button>
+                        </div>
+                    </div>
+                    <hr><br>
+                    <div>
+                        <h2>Benutzer löschen</h2>
+                        <div>Hier können Sie den gewählten User löschen
+                        </div>
+                        <div style="margin-top: 1em">
+                            <button  type="button" class="btn btn-outline-danger" onclick="deleteUserMessage()">
+                                Benutzer löschen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../../../javascript/adminView.js"></script>
+</body>
+<style>
+    td:nth-of-type(5) {display: none;}
+</style>
+</html>
