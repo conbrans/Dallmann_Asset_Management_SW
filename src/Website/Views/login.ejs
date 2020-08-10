@@ -27,12 +27,12 @@
         </a>
     </h1>
     <h3 id="login-message">Authentifizierung erforderlich</h3>
-    <form action="/home" method="post" id="login" onsubmit="attemptLoginAjax(event)">
+    <form action="login" method="post" id="login" onsubmit="attemptLoginAjax(event)">
         <fieldset>
-            <input type="text" name="userid" id="name" value="" placeholder="E-Mail-Adresse oder Benutzername">
-            <input type="password" name="passwd" id="pass" placeholder="Passwort">
+            <input type="email" name="useremail" id="email" value="" placeholder="E-Mail-Adresse">
+            <input type="password" name="password" id="password" placeholder="Passwort">
             <h3 style="display:inline">
-                <a id="reset-link" class="hidden" href="https://www.netflix.com/">Ich habe mein Passwort vergessen</a>
+                <a id="reset-link" class=""  href="https://www.netflix.com/">Ich habe mein Passwort vergessen</a>
                 <!-- Netflix link mit Link zu Password vergessen Seite ersetzen-->
             </h3>
             <button id="submitBtn" class="submit button pull-right" type="submit" name="submit">

@@ -1,7 +1,7 @@
 const app = require('../../app');
 const homepage = require('../routes/homepage');
 const historie = require('../routes/historie');
-const login = require('../routes/login');
+const login = require('./login');
 const addUser = require('../routes/addUser');
 const updateUser = require('../routes/updateUser');
 app.use(homepage);

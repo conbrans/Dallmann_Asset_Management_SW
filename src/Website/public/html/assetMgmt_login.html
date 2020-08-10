@@ -11,6 +11,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="ALTlogin.js"></script>
+    <script src="ALTlogin.js"></script>
 
 </head>
 <body id="loginBody">
@@ -26,15 +27,15 @@
         </a>
     </h1>
     <h3 id="login-message">Authentifizierung erforderlich</h3>
-    <form action="../Menu/menu.html" method="post" id="login" onsubmit="attemptLoginAjax(event)">
+    <form action="#" method="get" id="login" onsubmit="attemptLoginAjax(event)">
         <fieldset>
             <input type="text" name="userid" id="name" value="" placeholder="E-Mail-Adresse oder Benutzername">
             <input type="password" name="passwd" id="pass" placeholder="Passwort">
             <h3 style="display:inline">
-                <a id="reset-link" class="hidden" href="https://www.netflix.com/">Ich habe mein Passwort vergessen</a>
+                <a id="reset-link"  href="https://www.netflix.com/">Ich habe mein Passwort vergessen</a>
                     <!-- Netflix link mit Link zu Password vergessen Seite ersetzen-->
             </h3>
-            <button id="submitBtn" class="submit button pull-right" type="submit" name="submit">
+            <button id="submitBtn" class="submit button pull-right" type="submit" name="submit" onclick="test()">
                 <i class="icon-signin"></i>
                 Anmelden </button>
         </fieldset>
