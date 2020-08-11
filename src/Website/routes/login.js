@@ -1,54 +1,44 @@
 const express = require('express');
-const app = require('../../app');
 const fetch = require('node-fetch');
-const session = require('express-session');
 const router = express.Router();
 
+var lifetime = 1000 * 60 * 60 * 24; //
+var longLifetime = 1000 * 60 * 60 * 24 * 365;
 
-app.use(session({
-    name : "Session",
-    resave : false,
-    saveUninitialized : false,
-    secret : "test",
-    cookie:
-        {
-            path : '/',
-            httpOnly : false,
-            secure : false,
-            maxAge : null,
-            sameSite : true,
-        }
-}));
 
-router.get("/", function (request,result)
-{
-    result.render("login.ejs");
-});
+var {
+    PORT = 3000,
+    sessionLifetime = lifetime,
+    sessionName = "sid",
+    secretSession = "test"
+} = process.env;
+
 
 router.post("/login", function (request, response) {
     var result;
 
-    fetch('https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/c67d1f63ecebbd53769a0e9022b840d0e5dbb8f2/test.json')
+
+    //TODO fetch auf den Call von Rest-API umändern, im Moment nur ein Benutzerkonto in Gist
+    fetch('https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/b374f57620af43a1569620c35daa87b8582f082a/test.json')
         .then(response => response.json())
         .then(json => result = json);
 
-    setTimeout(()=>
-    {
-        if (result.length===0)
-        {
-            console.log("Es gibt keinen NUtzer mit dieser Email oder das Passwort ist falsch");
-        } else
-            {
-                console.log("Login war erfolgreich");
 
-            }
+    setTimeout(() => {
+        //result.access= false;
+        if (!result.access) {
+            console.log("Zugang wurde verweigert");
+            response.redirect("/");
 
-        },100);
+        } else {
+            request.session.userID = result.worker_id;
+            request.session.userName = result.name + " " + result.surname;
+            request.session.email = result.e_mail;
+            request.session.userRole = result.role;
+            response.redirect("/home");
+        }
+    }, 500);
 });
-
-
-
-
 
 
 module.exports = router;

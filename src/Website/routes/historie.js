@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const redirect = require('../routes/redirect');
 
 let datum = [];
 let bauId = [];
@@ -51,11 +52,11 @@ for (var i=0;i<test.length;i++)
 
 
 
-router.get("/historie", function (request,result)
+router.get("/historie",redirect.redirectLogin, function (request,result)
 {
     result.render("historie.ejs",
         {
-            benutzername : "Testname",
+            benutzername: request.session.userName,
             geratenummer : "320-400-673",
             datum : datum,
             bau_ID :bauId,
