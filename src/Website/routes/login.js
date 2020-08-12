@@ -16,13 +16,11 @@ var {
 
 router.post("/login", function (request, response) {
     var result;
-    console.log(request.body);
     var jsonfetch = {
         "useremail" : request.body.useremail,
         "password" : request.body.password
     }
-    console.log(JSON.stringify(jsonfetch));
-    /*fetch('',
+        /*fetch('',
         {
             method : 'PUT',
             headers :{
@@ -38,6 +36,7 @@ router.post("/login", function (request, response) {
     // workshop Access https://gist.githubusercontent.com/conbrans/a54e7e3722567c5f4703792cba297d20/raw/f592e21d0d4fb89a0d1b4d6bcdbdccf501cf3bb3/workshopAccess
     // Polier Access https://gist.githubusercontent.com/conbrans/3b8eeb7650b8529e8a304232d3c17f2b/raw/e0bab66df786d390dabddaa00f6542afd11bf303/foremanAcces
     // Buchhaltung Access https://gist.githubusercontent.com/conbrans/0a255e9b53614ebcb70020e157b28364/raw/2cab92da92e7ffff7ea2197cb4776fcc2ad8d53f/accountingAccess
+
     fetch(' https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/94e6dd748fe9892cb973450cf11ffa9ec2a2b600/adminAccess')
         .then(response => response.json())
         .then(json => result = json);
@@ -56,7 +55,7 @@ router.post("/login", function (request, response) {
             request.session.userName = result.name + " " + result.surname;
             request.session.email = result.e_mail;
             request.session.role = result.role;
-            console.log(request.session);
+            //console.log(request.session);
             response.redirect("/home");
         }
     }, 500);

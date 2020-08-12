@@ -12,11 +12,11 @@
 
 </head>
 <body>
-<!-- NavigationBar & Footer Import -->
+<% /* NavigationBar & Footer Import*/  %>
 <%- include('../Views/header.ejs'); -%>
 
 
-<!-- NavigationBar & Footer Import -->
+<% /* NavigationBar & Footer Import */ %>
 <div id="main">
     <div id="overview">
         <div id="showDevices">
@@ -29,6 +29,7 @@
         </div>
     </div>
 
+    <% /* access for users with role 1 to 3 */%>
     <% if (role === 1 || role === 2 || role === 3 ) { %>
     <div id="overview">
         <div id="reservations">
@@ -52,7 +53,7 @@
             </a>
         </div>
     </div>
-
+    <% /* access for users with role 1 & 2 */%>
     <% if ( role === 1 || role === 2 ) { %>
     <div id="overview">
         <div id="picking">
@@ -77,6 +78,7 @@
         </div>
     </div>
 
+    <% /* access for users with role 1 */%>
     <% if (role == 1){%>
     <div id="overview">
         <div id="userManagement">
@@ -91,8 +93,14 @@
     <% } %>
 </div>
 
-<!-- Inhalt Ende / Footer Start -->
-<%- include('../Views/footer.ejs'); -%>
+<footer>
+    <div id="wert1" class="zweiwerte">
+        <p id="footer-caption">Softwareentwicklungsprojekt 2020</p>
+    </div>
+    <div id="wert2" class="zweiwerte">
+        <p id="footer-infos"><a href="/">Support </a>|<a href="/"> Lizenz</a>  </p>
+    </div>
+</footer>
 
 </body>
 </html>

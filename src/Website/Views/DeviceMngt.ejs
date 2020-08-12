@@ -2,122 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" href="../../public/stylesheets/DeviceMngt.css" rel="stylesheet">
+    <link type="text/css" href="css/DeviceMngt.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link type="text/css" rel="stylesheet" href="../css/headFootDesign.css">
+    <link type="text/css" rel="stylesheet" href="css/headFootDesign.css">
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-    <script src="../javascript/DeviceMngt.js"></script>
+    <script src="javascript/DeviceMngt.js"></script>
 
     <title>Title</title>
 </head>
 <body>
-<!--<div id="navigationBar">
-    <nav>
-       <label class="logo">Dallmann</label>
-        <ul>
-            <li><a class="active" href="#">Geräteliste</a></li>
-            <li><a href="#">Suche</a></li>
-            <li><a href="#">Kommissionierung</a></li>
-            <li><a href="#">Benutzer</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </nav>
-</div> -->
-<header>
-    <div id="menu">
-        <div id="header-logo">
-            <a href="index.html">
-                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
-                     alt="Firmenlogo Dallmann"></a>
-        </div>
-        <div id="header-menu">
-            <nav id="main-menu">
-                <ul>
-                    <li>
-                        <a href="GeräteAnzeige.html">
-                            <i class="fas fa-briefcase"></i>
-                            <tab class="header-icons-description">
-                                Geräte
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Gerät hinzufügen</a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <!-- Reservierung -->
-                    <li>
-                        <a href="Reservierung.html">
-                            <i class="fas fa-calendar-alt"></i>
-                            <tab class="header-icons-description">
-                                Reservierung
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Reservierung vornehmen</a>
-                            </li>
-                            <li>
-                                <a href="/">Reservierungsliste einsehen</a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <!-- Benutzer -->
-                    <li>
-                        <a href="index.html">
-                            <!--<img src="../public/picture/worker.jpg" class="header-icons"
-                                 alt="Bauarbeiter Icon">-->
-                            <i class="fas fa-user"></i>
-                            <tab class="header-icons-description">
-                                Benutzerprofil
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Berechtigungen</a>
-                            </li>
-                            <li>
-                                <a href="/">Benutzername</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- Suche -->
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-search"></i>
-                        </a>
-                        <tab class="header-icons-description">
-                            <input id="header-Search" class="form-control" type="text"
-                                   placeholder="java.Search" aria-label="java.Search">
-                        </tab>
-
-                    </li>
-
-                    <!-- Logout -->
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-power-off fa-1x"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</header>
-<hr class="clear">
+<% /* NavigationBar & Footer Import*/  %>
+<%- include('../Views/header.ejs'); -%>
 
 
-
-
+<% /* NavigationBar & Footer Import */ %>
 <div id="content">
     <div id="DeviceList" >
         <div class="container bootstrap snippet">
@@ -129,7 +32,7 @@
                                 <table width="100%" class="table user-list" >
                                     <thead >
                                     <tr>
-                                       <!-- <th style="background-color: #fbbb11">Nr.</th>-->
+                                        <!-- <th style="background-color: #fbbb11">Nr.</th>-->
                                         <th style="background-color: #fbbb11">Inventarnummer</th>
                                         <th style="background-color: #fbbb11">Kategorie</th>
                                         <th style="background-color: #fbbb11">Produktbezeichnung</th>
@@ -212,7 +115,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -232,16 +135,7 @@
         </div>
     </div>
 </div>
-<script src="../javascript/DeviceMngt.js">
+<script src ="../javascript/DeviveMngt.js">
 </script>
-<footer>
-    <div id="wert1" class="zweiwerte">
-        <p id="footer-caption">Softwareentwicklungsprojekt 2020</p>
-    </div>
-    <div id="wert2" class="zweiwerte">
-        <p id="footer-infos"><a href="/">Support </a>|<a href="/"> Lizenz</a>  </p>
-    </div>
-</footer>
-
 </body>
 </html>
