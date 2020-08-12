@@ -14,6 +14,19 @@ CREATE TABLE `Rights` (
                           PRIMARY KEY (`role`)
 )
 
+CREATE TABLE `Rights` (
+
+                          `right_id` int(4) NOT NULL,
+                          `right_name` varchar(100) null,
+                          PRIMARY KEY(`right_id`)
+);
+
+CREATE TABLE `roles` (
+                         `role_id` int(4) NOT NULL,
+                         `role_name` varchar(100) null,
+                         PRIMARY KEY (role_id)
+)
+
 CREATE TABLE `Worker` (
                           `worker_id` int(11) NOT NULL AUTO_INCREMENT,
                           `password` varchar(255) DEFAULT NULL,
@@ -22,10 +35,33 @@ CREATE TABLE `Worker` (
                           `name` varchar(255) DEFAULT NULL,
                           `surname` varchar(255) DEFAULT NULL,
                           `role` int(11) DEFAULT NULL,
-                          PRIMARY KEY (`worker_id`),
-                          KEY `role` (`role`),
-                          CONSTRAINT `Worker_ibfk_1` FOREIGN KEY (`role`) REFERENCES `Rights` (`role`) ON UPDATE CASCADE
+                          PRIMARY KEY (`worker_id`)
 )
+
+create table role_rights
+(
+    role_id  int(4) not null,
+    right_id int(4) not null,
+    primary key (role_id, right_id),
+    constraint rights_right_id_role_rights
+        foreign key (right_id) references rights (right_id),
+    constraint roles_role_id_role_rights
+        foreign key (role_id) references roles (role_id)
+);
+
+
+create table worker_roles
+(
+    worker_id int    not null,
+    role_id   int(4) not null,
+    primary key (worker_id, role_id),
+constraint workerole_worker
+    foreign key (worker_id) references worker (worker_id),
+    constraint workerrole_role
+foreign key (role_id) references roles(role_id)
+
+);
+
 
 CREATE TABLE `Project` (
                            `project_id` int(11) NOT NULL AUTO_INCREMENT,
