@@ -17,7 +17,6 @@
 
 
 <!-- NavigationBar & Footer Import -->
-<input type="text">
 <div id="main">
     <div id="overview">
         <div id="showDevices">
@@ -30,6 +29,7 @@
         </div>
     </div>
 
+    <% if (role === 1 || role === 2 || role === 3 ) { %>
     <div id="overview">
         <div id="reservations">
             <a href="/reservation" style="text-decoration: none; color: #0d0d0d">
@@ -40,6 +40,7 @@
             </a>
         </div>
     </div>
+    <% } %>
 
     <div id="overview">
         <div id="userProfil">
@@ -50,8 +51,9 @@
                 <p>&nbsp;</p>
             </a>
         </div>
-
     </div>
+
+    <% if ( role === 1 || role === 2 ) { %>
     <div id="overview">
         <div id="picking">
             <a href="/picking" style="text-decoration: none; color: #0d0d0d">
@@ -62,6 +64,7 @@
             </a>
         </div>
     </div>
+    <% } %>
 
     <div id="overview">
         <div id="search">
@@ -74,9 +77,10 @@
         </div>
     </div>
 
+    <% if (role == 1){%>
     <div id="overview">
         <div id="userManagement">
-            <a href="home" style="text-decoration: none; color: #0d0d0d">
+            <a href="/upd" style="text-decoration: none; color: #0d0d0d">
                 <h3>Nutzerverwaltung</h3>
                 <p>&nbsp;</p>
                 <i class="fas fa-cogs fa-3x"></i>
@@ -84,6 +88,7 @@
             </a>
         </div>
     </div>
+    <% } %>
 </div>
 
 <!-- Inhalt Ende / Footer Start -->

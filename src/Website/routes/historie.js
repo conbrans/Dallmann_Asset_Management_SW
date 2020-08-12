@@ -57,6 +57,7 @@ router.get("/historie",redirect.redirectLogin, function (request,result)
     result.render("historie.ejs",
         {
             benutzername: request.session.userName,
+            role : request.session.role,
             geratenummer : "320-400-673",
             datum : datum,
             bau_ID :bauId,

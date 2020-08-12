@@ -8,6 +8,7 @@ router.get("/home",redirect.redirectLogin, function (request,result)
     result.render('index.ejs',
         {
             benutzername: request.session.userName,
+            role : request.session.role,
         });
 });
 
