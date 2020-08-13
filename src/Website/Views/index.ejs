@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Willkommen zurück</title>
+    <title>Willkommen zurück <%= benutzername %></title>
     <link rel="stylesheet" type="text/css" href="css/startseite.css">
     <link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
     <link rel="stylesheet" type="text/css" href="css/table.css">
+    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <script src="javascript/index.js"></script>
@@ -18,6 +19,7 @@
 
 <% /* NavigationBar & Footer Import */ %>
 <div id="main">
+</div>
     <div id="overview">
         <div id="showDevices">
             <a href="/devices" style="text-decoration: none; color: #0d0d0d">
@@ -82,7 +84,7 @@
     <% if (role == 1){%>
     <div id="overview">
         <div id="userManagement">
-            <a href="/upd" style="text-decoration: none; color: #0d0d0d">
+            <a href="/update" style="text-decoration: none; color: #0d0d0d">
                 <h3>Nutzerverwaltung</h3>
                 <p>&nbsp;</p>
                 <i class="fas fa-cogs fa-3x"></i>

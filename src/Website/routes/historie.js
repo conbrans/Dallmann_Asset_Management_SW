@@ -1,70 +1,51 @@
 const express = require('express');
 const router = express.Router();
 const redirect = require('../routes/redirect');
-
-let datum = [];
-let bauId = [];
-let bauBZ = [];
-let standort = [];
-let vorStandort = [];
+const fetch = require('node-fetch');
 
 
-var test = [
-    {
-        "date" : "01.01.2020",
-        "bau_ID" : 20000,
-        "bauBz" : "Parkplatz, Dallmann",
-        "location" : "Bramsche",
-        "lastLocation" : "Hof"
-    },
-    {
-        "date" : "01.02.2020",
-        "bau_ID" : 20001,
-        "bauBz" : "Lingen, Hochschule Osnabrück",
-        "location" : "Lingen",
-        "lastLocation" : "Bramsche"
-    },
-    {
-        "date" : "01.03.2020",
-        "bau_ID" : 20002,
-        "bauBz" : "Musterbaustelle, Münster",
-        "location" : "Münster",
-        "lastLocation" : "Lingen"
-    },
-    {
-        "date" : "01.04.2020",
-        "bau_ID" : 20003,
-        "bauBz" : "Schanze, Hamburg",
-        "location" : "Hamburg",
-        "lastLocation" : "Münster"
+
+
+
+
+router.post("/historie",/* redirect.redirectLogin,*/ function (request, response) {
+
+
+    let datum = [];
+    let bauId = [];
+    let bauBZ = [];
+    let standort = [];
+    let vorStandort = [];
+
+
+    fetch('https://gist.githubusercontent.com/conbrans/88140516ddcb3421fa8d4d441669f71b/raw/308ac59f6c492a796b26865a301a68f73f0b8e25/hsitorie')
+        .then(response => response.json())
+        .then(json => result = json);
+
+    setTimeout(() =>
+    {  for (var i = 0; i < result.length; i++) {
+        datum[i] = result[i].date;
+        bauId[i] = result[i].bau_ID;
+        bauBZ[i] = result[i].bauBz;
+        standort[i] = result[i].location;
+        vorStandort[i] = result[i].lastLocation;
     }
-]
+
+        response.render("historie.ejs",
+            {
+                benutzername: request.session.userName,
+                role: request.session.role,
+                geratenummer: request.body.invNumber,
+                datum : datum,
+                bau_ID :bauId,
+                bauBZ : bauBZ,
+                location : standort,
+                lastLocation : vorStandort,
+            });
+
+    },500);
 
 
-for (var i=0;i<test.length;i++)
-{
-    datum[i] = test[i].date;
-    bauId[i] = test[i].bau_ID;
-    bauBZ[i] = test[i].bauBz;
-    standort[i] = test[i].location;
-    vorStandort[i] = test[i].lastLocation;
-}
-
-
-
-router.get("/historie",redirect.redirectLogin, function (request,result)
-{
-    result.render("historie.ejs",
-        {
-            benutzername: request.session.userName,
-            role : request.session.role,
-            geratenummer : "320-400-673",
-            datum : datum,
-            bau_ID :bauId,
-            bauBZ : bauBZ,
-            location : standort,
-            lastLocation : vorStandort,
-        });
 });
 
 

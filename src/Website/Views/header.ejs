@@ -9,7 +9,7 @@
             <nav id="main-menu">
                 <ul>
                     <li>
-                        <a href="/home">
+                        <a href="/devices">
                             <i class="fas fa-briefcase"></i>
                             <tab class="header-icons-description">
                                 Geräte
@@ -17,7 +17,7 @@
                         </a>
                         <ul class="main-menu-sub">
                             <li>
-                                <a href="/home">Gerät hinzufügen</a>
+                                <a href="/addDevice">Gerät hinzufügen</a>
                             </li>
                         </ul>
                     </li>
@@ -43,20 +43,12 @@
                         <% } %>
                     <!-- Benutzer -->
                     <li>
-                        <a href="index.html">
+                        <a href="/profil">
                             <i class="fas fa-user"></i>
                             <tab class="header-icons-description">
-                                Benutzerprofil
+                               <%= benutzername %>
                             </tab>
                         </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/">Berechtigungen</a>
-                            </li>
-                            <li>
-                                <a href="/"><%= benutzername %></a>
-                            </li>
-                        </ul>
                     </li>
                     <!-- Hinzufügen von Nutzern/Rechten -->
                     <% if (role === 1){%>
@@ -94,14 +86,11 @@
                         <a href="/search">
                             <i class="fas fa-search"></i>
 
-                        <tab class="header-icons-description">
+                        <tab class="header-icons-description" >
                             <input id="header-Search" class="form-control" type="text" placeholder="123456">
                         </tab>
                         </a>
                     </li>
-
-
-
 
                     <!-- Logout -->
                     <li>
@@ -112,8 +101,6 @@
                             </tab>
                         </a>
                     </li>
-
-
                 </ul>
             </nav>
         </div>

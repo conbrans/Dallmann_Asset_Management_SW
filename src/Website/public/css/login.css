@@ -32,6 +32,7 @@ body {
     text-align: center;
 }
 
+
 #brickwall {
     background-image: url(../image/background_uebergang.jpg);
 
@@ -159,6 +160,16 @@ h3 {
     font-size:0.8em;
     font-weight:normal;
     color:#d00;
+}
+
+#login-message
+{
+    font-size: 80%;
+}
+
+#reset-link
+{
+    font-size: 60%;
 }
 
 form {

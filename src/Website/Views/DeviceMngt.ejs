@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link type="text/css" href="css/DeviceMngt.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
@@ -13,7 +14,7 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script src="javascript/DeviceMngt.js"></script>
 
-    <title>Title</title>
+    <title>Asset-Management</title>
 </head>
 <body>
 <% /* NavigationBar & Footer Import*/  %>
@@ -57,8 +58,8 @@
                             <div class="form-group">
                                 <label>Inventarnummer</label>
                                 <input class="form-control" type="text"
-                                       name="name" placeholder="Inventarnummer"
-                                       value="100420">
+                                       name="invNumber" placeholder="Inventarnummer"
+                                       value="100420" form="historie">
                             </div>
                         </div>
                         <div class="col">
@@ -127,6 +128,17 @@
                                 </div>
                             </div>
                         </div>
+                        <form method="post" action="/historie" id="historie">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <p> <button type="submit" class="btn btn-info">Historie anzeigen</button></p>
+
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+
 
                     </div>
                 </div>
@@ -135,7 +147,5 @@
         </div>
     </div>
 </div>
-<script src ="../javascript/DeviveMngt.js">
-</script>
 </body>
 </html>

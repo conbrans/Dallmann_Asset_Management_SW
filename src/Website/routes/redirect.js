@@ -1,3 +1,10 @@
+/**
+ * redirects the User to login, if there is no userID, the userID is set when the user is logged in
+ * @param request
+ * @param response
+ * @param next
+ */
+
 const redirectLogin = (request, response, next) => {
     if (!request.session.userID) {
         response.redirect("/");
@@ -6,7 +13,12 @@ const redirectLogin = (request, response, next) => {
     }
 }
 
-
+/**
+ * redirects
+ * @param request
+ * @param response
+ * @param next
+ */
 const redirectHome = (request, response, next) => {
     if (request.session.userID) {
         response.redirect("/home");
