@@ -60,6 +60,7 @@
                                 <input class="form-control" type="text"
                                        name="invNumber" placeholder="Inventarnummer"
                                        value="100420" form="historie">
+                                <input type="hidden" name="invNumber" form="booking" value="100420">
                             </div>
                         </div>
                         <div class="col">
@@ -137,6 +138,16 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
+                        <form method="post" action="/booking" id="booking">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p> <button type="submit" class="btn btn-warning">Gerät reservieren</button></p>
+
+                                    </div>
+                                </div>
+                            </div>
                         </form>
 
 

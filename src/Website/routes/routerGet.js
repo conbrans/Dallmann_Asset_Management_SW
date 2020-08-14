@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const redirect = require('../routes/redirect');
 
 
-router.get("/add", /*redirect.redirectLogin, */ function (request, result) {
+router.get("/add", /*redirect.redirectLogin, */function (request, result) {
     result.render("adminCreateUser.ejs",
         {
             benutzername: request.session.userName,
@@ -21,6 +21,8 @@ router.get("/booking", function (request, response) {
             role: request.session.role,
             rights: request.session.rights,
             geraetenummer: "",
+            minDate : "",
+            maxDate : "",
         })
 
 });
