@@ -49,6 +49,7 @@ function renderHTML(data) {
         column3.innerHTML= "<p>"+data.device[i].model+"</p>";
         column4.innerHTML = "<p>"+data.device[i].status +"</p>";
 
+
         var x = document.getElementById(id).rows[0].cells;
         lat= data.device[0].latitude;
         long= data.device[0].longtitude;
@@ -79,6 +80,7 @@ function renderHTML(data) {
 
         return results;
     }
+
 
 
 }

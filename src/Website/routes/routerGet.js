@@ -4,25 +4,34 @@ const fetch = require('node-fetch');
 const redirect = require('../routes/redirect');
 
 
-
-
-router.get("/add", /*redirect.redirectLogin, redirect.redirectHomeAdmin,*/ function (request, result) {
+router.get("/add", /*redirect.redirectLogin, */ function (request, result) {
     result.render("adminCreateUser.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
+            rights: request.session.rights,
         })
 
 });
 
-
-router.get("/update",/* redirect.redirectLogin, redirect.redirectHomeAdmin,*/ function (request, result) {
-    result.render("adminUpdateUser.ejs",
+router.get("/booking", function (request, response) {
+    response.render("booking.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
+            rights: request.session.rights,
+            geraetenummer: "",
         })
 
+});
+router.get("/bookinglist", function (request, response) {
+    response.render("bookinglist.ejs",
+        {
+            benutzername: request.session.userName,
+            role: request.session.role,
+            rights: request.session.rights,
+
+        });
 });
 
 router.get("/devices", function (request, response) {
@@ -30,11 +39,21 @@ router.get("/devices", function (request, response) {
         {
             benutzername: request.session.userName,
             role: request.session.role,
+            rights: request.session.rights,
 
         })
 });
 
 
+router.get("/update",/* redirect.redirectLogin,*/ function (request, result) {
+    result.render("adminUpdateUser.ejs",
+        {
+            benutzername: request.session.userName,
+            role: request.session.role,
+            rights: request.session.rights,
+        })
+
+});
 
 
 module.exports = router;

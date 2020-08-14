@@ -32,7 +32,7 @@
     </div>
 
     <% /* access for users with role 1 to 3 */%>
-    <% if (role === 1 || role === 2 || role === 3 ) { %>
+    <% if (rights[0] ===1 ) { %>
     <div id="overview">
         <div id="reservations">
             <a href="/reservation" style="text-decoration: none; color: #0d0d0d">
@@ -81,7 +81,7 @@
     </div>
 
     <% /* access for users with role 1 */%>
-    <% if (role == 1){%>
+    <% if (rights[5]=== 1 && rights[6] === 1){%>
     <div id="overview">
         <div id="userManagement">
             <a href="/update" style="text-decoration: none; color: #0d0d0d">

@@ -2,16 +2,9 @@ const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router();
 
-var lifetime = 1000 * 60 * 60 * 24; //
+var lifetime = 1000 * 60 * 60 * 24;
 var longLifetime = 1000 * 60 * 60 * 24 * 365;
 
-
-var {
-    PORT = 3000,
-    sessionLifetime = lifetime,
-    sessionName = "sid",
-    secretSession = "test"
-} = process.env;
 
 /**
  * gets the User Information from REST-API
@@ -20,13 +13,13 @@ var {
 async function getPermission() {
     //TODO fetch auf den Call von Rest-API umändern, im Moment nur ein Benutzerkonto in Gist
 
-    // Admin Access https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/94e6dd748fe9892cb973450cf11ffa9ec2a2b600/adminAccess
-    // workshop Access https://gist.githubusercontent.com/conbrans/a54e7e3722567c5f4703792cba297d20/raw/f592e21d0d4fb89a0d1b4d6bcdbdccf501cf3bb3/workshopAccess
-    // Polier Access https://gist.githubusercontent.com/conbrans/3b8eeb7650b8529e8a304232d3c17f2b/raw/e0bab66df786d390dabddaa00f6542afd11bf303/foremanAcces
-    // Buchhaltung Access https://gist.githubusercontent.com/conbrans/0a255e9b53614ebcb70020e157b28364/raw/2cab92da92e7ffff7ea2197cb4776fcc2ad8d53f/accountingAccess
+    // Admin Access https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/f1594e95bae66b6f91642bdc1f89727a09d52c49/adminAccess
+    // workshop Access https://gist.githubusercontent.com/conbrans/a54e7e3722567c5f4703792cba297d20/raw/ed442ea97c45f80aa12616cd89810c6637322bea/workshopAccess
+    // Polier Access https://gist.githubusercontent.com/conbrans/3b8eeb7650b8529e8a304232d3c17f2b/raw/4779f3ebd0f7cbc966e87151f0df8a79135e43c0/foremanAcces
+    // Buchhaltung Access https://gist.githubusercontent.com/conbrans/0a255e9b53614ebcb70020e157b28364/raw/f03f13f7027840fe38a232dfa6762b1f04877178/accountingAccess
 
 
-    let response = await fetch('https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/94e6dd748fe9892cb973450cf11ffa9ec2a2b600/adminAccess');
+    let response = await fetch('https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/f1594e95bae66b6f91642bdc1f89727a09d52c49/adminAccess');
     return await response.json();
 }
 
@@ -39,6 +32,8 @@ async function getPermission() {
 function getAcces(request, data, response) {
     //Zum Testen ob Zugriff verweigert wird
     // data.access= false;
+
+    //console.log(data);
     if (!data.access) {
         console.log("Zugang wurde verweigert");
         response.redirect("/");
@@ -48,6 +43,9 @@ function getAcces(request, data, response) {
         request.session.userName = data.name + " " + data.surname;
         request.session.email = data.e_mail;
         request.session.role = data.role;
+        request.session.rights = data.rights;
+
+        //console.log(request.session)
 
         if (request.body.checkbox === "on") {
             request.session.cookie.maxAge = longLifetime;
@@ -62,8 +60,6 @@ function getAcces(request, data, response) {
 
 
 router.post("/login", function (request, response) {
-    var result;
-    //console.log(request.body)
     /*
     var jsonfetch = {
         "useremail" : request.body.useremail,

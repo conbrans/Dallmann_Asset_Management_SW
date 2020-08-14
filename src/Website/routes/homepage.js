@@ -9,6 +9,7 @@ router.get("/home",redirect.redirectLogin, function (request,result)
         {
             benutzername: request.session.userName,
             role : request.session.role,
+            rights: request.session.rights,
         });
 });
 

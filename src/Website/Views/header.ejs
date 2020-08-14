@@ -21,10 +21,10 @@
                             </li>
                         </ul>
                     </li>
-                    <% if (role === 1 || role === 2 || role === 3){%>
+                    <% if (rights[0] === 1){%>
                     <!-- Reservierung -->
                     <li>
-                        <a href="/home">
+                        <a href="/bookinglist">
                             <i class="fas fa-calendar-alt"></i>
                             <tab class="header-icons-description">
                                 Reservierung
@@ -32,10 +32,10 @@
                         </a>
                         <ul class="main-menu-sub">
                             <li>
-                                <a href="/home">Reservierung vornehmen</a>
+                                <a href="/booking">Reservierung vornehmen</a>
                             </li>
                             <li>
-                                <a href="/home">Reservierungsliste einsehen</a>
+                                <a href="/bookinglist">Reservierungsliste einsehen</a>
                             </li>
                         </ul>
 
@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <!-- Hinzufügen von Nutzern/Rechten -->
-                    <% if (role === 1){%>
+                    <% if (rights[5] === 1 && rights[6]=== 1){%>
                     <li>
                         <a href="/add">
                             <i class="fas fa-cogs"></i>

@@ -5,9 +5,6 @@ const fetch = require('node-fetch');
 
 
 
-
-
-
 router.post("/historie",/* redirect.redirectLogin,*/ function (request, response) {
 
 
@@ -35,7 +32,8 @@ router.post("/historie",/* redirect.redirectLogin,*/ function (request, response
             {
                 benutzername: request.session.userName,
                 role: request.session.role,
-                geratenummer: request.body.invNumber,
+                rights: request.session.rights,
+                geraetenummer: request.body.invNumber,
                 datum : datum,
                 bau_ID :bauId,
                 bauBZ : bauBZ,

@@ -4,7 +4,6 @@
  * @param response
  * @param next
  */
-
 const redirectLogin = (request, response, next) => {
     if (!request.session.userID) {
         response.redirect("/");
@@ -14,7 +13,7 @@ const redirectLogin = (request, response, next) => {
 }
 
 /**
- * redirects
+ * redirects a user to home if he is already logged in
  * @param request
  * @param response
  * @param next

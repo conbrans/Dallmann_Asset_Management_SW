@@ -9,13 +9,15 @@ const session = require('express-session');
  * Import of own modules, one module for every task
  * @type {Router}
  */
-const routerGet = require('../routes/routerGet');
-const homepage = require('../routes/homepage');
-const historie = require('../routes/historie');
-const login = require('../routes/login');
+
 const addUser = require('../routes/addUser');
-const updateUser = require('../routes/updateUser');
+const booking = require('../routes/reservierung');
+const history = require('../routes/historie');
+const homepage = require('../routes/homepage');
+const login = require('../routes/login');
 const redirect = require('../routes/redirect');
+const routerGet = require('../routes/routerGet');
+const updateUser = require('../routes/updateUser');
 
 
 /**
@@ -50,12 +52,12 @@ app.use(session({
     }
 }));
 
-
-app.use(routerGet);
-app.use(homepage);
-app.use(historie);
-app.use(login);
 app.use(addUser);
+app.use(booking);
+app.use(history);
+app.use(homepage);
+app.use(login);
+app.use(routerGet);
 app.use(updateUser);
 
 
@@ -71,7 +73,7 @@ app.get("/logout", (req, res) => {
             return res.redirect("/home");
         }
         res.clearCookie(sessionName);
-        console.log("Cookie wurde zerstört");
+        //console.log("Cookie wurde zerstört");
         res.redirect("/");
     })
 })
