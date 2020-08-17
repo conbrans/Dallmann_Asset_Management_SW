@@ -2,6 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router();
 
+
 var lifetime = 1000 * 60 * 60 * 24;
 var longLifetime = 1000 * 60 * 60 * 24 * 365;
 
@@ -11,7 +12,6 @@ var longLifetime = 1000 * 60 * 60 * 24 * 365;
  * @returns {Promise<*>}
  */
 async function getPermission() {
-    //TODO fetch auf den Call von Rest-API umändern, im Moment nur ein Benutzerkonto in Gist
 
     // Admin Access https://gist.githubusercontent.com/conbrans/57fa107ff7dc3faa2e94f766ebbcf3c1/raw/f1594e95bae66b6f91642bdc1f89727a09d52c49/adminAccess
     // workshop Access https://gist.githubusercontent.com/conbrans/a54e7e3722567c5f4703792cba297d20/raw/ed442ea97c45f80aa12616cd89810c6637322bea/workshopAccess
@@ -52,27 +52,44 @@ function getAcces(request, data, response) {
         } else {
             request.session.cookie.maxAge = lifetime;
         }
-        ;
+
         response.redirect("/home");
 
     }
 }
 
 
+
+
 router.post("/login", function (request, response) {
-    /*
-    var jsonfetch = {
-        "useremail" : request.body.useremail,
-        "password" : request.body.password
-    }
-        fetch('',
-        {
-            method : 'PUT',
-            headers :{
-                'Content-Type' : 'application/json',
+    fetch('http://localhost:3032/json', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        mode: 'cors',
+        body: JSON.stringify({
+            usermail : request.body.useremail,
+            password : request.body.password,
+        })
+    })
+        .then((response) => {
+            console.log(response);
+           /* getPermission()
+                .then(data => getAcces(request,data,response));*/
+        })
+
+
+       /* {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Accept' : 'application/xhtml',
+                'Content-Type': 'application/xhtml',
             },
-            body: jsonfetch
-        })*/
+            body: JSON.stringify(data)
+        }).then((response)=>
+        {
+            console.log(response.body);
+
+        });*/
 
 
     getPermission()

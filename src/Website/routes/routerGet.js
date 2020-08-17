@@ -47,8 +47,8 @@ router.get("/devices", function (request, response) {
 });
 
 
-router.get("/update",/* redirect.redirectLogin,*/ function (request, result) {
-    result.render("adminUpdateUser.ejs",
+router.get("/update",/* redirect.redirectLogin,*/ function (request, response) {
+    response.render("adminUpdateUser.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
@@ -56,6 +56,18 @@ router.get("/update",/* redirect.redirectLogin,*/ function (request, result) {
         })
 
 });
+
+
+router.get("/faQ", function (request,repsonse)
+{
+    response.render("FAQ.ejs",
+        {
+            benutzername: request.session.userName,
+            role: request.session.role,
+            rights: request.session.rights,
+        });
+
+}
 
 
 module.exports = router;

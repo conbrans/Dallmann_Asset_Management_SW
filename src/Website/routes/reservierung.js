@@ -6,15 +6,13 @@ const redirect = require('../routes/redirect');
 router.post("/booking",/* redirect.redirectHomeAdmin,redirect.redirectHomeForeman,redirect.redirectHomeWorkshop,*/ function (request, response) {
 
 
-
     response.render("booking.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
             rights: request.session.rights,
             geraetenummer: request.body.invNumber,
-            minDate : '2020-08-14',
-            maxDate : '2020-08-16',
+            maxDate : '2020-08-31',
 
         })
 })
