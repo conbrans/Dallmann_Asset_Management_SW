@@ -118,6 +118,6 @@ window.addEventListener('click', function () {
     }
 })
 
-function addUserPopUp() {
-    F = window.open("../html/addUser.html", "Popup", "width=400,height=580");
+function addDeviceWindow() {
+    F = window.open("../html/addDevice.html", "Popup", "width=400,height=400");
 }
