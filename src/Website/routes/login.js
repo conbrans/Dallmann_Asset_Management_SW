@@ -75,7 +75,9 @@ router.post("/login", function (request, response) {
             console.log(response);
            /* getPermission()
                 .then(data => getAcces(request,data,response));*/
-        })
+        }).catch((error) => {
+        console.error('Error:', error);
+    });
 
 
        /* {

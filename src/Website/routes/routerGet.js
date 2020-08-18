@@ -58,7 +58,8 @@ router.get("/update",/* redirect.redirectLogin,*/ function (request, response) {
 });
 
 
-router.get("/faQ", function (request,repsonse)
+
+router.get("/faQ", function (request,response)
 {
     response.render("FAQ.ejs",
         {
@@ -67,7 +68,7 @@ router.get("/faQ", function (request,repsonse)
             rights: request.session.rights,
         });
 
-}
+});
 
 
 module.exports = router;

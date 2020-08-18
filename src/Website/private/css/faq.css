@@ -1,22 +1,23 @@
 /* The side navigation menu */
 .sidenav {
-    height: 100%;
-    width: 18%;
+
+    width: 15%;
     position: fixed;
-    z-index: 1;
-    top: 140px;
+    top: 120px;
     left: 0;
-    background-color: #faba31;
-    overflow-x: hidden;
+    overflow: hidden;
     padding-top: 20px;
 }
 
 /* The navigation menu links */
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 5% 5% 5% 5% ;
+    margin-top: 2.5%;
+    margin-left: 10%;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 156.25%;
     color:  #0d0d0d;
+    background-color: #faba31;
     display: block;
     transition: 0.3s;
 }
@@ -24,11 +25,23 @@
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
     color: #f1f1f1;
+    transform: scale(1.2);
 }
+
 
 .sidenav .active
 {
-    text-decoration: underline;
+    transform: scale(1.1);
+}
+#picture
+{
+    padding-left: 20%;
+ }
+
+#picture i
+{
+    display: none;
+    color: #fbb904;
 }
 
 
@@ -44,5 +57,6 @@
 /* Page content */
 .main {
     margin-left: 20%; /* 450px */
-    margin-right: 20;
+    margin-right: 20%;
+    text-align: justify;
 }
