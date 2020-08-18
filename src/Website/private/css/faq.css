@@ -1,3 +1,7 @@
+html
+{
+background-color: #f1f1f1 ;
+}
 /* The side navigation menu */
 .sidenav {
 
@@ -33,6 +37,46 @@
 {
     transform: scale(1.1);
 }
+
+.sidenav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidenav .nav-menu-sub {
+    list-style-type: none;
+    display: none;
+    width: 90%;
+    padding: 5% 5% 5% 5% ;
+    margin-top: 2.5%;
+    overflow: hidden;
+}
+
+#text .nav-menu-sub > li a {
+    font-size: 110%;
+    text-decoration: none;
+    color: #0d0d0d;
+    display: block;
+}
+
+#text .nav-menu-sub li:hover a, #nav-menu .nav-menu-sub li.active a {
+
+    transform: scale(1.1);
+    color: #f1f1f1;
+}
+
+#text li:hover a, #text li.active a {
+    transform: scale(1.02) ;
+}
+
+#text li:hover .nav-menu-sub {
+    display: block;
+}
+
+
+
+
 #picture
 {
     padding-left: 20%;
@@ -46,6 +90,8 @@
 
 
 
+
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
@@ -56,7 +102,9 @@
 
 /* Page content */
 .main {
+    border: 1px solid #bfbfbf;
     margin-left: 20%; /* 450px */
     margin-right: 20%;
+    padding: 1.5%;
     text-align: justify;
 }

@@ -4,10 +4,10 @@ const app = require('../../app');
 const redirect = require('../routes/redirect');
 
 
-router.post("/updateUser", function (request,result)
+router.post("/updateUser", function (request,response)
 {
     console.log(request.body);
-   /* result.render("adminCreateUser.ejs",
+   /* response.render("adminCreateUser.ejs",
         {
             benutzername: request.session.userName,
             role : request.session.role,

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>FAQ- Asset Management</title>
@@ -17,25 +17,84 @@
 
 <!-- //TODO Icon wechseln, wenn nächste Überschrift erreicht ist -->
 
-<h3 style="text-align: center">Frequently Asked Questions</h3>
+<h3 style="text-align: center">FAQ Asset Management Kleingeräte</h3>
 <div class="sidenav">
     <div id="text">
-        <a id="home" href="#homepage" class="link active">Startseite</a>
+        <ul>
+            <li>
+                <a id="home" href="#info" class="link active">Allgemeines</a>
+                <ul class="nav-menu-sub">
+                    <li>
+                        <a id="home" href="#firstStart" class="link">Erstverwednung der Anwendung</a>
+                    </li>
+                    <li>
+                        <a id="home" href="#login" class="link">Login</a>
+                    </li>
+                </ul>
+            </li>
 
-        <a id="briefcase" href="#devices" class="link">Geräte</a>
+            <li>
+                <a id="home" href="#homepage" class="link">Startseite</a>
+                <ul class="nav-menu-sub">
+                    <li>
+                        <a id="home" href="#menueleiste" class="link">Menüleiste</a>
+                    </li>
+                </ul>
+            </li>
 
-        <a id="calendar-alt" href="#booking" class="link">Reservierung</a>
+            <li>
+                <a id="briefcase" href="#devices" class="link">Geräte</a>
+                <ul class="nav-menu-sub">
+                    <li>
+                        <a id="home" href="#menueleiste" class="link">Geräteliste</a>
 
-        <a id="user" href="#userProfil" class="link">Benutzerprofil</a>
-
-        <a id="cogs" href="#userManagement" class="link">Benutzerverwaltung</a>
-
-        <a id="list" href="#picking" class="link">Komissionieren</a>
-
-        <a id="search" href="#search" class="link">Suche</a>
-
-        <a id="power-off" href="#logout" class="link">Logout/Abmelden</a>
-
+                    </li>
+                    <li>
+                        <a id="home" href="#menueleiste" class="link">Geräte hinzufügen</a>
+                    </li>
+                </ul>
+            </li>
+            <% if (rights[0] === 1){%>
+            <li>
+                <a id="calendar-alt" href="#booking" class="link">Reservierung</a>
+                <ul class="nav-menu-sub">
+                    <li>
+                        <a id="home" href="#menueleiste" class="link">Reservierung vornehmen</a>
+                    </li>
+                    <li>
+                        <a id="home" href="#menueleiste" class="link">Reservierungsliste einsehen</a>
+                    </li>
+                </ul>
+            </li>
+            <% } %>
+            <li>
+                <a id="user" href="#userProfil" class="link">Benutzerprofil</a>
+            </li>
+            <% if (rights[5] === 1 && rights[6]=== 1){%>
+            <li>
+                <a id="cogs" href="#userManagement" class="link">Benutzerverwaltung</a>
+                <ul class="nav-menu-sub">
+                    <li>
+                        <a id="home" href="#menueleiste" class="link">Geräteliste</a>
+                    </li>
+                    <li>
+                        <a id="home" href="#menueleiste" class="link">Geräte hinzufügen</a>
+                    </li>
+                </ul>
+            </li>
+            <% }%>
+            <% if ( role === 1 || role ===  2 ) { %>
+            <li>
+                <a id="list" href="#picking" class="link">Komissionieren</a>
+            </li>
+            <% } %>
+            <li>
+                <a id="search" href="#search" class="link">Suche</a>
+            </li>
+            <li>
+                <a id="power-off" href="#logout" class="link">Logout/Abmelden</a>
+            </li>
+        </ul>
     </div>
 <br>
 <br>
@@ -43,6 +102,7 @@
 
 
     <div id="picture">
+        <i class="fas fa-info fa-9x"></i>
         <i class="fas fa-home fa-9x"></i>
         <i class="fas fa-briefcase fa-9x "></i>
         <i class="fas fa-calendar-alt fa-9x "></i>
@@ -57,250 +117,136 @@
 
 
 <div class="main">
+    <div id="info">
+        <h1>Allgemeines</h1>
+        <p>
+
+            Diese Softwarelösung ist im Rahmen des Softwareentwicklungsprojektes der Hochschule Osnabrück Campus Lingen
+            und dem Unternehmen Hermann Dallmann Straßen- und Tiefbau GmbH & Co. KG entstanden.
+            Dies ist das Benutzerhandbuch der Web-Anwendung,
+            es soll dem Nutzer Hilfestellung bei auftretenden Problemen geben und die erste Anlaufstelle sein,
+            wenn sich der Benutzer mit den Funktionen der Anwendung auseinandersetzen möchte.
+        </p>
+        <div id="firstStart">
+            <h2>Erstverwendung der Anwendung</h2>
+            <p>
+                Vor der ersten Verwendung der Anwendung sollten Sie sichergehen,
+                dass für Sie bereits ein Account vom Administrator angelegt worden ist.
+                Sollte dies nicht der Fall sein,
+                kontaktieren Sie einen der Administratoren mit der Bitte einen Account für Sie einzurichten.
+            </p>
+            <p>
+                Ihr Benutzername wird Ihre interne Dallmann E-Mail-Adresse sein,
+                also für den Mitarbeiter Max Mustermann würde der Benutzername
+                "m.mustermann@dallmann-bau.de" lauten. Für Ihre erste Anmeldung erhalten Sie ein vom Administrator
+                vergebenes Passwort, dieses Passwort muss nach dem ersten Mal anmelden geändert werden.
+                Nach dem Einloggen mit dem ersten Passwort werden Sie automatisch auf eine Seite umgeleitet,
+                auf der Sie ihr Passwort ändern können.
+
+            </p>
+            <p>
+                Nach dem Sie das Passwort geändert haben, werden Sie automatisch abgemeldet
+                und müssen sich erneut anmelden, damit die Anwendung ihr Passwort festlegen kann,
+                nach der erneuten Anmeldung können Sie die Anwendung vollumfänglich nutzen.
+            </p>
+        </div>
+
+        <div id="login">
+        <h3>Login</h3>
+        </div>
+    </div>
+
     <div id="homepage">
         <h1>Startseite</h1>
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.     ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+       <p>
+
+           Nach dem erfolgreichen Login gelangen Sie zur Startseite. Auf der Startseite befindet sich die Menüleiste,
+           die auf jeder Seite gleich ist. Die Menüleiste ist abhängig von den Benutzerrechten, das heißt,
+           für unterschiedliche Benutzer sind unterschiedliche Ansichten verfügbar.
+           Ebenfalls abhängig von den Rechten des Nutzer sind die Schaltflächen,
+           die sich auch auf der Startseite befinden, diese können sich auch von Nutzer zu Nutzer unterscheiden.
+
+       </p>
+        <figure>
+            <% if (role ===1){%>
+            <img src="img/adminhomepage.png" alt=" Standardansicht der Admin Startseite" width="100%" height="100%" style="float: left ">
+            <figcaption>Standardansicht der Admin Startseite</figcaption>
+                <% }%>
+                <% if (role ===2){%>
+                    <img src="img/workshophomepage.png" alt=" Standardansicht der Werkstatt Startseite" width="100%" height="100%" style="float: left ">
+                    <figcaption>Standardansicht der Werkstatt Startseite</figcaption>
+                <% }%>
+                <% if (role ===3){%>
+                    <img src="img/foremanhomepage.png" alt=" Standardansicht der Polier Startseite" width="100%" height="100%" style="float: left ">
+                    <figcaption>Standardansicht der Polier Startseite</figcaption>
+                <% }%>
+                <% if (role ===4){%>
+                    <img src="img/accountinghomepage.png" alt=" Standardansicht der Buchhaltungs Startseite" width="100%" height="100%" style="float: left ">
+                    <figcaption>Standardansicht der Buchhaltungs Startseite</figcaption>
+                <% }%>
+
+        </figure>
+        <p>
+            Über die einzelnen Schaltflächen gelangt man zu den Funktionen der Website,
+            diese reichen von der einfachen Ansicht der Geräte bis hin zum Reservieren einzelner Geräte
+            für einen Zeitraum und/oder für eine  Baustelle.
+            Auf die einzelnen Funktionen wird im weiteren Verlauf dieses FAQ genauer eingegangen.
+
+
+        </p>
+        <div id="menueleiste">
+            <h2>Menüleiste</h2>
+            <p>
+                Die Menüleiste am oberen Rand der Seite enthält die gleichen Funktionen wie die Schaltflächen.
+                Durch einen Klick auf das Dallmann Logo gelangt man zurück auf die Startseite,
+                diese Verlinkung kann von allen Seiten aufgerufen werden.
+
+
+            </p>
+            <p>
+            </p>
+        </div>
+
     </div>
+
     <div id="devices">
         <h1>Geräte</h1>
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.     ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
     </div>
+
+    <% if (rights[0] === 1){%>
     <div id="booking">
         <h1>Reservierung</h1>
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
     </div>
+    <% } %>
 
     <div id="userProfil">
-        <h1>Benutzerprofil</h1>...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        <h1>Benutzerprofil</h1>
     </div>
 
+    <% if (rights[5] === 1 && rights[6]=== 1){%>
     <div id="userManagement">
         <h1>Nutzervwerwaltung</h1>
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-    </div>
 
+    </div>
+    <% }%>
+
+    <% if ( role === 1 || role ===  2 ) { %>
     <div id="picking">
         <h1>Komissionieren</h1>
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
     </div>
+    <% }%>
+
     <div id="search">
         <h1>Suche</h1>
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
     </div>
+
     <div id="logout">
         <h1>Logout/Abmelden</h1>
-        ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-        At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
     </div>
 </div>
 

@@ -73,7 +73,7 @@ app.get("/logout", (req, res) => {
             return res.redirect("/home");
         }
         res.clearCookie(sessionName);
-        //console.log("Cookie wurde zerstört");
+        console.log("Cookie wurde zerstört");
         res.redirect("/");
     })
 })

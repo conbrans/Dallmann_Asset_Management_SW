@@ -1,3 +1,4 @@
+
 /**
  * redirects the User to login, if there is no userID, the userID is set when the user is logged in
  * @param request
@@ -58,6 +59,10 @@ const redirectHomeForeman = (request, response, next) =>
         next();
     }
 }
+const redirectafterRights = (request, response, next) =>
+{
+
+}
 
 
 
@@ -68,5 +73,6 @@ module.exports =
         redirectHomeAdmin : redirectHomeAdmin,
         redirectHomeWorkshop : redirectHomeWorkshop,
         redirectHomeForeman : redirectHomeForeman,
+        redirectafterRights : redirectafterRights,
 
     }

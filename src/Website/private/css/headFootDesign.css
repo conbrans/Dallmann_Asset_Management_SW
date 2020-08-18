@@ -38,15 +38,6 @@ header{
     float: left;
 }
 
-/* Caption of Asset-Management */
-
-#header-caption {
-    width: auto;
-    float: left;
-    margin: 1.5% 0 3.0% 25%;
-    font-size: medium;
-
-}
 
 /* Menu with "Reservierung", "Benutzerprofil", "Suche" und Logout */
 
@@ -142,7 +133,7 @@ header{
 }
 
 #main-menu .main-menu-sub li:hover a, #main-menu .main-menu-sub li.active a {
-   /* color: #0d0d0d; */
+
     height: 5%;
     transform: scale(1.1);
 }

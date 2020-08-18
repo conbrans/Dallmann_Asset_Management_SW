@@ -5,7 +5,12 @@ const router = express.Router();
 
 var lifetime = 1000 * 60 * 60 * 24;
 var longLifetime = 1000 * 60 * 60 * 24 * 365;
-
+var {
+    PORT = 3000,
+    sessionLifetime = lifetime,
+    sessionName = "sid",
+    secretSession = "test"
+} = process.env;
 
 /**
  * gets the User Information from REST-API

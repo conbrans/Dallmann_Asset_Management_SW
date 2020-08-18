@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
 const redirect = require('../routes/redirect');
 
 
-router.get("/add", /*redirect.redirectLogin, */function (request, result) {
+router.get("/add", redirect.redirectLogin, function (request, result) {
     result.render("adminCreateUser.ejs",
         {
             benutzername: request.session.userName,
@@ -14,19 +13,20 @@ router.get("/add", /*redirect.redirectLogin, */function (request, result) {
 
 });
 
-router.get("/booking", function (request, response) {
+
+router.get("/booking", redirect.redirectLogin, function (request, response) {
     response.render("booking.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
             rights: request.session.rights,
             geraetenummer: "",
-            minDate : "",
-            maxDate : "",
+            minDate: "",
+            maxDate: "",
         })
 
 });
-router.get("/bookinglist", function (request, response) {
+router.get("/bookinglist", redirect.redirectLogin, function (request, response) {
     response.render("bookinglist.ejs",
         {
             benutzername: request.session.userName,
@@ -36,7 +36,7 @@ router.get("/bookinglist", function (request, response) {
         });
 });
 
-router.get("/devices", function (request, response) {
+router.get("/devices", redirect.redirectLogin, function (request, response) {
     response.render("DeviceMngt.ejs",
         {
             benutzername: request.session.userName,
@@ -46,27 +46,24 @@ router.get("/devices", function (request, response) {
         })
 });
 
-
-router.get("/update",/* redirect.redirectLogin,*/ function (request, response) {
-    response.render("adminUpdateUser.ejs",
-        {
-            benutzername: request.session.userName,
-            role: request.session.role,
-            rights: request.session.rights,
-        })
-
-});
-
-
-
-router.get("/faQ", function (request,response)
-{
+router.get("/faQ", function (request, response) {
     response.render("FAQ.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
             rights: request.session.rights,
         });
+
+});
+
+
+router.get("/update", redirect.redirectLogin, function (request, response) {
+    response.render("adminUpdateUser.ejs",
+        {
+            benutzername: request.session.userName,
+            role: request.session.role,
+            rights: request.session.rights,
+        })
 
 });
 
