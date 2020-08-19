@@ -41,6 +41,50 @@ app.post("/user",function (request,reponse)
 
 });
 
+app.get("/devices", function (request,response)
+{
+    response.json(
+        [
+            {
+                "inventoryNumber":"100420",
+                "manufacturer":"Makita",
+                "model":"Z350",
+                "status":"Verfügbar",
+                "deviceCategorie":"Winkelschleifer",
+                "latitude": 52.52,
+                "longtitude": 7.32
+            },
+            {
+                "inventoryNumber":"100698",
+                "manufacturer":"DeWalt",
+                "model":"RTZ 2080",
+                "status":"Ausgeliehen",
+                "deviceCategorie":"Akkuflex",
+                "latitude": 53.55,
+                "longtitude": 9.99
+            },
+            {
+                "inventoryNumber":"100365",
+                "manufacturer":"Hilti",
+                "model":"Plattmacher",
+                "status":"Reperatur",
+                "deviceCategorie":"Rüttelplatte",
+                "latitude": 52.41,
+                "longtitude": 7.97
+            },
+            {
+                "inventoryNumber":"100815",
+                "manufacturer":"Stihl",
+                "model":"Staubmacher 4000",
+                "status":"Geklaut",
+                "deviceCategorie":"Kettensäge",
+                "latitude": 53.55,
+                "longtitude": 9.99
+            }
+        ]);
+
+});
+
 
 
 app.get("/users",function (request,response)

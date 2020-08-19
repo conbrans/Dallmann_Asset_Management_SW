@@ -75,10 +75,10 @@
                 <a id="cogs" href="#userManagement" class="link">Benutzerverwaltung</a>
                 <ul class="nav-menu-sub">
                     <li>
-                        <a id="home" href="#menueleiste" class="link">Geräteliste</a>
+                        <a id="home" href="#menueleiste" class="link">Nutzer anlegen</a>
                     </li>
                     <li>
-                        <a id="home" href="#menueleiste" class="link">Geräte hinzufügen</a>
+                        <a id="home" href="#menueleiste" class="link">Nutzerdaten ändern</a>
                     </li>
                 </ul>
             </li>
@@ -224,7 +224,13 @@
 
     <% if (rights[5] === 1 && rights[6]=== 1){%>
     <div id="userManagement">
-        <h1>Nutzervwerwaltung</h1>
+        <h1>Benutzerverwaltung</h1>
+        <p>
+            Diese Schaltfläche ist nur für die Administratoren sichtbar oder für Benutzer mit den Berechtigungen Nutzer hinzufügen und Nutzer löschen.
+            Über die Schaltfläche gelangt man  zu einer Übersicht über alle registrierten Nutzer der Anwendung.
+            Mit dem Button am rechten oberen Rand der Tabelle mit der Beschriftung "Neuen Benutzer hinzufügen" gelangt man zu einer weiteren Seite
+            Auf dieser könen die Stammdaten, wie Name, Nachname usw. festgelegt werden. Ebenfalls kann hier die Zuordnung von Rechten erfolgen.
+        </p>
 
     </div>
     <% }%>
@@ -246,6 +252,7 @@
 
     </div>
 </div>
+<%- include('../Views/general/footer.ejs'); -%>
 
 </body>
 </html>

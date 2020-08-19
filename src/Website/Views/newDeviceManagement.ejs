@@ -53,7 +53,18 @@
                     <th>Status</th>
                 </tr>
                 </thead>
-                <tbody id="deviceContent"></tbody>
+                <tbody id="deviceContent">
+                <% for (var i=0;i<data.length;i++){%>
+                <tr>
+                    <td><%=i+1 +"." %></td>
+                    <td><%=data[i].inventoryNumber %></td>
+                    <td><%=data[i].deviceCategorie %></td>
+                    <td><%=data[i].status %></td>
+                    <td><%=data[i].status %></td>
+
+                </tr>
+                <% } %>
+                </tbody>
             </table>
 
         </div>
@@ -73,8 +84,16 @@
 
                     <div class="deviceInfoBoxes">
                         <label for="kategorie"> Kategorie: </label>
-                        <div>
-                            <input class="form-control" type="text" value="Kategorie" id="kategorie">
+                            <div>
+                                <select class="browser-default custom-select form-control" id="kategorie" onchange="getSelectedOption()" style="width: 100%; display: inline-block">
+                                    <option value="0" selected disabled>Kategorie zuordnen</option>
+                                    <option value="available">Verfügbar</option>
+                                    <option value="borrowed">Ausgeliehen</option>
+                                    <option value="maintenance">In Wartung</option>
+                                    <option value="outOfOrder">Außer Betrieb</option>
+                                    <option value="lost">Verschollen/Verschwunden</option>
+                                    <option value="stolen">Gestohlen</option>
+                                </select>
                         </div>
                     </div>
 
@@ -173,7 +192,7 @@
 
 
 
-
+<%- include('../Views/general/footer.ejs'); -%>
 </body>
 <style>
     td:nth-of-type(5) {display: none;}

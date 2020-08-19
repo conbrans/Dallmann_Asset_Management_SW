@@ -161,7 +161,6 @@
     </div>
 </header>
 <hr class="clear">
-
 <br>
 <div class="outerBox">
     <div class="wrapper">
@@ -196,7 +195,7 @@
 
         </div>
         <div>
-            <form class="box" action="">
+            <form class="box" action="/changeDevice" method="">
                 <h3>Geräteinformationen</h3>
                 <br>
                 <div class="box1">
@@ -205,13 +204,22 @@
                         <label for="inventarnummer" style="float: left"> Inventarnummer: </label>
                         <div>
                             <input class="form-control" type="text" value="Inventarnummer" id="inventarnummer">
+                            <input type="hidden" name="invNumber" form="booking" value="100420">
                         </div>
                     </div>
 
                     <div class="deviceInfoBoxes">
                         <label for="kategorie"> Kategorie: </label>
                         <div>
-                            <input class="form-control" type="text" value="Kategorie" id="kategorie">
+                            <select class="browser-default custom-select form-control" id="kategorie" onchange="getSelectedOption()" style="width: 100%; display: inline-block">
+                                <option value="0" selected disabled>Kategorie zuordnen</option>
+                                <option value="available">Verfügbar</option>
+                                <option value="borrowed">Ausgeliehen</option>
+                                <option value="maintenance">In Wartung</option>
+                                <option value="outOfOrder">Außer Betrieb</option>
+                                <option value="lost">Verschollen/Verschwunden</option>
+                                <option value="stolen">Gestohlen</option>
+                            </select>
                         </div>
                     </div>
 
@@ -225,13 +233,17 @@
                     <div class="deviceInfoBoxes">
                         <label for="status"> Status:</label>
                         <div>
-                            <select class="form-control" id="status"">
-                                <option selected>Status</option>
+                            <select class="browser-default custom-select form-control" id="sort" onchange="getSelectedOption()" style="width: 100%; display: inline-block">
+                                <option value="0" selected disabled>Status festlegen/ändern</option>
                                 <option value="available">Verfügbar</option>
                                 <option value="borrowed">Ausgeliehen</option>
-                                <option value="repair">Reperatur</option>
-                                <option value="missing">Vermisst</option>
+                                <option value="maintenance">In Wartung</option>
+                                <option value="outOfOrder">Außer Betrieb</option>
+                                <option value="lost">Verschollen/Verschwunden</option>
+                                <option value="stolen">Gestohlen</option>
                             </select>
+
+
                         </div>
                     </div>
 
@@ -263,12 +275,31 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <div style="margin-top: 1em">
-                        <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
-                            Daten ändern
-                        </button>
+                        <p>
+                            <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
+                                Daten ändern
+                            </button>
+                        <form method="post" action="/historie" id="historie">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info">Historie anzeigen</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form method="post" action="/booking" id="booking">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-warning">Gerät reservieren</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <br>
                     <hr>
@@ -287,14 +318,14 @@
 
 
 
-
+<%- include('../Views/general/footer.ejs'); -%>
 </body>
 <style>
     td:nth-of-type(5) {display: none;}
 
-.deviceInfoBoxes{
-    width: 350px;
-}
+    .deviceInfoBoxes{
+        width: 350px;
+    }
 
 </style>
 <script>
