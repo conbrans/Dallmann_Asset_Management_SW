@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html">
+    <link type="text/css" rel="stylesheet" href="css/userManagement.css" >
+
+    <link type="text/css" rel="stylesheet" href="css/headFootDesign.css">
+    <link  rel="stylesheet" type="text/css" href="css/table.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" language="JavaScript" src="javascript/userManagement.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+
+    <title>Geräteverwaltung</title>
+
+
+</head>
+<body>
+<!-- NavigationBar Start -->
+<%- include('../Views/general/header.ejs'); -%>
+<!--Nav Ende -->
+
+<br>
+<div class="outerBox">
+    <div class="wrapper">
+        <div id="content" style="overflow-x: auto">
+            <h3>Geräteliste</h3>
+            <div style="text-align: right">
+                <form onclick="addDeviceWindow()">
+                    <button class="header_button">Neues Gerät hinzufügen
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class='fas fa-pencil'
+                             fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            <table id="userlist" width="100%" class="table user-list" onload>
+                <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>Inventarnummer</th>
+                    <th>Kategorie</th>
+                    <th>Produktbezeichnung</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody id="deviceContent"></tbody>
+            </table>
+
+        </div>
+        <div>
+            <form class="box" action="/changeDevice" method="">
+                <h3>Geräteinformationen</h3>
+                <br>
+                <div class="box1">
+
+                    <div class="deviceInfoBoxes" style="width: 350px">
+                        <label for="inventarnummer" style="float: left"> Inventarnummer: </label>
+                        <div>
+                            <input class="form-control" type="text" value="Inventarnummer" id="inventarnummer">
+                            <input type="hidden" name="invNumber" form="booking" value="100420">
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label for="kategorie"> Kategorie: </label>
+                        <div>
+                            <input class="form-control" type="text" value="Kategorie" id="kategorie">
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label>Produktbezeichnung</label>
+                        <div>
+                            <input class="form-control" type="text" name="username" placeholder="Produktbezeichnung" value="Z350">
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label for="status"> Status:</label>
+                        <div>
+                            <select class="browser-default custom-select form-control" id="sort" onchange="getSelectedOption()" style="width: 100%; display: inline-block">
+                            <option value="0" selected disabled>Status festlegen/ändern</option>
+                            <option value="available">Verfügbar</option>
+                            <option value="borrowed">Ausgeliehen</option>
+                            <option value="maintenance">In Wartung</option>
+                            <option value="outOfOrder">Außer Betrieb</option>
+                            <option value="lost">Verschollen/Verschwunden</option>
+                            <option value="stolen">Gestohlen</option>
+                            </select>
+
+
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label for="technicalInspection" style="float: left">TÜV</label>
+                        <div>
+                            <input type="datetime-local" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes">
+                        <label for="technicalInspection" style="float: left">UVV</label>
+                        <div>
+                            <input type="datetime-local" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="deviceInfoBoxes" style="width: 350px">
+                        <label>Position</label>
+
+                        <div>
+                            <div style="float: left;">
+
+                                <input id="xAxis" class="form-control" type="text" value="52.52" style="width: 170px">
+                            </div>
+                            <div style="float: right">
+
+                                <input id="yAxis" class="form-control" type="text" value="7.32" style="width: 170px">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="margin-top: 1em">
+                       <p>
+                           <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
+                            Daten ändern
+                           </button>
+                        <form method="post" action="/historie" id="historie">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info">Historie anzeigen</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form method="post" action="/booking" id="booking">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-warning">Gerät reservieren</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <hr>
+                    <h4>Standort</h4>
+                    <br>
+                    <div id="map" style="width: 700px; height: 500px">
+                        <div ></div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+<style>
+    td:nth-of-type(5) {display: none;}
+
+    .deviceInfoBoxes{
+        width: 350px;
+    }
+
+</style>
+<script>
+
+    var map = L.map('map').setView([52.52,7,32],5);
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+
+    }).addTo(map);
+    var markerElement = L.marker([52.52,7,32]).addTo(map);
+    var marker2 = L.marker([52,7,32]).addTo(map);
+</script>
+</html>

@@ -2,7 +2,7 @@ var long ="";
 var lat="";
 
 
-  /*  var ourRequest = new XMLHttpRequest();
+    var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', 'https://gist.githubusercontent.com/lkottman/8618f80366e571d39402edf13776f4e0/raw/d5e5b0fc29b7f117a9fc0bda414ce62fd4d1576e/Dataset_example.json', true);
     ourRequest.onload = function () {
         if (ourRequest.status >= 200 && ourRequest.status < 400){
@@ -15,7 +15,7 @@ var lat="";
     ourRequest.onerror=function(){
         console.log("Connection")
     }
-    ourRequest.send();*/
+    ourRequest.send();
 
 
 

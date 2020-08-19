@@ -119,5 +119,5 @@ window.addEventListener('click', function () {
 })
 
 function addDeviceWindow() {
-    F = window.open("../html/addDevice.html", "Popup", "width=400,height=400");
+     window.open("html/addDevice.html", "Popup", "width=400,height=400");
 }

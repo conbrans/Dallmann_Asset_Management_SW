@@ -13,11 +13,9 @@
 
 </head>
 <body>
-<% /* NavigationBar & Footer Import*/  %>
-<%- include('../Views/header.ejs'); -%>
-
-
-<% /* NavigationBar & Footer Import */ %>
+<!-- NavigationBar Start -->
+<%- include('../Views/general/header.ejs'); -%>
+<!--Nav Ende -->
 <main>
 
 
@@ -86,7 +84,7 @@
     <% if (rights[5]=== 1 && rights[6] === 1){%>
     <div id="overview">
         <div id="userManagement">
-            <a href="/update" style="text-decoration: none; color: #0d0d0d">
+            <a href="/userManagement" style="text-decoration: none; color: #0d0d0d">
                 <h3>Nutzerverwaltung</h3>
                 <p>&nbsp;</p>
                 <i class="fas fa-cogs fa-3x"></i>

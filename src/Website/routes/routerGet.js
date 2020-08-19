@@ -1,15 +1,30 @@
 const express = require('express');
 const router = express.Router();
+const fetch = require('node-fetch');
 const redirect = require('../routes/redirect');
 
+let result;
+function setData(data)
+{
+    return result =data;
+}
 
-router.get("/add", redirect.redirectLogin, function (request, result) {
-    result.render("adminCreateUser.ejs",
+
+
+
+
+router.get("/add", redirect.redirectLogin, function (request, response) {
+    response.render("adminCreateUser.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
             rights: request.session.rights,
         })
+
+});
+
+router.get("/addDevice", redirect.redirectLogin, function (request, response) {
+    response.sendFile("C:\\Users\\c.brans\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\private\\html\\addDevice.html");
 
 });
 
@@ -37,7 +52,7 @@ router.get("/bookinglist", redirect.redirectLogin, function (request, response) 
 });
 
 router.get("/devices", redirect.redirectLogin, function (request, response) {
-    response.render("DeviceMngt.ejs",
+    response.render("newDeviceManagement.ejs",
         {
             benutzername: request.session.userName,
             role: request.session.role,
@@ -56,6 +71,17 @@ router.get("/faQ", function (request, response) {
 
 });
 
+router.get("/profil",function (request,response)
+{
+    response.render("profil.ejs",
+        {
+            benutzername: request.session.userName,
+            role: request.session.role,
+            rights: request.session.rights,
+        });
+
+})
+
 
 router.get("/update", redirect.redirectLogin, function (request, response) {
     response.render("adminUpdateUser.ejs",
@@ -64,6 +90,24 @@ router.get("/update", redirect.redirectLogin, function (request, response) {
             role: request.session.role,
             rights: request.session.rights,
         })
+
+});
+
+router.get("/userManagement", redirect.redirectLogin, function (request,response)
+{
+    fetch("http://localhost:3032/users")
+        .then(response => response.json())
+        .then(data =>
+            response.render("userManagement.ejs",
+            {
+                benutzername: request.session.userName,
+                role: request.session.role,
+                rights: request.session.rights,
+                data: data,
+            }));
+
+
+
 
 });
 

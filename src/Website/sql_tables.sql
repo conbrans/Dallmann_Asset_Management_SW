@@ -21,7 +21,7 @@ CREATE TABLE `roles` (
                          `role_name` varchar(100) null,
                          PRIMARY KEY (role_id)
 )
-
+DROP TABLE worker CASCADE;
 CREATE TABLE `Worker` (
                           `worker_id` int(11) NOT NULL AUTO_INCREMENT,
                           `password` varchar(255) DEFAULT NULL,

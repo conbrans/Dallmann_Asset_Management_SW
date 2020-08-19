@@ -3,6 +3,7 @@ html {
     margin: 0;
 }
 
+
 body {
     margin: 0;
     padding: 0;
@@ -142,8 +143,9 @@ header{
 
 .clear {
     clear: both;
-    border: none;
     margin: 0;
+    border: none;
+
 
 }
 
