@@ -1,6 +1,6 @@
-USE asssetmanagement;
+USE assetmanagement;
 CREATE TABLE `Rights` (
-                          `role` int(11) NOT NULL AUTO_INCREMENT,
+                          `role` varchar(100) NOT NULL,
                           `booking_device` tinyint(1) DEFAULT NULL,
                           `edit_device` tinyint(1) DEFAULT NULL,
                           `add_device` tinyint(1) DEFAULT NULL,
@@ -12,16 +12,8 @@ CREATE TABLE `Rights` (
                           `delete_booking` tinyint(1) DEFAULT NULL,
                           `edit_booking` tinyint(1) DEFAULT NULL,
                           PRIMARY KEY (`role`)
-)
-
-
-
-CREATE TABLE `roles` (
-                         `role_id` int(4) NOT NULL,
-                         `role_name` varchar(100) null,
-                         PRIMARY KEY (role_id)
-)
-DROP TABLE worker CASCADE;
+);
+/*DROP TABLE worker CASCADE;*/
 CREATE TABLE `Worker` (
                           `worker_id` int(11) NOT NULL AUTO_INCREMENT,
                           `password` varchar(255) DEFAULT NULL,
@@ -29,11 +21,11 @@ CREATE TABLE `Worker` (
                           `user_identification` varchar(255) DEFAULT NULL,
                           `name` varchar(255) DEFAULT NULL,
                           `surname` varchar(255) DEFAULT NULL,
-                          `role` int(11) DEFAULT NULL,
+                          `role` varchar(100) DEFAULT NULL,
                           PRIMARY KEY (`worker_id`),
                           KEY `role` (`role`),
                           CONSTRAINT `Worker_ibfk_1` FOREIGN KEY (`role`) REFERENCES `Rights` (`role`) ON UPDATE CASCADE
-)
+);
 
 
 

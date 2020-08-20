@@ -3,7 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const redirect = require('../routes/redirect');
 
-router.post("/booking",/* redirect.redirectHomeAdmin,redirect.redirectHomeForeman,redirect.redirectHomeWorkshop,*/ function (request, response) {
+router.post("/booking", redirect.authRight("booking_device"), function (request, response) {
 
 
     response.render("booking.ejs",
@@ -18,7 +18,7 @@ router.post("/booking",/* redirect.redirectHomeAdmin,redirect.redirectHomeForema
 })
 
 
-router.post("/book", function (request, response) {
+router.post("/book", redirect.authRight("booking_device"), function (request, response) {
     //TODO FETCH ZUR KEVIN
 console.log(request.body);
 var jsonfetch = {

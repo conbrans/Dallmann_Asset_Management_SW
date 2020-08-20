@@ -22,13 +22,13 @@
     <div id="text">
         <ul>
             <li>
-                <a id="home" href="#info" class="link active">Allgemeines</a>
+                <a id="info" href="#info" class="link active">Allgemeines</a>
                 <ul class="nav-menu-sub">
                     <li>
-                        <a id="home" href="#firstStart" class="link">Erstverwednung der Anwendung</a>
+                        <a id="info" href="#firstStart" class="link">Erstverwednung der Anwendung</a>
                     </li>
                     <li>
-                        <a id="home" href="#login" class="link">Login</a>
+                        <a id="info" href="#login" class="link">Login</a>
                     </li>
                 </ul>
             </li>
@@ -54,7 +54,7 @@
                     </li>
                 </ul>
             </li>
-            <% if (rights[0] === 1){%>
+            <% if (rights.booking_device === 1){%>
             <li>
                 <a id="calendar-alt" href="#booking" class="link">Reservierung</a>
                 <ul class="nav-menu-sub">
@@ -70,7 +70,7 @@
             <li>
                 <a id="user" href="#userProfil" class="link">Benutzerprofil</a>
             </li>
-            <% if (rights[5] === 1 && rights[6]=== 1){%>
+            <% if (rights.add_user === 1 && rights.delete_user=== 1){%>
             <li>
                 <a id="cogs" href="#userManagement" class="link">Benutzerverwaltung</a>
                 <ul class="nav-menu-sub">
@@ -211,7 +211,7 @@
 
     </div>
 
-    <% if (rights[0] === 1){%>
+    <% if (rights.booking_device === 1){%>
     <div id="booking">
         <h1>Reservierung</h1>
 
@@ -222,7 +222,7 @@
         <h1>Benutzerprofil</h1>
     </div>
 
-    <% if (rights[5] === 1 && rights[6]=== 1){%>
+    <% if (rights.add_user === 1 && rights.delete_user=== 1){%>
     <div id="userManagement">
         <h1>Benutzerverwaltung</h1>
         <p>

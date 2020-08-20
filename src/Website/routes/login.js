@@ -12,10 +12,6 @@ var {
     secretSession = "test"
 } = process.env;
 
-/**
- * gets the User Information from REST-API
- * @returns {Promise<*>}
- */
 
 /**
  * set the session Values
@@ -37,6 +33,7 @@ function getAcces(request, data, response) {
         request.session.email = data.e_mail;
         request.session.role = data.role;
         request.session.rights = data.rights;
+        console.log(data.rights);
 
 
         if (request.body.checkbox === "on") {

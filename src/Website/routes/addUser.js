@@ -9,11 +9,11 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root",
-    database: "asssetmanagement"
+    database: "assetmanagement"
 });
 
 
-router.post("/addUser", redirect.redirectLogin, redirect.redirectHomeAdmin, function (request,response)
+router.post("/addUser", redirect.redirectLogin, redirect.authRight("add_user"), function (request,response)
 {
    /* fetch('http://localhost:3032/user', {
         method : 'POST',
@@ -32,7 +32,7 @@ router.post("/addUser", redirect.redirectLogin, redirect.redirectHomeAdmin, func
 
     sql = "INSERT INTO worker(password,e_mail,user_identification,name,surname,role) VALUES " +
         "('"+request.body.password+"','"+request.body.email+"','"+request.body.email+"','"
-        + request.body.firstName+"','"+request.body.lastName+"',"+request.body.role+")";
+        + request.body.firstName+"','"+request.body.lastName+"','"+request.body.role+"')";
     con.query(sql,function (err)
     {
         if (err) throw err;

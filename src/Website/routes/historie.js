@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 
 
-router.post("/historie",/* redirect.redirectLogin,*/ function (request, response) {
+router.post("/historie", redirect.redirectLogin,redirect.authRight("view_device"), function (request, response) {
 
 
     let datum = [];

@@ -14,7 +14,9 @@
 
 
     <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script type="text/javascript" language="JavaScript" src="javascript/userManagement.js"></script>
+    <!--<script type="text/javascript" language="JavaScript" src="javascript/userManagement.js"></script> -->
+    <script type="text/javascript" language="JavaScript" src="javascript/usermanagementtest.js"></script>
+
     <script src="javascript/adminView.js"></script>
 
     <title>Benutzerverwaltung</title>
@@ -50,17 +52,16 @@
                     <th onclick="sortTable(1)">Nachname</th>
                     <th onclick="sortTable(2)">E-Mail</th>
                     <th onclick="sortTable(3)">Rolle</th>
-                    <th onclick="sortTable(4)">Verifiziert</th>
                     <th style="display: none">ID</th>
                 </tr>
                 </thead>
                 <tbody id="userListContent">
                 <% for (var i=0;i<data.length;i++){%>
-                    <tr>
-                        <td><%=data[i].name%></td>
-                        <td><%=data[i].surname%></td>
-                        <td><%=data[i].e_mail%></td>
-                        <td><%=data[i].role%></td>
+                    <tr onclick="loadData(<%=i %>)">
+                        <td id="tr<%=i%>td1"><%=data[i].name%></td>
+                        <td id="tr<%=i%>td2"><%=data[i].surname%></td>
+                        <td id="tr<%=i%>td3"><%=data[i].e_mail%></td>
+                        <td id="tr<%=i%>td4"><%=data[i].role%></td>
                     </tr>
                 <% }%>
                 </tbody>

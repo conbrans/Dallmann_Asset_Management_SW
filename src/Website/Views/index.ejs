@@ -31,8 +31,7 @@
         </div>
     </div>
 
-    <% /* access for users with role 1 to 3 */%>
-    <% if (rights[0] ===1 ) { %>
+    <% if (rights.booking_device ===1 ) { %>
     <div id="overview">
         <div id="reservations">
             <a href="/bookinglist" style="text-decoration: none; color: #0d0d0d">
@@ -56,7 +55,7 @@
         </div>
     </div>
     <% /* access for users with role 1 & 2 */%>
-    <% if ( role === 1 || role === 2 ) { %>
+    <% if ( role === "Admin" || role==="Werkstatt" ) { %>
     <div id="overview">
         <div id="picking">
             <a href="/picking" style="text-decoration: none; color: #0d0d0d">
@@ -81,7 +80,7 @@
     </div>
 
     <% /* access for users with role 1 */%>
-    <% if (rights[5]=== 1 && rights[6] === 1){%>
+    <% if (rights.add_user=== 1 && rights.delete_user === 1){%>
     <div id="overview">
         <div id="userManagement">
             <a href="/userManagement" style="text-decoration: none; color: #0d0d0d">

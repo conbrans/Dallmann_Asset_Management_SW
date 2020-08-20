@@ -69,7 +69,7 @@
 
         </div>
         <div>
-            <form class="box" action="/changeDevice" method="">
+            <form class="box" action="/changeDevice" method="post" id="changeDevice">
                 <h3>Geräteinformationen</h3>
                 <br>
                 <div class="box1">
@@ -77,8 +77,9 @@
                     <div class="deviceInfoBoxes" style="width: 350px">
                         <label for="inventarnummer" style="float: left"> Inventarnummer: </label>
                         <div>
-                            <input class="form-control" type="text" value="Inventarnummer" id="inventarnummer">
+                            <input class="form-control"  form="changeDevice" type="text" value="Inventarnummer" id="inventarnummer">
                             <input type="hidden" name="invNumber" form="booking" value="100420">
+                            <input type="hidden" name="invNumber" value="100420" form="historie">
                         </div>
                     </div>
 
@@ -153,9 +154,10 @@
 
                     <div style="margin-top: 1em">
                        <p>
-                           <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
+                           <button  type="submit" class="btn btn-outline-primary" onclick="sendData()">
                             Daten ändern
                            </button>
+            </form>
                         <form method="post" action="/historie" id="historie">
                             <div class="row">
                                 <div class="col">

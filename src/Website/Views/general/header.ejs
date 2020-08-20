@@ -21,7 +21,7 @@
                             </li>
                         </ul>
                     </li>
-                    <% if (rights[0] === 1){%>
+                    <% if (rights.booking_device === 1){%>
                     <!-- Reservierung -->
                     <li>
                         <a href="/bookinglist">
@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <!-- Hinzufügen von Nutzern/Rechten -->
-                    <% if (rights[5] === 1 && rights[6]=== 1){%>
+                    <% if (rights.add_user === 1 && rights.delete_user=== 1){%>
                     <li>
                         <a href="/userManagement">
                             <i class="fas fa-cogs"></i>

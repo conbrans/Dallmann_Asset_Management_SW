@@ -10,7 +10,7 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root",
-    database: "asssetmanagement"
+    database: "assetmanagement"
 });
 
 
@@ -21,18 +21,42 @@ var {
 
 app.post("/json", function (request,response)
 {
+    var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
+        "GROUP BY worker.role; ";
 
-   response.json({
-       "access" : true,
-       "worker_id" : 1,
-       "password" : "test",
-       "e_mail" : "c.brans@dallmann-bau.de",
-       "user_identification" : "Kouis",
-       "name" : "Kouis",
-       "surname" : "Lottmann",
-       "role" : 1,
-       "rights" : [1,1,1,1,1,1,1,1,1,1]
-   });
+    con.query(firstsql, function (err,res)
+    {
+        if (err) throw err;
+        if (res.length===0)
+        {
+        response.json({ "acces" : false});
+        }else
+            {
+                console.log(res[0]);
+                response.json(
+                    {
+                        "access" : true,
+                        "worker_id" : res[0].worker_id,
+                        "e_mail" : res[0].e_mail,
+                        "name" : res[0].name,
+                        "surname" : res[0].surname,
+                        "role" : res[0].role,
+                        "rights" :
+                            {
+                                "booking_device": res[0].booking_device,
+                                "edit_device": res[0].edit_device,
+                                "add_device": res[0].add_device,
+                                "view_device": res[0].view_device,
+                                "delete_device": res[0].delete_user,
+                                "add_user": res[0].add_user,
+                                "delete_user": res[0].delete_user,
+                                "edit_user": res[0].edit_user,
+                                "delete_booking": res[0].delete_booking,
+                                "edit_booking": res[0].edit_booking
+                            }
+                    });
+            }
+    })
 })
 
 app.post("/user",function (request,reponse)

@@ -90,6 +90,7 @@ window.addEventListener('click', function () {
     for (var i = 1; i < table.rows.length; i++) {
         table.rows[i].addEventListener('click', function () {
 
+
             for (var j = 0; j < this.cells.length; j++) {
                 var msg = '';
                 msg += this.cells[j].innerHTML + ' ';

@@ -4,7 +4,7 @@ const app = require('../../app');
 const redirect = require('../routes/redirect');
 
 
-router.post("/updateUser", function (request,response)
+router.post("/updateUser", redirect.authRight("edit_user"), function (request,response)
 {
     console.log(request.body);
    /* response.render("adminCreateUser.ejs",

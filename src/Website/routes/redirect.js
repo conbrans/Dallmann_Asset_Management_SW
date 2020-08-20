@@ -27,41 +27,21 @@ const redirectHome = (request, response, next) => {
     }
 }
 
-const redirectHomeAdmin = (request, response, next) =>
+//bei dieser funktion
+function authRight(right)
 {
-    if (request.session.role !== 1)
+    return (request, response, next) =>
     {
-        response.redirect("/home");
-        console.log("Zugriff verweigert, da kein Admin")
-    } else {
-        next();
+        // toLowercase, um Fehler bei den redirects zu vermeiden
+        var righttoLowerCase = right.toLowerCase();
+                if (request.session.rights[righttoLowerCase] === 0)
+                {
+                    response.redirect("/home");
+                }else
+                {
+                    next();
+                }
     }
-}
-
-const redirectHomeWorkshop = (request, response, next) =>
-{
-    if (request.session.role !== 2)
-    {
-        response.redirect("/home");
-        console.log("Zugriff verweigert, da kein Werkstattmitarbeiter")
-    } else {
-        next();
-    }
-}
-
-const redirectHomeForeman = (request, response, next) =>
-{
-    if (request.session.role !== 3)
-    {
-        response.redirect("/home");
-        console.log("Zugriff verweigert, da kein Polier")
-    } else {
-        next();
-    }
-}
-const redirectafterRights = (request, response, next) =>
-{
-
 }
 
 
@@ -70,9 +50,8 @@ module.exports =
     {
         redirectLogin: redirectLogin,
         redirectHome: redirectHome,
-        redirectHomeAdmin : redirectHomeAdmin,
+       /* redirectHomeAdmin : redirectHomeAdmin,
         redirectHomeWorkshop : redirectHomeWorkshop,
-        redirectHomeForeman : redirectHomeForeman,
-        redirectafterRights : redirectafterRights,
-
+        redirectHomeForeman : redirectHomeForeman,*/
+        authRight
     }
