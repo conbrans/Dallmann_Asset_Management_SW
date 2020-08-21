@@ -22,7 +22,7 @@ function changeSelectStatus(input) {
 }
 
 
-function deleteUserMessage() {
+/*function deleteUserMessage() {
     if(confirm("ACHTUNG!\nSie sind dabei den gewälten User zu löschen.")){
 
         let user = new UserToUpdate().getSelectedUser();
@@ -35,14 +35,12 @@ function deleteUserMessage() {
             body: JSON.stringify(user)
         };
 
-        fetch('/deleteUser', options)
+        fetch(' http://localhost:3032/deleteUser', options)
             .then(response => response.json())
-            .then(data => {
-
-            })
-        location.reload()
+            .then(data => { console.log(data)})
+        location.reload();
     }
-}
+}*/
 
 function resetUserPasswordMessage() {
     if(confirm("ACHTUNG!\nSie sind dabei das Passwort des Benutzers zurückzusetzten.")){
@@ -52,7 +50,7 @@ function resetUserPasswordMessage() {
 }
 
 
-function renderHTML(data) {
+/*function renderHTML(data) {
     var rowCounter = 0;
     for (i = 0; i < data.length; i++) {
         createTableContent("userListContent", rowCounter);
@@ -83,9 +81,9 @@ function renderHTML(data) {
 
         rowCounter++;
     }
-}
+}*/
 
-window.addEventListener('click', function () {
+/*window.addEventListener('click', function () {
     var table = document.getElementById('userlist');
     for (var i = 1; i < table.rows.length; i++) {
         table.rows[i].addEventListener('click', function () {
@@ -117,7 +115,7 @@ window.addEventListener('click', function () {
             console.log(msg)
         });
     }
-})
+})*/
 
 function addDeviceWindow() {
      window.open("html/addDevice.html", "Popup", "width=400,height=400");

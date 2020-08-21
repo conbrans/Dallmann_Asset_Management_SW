@@ -28,12 +28,13 @@ function getAcces(request, data, response) {
         response.redirect("/");
 
     } else {
+        console.log("Zugriff gewährt");
         request.session.userID = data.worker_id;
         request.session.userName = data.name + " " + data.surname;
         request.session.email = data.e_mail;
         request.session.role = data.role;
         request.session.rights = data.rights;
-        console.log(data.rights);
+
 
 
         if (request.body.checkbox === "on") {

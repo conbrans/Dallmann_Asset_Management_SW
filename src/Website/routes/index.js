@@ -10,14 +10,14 @@ const session = require('express-session');
  * @type {Router}
  */
 
-const addUser = require('../routes/addUser');
 const booking = require('../routes/reservierung');
 const history = require('../routes/historie');
 const homepage = require('../routes/homepage');
+
 const login = require('../routes/login');
 const redirect = require('../routes/redirect');
 const routerGet = require('../routes/routerGet');
-const updateUser = require('../routes/updateUser');
+const usermanagement = require('../routes/Usermanagement');
 
 
 /**
@@ -52,13 +52,13 @@ app.use(session({
     }
 }));
 
-app.use(addUser);
+
 app.use(booking);
 app.use(history);
 app.use(homepage);
 app.use(login);
 app.use(routerGet);
-app.use(updateUser);
+app.use(usermanagement);
 
 
 // Get Methods for the login and logout

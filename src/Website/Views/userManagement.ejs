@@ -14,7 +14,7 @@
 
 
     <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <!--<script type="text/javascript" language="JavaScript" src="javascript/userManagement.js"></script> -->
+    <script type="text/javascript" language="JavaScript" src="javascript/userManagement.js"></script> 
     <script type="text/javascript" language="JavaScript" src="javascript/usermanagementtest.js"></script>
 
     <script src="javascript/adminView.js"></script>
@@ -57,7 +57,7 @@
                 </thead>
                 <tbody id="userListContent">
                 <% for (var i=0;i<data.length;i++){%>
-                    <tr onclick="loadData(<%=i %>)">
+                    <tr onclick="loadData(<%=i %>); loadDataForBox(<%=i%>)">
                         <td id="tr<%=i%>td1"><%=data[i].name%></td>
                         <td id="tr<%=i%>td2"><%=data[i].surname%></td>
                         <td id="tr<%=i%>td3"><%=data[i].e_mail%></td>
@@ -114,12 +114,12 @@
                         <label for="rolleBtn"> Rolle:</label>
                         <div>
 
-                            <select class="inputBox" id="rolle" disabled="disabled">
-                                <option selected>Rolle</option>
-                                <option value="admin">Admin</option>
-                                <option value="mechanic">Werkstatt</option>
-                                <option value="foreman">Polier</option>
-                                <option value="accounting">Buchhaltung</option>
+                            <select class="inputBox" id="rolle" disabled >
+                                <option disabled selected>Rolle</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Werkstatt">Werkstatt</option>
+                                <option value="Polier">Polier</option>
+                                <option value="Buchhaltung">Buchhaltung</option>
                             </select>
                             <button id="rolleBtn" type="button" onclick="changeSelectStatus('rolle')" class="btn btn-default" aria-label="Left Align"
                                     style="border: none">
@@ -129,7 +129,7 @@
                     </div>
 
 
-                    <div class="deviceInfoBoxes">
+               <!--     <div class="deviceInfoBoxes">
                         <label for="verfiedBtn"> Verifiziert:</label>
                         <div>
 
@@ -142,22 +142,27 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </button>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div style="margin-top: 1em">
+
                         <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
                             Bestätigen
                         </button>
                     </div>
+            </form>
                     <hr><br>
                     <div>
                         <h2>Passwort zurücksetzen</h2>
                         <div>Hier können Sie das Passwort des User's zurücksetzen
                         </div>
                         <div style="margin-top: 1em">
-                            <button  type="button" class="btn btn-outline-danger" onclick="resetUserPasswordMessage()">
+                            <form method="post" action="/resetPw">
+                            <input type="hidden" name="e_Mail" id="reset_Password">
+                            <button  type="submit" class="btn btn-outline-danger" onclick="resetUserPasswordMessage()">
                                 Passwort zurücksetzen
                             </button>
+                            </form>
                         </div>
                     </div>
                     <hr><br>
@@ -166,13 +171,17 @@
                         <div>Hier können Sie den gewählten User löschen
                         </div>
                         <div style="margin-top: 1em">
-                            <button  type="button" class="btn btn-outline-danger" onclick="deleteUserMessage()">
-                                Benutzer löschen
-                            </button>
+                            <form method="post" action="/deleteU">
+                                <input type="hidden" name="e_Mail" id="deleteE_mail">
+                                <button  type="submit" class="btn btn-outline-danger" onclick="deleteUserMessage()">
+                                    Benutzer löschen
+                                </button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
-            </form>
+
         </div>
     </div>
 </div>

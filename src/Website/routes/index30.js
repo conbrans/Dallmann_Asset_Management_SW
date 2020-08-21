@@ -32,7 +32,6 @@ app.post("/json", function (request,response)
         response.json({ "acces" : false});
         }else
             {
-                console.log(res[0]);
                 response.json(
                     {
                         "access" : true,
@@ -59,9 +58,17 @@ app.post("/json", function (request,response)
     })
 })
 
-app.post("/user",function (request,reponse)
+app.post("/user",function (request,response)
 {
-    console.log(request.body);
+    sql = "INSERT INTO worker(password,e_mail,user_identification,name,surname,role) VALUES " +
+        "('"+request.body.password+"','"+request.body.email+"','"+request.body.email+"','"
+        + request.body.firstName+"','"+request.body.lastName+"','"+request.body.role+"')";
+    con.query(sql,function (err)
+    {
+        if (err) throw err;
+        response.json({"Messagge": "Nutzer wurde hinzugefügt"});
+    })
+
 
 });
 
@@ -109,8 +116,6 @@ app.get("/devices", function (request,response)
 
 });
 
-
-
 app.get("/users",function (request,response)
 {
     sql = "SELECT * FROM worker;";
@@ -121,6 +126,25 @@ app.get("/users",function (request,response)
     })
 
 
+});
+
+app.post("/deleteUser",function (request,response)
+{
+    sql = "DELETE FROM worker WHERE e_mail ='"+request.body.e_Mail+"';";
+    con.query(sql,function (err)
+    {
+        if (err) throw err;
+    })
+});
+
+app.post("/resetPassword",function (request,response)
+{
+    sql = "UPDATE worker SET password='123456' WHERE e_mail ='"+request.body.e_Mail+"';";
+    console.log(sql);
+    con.query(sql,function (err)
+    {
+        if (err) throw err;
+    })
 });
 
 app.listen(PORT, () => console.log(
