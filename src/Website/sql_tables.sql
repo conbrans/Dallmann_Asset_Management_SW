@@ -1,3 +1,4 @@
+CREATE  SCHEMA assetmanagement;
 USE assetmanagement;
 CREATE TABLE `Rights` (
                           `role` varchar(100) NOT NULL,
@@ -44,7 +45,7 @@ CREATE TABLE `LOGS` (
                         `level` varchar(255) DEFAULT NULL,
                         `message` longtext,
                         PRIMARY KEY (`log_id`)
-)
+);
 
 CREATE TABLE `Location` (
                             `time` time NOT NULL DEFAULT '00:00:00',
@@ -52,9 +53,9 @@ CREATE TABLE `Location` (
                             `gps` varchar(255) DEFAULT NULL,
                             `device_doc_number` varchar(255) DEFAULT NULL,
                             PRIMARY KEY (`time`)
-)
+);
 CREATE TABLE `Device` (
-                          `inventory_number` int(11) NOT NULL AUTO_INCREMENT,
+                          `inventory_number` int(11) NOT NULL,
                           `status` tinyint(1) DEFAULT NULL,
                           `designation` varchar(255) DEFAULT NULL,
                           `serial_number` varchar(255) DEFAULT NULL,
@@ -63,14 +64,14 @@ CREATE TABLE `Device` (
                           `note` text,
                           `reservation_status` tinyint(1) DEFAULT NULL,
                           PRIMARY KEY (`inventory_number`)
-)
+);
 CREATE TABLE `Device_documentation` (
                                         `device_doc_number` int(11) NOT NULL AUTO_INCREMENT,
                                         `inventory_number` int(11) DEFAULT NULL,
                                         PRIMARY KEY (`device_doc_number`),
                                         KEY `inventory_number` (`inventory_number`),
                                         CONSTRAINT `Device_documentation_ibfk_1` FOREIGN KEY (`inventory_number`) REFERENCES `Device` (`inventory_number`) ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE `Repair` (
                           `time` time NOT NULL DEFAULT '00:00:00',
@@ -80,7 +81,7 @@ CREATE TABLE `Repair` (
                           PRIMARY KEY (`time`),
                           KEY `device_doc_number` (`device_doc_number`),
                           CONSTRAINT `Repair_ibfk_1` FOREIGN KEY (`device_doc_number`) REFERENCES `Device_documentation` (`device_doc_number`) ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE `Uvv` (
                        `time` time NOT NULL DEFAULT '00:00:00',
@@ -90,7 +91,7 @@ CREATE TABLE `Uvv` (
                        PRIMARY KEY (`time`),
                        KEY `device_doc_number` (`device_doc_number`),
                        CONSTRAINT `Uvv_ibfk_1` FOREIGN KEY (`device_doc_number`) REFERENCES `Device_documentation` (`device_doc_number`) ON UPDATE CASCADE
-)
+);
 
 
 CREATE TABLE `Tuev` (
@@ -101,7 +102,7 @@ CREATE TABLE `Tuev` (
                         PRIMARY KEY (`time`),
                         KEY `device_doc_number` (`device_doc_number`),
                         CONSTRAINT `Tuev_ibfk_1` FOREIGN KEY (`device_doc_number`) REFERENCES `Device_documentation` (`device_doc_number`) ON UPDATE CASCADE
-)
+);
 
 
 CREATE TABLE `Borrows` (
@@ -112,10 +113,8 @@ CREATE TABLE `Borrows` (
                            `inventory_number` int(11) DEFAULT NULL,
                            `project_id` int(11) DEFAULT NULL,
                            PRIMARY KEY (`loan_day`),
-                           KEY `worker_id` (`worker_id`),
                            KEY `inventory_number` (`inventory_number`),
                            KEY `project_id` (`project_id`),
-                           CONSTRAINT `Borrows_ibfk_1` FOREIGN KEY (`worker_id`) REFERENCES `Rights` (`role`) ON UPDATE CASCADE,
                            CONSTRAINT `Borrows_ibfk_2` FOREIGN KEY (`inventory_number`) REFERENCES `Device` (`inventory_number`) ON UPDATE CASCADE,
                            CONSTRAINT `Borrows_ibfk_3` FOREIGN KEY (`project_id`) REFERENCES `Project` (`project_id`) ON UPDATE CASCADE
-)
+);

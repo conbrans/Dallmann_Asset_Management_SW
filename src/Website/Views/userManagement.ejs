@@ -69,15 +69,19 @@
 
         </div>
         <div>
-            <form class="box" action="">
+
+            <div class="box">
                 <h3>Benutzerinfomationen</h3>
                 <br>
                 <div class="box1">
+                    <form method="post" action="/updateUser">
+
+
 
                     <div class="deviceInfoBoxes">
                         <label for="Vorname" style="float: left"> Vorname: </label>
                         <div>
-                            <input class="inputBox" type="text" value="Vorname" id="vorname" readonly>
+                            <input name="firstName" class="inputBox" type="text" value="Vorname" id="firstName" readonly>
                             <button id="vornameBtn" type="button" onclick="changeFieldStatus('vorname')"
                                     class="btn btn-default" aria-label="Left Align"
                                     style="float: left; border: none">
@@ -89,7 +93,7 @@
                     <div class="deviceInfoBoxes">
                         <label for="nachname"> Nachname: </label>
                         <div>
-                            <input class="inputBox" type="text" value="Nachname" id="nachname" readonly>
+                            <input name="surname"  class="inputBox" type="text" value="Nachname" id="lastName" readonly>
                             <button id="nachnameBtn" type="button" onclick="changeFieldStatus('nachname')"
                                     class="btn btn-default" aria-label="Left Align"
                                     style="float: left; border: none">
@@ -101,7 +105,8 @@
                     <div class="deviceInfoBoxes">
                         <label for="e-Mail">E-Mail:</label>
                         <div>
-                            <input class="inputBox" type="text" value="E-Mail" id="e-Mail" readonly>
+                            <input  name="mail" class="inputBox" type="text" value="E-Mail" id="e-Mail" readonly>
+                            <input  name="firstmail"  class="inputBox" type="hidden" value="E-Mail" id="e-Mailhidden">
                             <button id="emailBtn" type="button"  onclick="changeFieldStatus('e-Mail')"
                                     class="btn btn-default" aria-label="Left Align"
                                     style="float: left; border: none">
@@ -114,7 +119,7 @@
                         <label for="rolleBtn"> Rolle:</label>
                         <div>
 
-                            <select class="inputBox" id="rolle" disabled >
+                            <select  name="role" form="update" class="inputBox" id="rolle" disabled >
                                 <option disabled selected>Rolle</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Werkstatt">Werkstatt</option>
@@ -146,18 +151,20 @@
 
                     <div style="margin-top: 1em">
 
-                        <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
+                        <button  type="submit" class="btn btn-outline-primary" onclick="sendData()">
                             Bestätigen
                         </button>
                     </div>
-            </form>
+                    </form>
+                </div>
+            </div>
                     <hr><br>
                     <div>
                         <h2>Passwort zurücksetzen</h2>
                         <div>Hier können Sie das Passwort des User's zurücksetzen
                         </div>
                         <div style="margin-top: 1em">
-                            <form method="post" action="/resetPw">
+                            <form method="post" action="/resetPw" id="resetPW">
                             <input type="hidden" name="e_Mail" id="reset_Password">
                             <button  type="submit" class="btn btn-outline-danger" onclick="resetUserPasswordMessage()">
                                 Passwort zurücksetzen
@@ -171,9 +178,9 @@
                         <div>Hier können Sie den gewählten User löschen
                         </div>
                         <div style="margin-top: 1em">
-                            <form method="post" action="/deleteU">
+                            <form method="post" action="/deleteU" id="deleteUser">
                                 <input type="hidden" name="e_Mail" id="deleteE_mail">
-                                <button  type="submit" class="btn btn-outline-danger" onclick="deleteUserMessage()">
+                                <button  type="submit" form="deleteUser" class="btn btn-outline-danger">
                                     Benutzer löschen
                                 </button>
                             </form>

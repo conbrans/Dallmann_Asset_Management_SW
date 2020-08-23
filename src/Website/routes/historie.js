@@ -41,7 +41,7 @@ router.post("/historie", redirect.redirectLogin,redirect.authRight("view_device"
                 lastLocation : vorStandort,
             });
 
-    },500);
+    },1000);
 
 
 });

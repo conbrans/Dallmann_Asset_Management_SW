@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const hash = require('../routes/passwordhashing');
 const router = express.Router();
 
 
@@ -52,6 +53,7 @@ function getAcces(request, data, response) {
 
 
 router.post("/login", function (request, response) {
+    var hashedpassword = hash.hash(request.body.password)
     fetch('http://localhost:3032/json', {
         method : 'POST',
         headers: { "Content-Type": "application/json" },

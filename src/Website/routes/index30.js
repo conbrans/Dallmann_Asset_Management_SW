@@ -19,8 +19,12 @@ var {
     PORT = 3032,
 } = process.env;
 
+/**
+ *  zum einloggen von Nutzern
+ */
 app.post("/json", function (request,response)
 {
+
     var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
         "GROUP BY worker.role; ";
 
@@ -57,7 +61,9 @@ app.post("/json", function (request,response)
             }
     })
 })
-
+/**
+ * Hinzufügen von Nutzern
+ */
 app.post("/user",function (request,response)
 {
     sql = "INSERT INTO worker(password,e_mail,user_identification,name,surname,role) VALUES " +
@@ -71,7 +77,9 @@ app.post("/user",function (request,response)
 
 
 });
-
+/**
+ * Geräteliste
+ */
 app.get("/devices", function (request,response)
 {
     response.json(
@@ -116,6 +124,9 @@ app.get("/devices", function (request,response)
 
 });
 
+/**
+ * Abfrage aller Nutzer
+ */
 app.get("/users",function (request,response)
 {
     sql = "SELECT * FROM worker;";
@@ -124,10 +135,10 @@ app.get("/users",function (request,response)
         if (err) throw err;
         response.json(result);
     })
-
-
 });
-
+/**
+ * Löschen eines Nutzers anhand der Mail-Adresse
+ */
 app.post("/deleteUser",function (request,response)
 {
     sql = "DELETE FROM worker WHERE e_mail ='"+request.body.e_Mail+"';";
@@ -136,12 +147,23 @@ app.post("/deleteUser",function (request,response)
         if (err) throw err;
     })
 });
-
+/**
+ * Zurücksetzen des Passwortes auf "Werkseinstellungen" in dem Fall 123456
+ */
 app.post("/resetPassword",function (request,response)
 {
     sql = "UPDATE worker SET password='123456' WHERE e_mail ='"+request.body.e_Mail+"';";
-    console.log(sql);
     con.query(sql,function (err)
+    {
+        if (err) throw err;
+    })
+});
+
+
+app.post("/updateUser",function (request,response)
+{
+    update = "UPDATE worker SET name ='"+request.body.firstName +"', surname ='"+ request.body.surname+"', e_mail = '"+request.body.mail+"' WHERE e_mail = '"+ request.body.firstmail+ "'";
+    con.query(update,function (err)
     {
         if (err) throw err;
     })

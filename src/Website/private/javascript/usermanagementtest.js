@@ -1,10 +1,12 @@
 function loadData(i){
-   document.getElementById("vorname").value  =
+   document.getElementById("firstName").value  =
        document.getElementById("tr"+i.toString()+"td1").innerHTML;
-   document.getElementById("nachname").value =
+   document.getElementById("lastName").value =
        document.getElementById("tr"+i.toString()+"td2").innerHTML;
    document.getElementById("e-Mail").value   =
        document.getElementById("tr"+i.toString()+"td3").innerHTML;
+    document.getElementById("e-Mailhidden").value   =
+        document.getElementById("tr"+i.toString()+"td3").innerHTML;
    document.getElementById("rolle").value    =
        document.getElementById("tr"+i.toString()+"td4").innerHTML;
 }

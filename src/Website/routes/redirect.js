@@ -50,8 +50,5 @@ module.exports =
     {
         redirectLogin: redirectLogin,
         redirectHome: redirectHome,
-       /* redirectHomeAdmin : redirectHomeAdmin,
-        redirectHomeWorkshop : redirectHomeWorkshop,
-        redirectHomeForeman : redirectHomeForeman,*/
         authRight
     }
