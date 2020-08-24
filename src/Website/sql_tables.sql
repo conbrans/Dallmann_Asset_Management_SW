@@ -12,6 +12,7 @@ CREATE TABLE `Rights` (
                           `edit_user` tinyint(1) DEFAULT NULL,
                           `delete_booking` tinyint(1) DEFAULT NULL,
                           `edit_booking` tinyint(1) DEFAULT NULL,
+                          `picking` tinyint(1) DEFAULT NULL,
                           PRIMARY KEY (`role`)
 );
 /*DROP TABLE worker CASCADE;*/

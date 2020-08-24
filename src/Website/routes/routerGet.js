@@ -1,13 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
+const fetch = require('../routes/fetch');
 const redirect = require('../routes/redirect');
 
-async function fetchValues(name) {
-    let response = await fetch('http://localhost:3032/' + name);
-    let data = await response.json()
-    return data;
-}
+router.get('/', redirect.redirectHome, function (request, response) {
+    response.render("login.ejs");
+
+})
+
+router.get("/logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect("/home");
+        }
+        res.clearCookie(sessionName);
+        console.log("Cookie wurde zerstört");
+        res.redirect("/");
+    })
+})
+
+
 
 
 router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"), function (request, response) {
@@ -49,7 +61,7 @@ router.get("/bookinglist", redirect.redirectLogin, redirect.authRight("booking_d
 });
 
 router.get("/devices", redirect.redirectLogin, redirect.authRight("view_device"), function (request, response) {
-    fetchValues("devices")
+    fetch.getFetch("devices")
         .then(data =>
             response.render("newDeviceManagement.ejs",
                 {
@@ -93,7 +105,7 @@ router.get("/update", redirect.redirectLogin, redirect.authRight("add_user"),fun
 });
 
 router.get("/userManagement", redirect.redirectLogin, redirect.authRight("add_user"),redirect.authRight("delete_User"), function (request, response) {
-    fetchValues("users")
+    fetch.getFetch("users")
         .then(data =>
             response.render("userManagement.ejs",
                 {

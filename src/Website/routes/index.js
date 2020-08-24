@@ -13,7 +13,6 @@ const session = require('express-session');
 const booking = require('../routes/reservierung');
 const history = require('../routes/historie');
 const homepage = require('../routes/homepage');
-
 const login = require('../routes/login');
 const redirect = require('../routes/redirect');
 const routerGet = require('../routes/routerGet');
@@ -61,22 +60,6 @@ app.use(routerGet);
 app.use(usermanagement);
 
 
-// Get Methods for the login and logout
-app.get('/', redirect.redirectHome, function (request, response) {
-    response.render("login.ejs");
-
-})
-
-app.get("/logout", (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.redirect("/home");
-        }
-        res.clearCookie(sessionName);
-        console.log("Cookie wurde zerstört");
-        res.redirect("/");
-    })
-})
 
 
 app.listen(PORT, () => console.log(
