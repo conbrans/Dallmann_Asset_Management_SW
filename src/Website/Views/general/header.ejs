@@ -21,64 +21,64 @@
                             </li>
                         </ul>
                     </li>
-                    <% if (rights.booking_device === 1){%>
-                    <!-- Reservierung -->
-                    <li>
-                        <a href="/bookinglist">
-                            <i class="fas fa-calendar-alt"></i>
-                            <tab class="header-icons-description">
-                                Reservierung
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/booking">Reservierung vornehmen</a>
-                            </li>
-                            <li>
-                                <a href="/bookinglist">Reservierungsliste einsehen</a>
-                            </li>
-                        </ul>
+                    <% if (rights.booking_device === 1){ %>
+                        <!-- Reservierung -->
+                        <li>
+                            <a href="/bookinglist">
+                                <i class="fas fa-calendar-alt"></i>
+                                <tab class="header-icons-description">
+                                    Reservierung
+                                </tab>
+                            </a>
+                            <ul class="main-menu-sub">
+                                <li>
+                                    <a href="/booking">Reservierung vornehmen</a>
+                                </li>
+                                <li>
+                                    <a href="/bookinglist">Reservierungsliste einsehen</a>
+                                </li>
+                            </ul>
 
-                    </li>
-                        <% } %>
+                        </li>
+                    <% } %>
                     <!-- Benutzer -->
                     <li>
                         <a href="/profil">
                             <i class="fas fa-user"></i>
                             <tab class="header-icons-description">
-                               <%= benutzername %>
+                                <%= benutzername %>
                             </tab>
                         </a>
                     </li>
                     <!-- Hinzufügen von Nutzern/Rechten -->
-                    <% if (rights.add_user === 1 && rights.delete_user=== 1){%>
-                    <li>
-                        <a href="/userManagement">
-                            <i class="fas fa-cogs"></i>
-                            <tab class="header-icons-description">
-                                Benutzerverwaltung
-                            </tab>
-                        </a>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/add">Nutzer anlegen</a>
-                            </li>
-                            <li>
-                                <a href="/update">Nutzerdaten ändern</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <% }%>
+                    <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
+                        <li>
+                            <a href="/userManagement">
+                                <i class="fas fa-cogs"></i>
+                                <tab class="header-icons-description">
+                                    Benutzerverwaltung
+                                </tab>
+                            </a>
+                            <ul class="main-menu-sub">
+                                <li>
+                                    <a href="/add">Nutzer anlegen</a>
+                                </li>
+                                <li>
+                                    <a href="/update">Nutzerdaten ändern</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <% } %>
                     <!-- Komissionieren -->
-                    <% if ( rights.picking===1 ) { %>
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-list"></i>
-                            <tab class="header-icons-description">
-                                Komissonieren
-                            </tab>
-                        </a>
-                    </li>
+                    <% if ( rights.picking === 1 ) { %>
+                        <li>
+                            <a href="/">
+                                <i class="fas fa-list"></i>
+                                <tab class="header-icons-description">
+                                    Komissonieren
+                                </tab>
+                            </a>
+                        </li>
                     <% } %>
 
                     <!-- Suche -->
@@ -86,9 +86,10 @@
                         <a href="/search">
                             <i class="fas fa-search"></i>
 
-                        <tab class="header-icons-description" >
-                            <input id="header-Search" class="form-control" type="text" placeholder="123456">
-                        </tab>
+                            <tab class="header-icons-description">
+                                <input id="header-Search" name="search" class="form-control" type="text"
+                                       placeholder="123456">
+                            </tab>
                         </a>
                     </li>
 
@@ -96,7 +97,7 @@
                     <li>
                         <a href="/logout">
                             <i class="fas fa-power-off fa-1x"></i>
-                            <tab class="header-icons-description" >
+                            <tab class="header-icons-description">
                                 Logout
                             </tab>
                         </a>

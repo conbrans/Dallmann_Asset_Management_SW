@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
-const redirect = require('../routes/redirect');
+const fetch = require('./helproutes/fetch');
+const redirect = require('./helproutes/redirect');
 
 router.post("/booking", redirect.authRight("booking_device"), function (request, response) {
 
@@ -19,25 +19,13 @@ router.post("/booking", redirect.authRight("booking_device"), function (request,
 
 
 router.post("/book", redirect.authRight("booking_device"), function (request, response) {
-    //TODO FETCH ZUR KEVIN
-console.log(request.body);
-var jsonfetch = {
-    "device_num" : request.body.Gerätenummer,
-    "booking-start" : request.body.booking_start,
-    "booking-end" : request.body.booking_end,
-    "borrower" : request.body.borrower,
-}
 
-console.log(jsonfetch);
-    /*
-        fetch('',
-        {
-            method : 'PUT',
-            headers :{
-                'Content-Type' : 'application/json',
-            },
-            body: jsonfetch
-        })*/
+fetch.postFetch("book",request)
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+response.redirect("/")
 
 });
 

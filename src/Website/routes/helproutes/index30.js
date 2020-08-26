@@ -4,7 +4,7 @@
  * @type {Express}
  */
 
-const app = require('../../app');
+const app = require('../../../app');
 const mysql = require('mysql');
 var con = mysql.createConnection({
     host: "localhost",

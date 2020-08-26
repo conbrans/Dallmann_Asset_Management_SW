@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('../routes/fetch');
-const redirect = require('../routes/redirect');
+const fetch = require('./fetch');
+const redirect = require('./redirect');
 
 router.get('/', redirect.redirectHome, function (request, response) {
     response.render("login.ejs");
@@ -81,6 +81,17 @@ router.get("/faQ", function (request, response) {
             rights: request.session.rights,
         });
 
+});
+
+router.get("/home",redirect.redirectLogin, function (request,response)
+{
+
+    response.render('index.ejs',
+        {
+            benutzername: request.session.userName,
+            role : request.session.role,
+            rights: request.session.rights,
+        });
 });
 
 router.get("/profil", function (request, response) {

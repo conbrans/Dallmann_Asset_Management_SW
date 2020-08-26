@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const redirect = require('../routes/redirect');
+const redirect = require('./helproutes/redirect');
 const fetch = require('node-fetch');
 
 

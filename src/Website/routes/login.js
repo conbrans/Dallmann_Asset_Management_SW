@@ -1,6 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
-const hash = require('../routes/passwordhashing');
+const hash = require('./helproutes/passwordhashing');
 const router = express.Router();
 
 
@@ -21,8 +21,7 @@ var {
  * @param response
  */
 function getAcces(request, data, response) {
-    //Zum Testen ob Zugriff verweigert wird
-    // data.access= false;
+
 
     if (!data.access) {
         console.log("Zugang wurde verweigert");
