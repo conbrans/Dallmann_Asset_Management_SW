@@ -6,10 +6,10 @@
 
 const app = require('../../../app');
 const mysql = require('mysql');
-var con = mysql.createConnection({
+ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "1234",
     database: "assetmanagement"
 });
 
@@ -22,7 +22,9 @@ var {
 /**
  *  zum einloggen von Nutzern
  */
-app.post("/json", function (request,response)
+
+
+ app.post("/json", function (request,response)
 {
 
     var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
@@ -80,7 +82,7 @@ app.post("/user",function (request,response)
 /**
  * Geräteliste
  */
-app.get("/devices", function (request,response)
+ app.get("/devices", function (request,response)
 {
     response.json(
         [
@@ -127,7 +129,7 @@ app.get("/devices", function (request,response)
 /**
  * Abfrage aller Nutzer
  */
-app.get("/users",function (request,response)
+ app.get("/users",function (request,response)
 {
     sql = "SELECT * FROM worker;";
     con.query(sql,function (err,result)
@@ -139,7 +141,7 @@ app.get("/users",function (request,response)
 /**
  * Löschen eines Nutzers anhand der Mail-Adresse
  */
-app.post("/deleteUser",function (request,response)
+ app.post("/deleteUser",function (request,response)
 {
     sql = "DELETE FROM worker WHERE e_mail ='"+request.body.e_Mail+"';";
     con.query(sql,function (err)
@@ -150,7 +152,7 @@ app.post("/deleteUser",function (request,response)
 /**
  * Zurücksetzen des Passwortes auf "Werkseinstellungen" in dem Fall 123456
  */
-app.post("/resetPassword",function (request,response)
+ app.post("/resetPassword",function (request,response)
 {
     sql = "UPDATE worker SET password='123456' WHERE e_mail ='"+request.body.e_Mail+"';";
     con.query(sql,function (err)
