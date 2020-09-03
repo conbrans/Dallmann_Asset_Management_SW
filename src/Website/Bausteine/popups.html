@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Jquery benötigt -->
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+          integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+          crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<input type="button" onclick="showBookingMessage()" value="Ablauf der Reservierung">
+<input type="button" onclick="showTuvUvvMessage()" value="Ablauf des TÜV/UVV Status">
+<input type="button" onclick="showWartung()" value="Ablauf des TÜV/UVV Status">
+
+
+</body>
+<script>
+    function showBookingMessage()
+    {
+        toastr.warning("Deine Reservierung für das Gerät mit der Nummer 'Platzhalter' läuft am 'Platzhalter' ab, bitte bring das Gerät bis zu diesem Tag zurück ins Lager.", "Ablauf des Ausleihdatums");
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-bottom-full-width",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "0",
+            "hideDuration": "0",
+            "timeOut": "0",
+            "extendedTimeOut": "0",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    }
+
+
+  function showTuvUvvMessage()
+  {
+      toastr.error("Der TÜV-Status für das Gerät mit der Nummer : 'Platzhalter' läuft ab. <br>" +
+          "Nummer : '100020' <br>" +
+          "Geräteart : 'Winkelschleifer' <br>" +
+          "Ablauf : '12/2020'", "Ablauf des TÜV-Status");
+      toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": false,
+          "positionClass": "toast-bottom-full-width",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "0",
+          "hideDuration": "0",
+          "timeOut": "0",
+          "extendedTimeOut": "0",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
+  }
+
+
+  function showWartung()
+  {
+      toastr.info("In zwei Wochen steht für folgende Geräte eine Wartung an:<hr><br>" +
+          "Gerätenummer:100230<br>" +
+          "Geräteart : Winkelschleifer<br>" +
+          "Datum : 20.08.2020<br>" +
+          "Wartungsarbeit : Putzen<hr><br>", "Anstehende Wartung")
+
+      toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": true,
+          "progressBar": false,
+          "positionClass": "toast-bottom-full-width",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "0",
+          "hideDuration": "0",
+          "timeOut": "0",
+          "extendedTimeOut": "0",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
+  }
+</script>
+</html>

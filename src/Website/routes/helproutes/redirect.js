@@ -33,8 +33,8 @@ function authRight(right)
     return (request, response, next) =>
     {
         // toLowercase, um Fehler bei den redirects zu vermeiden
-        var righttoLowerCase = right.toLowerCase();
-                if (request.session.rights[righttoLowerCase] === 0)
+        const righttoLowerCase = right.toLowerCase();
+        if (request.session.rights[righttoLowerCase] === 0)
                 {
                     response.redirect("/home");
                 }else

@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('./fetch');
 const redirect = require('./redirect');
+const {
+    sessionName = "Session",
+} = process.env;
 
 router.get('/', redirect.redirectHome, function (request, response) {
     response.render("login.ejs");
@@ -14,7 +17,6 @@ router.get("/logout", (req, res) => {
             return res.redirect("/home");
         }
         res.clearCookie(sessionName);
-        console.log("Cookie wurde zerstört");
         res.redirect("/");
     })
 })

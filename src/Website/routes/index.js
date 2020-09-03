@@ -6,35 +6,31 @@ const session = require('express-session');
 
 
 /**
- * Import of own modules, one module for every task
+ * Require of helproutes
  * @type {Router}
  */
-
-const booking = require('../routes/reservierung');
-const history = require('../routes/historie');
-const login = require('../routes/login');
-const redirect = require('./helproutes/redirect');
 const routerGet = require('./helproutes/routerGet');
-const usermanagement = require('../routes/Usermanagement');
 
 
 /**
- * Lifetime of Cookies
- * @type {number}
+ * Require of standard routes
+ * @type {Router}
  */
-var lifetime = 1000 * 60 * 60 * 24;
-var longLifetime = 1000 * 60 * 60 * 24 * 365;
+const booking = require('../routes/reservierung');
+const history = require('../routes/historie');
+const login = require('../routes/login');
+const usermanagement = require('../routes/Usermanagement');
 
 
 /**
  * Values for Cookies
  * @type {number}
  */
-var {
+const {
     PORT = 3000,
-    sessionLifetime = lifetime,
-    sessionName = "sid",
-    secretSession = "test"
+    sessionLifetime = 1000 * 60 * 60 * 24,
+    sessionName = "Session",
+    secretSession = "SecretSession"
 } = process.env;
 
 
@@ -50,14 +46,11 @@ app.use(session({
     }
 }));
 
-
 app.use(booking);
 app.use(history);
 app.use(login);
 app.use(routerGet);
 app.use(usermanagement);
-
-
 
 
 app.listen(PORT, () => console.log(
