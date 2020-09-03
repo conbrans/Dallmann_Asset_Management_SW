@@ -10,25 +10,34 @@
             crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
-          integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+    <link rel="stylesheet" href=
+            "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+          integrity=
+                  "sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
           crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    <script src=
+                    "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity=
+                    "sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
             crossorigin="anonymous"></script>
 
 </head>
 <body>
-<input type="button" onclick="showBookingMessage()" value="Ablauf der Reservierung">
-<input type="button" onclick="showTuvUvvMessage()" value="Ablauf des TÜV/UVV Status">
-<input type="button" onclick="showWartung()" value="Ablauf des TÜV/UVV Status">
+<input type="button" onclick="showBookingMessage()"
+       value="Ablauf der Reservierung">
+<input type="button" onclick="showTuvUvvMessage()"
+       value="Ablauf des TÜV/UVV Status">
+<input type="button" onclick="showWartung()"
+       value="Ablauf des TÜV/UVV Status">
 
 
 </body>
 <script>
     function showBookingMessage()
     {
-        toastr.warning("Deine Reservierung für das Gerät mit der Nummer 'Platzhalter' läuft am 'Platzhalter' ab, bitte bring das Gerät bis zu diesem Tag zurück ins Lager.", "Ablauf des Ausleihdatums");
+        toastr.warning("Deine Reservierung für das Gerät mit der Nummer " +
+            "'Platzhalter' läuft am 'Platzhalter' ab, bitte bring das Gerät " +
+            "bis zu diesem Tag zurück ins Lager.", "Ablauf des Ausleihdatums");
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -51,7 +60,8 @@
 
   function showTuvUvvMessage()
   {
-      toastr.error("Der TÜV-Status für das Gerät mit der Nummer : 'Platzhalter' läuft ab. <br>" +
+      toastr.error("Der TÜV-Status für das Gerät mit der Nummer : " +
+          "'Platzhalter' läuft ab. <br>" +
           "Nummer : '100020' <br>" +
           "Geräteart : 'Winkelschleifer' <br>" +
           "Ablauf : '12/2020'", "Ablauf des TÜV-Status");
@@ -77,7 +87,8 @@
 
   function showWartung()
   {
-      toastr.info("In zwei Wochen steht für folgende Geräte eine Wartung an:<hr><br>" +
+      toastr.info("In zwei Wochen steht für folgende Geräte eine " +
+          "Wartung an:<hr><br>" +
           "Gerätenummer:100230<br>" +
           "Geräteart : Winkelschleifer<br>" +
           "Datum : 20.08.2020<br>" +

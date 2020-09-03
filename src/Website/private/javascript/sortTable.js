@@ -15,7 +15,8 @@ function getSelectedOption() {
 
 
 /**
- * sort a table after a given column, can be accessed with a option menu or with a click on the the head element
+ * sort a table after a given column, can be accessed with a option menu
+ * or with a click on the the head element
  * @param number, the row number after which the table is sorted, starts with 0
  */
 

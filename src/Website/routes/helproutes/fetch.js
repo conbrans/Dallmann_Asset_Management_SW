@@ -7,19 +7,19 @@ const options = {
 
 };
 
-async function postFetch(url, request) {
-    let response = await fetch("http://localhost:3032/" + url, options,
+async function postFetch(url, req) {
+    let res = await fetch("http://localhost:3032/" + url, options,
         {
-            body: JSON.stringify(request.body)
+            body: JSON.stringify(req.body)
         }
     );
-    return await response.json();
+    return await res.json();
 
 }
 
 async function getFetch(name) {
-    let response = await fetch('http://localhost:3032/' + name);
-    return await response.json();
+    let res = await fetch('http://localhost:3032/' + name);
+    return await res.json();
 }
 
 
