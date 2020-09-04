@@ -27,6 +27,10 @@ function getAccess(request, data, response) {
         request.session.email = data.e_mail;
         request.session.role = data.role;
         request.session.rights = data.rights;
+        request.session.notificationShown = false;
+        request.session.bookingNotificationShown = false;
+        request
+
 
 
         if (request.body.checkbox === "on") {

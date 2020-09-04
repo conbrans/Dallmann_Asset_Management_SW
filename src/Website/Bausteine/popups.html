@@ -33,28 +33,31 @@
 
 </body>
 <script>
+
+    options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-bottom-full-width",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "0",
+        "hideDuration": "0",
+        "timeOut": "0",
+        "extendedTimeOut": "0",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
     function showBookingMessage()
     {
         toastr.warning("Deine Reservierung für das Gerät mit der Nummer " +
-            "'Platzhalter' läuft am 'Platzhalter' ab, bitte bring das Gerät " +
+            "läuft am 'Platzhalter' ab, bitte bring das Gerät " +
             "bis zu diesem Tag zurück ins Lager.", "Ablauf des Ausleihdatums");
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": false,
-            "positionClass": "toast-bottom-full-width",
-            "preventDuplicates": true,
-            "onclick": null,
-            "showDuration": "0",
-            "hideDuration": "0",
-            "timeOut": "0",
-            "extendedTimeOut": "0",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
+        toastr.options = options;
     }
 
 
@@ -65,23 +68,7 @@
           "Nummer : '100020' <br>" +
           "Geräteart : 'Winkelschleifer' <br>" +
           "Ablauf : '12/2020'", "Ablauf des TÜV-Status");
-      toastr.options = {
-          "closeButton": false,
-          "debug": false,
-          "newestOnTop": true,
-          "progressBar": false,
-          "positionClass": "toast-bottom-full-width",
-          "preventDuplicates": true,
-          "onclick": null,
-          "showDuration": "0",
-          "hideDuration": "0",
-          "timeOut": "0",
-          "extendedTimeOut": "0",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
-      }
+      toastr.options = options;
   }
 
 
@@ -94,23 +81,7 @@
           "Datum : 20.08.2020<br>" +
           "Wartungsarbeit : Putzen<hr><br>", "Anstehende Wartung")
 
-      toastr.options = {
-          "closeButton": false,
-          "debug": false,
-          "newestOnTop": true,
-          "progressBar": false,
-          "positionClass": "toast-bottom-full-width",
-          "preventDuplicates": true,
-          "onclick": null,
-          "showDuration": "0",
-          "hideDuration": "0",
-          "timeOut": "0",
-          "extendedTimeOut": "0",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
-      }
+      toastr.options = options;
   }
 </script>
 </html>

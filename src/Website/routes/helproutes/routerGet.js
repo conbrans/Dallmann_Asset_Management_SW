@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('./fetch');
 const redirect = require('./redirect');
+const notification = require('./notifications');
 const {
     sessionName = "Session",
 } = process.env;
@@ -26,6 +27,7 @@ router.get("/logout",
 
 router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"),
     (req, res) => {
+
 
         res.render("adminCreateUser.ejs",
             {
@@ -97,7 +99,7 @@ router.get("/faQ",
 
     });
 
-router.get("/home", redirect.redirectLogin,
+router.get("/home", redirect.redirectLogin,notification.sendLoginMessage(),
     (req, res) => {
 
         res.render('index.ejs',
@@ -105,6 +107,7 @@ router.get("/home", redirect.redirectLogin,
                 benutzername: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
+                req : req,
             });
     });
 

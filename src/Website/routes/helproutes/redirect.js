@@ -32,8 +32,7 @@ function authRight(right) {
     return (req, res, next) => {
         {
             // toLowercase, um Fehler bei den redirects zu vermeiden
-            const righttoLowerCase = right.toLowerCase();
-            if (req.session.rights[righttoLowerCase] === 0) {
+            if (req.session.rights[right.toLowerCase()] === 0) {
                 res.redirect("/home");
             } else {
                 next();
