@@ -99,7 +99,10 @@ router.get("/faQ",
 
     });
 
-router.get("/home", redirect.redirectLogin,notification.sendLoginMessage(),
+router.get("/home", redirect.redirectLogin,notification.sendMessage("login"),
+    notification.sendMessage("booking"),
+    notification.sendMessage("tuvUvv"),
+    notification.sendMessage("maintenance"),
     (req, res) => {
 
         res.render('index.ejs',
