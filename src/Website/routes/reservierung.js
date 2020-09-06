@@ -3,7 +3,8 @@ const router = express.Router();
 const fetch = require('./helproutes/fetch');
 const redirect = require('./helproutes/redirect');
 
-router.post("/booking", redirect.authRight("booking_device"), function (request, response) {
+router.post("/booking", redirect.authRight("booking_device"),
+    function (request, response) {
 
 
     response.render("booking.ejs",
@@ -18,7 +19,8 @@ router.post("/booking", redirect.authRight("booking_device"), function (request,
 })
 
 
-router.post("/book", redirect.authRight("booking_device"), function (request, response) {
+router.post("/book", redirect.authRight("booking_device"),
+    function (request, response) {
 
     fetch.postFetch("book", request)
         .then(data => console.log(data))

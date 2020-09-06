@@ -25,6 +25,8 @@ function getCurrentDate()
     console.log(dateString);
 
 
-    document.getElementById("booking_start").setAttribute("min",dateString);
-    document.getElementById("booking_end").setAttribute("min",dateString);
+    document.getElementById("booking_start")
+        .setAttribute("min",dateString);
+    document.getElementById("booking_end")
+        .setAttribute("min",dateString);
 }

@@ -27,6 +27,11 @@ function getAccess(request, data, response) {
         request.session.email = data.e_mail;
         request.session.role = data.role;
         request.session.rights = data.rights;
+        request.session.loginShown = false;
+        request.session.bookingShown = false;
+        request.session.tuvUvvShown = false;
+        request.session.maintenanceShown = false;
+
 
 
         if (request.body.checkbox === "on") {
