@@ -3,17 +3,22 @@
  */
 
 /**
- * autocompletion for the mail input, takes the first lest of the first name and transform it to lowercase
+ * autocompletion for the mail input, takes the first letter
+ * of the first name and transform it to lowercase
  */
 function setEmail() {
-    let firstLetter = (document.getElementById("firstName").value).charAt(0).toLowerCase();
-    let lastName = (document.getElementById("lastName").value).toLowerCase();
+    let firstLetter = (document.getElementById("firstName").value)
+        .charAt(0).toLowerCase();
+    let lastName = (document.getElementById("lastName").value)
+        .toLowerCase();
 
-    document.getElementById("email").value = firstLetter + "." + lastName + "@dallmann-bau.de";
+    document.getElementById("email").value = firstLetter + "."
+        + lastName + "@dallmann-bau.de";
 }
 
 /**
- * triggered with a click on the password input and writes a standard password in the field
+ * triggered with a click on the password input and
+ * writes a standard password in the field
  */
 function setDefaultPassword()
 {
@@ -22,16 +27,23 @@ function setDefaultPassword()
 
 
 /**
- * preselect the rights on the tab "Rechte" after which "Rolle" is choosen in the dropdown menu
+ * preselect the rights on the tab "Rechte" after which "Rolle"
+ * is choosen in the dropdown menu
  */
 function selectPermission()
 {
-    for (var i = 0; i < document.getElementsByName("adminPermission").length; i++)
+    var lenght = document.getElementsByName("adminPermission")
+        .length
+    for (var i = 0; i < lenght ; i++)
     {
-        document.getElementsByName("adminPermission")[i].checked = false;
-        document.getElementsByName("workshopPermission")[i].checked = false;
-        document.getElementsByName("foremanPermission")[i].checked = false;
-        document.getElementsByName("accountingPermission")[i].checked = false;
+        document.getElementsByName("adminPermission")
+            [i].checked = false;
+        document.getElementsByName("workshopPermission")
+            [i].checked = false;
+        document.getElementsByName("foremanPermission")
+            [i].checked = false;
+        document.getElementsByName("accountingPermission")
+            [i].checked = false;
     }
 
     let role = document.getElementById("role").value;

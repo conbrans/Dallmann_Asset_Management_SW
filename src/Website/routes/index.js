@@ -2,54 +2,22 @@
  * Import of node packages
  */
 const app = require('../../app');
-const session = require('express-session');
+
+/**
+ * Require of helproutes
+ * @type {Router}
+ */
+const routerGet = require('./helproutes/routerGet');
 
 
 /**
- * Import of own modules, one module for every task
+ * Require of standard routes
  * @type {Router}
  */
-
 const booking = require('../routes/reservierung');
 const history = require('../routes/historie');
 const login = require('../routes/login');
-const redirect = require('./helproutes/redirect');
-const routerGet = require('./helproutes/routerGet');
 const usermanagement = require('../routes/Usermanagement');
-
-
-/**
- * Lifetime of Cookies
- * @type {number}
- */
-var lifetime = 1000 * 60 * 60 * 24;
-var longLifetime = 1000 * 60 * 60 * 24 * 365;
-
-
-/**
- * Values for Cookies
- * @type {number}
- */
-var {
-    PORT = 3000,
-    sessionLifetime = lifetime,
-    sessionName = "sid",
-    secretSession = "test"
-} = process.env;
-
-
-app.use(session({
-    name: sessionName,
-    resave: false,
-    saveUninitialized: true,
-    secret: secretSession,
-    cookie: {
-        maxAge: sessionLifetime,
-        sameSite: true,
-        secure: false    //in development in production :true
-    }
-}));
-
 
 app.use(booking);
 app.use(history);
@@ -58,9 +26,7 @@ app.use(routerGet);
 app.use(usermanagement);
 
 
-
-
-app.listen(PORT, () => console.log(
+app.listen(3000, () => console.log(
     "listening on: " +
-    `http://localhost:${PORT}`
+    `http://localhost:3000`
 ));

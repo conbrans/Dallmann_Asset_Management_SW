@@ -59,7 +59,8 @@ function checkPasswords() {
         return false;
     } else {
         passwordBackground.style.background = "lightgreen";
-        document.getElementById("password").style.background = "lightgreen";
+        document.getElementById("password").style.
+            background = "lightgreen";
         return true;
     }
 }

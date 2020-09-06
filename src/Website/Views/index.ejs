@@ -10,17 +10,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <script src="javascript/index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+
+
 
 </head>
 <body>
+<% /** wird für Notifications benötigt **/%>
+<%- req.toastr.render() %>
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
 <main>
 
 
-
-    <div id="overview">
+    <div class="overview">
         <div id="showDevices">
             <a href="/devices" style="text-decoration: none; color: #0d0d0d">
                 <h3>Geräte anzeigen</h3>
@@ -31,20 +37,20 @@
         </div>
     </div>
 
-    <% if (rights.booking_device ===1 ) { %>
-    <div id="overview">
-        <div id="reservations">
-            <a href="/bookinglist" style="text-decoration: none; color: #0d0d0d">
-                <h3>Reservieren</h3>
-                <p>&nbsp;</p>
-                <i class="fas fa-calendar-alt fa-3x"></i>
-                <p>&nbsp;</p>
-            </a>
+    <% if (rights.booking_device === 1 ) { %>
+        <div class="overview">
+            <div id="reservations">
+                <a href="/bookinglist" style="text-decoration: none; color: #0d0d0d">
+                    <h3>Reservieren</h3>
+                    <p>&nbsp;</p>
+                    <i class="fas fa-calendar-alt fa-3x"></i>
+                    <p>&nbsp;</p>
+                </a>
+            </div>
         </div>
-    </div>
     <% } %>
 
-    <div id="overview">
+    <div class="overview">
         <div id="userProfil">
             <a href="/profil" style="text-decoration: none; color: #0d0d0d">
                 <h3>Benutzerprofil</h3>
@@ -54,21 +60,21 @@
             </a>
         </div>
     </div>
-    <% /* access for users with role 1 & 2 */%>
-    <% if ( role === "Admin" || role==="Werkstatt" ) { %>
-    <div id="overview">
-        <div id="picking">
-            <a href="/picking" style="text-decoration: none; color: #0d0d0d">
-                <h3>Komissionieren</h3>
-                <p>&nbsp;</p>
-                <i class="fas fa-list fa-3x"></i>
-                <p>&nbsp;</p>
-            </a>
+    <% /* access for users with role 1 & 2 */ %>
+    <% if ( role === "Admin" || role === "Werkstatt" ) { %>
+        <div class="overview">
+            <div id="picking">
+                <a href="/picking" style="text-decoration: none; color: #0d0d0d">
+                    <h3>Komissionieren</h3>
+                    <p>&nbsp;</p>
+                    <i class="fas fa-list fa-3x"></i>
+                    <p>&nbsp;</p>
+                </a>
+            </div>
         </div>
-    </div>
     <% } %>
 
-    <div id="overview">
+    <div class="overview">
         <div id="search">
             <a href="/search" style="text-decoration: none; color: #0d0d0d">
                 <h3>Suchen</h3>
@@ -79,24 +85,22 @@
         </div>
     </div>
 
-    <% /* access for users with role 1 */%>
-    <% if (rights.add_user=== 1 && rights.delete_user === 1){%>
-    <div id="overview">
-        <div id="userManagement">
-            <a href="/userManagement" style="text-decoration: none; color: #0d0d0d">
-                <h3>Nutzerverwaltung</h3>
-                <p>&nbsp;</p>
-                <i class="fas fa-cogs fa-3x"></i>
-                <p>&nbsp;</p>
-            </a>
+    <% /* access for users with role 1 */ %>
+    <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
+        <div class="overview">
+            <div id="userManagement">
+                <a href="/userManagement" style="text-decoration: none; color: #0d0d0d">
+                    <h3>Nutzerverwaltung</h3>
+                    <p>&nbsp;</p>
+                    <i class="fas fa-cogs fa-3x"></i>
+                    <p>&nbsp;</p>
+                </a>
+            </div>
         </div>
-    </div>
     <% } %>
-</div>
 </main>
 
 <%- include('../Views/general/footer.ejs'); -%>
-
 
 
 </body>

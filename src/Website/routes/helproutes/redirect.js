@@ -1,13 +1,13 @@
-
 /**
- * redirects the User to login, if there is no userID, the userID is set when the user is logged in
- * @param request
- * @param response
+ * redirects the User to login, if there is no userID,
+ * the userID is set when the user is logged in
+ * @param req
+ * @param res
  * @param next
  */
-const redirectLogin = (request, response, next) => {
-    if (!request.session.userID) {
-        response.redirect("/");
+const redirectLogin = (req, res, next) => {
+    if (!req.session.userID) {
+        res.redirect("/");
     } else {
         next();
     }
@@ -15,35 +15,31 @@ const redirectLogin = (request, response, next) => {
 
 /**
  * redirects a user to home if he is already logged in
- * @param request
- * @param response
+ * @param req
+ * @param res
  * @param next
  */
-const redirectHome = (request, response, next) => {
-    if (request.session.userID) {
-        response.redirect("/home");
+const redirectHome = (req, res, next) => {
+    if (req.session.userID) {
+        res.redirect("/home");
     } else {
         next();
     }
 }
 
 //bei dieser funktion
-function authRight(right)
-{
-    return (request, response, next) =>
-    {
-        // toLowercase, um Fehler bei den redirects zu vermeiden
-        var righttoLowerCase = right.toLowerCase();
-                if (request.session.rights[righttoLowerCase] === 0)
-                {
-                    response.redirect("/home");
-                }else
-                {
-                    next();
-                }
+function authRight(right) {
+    return (req, res, next) => {
+        {
+            // toLowercase, um Fehler bei den redirects zu vermeiden
+            if (req.session.rights[right.toLowerCase()] === 0) {
+                res.redirect("/home");
+            } else {
+                next();
+            }
+        }
     }
 }
-
 
 
 module.exports =

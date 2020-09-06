@@ -2,130 +2,155 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('./fetch');
 const redirect = require('./redirect');
+const notification = require('./notifications');
+const {
+    sessionName = "Session",
+} = process.env;
 
-router.get('/', redirect.redirectHome, function (request, response) {
-    response.render("login.ejs");
+router.get('/', redirect.redirectHome,
+    (req, res) => {
+        res.render("login.ejs");
 
-})
-
-router.get("/logout", (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            return res.redirect("/home");
-        }
-        res.clearCookie(sessionName);
-        console.log("Cookie wurde zerstört");
-        res.redirect("/");
     })
-})
 
-
-
-
-router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"), function (request, response) {
-    response.render("adminCreateUser.ejs",
-        {
-            benutzername: request.session.userName,
-            role: request.session.role,
-            rights: request.session.rights,
+router.get("/logout",
+    (req, res) => {
+        req.session.destroy(err => {
+            if (err) {
+                return res.redirect("/home");
+            }
+            res.clearCookie(sessionName);
+            res.redirect("/");
         })
-
-});
-
-router.get("/addDevice", redirect.redirectLogin, redirect.authRight("add_Device"), function (request, response) {
-    response.sendFile("C:\\Users\\c.brans\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\private\\html\\addDevice.html");
-
-});
+    })
 
 
-router.get("/booking", redirect.redirectLogin, redirect.authRight("booking_device"), function (request, response) {
-    response.render("booking.ejs",
+router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"),
+    (req, res) => {
+
+
+        res.render("adminCreateUser.ejs",
+            {
+                benutzername: req.session.userName,
+                role: req.session.role,
+                rights: req.session.rights,
+            })
+
+    });
+
+router.get("/addDevice", redirect.redirectLogin,
+    redirect.authRight("add_Device"), (res) => {
+        res.sendFile("C:\\Users\\c.brans\\IdeaProjects\\" +
+            "Dallmann_Asset_Management_SW\\src\\Website\\private\\" +
+            "html\\addDevice.html");
+
+    });
+
+
+router.get("/booking", redirect.redirectLogin,
+    redirect.authRight("booking_device"),
+    (req, res) => {
+        res.render("booking.ejs",
+            {
+                benutzername: req.session.userName,
+                role: req.session.role,
+                rights: req.session.rights,
+                geraetenummer: "",
+                minDate: "",
+                maxDate: "",
+            })
+
+    });
+router.get("/bookinglist", redirect.redirectLogin,
+    redirect.authRight("booking_device"),
+    (req, res) => {
+        res.render("bookinglist.ejs",
+            {
+                benutzername: req.session.userName,
+                role: req.session.role,
+                rights: req.session.rights,
+
+            });
+    });
+
+router.get("/devices", redirect.redirectLogin,
+    redirect.authRight("view_device"),
+    (req, res) => {
+        fetch.getFetch("devices")
+            .then(data =>
+                res.render("newDeviceManagement.ejs",
+                    {
+                        benutzername: req.session.userName,
+                        role: req.session.role,
+                        rights: req.session.rights,
+                        data: data,
+                    })
+            );
+    });
+
+router.get("/faQ",
+    (req, res) => {
+        res.render("FAQ.ejs",
+            {
+                benutzername: req.session.userName,
+                role: req.session.role,
+                rights: req.session.rights,
+            });
+
+    });
+
+router.get("/home", redirect.redirectLogin,notification.sendMessage("login"),
+    notification.sendMessage("booking"),
+    notification.sendMessage("tuvUvv"),
+    notification.sendMessage("maintenance"),
+    (req, res) => {
+
+        res.render('index.ejs',
+            {
+                benutzername: req.session.userName,
+                role: req.session.role,
+                rights: req.session.rights,
+                req : req,
+            });
+    });
+
+router.get("/profil", (req, res) => {
+    res.render("profil.ejs",
         {
-            benutzername: request.session.userName,
-            role: request.session.role,
-            rights: request.session.rights,
-            geraetenummer: "",
-            minDate: "",
-            maxDate: "",
-        })
-
-});
-router.get("/bookinglist", redirect.redirectLogin, redirect.authRight("booking_device"), function (request, response) {
-    response.render("bookinglist.ejs",
-        {
-            benutzername: request.session.userName,
-            role: request.session.role,
-            rights: request.session.rights,
-
+            benutzername: req.session.userName,
+            role: req.session.role,
+            rights: req.session.rights,
         });
-});
-
-router.get("/devices", redirect.redirectLogin, redirect.authRight("view_device"), function (request, response) {
-    fetch.getFetch("devices")
-        .then(data =>
-            response.render("newDeviceManagement.ejs",
-                {
-                    benutzername: request.session.userName,
-                    role: request.session.role,
-                    rights: request.session.rights,
-                    data: data,
-                })
-        );
-});
-
-router.get("/faQ", function (request, response) {
-    response.render("FAQ.ejs",
-        {
-            benutzername: request.session.userName,
-            role: request.session.role,
-            rights: request.session.rights,
-        });
 
 });
 
-router.get("/home",redirect.redirectLogin, function (request,response)
-{
 
-    response.render('index.ejs',
-        {
-            benutzername: request.session.userName,
-            role : request.session.role,
-            rights: request.session.rights,
-        });
-});
+router.get("/update", redirect.redirectLogin,
+    redirect.authRight("add_user"),
+    (req, res) => {
+        res.render("adminUpdateUser.ejs",
+            {
+                benutzername: req.session.userName,
+                role: req.session.role,
+                rights: req.session.rights,
+            })
 
-router.get("/profil", function (request, response) {
-    response.render("profil.ejs",
-        {
-            benutzername: request.session.userName,
-            role: request.session.role,
-            rights: request.session.rights,
-        });
+    });
 
-})
-
-
-router.get("/update", redirect.redirectLogin, redirect.authRight("add_user"),function (request, response) {
-    response.render("adminUpdateUser.ejs",
-        {
-            benutzername: request.session.userName,
-            role: request.session.role,
-            rights: request.session.rights,
-        })
-
-});
-
-router.get("/userManagement", redirect.redirectLogin, redirect.authRight("add_user"),redirect.authRight("delete_User"), function (request, response) {
-    fetch.getFetch("users")
-        .then(data =>
-            response.render("userManagement.ejs",
-                {
-                    benutzername: request.session.userName,
-                    role: request.session.role,
-                    rights: request.session.rights,
-                    data: data,
-                }));
-});
+router.get("/userManagement", redirect.redirectLogin,
+    redirect.authRight("add_user"),
+    redirect.authRight("delete_User"),
+    (req, res) => {
+        fetch.getFetch("users")
+            .then(data =>
+                res.render("userManagement.ejs",
+                    {
+                        benutzername: req.session.userName,
+                        role: req.session.role,
+                        rights: req.session.rights,
+                        data: data,
+                    }));
+    });
 
 
 module.exports = router;
