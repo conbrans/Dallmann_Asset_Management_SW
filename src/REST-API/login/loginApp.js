@@ -4,7 +4,7 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const app = express();
 const ONE_YEAR = 1000 * 60 * 60 * 24 * 365;
-const connection = require('../../../src/REST-API/databaseConnection/connection')
+const connection = require('../../../src/REST-API/databaseConnection/connection');
 
 const {
     PORT = 3000,
@@ -19,7 +19,7 @@ app.use(session({
         saveUninitialized: false,
         secret: SESS_SECRET,
         resave: false,
-    cookie: {
+        cookie: {
             maxAge: SESS_LIFETIME,
             sameSite: true
         }
@@ -32,7 +32,7 @@ app.use(session({
    DONE- session
    DONE - Comparing Login Data
    DONE - Sending the Users informations
-   DOING     - Clear Session
+   DOING - Clear Session
         - test the function
  */
 
@@ -53,8 +53,9 @@ app.post('/login', function (req, res) {
 
     if (givenUsername && givenPassword) {
 
-        connection.query('SELECT password FROM worker WHERE e_mail = ?', givenUsername, (error, results, fields) => {
-            if (bcrypt.compareSync(givenPassword, results)) {
+        connection.query('SELECT password, worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rightsS WHERE e_mail = ?', givenUsername, (error, results, fields) => {
+            var sync = bcrypt.compareSync(results[0].password, givenPassword);
+            if (sync) {
                 res.send('Success');
                 res.json(
                     {
@@ -83,13 +84,12 @@ app.post('/login', function (req, res) {
                 req.session.userName = results[0].name + " " + results[0].surname;
                 req.session.email = results[0].e_mail;
                 req.session.role = results[0].role;
-            }
-            else{
+            } else {
                 res.json({"acces": false});
             }
             res.end();
         })
-        res.send('Enter User and pw');
+        res.send('Enter username and password');
         res.end();
     }
 });
