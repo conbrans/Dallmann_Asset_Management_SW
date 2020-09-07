@@ -1,20 +1,18 @@
-const express = require('express');
-const router = express.Router();
-const fetch = require('./fetch');
-const redirect = require('./redirect');
-const notification = require('./notifications');
-const {
-    sessionName = "Session",
-} = process.env;
+var Express = require("express");
 
-router.get('/', redirect.redirectHome,
+var app = Express();
+app.set('views', 'src/Website/Views');
+app.set('view engine', 'ejs');
+
+
+app.get('/',
     (req, res) => {
-    res.status(200).send();
         res.render("login.ejs");
+        res.status(200).send();
 
     })
 
-router.get("/logout",
+app.get("/logout",
     (req, res) => {
         res.status(200).send();
         req.session.destroy(err => {
@@ -26,21 +24,20 @@ router.get("/logout",
         });
     });
 
-
-router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"),
+app.get("/add",
     (req, res) => {
+
         res.status(200).send();
-        res.render("adminCreateUser.ejs",
+       /* res.render("adminCreateUser.ejs",
             {
                 benutzername: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
-            })
+            })*/
 
     });
 
-router.get("/addDevice", redirect.redirectLogin,
-    redirect.authRight("add_Device"), (res) => {
+app.get("/addDevice", (res) => {
         res.sendFile("C:\\Users\\c.brans\\IdeaProjects\\" +
             "Dallmann_Asset_Management_SW\\src\\Website\\private\\" +
             "html\\addDevice.html");
@@ -48,8 +45,7 @@ router.get("/addDevice", redirect.redirectLogin,
     });
 
 
-router.get("/booking", redirect.redirectLogin,
-    redirect.authRight("booking_device"),
+app.get("/booking",
     (req, res) => {
         res.render("booking.ejs",
             {
@@ -62,8 +58,7 @@ router.get("/booking", redirect.redirectLogin,
             })
 
     });
-router.get("/bookinglist", redirect.redirectLogin,
-    redirect.authRight("booking_device"),
+app.get("/bookinglist",
     (req, res) => {
         res.render("bookinglist.ejs",
             {
@@ -74,8 +69,7 @@ router.get("/bookinglist", redirect.redirectLogin,
             });
     });
 
-router.get("/devices", redirect.redirectLogin,
-    redirect.authRight("view_device"),
+app.get("/devices",
     (req, res) => {
         fetch.getFetch("devices")
             .then(data =>
@@ -89,7 +83,7 @@ router.get("/devices", redirect.redirectLogin,
             );
     });
 
-router.get("/faQ",
+app.get("/faQ",
     (req, res) => {
         res.render("FAQ.ejs",
             {
@@ -100,10 +94,7 @@ router.get("/faQ",
 
     });
 
-router.get("/home", redirect.redirectLogin,notification.sendMessage("login"),
-    notification.sendMessage("booking"),
-    notification.sendMessage("tuvUvv"),
-    notification.sendMessage("maintenance"),
+app.get("/home",
     (req, res) => {
 
         res.render('index.ejs',
@@ -115,7 +106,7 @@ router.get("/home", redirect.redirectLogin,notification.sendMessage("login"),
             });
     });
 
-router.get("/profil", (req, res) => {
+app.get("/profil", (req, res) => {
     res.render("profil.ejs",
         {
             benutzername: req.session.userName,
@@ -126,8 +117,7 @@ router.get("/profil", (req, res) => {
 });
 
 
-router.get("/update", redirect.redirectLogin,
-    redirect.authRight("add_user"),
+app.get("/update",
     (req, res) => {
         res.render("adminUpdateUser.ejs",
             {
@@ -138,9 +128,7 @@ router.get("/update", redirect.redirectLogin,
 
     });
 
-router.get("/userManagement", redirect.redirectLogin,
-    redirect.authRight("add_user"),
-    redirect.authRight("delete_User"),
+app.get("/userManagement",
     (req, res) => {
         fetch.getFetch("users")
             .then(data =>
@@ -151,7 +139,11 @@ router.get("/userManagement", redirect.redirectLogin,
                         rights: req.session.rights,
                         data: data,
                     }));
-    });
+    })
 
+var server = app.listen(3000, () => {
+    console.log("Listening on port " + server.address().port + "...");
+});
 
-module.exports = router;
+module.exports = server;
+;

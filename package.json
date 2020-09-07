@@ -17,9 +17,9 @@
     "cookie-parser": "^1.4.5",
     "express-session": "^1.17.1",
     "express-toastr": "^2.0.2",
-    "ioredis": "^4.17.3"
+    "ioredis": "^4.17.3",
+    "jasmine": "^3.6.1",
+    "request": "^2.88.2"
   },
-  "scripts": {
-    "test": "mocha"
-  }
+  "scripts": {}
 }
