@@ -12,7 +12,8 @@ const app = require('../../../src/app');
 
 app.get("/api/borrow/getReservations",function (request,response)
 {
-    sql = "SELECT DISTINCT loan_day,loan_end, WORKER.name, WORKER.surname, PROJECT.name AS Baustelle, inventory_number\n" +
+    sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd, WORKER.name, WORKER.surname,\n" +
+        "PROJECT.project_id AS projectId, PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
         "FROM BORROWS\n" +
         "INNER JOIN PROJECT\n" +
         "ON BORROWS.project_id = BORROWS.project_id\n" +
@@ -42,9 +43,9 @@ app.get("/api/borrow/getReservations",function (request,response)
 app.post("/api/borrow/createReservation",function (request,response)
 {
     sql  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
-         "('"+request.body.loan_day+"','"+request.body.loan_end+"','"+request.body.worker_id+"','"
-             +request.body.inventory_number+"','" +request.body.project_id+"');";
-    sql2 = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventory_number+";";
+         "('"+request.body.loanDay+"','"+request.body.loanEnd+"','"+request.body.workerId+"','"
+             +request.body.inventoryNumber+"','" +request.body.projectId+"');";
+    sql2 = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventoryNumber+";";
 
     connection.query(sql,function (err)
     {
@@ -57,7 +58,7 @@ app.post("/api/borrow/createReservation",function (request,response)
         if (err) throw err;
         })
         console.log('Connection established');
-        response.json({"Message": "Das Gerät mit der ID: "+request.body.inventory_number+" ist refolgreich" +
+        response.json({"Message": "Das Gerät mit der ID: "+request.body.inventoryNumber+" ist refolgreich" +
                 " reserviert worden"});
     })
 

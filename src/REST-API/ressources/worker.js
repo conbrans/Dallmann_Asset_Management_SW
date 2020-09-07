@@ -12,7 +12,11 @@ const app = require('../../../src/app');
 
 app.get("/api/user/getAllUsers",function (request,response)
 {
-    sql = "SELECT * FROM WORKER \n" +
+    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,name,surname,\n" +
+        "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
+        "view_device AS viewDevice,delete_device AS deleteDevice,add_user AS addUser,delete_user AS deleteUser,\n" +
+        "edit_user AS editUser,delete_booking AS deleteBooking,edit_booking AS editBooking\n" +
+        "FROM WORKER \n" +
         "LEFT JOIN RIGHTS\n" +
         "ON WORKER.role = RIGHTS.role;";
 
@@ -34,9 +38,13 @@ app.get("/api/user/getAllUsers",function (request,response)
 
 app.get("/api/user/getSpecificUser/:workerId",function (request,response)
 {
-    sql = "SELECT * FROM WORKER " +
+    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,name,surname,\n" +
+        "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
+        "view_device AS viewDevice,delete_device AS deleteDevice,add_user AS addUser,delete_user AS deleteUser,\n" +
+        "edit_user AS editUser,delete_booking AS deleteBooking,edit_booking AS editBooking\n" +
+        "FROM WORKER \n" +
         "LEFT JOIN RIGHTS\n" +
-        "ON WORKER.role = RIGHTS.role " +
+        "ON WORKER.role = RIGHTS.role\n" +
         "WHERE WORKER.worker_id = " + request.params.workerId +";";
 
     connection.query(sql,function (err,result)
@@ -58,7 +66,7 @@ app.get("/api/user/getSpecificUser/:workerId",function (request,response)
 app.post("/api/user/createUser",function (request,response)
 {
     sql = "INSERT INTO WORKER(password,e_mail,name,surname,role) VALUES " +
-        "('"+request.body.password+"','"+request.body.e_mail+"','"+ request.body.name+"','"
+        "('"+request.body.password+"','"+request.body.eMail+"','"+ request.body.name+"','"
         +request.body.surname+"','"+request.body.role+"')";
 
     connection.query(sql,function (err)
@@ -80,7 +88,7 @@ app.post("/api/user/createUser",function (request,response)
 
 app.put("/api/user/updateUser/:userId",function (request,response)
 {
-    update = "UPDATE WORKER SET e_mail ='"+request.body.e_mail +"'," +
+    update = "UPDATE WORKER SET e_mail ='"+request.body.eMail +"'," +
         "name ='"+request.body.name+"', surname ='"+ request.body.surname+ "'," +
         "role ='"+request.body.role+ "'" +
         "WHERE worker_id = " + request.params.userId +";";

@@ -12,7 +12,9 @@ const app = require('../../../src/app');
 
 app.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (request,response)
 {
-    sql = "SELECT DEVICE.*, LOCATION.longitude,latitude,timesstamp\n" +
+    sql = "SELECT DEVICE.inventory_number AS inventoryNumber,serial_number AS serialNumber,gurantee AS guarantee,\n" +
+        " note,device_status AS deviceStatus,beacon_minor AS beaconMinor,beacon_major AS beaconMajor,model,\n" +
+        " manufacturer,LOCATION.longitude,latitude,timesstamp AS lastLocationUpdate\n" +
         "FROM DEVICE\n" +
         "   INNER JOIN BEACON\n" +
         "       ON DEVICE.beacon_major = BEACON.major AND DEVICE.beacon_minor = BEACON.minor\n" +
@@ -20,8 +22,8 @@ app.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (re
         "       ON BEACON.major = BEACON_POSITION.major AND BEACON.minor = BEACON_POSITION.minor\n" +
         "   INNER JOIN LOCATION\n" +
         "       ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
-        "WHERE inventory_number = " +request.params.inventoryNumber+"\n" +
-        "ORDER BY timesstamp DESC;\n";
+        "WHERE DEVICE.inventory_number = " +request.params.inventoryNumber+"\n" +
+        "ORDER BY lastLocationUpdate DESC;\n";
 
     connection.query(sql,function (err,result)
     {
@@ -42,7 +44,9 @@ app.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (re
 
 app.get("/api/history/getHistory",function (request,response)
 {
-    sql = "SELECT DEVICE.*, LOCATION.longitude,latitude,timesstamp\n" +
+    sql = "SELECT DEVICE.inventory_number AS inventoryNumber,serial_number AS serialNumber,gurantee AS guarantee,\n" +
+        " note,device_status AS deviceStatus,beacon_minor AS beaconMinor,beacon_major AS beaconMajor,model,\n" +
+        " manufacturer,LOCATION.longitude,latitude,timesstamp AS lastLocationUpdate\n" +
         "FROM DEVICE\n" +
         "   INNER JOIN BEACON\n" +
         "       ON DEVICE.beacon_major = BEACON.major AND DEVICE.beacon_minor = BEACON.minor\n" +
@@ -72,19 +76,3 @@ app.get("/api/history/getHistory",function (request,response)
 app.listen(3002, () => {
     console.log('Listening on port 3002...');
 });
-
-//TODO :Tabelle Historie in der Datenbank anlegen
-//TODO :Dafür sorgen, dass ein neuer Datensatz in der Tabelle Historie angelegt wird, sobald ein Device in der Tabelle Device manipuliert wird
-//TODO :Historie möglichst als Liste einem Attribut des Objectes Device anhängen
-
-
-/* "SELECT DEVICE.*, LOCATION.longitude,latitude,timesstamp\n" +
-"FROM DEVICE\n" +
-"INNER JOIN BEACON\n" +
-"ON DEVICE.beacon_major = BEACON.major AND DEVICE.beacon_minor = BEACON.minor\n" +
-"INNER JOIN BEACON_POSITION\n" +
-"ON BEACON.major = BEACON_POSITION.major AND BEACON.minor = BEACON_POSITION.minor\n" +
-"INNER JOIN LOCATION\n" +
-"ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
-"WHERE inventory_number = 758921\n" +
-"ORDER BY timesstamp DESC;\n"; */
