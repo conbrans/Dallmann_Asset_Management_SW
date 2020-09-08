@@ -9,19 +9,22 @@
             <nav id="main-menu">
                 <ul>
                     <li>
+                        <% if (rights.view_device === 1){ %>
                         <a href="/devices">
                             <i class="fas fa-briefcase"></i>
                             <tab class="header-icons-description">
                                 Geräte
                             </tab>
                         </a>
+                            <% if (rights.add_device === 1){ %>
                         <ul class="main-menu-sub">
                             <li>
                                 <a href="/addDevice">Gerät hinzufügen</a>
                             </li>
                         </ul>
+                        <% }%>
                     </li>
-                    <% if (rights.booking_device === 1){ %>
+                    <%} if (rights.booking_device === 1){ %>
                         <!-- Reservierung -->
                         <li>
                             <a href="/bookinglist">
@@ -60,19 +63,22 @@
                                 </tab>
                             </a>
                             <ul class="main-menu-sub">
+                                <% if(rights.add_user === 1) {%>
                                 <li>
                                     <a href="/add">Nutzer anlegen</a>
                                 </li>
+                                    <% } if (rights.edit_user ===1){%>
                                 <li>
                                     <a href="/update">Nutzerdaten ändern</a>
                                 </li>
+                                <% } %>
                             </ul>
                         </li>
                     <% } %>
                     <!-- Komissionieren -->
                     <% if ( rights.picking === 1 ) { %>
                         <li>
-                            <a href="/">
+                            <a href="/picking">
                                 <i class="fas fa-list"></i>
                                 <tab class="header-icons-description">
                                     Komissonieren

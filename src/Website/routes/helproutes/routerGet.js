@@ -8,29 +8,26 @@ const {
 } = process.env;
 
 router.get('/', redirect.redirectHome,
-    (req, res) => {
-    res.status(200).send();
-        res.render("login.ejs");
-
-    })
+    (req, res) =>
+    {
+        res.status(201).render("login.ejs");
+    });
 
 router.get("/logout",
     (req, res) => {
-        res.status(200).send();
         req.session.destroy(err => {
             if (err) {
                 return res.redirect("/home");
             }
             res.clearCookie(sessionName);
-            res.redirect("/");
+            res.status(302).redirect("/");
         });
     });
 
 
 router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"),
     (req, res) => {
-        res.status(200).send();
-        res.render("adminCreateUser.ejs",
+        res.status(200).render("adminCreateUser.ejs",
             {
                 benutzername: req.session.userName,
                 role: req.session.role,
@@ -85,8 +82,10 @@ router.get("/devices", redirect.redirectLogin,
                         role: req.session.role,
                         rights: req.session.rights,
                         data: data,
+
                     })
             );
+
     });
 
 router.get("/faQ",

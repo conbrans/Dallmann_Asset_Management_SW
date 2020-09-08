@@ -27,7 +27,7 @@ var {
  app.post("/json", function (request,response)
 {
 
-    var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
+    var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking,picking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
         "GROUP BY worker.role; ";
 
     con.query(firstsql, function (err,res)
@@ -57,7 +57,8 @@ var {
                                 "delete_user": res[0].delete_user,
                                 "edit_user": res[0].edit_user,
                                 "delete_booking": res[0].delete_booking,
-                                "edit_booking": res[0].edit_booking
+                                "edit_booking": res[0].edit_booking,
+                                "picking": res[0].picking,
                             }
                     });
             }

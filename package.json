@@ -19,6 +19,7 @@
     "express-toastr": "^2.0.2",
     "ioredis": "^4.17.3",
     "jasmine": "^3.6.1",
+    "jasmine-console-reporter": "^3.1.0",
     "request": "^2.88.2"
   },
   "scripts": {}
