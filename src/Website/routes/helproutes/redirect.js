@@ -27,7 +27,7 @@ const redirectHome = (req, res, next) => {
     }
 }
 
-//bei dieser funktion
+//TODO oder Fragestellung, soll das noch in ne andere Datei?
 function authRight(right) {
     return (req, res, next) => {
         {

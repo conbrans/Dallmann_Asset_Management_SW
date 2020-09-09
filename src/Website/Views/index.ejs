@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Willkommen zurück <%= benutzername %></title>
-    <link rel="stylesheet" type="text/css" href="css/startseite.css">
-    <link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
-    <link rel="stylesheet" type="text/css" href="css/table.css">
-    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <script src="javascript/index.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-
+<meta charset="UTF-8">
+<title>Willkommen zurück <%= benutzername %></title>
+<link rel="stylesheet" type="text/css" href="css/startseite.css">
+<link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
+<link rel="stylesheet" type="text/css" href="css/table.css">
+<link rel="icon" type="image/x-icon"
+      href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<script src="javascript/index.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
 
 
 </head>
 <body>
-<% /** wird für Notifications benötigt **/%>
+<% /** wird für Notifications benötigt **/ %>
 <%- req.toastr.render() %>
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
@@ -40,7 +43,8 @@
     <% if (rights.booking_device === 1 ) { %>
         <div class="overview">
             <div id="reservations">
-                <a href="/bookinglist" style="text-decoration: none; color: #0d0d0d">
+                <a href="/bookinglist"
+                   style="text-decoration: none; color: #0d0d0d">
                     <h3>Reservieren</h3>
                     <p>&nbsp;</p>
                     <i class="fas fa-calendar-alt fa-3x"></i>
@@ -64,7 +68,8 @@
     <% if ( role === "Admin" || role === "Werkstatt" ) { %>
         <div class="overview">
             <div id="picking">
-                <a href="/picking" style="text-decoration: none; color: #0d0d0d">
+                <a href="/picking"
+                   style="text-decoration: none; color: #0d0d0d">
                     <h3>Komissionieren</h3>
                     <p>&nbsp;</p>
                     <i class="fas fa-list fa-3x"></i>
@@ -89,7 +94,8 @@
     <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
         <div class="overview">
             <div id="userManagement">
-                <a href="/userManagement" style="text-decoration: none; color: #0d0d0d">
+                <a href="/userManagement"
+                   style="text-decoration: none; color: #0d0d0d">
                     <h3>Nutzerverwaltung</h3>
                     <p>&nbsp;</p>
                     <i class="fas fa-cogs fa-3x"></i>

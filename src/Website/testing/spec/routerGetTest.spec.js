@@ -6,6 +6,7 @@ describe("Test of router.get Methods", () => {
     beforeAll(() => {
         server = require("../testfiles/routerGetTest");
     });
+
     afterAll(() => {
         server.close();
     });
@@ -202,7 +203,7 @@ describe("Test of router.get Methods", () => {
                     data.status = response.statusCode;
                     data.body = body;
                     done();
-                });
+                })
         });
         it("Status 500", () => {
             expect(data.status).toBe(500);
@@ -292,7 +293,6 @@ describe("Test of router.get Methods", () => {
             expect(data.body).toContain("<a href=\"/userManagement\">");
         });
     });
-
 
 });
 
