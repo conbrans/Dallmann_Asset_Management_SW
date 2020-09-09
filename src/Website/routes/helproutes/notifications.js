@@ -1,7 +1,11 @@
-function sendMessage(messagetype) {
-    return (req, res, next) => {
-        if (!req.session[messagetype]) {
-            switch (messagetype) {
+function sendMessage(messagetype)
+{
+    return (req, res, next) =>
+    {
+        if (!req.session[messagetype])
+        {
+            switch (messagetype)
+            {
                 case "login":
                     req.toastr.success('Sie sind eingeloggt.',
                         title = 'Willkommen zurück  ' + req.session.userName + '!',
@@ -37,11 +41,11 @@ function sendMessage(messagetype) {
                         'Wartungsarbeit : Putzen', title = 'Anstehende Wartung', options = {});
                     req.session.maintenanceShown = true;
                     break;
-                default: next();
+                default:
+                    next();
             }
             next();
         } else next();
-
     }
 }
 

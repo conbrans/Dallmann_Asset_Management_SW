@@ -7,24 +7,13 @@ const cookieParser = require('cookie-parser')
 const toastr = require('express-toastr');
 const app = express();
 
-/**
- * Values for Cookies
- * @type {number}
- */
-const {
-    PORT = 3000,
-    sessionLifetime = 1000 * 60 * 60 * 24,
-    sessionName = "Session",
-    secretSession = "SecretSession"
-} = process.env;
-
 app.use(session({
-    name: sessionName,
+    name: "Session",
     resave: false,
     saveUninitialized: true,
-    secret: secretSession,
+    secret: "SecretSession",
     cookie: {
-        maxAge: sessionLifetime,
+        maxAge: 1000 * 60 * 60 * 24,
         sameSite: true,
         secure: false    //in development in production :true
     }

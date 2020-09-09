@@ -27,24 +27,8 @@ const redirectHome = (req, res, next) => {
     }
 }
 
-//TODO oder Fragestellung, soll das noch in ne andere Datei?
-function authRight(right) {
-    return (req, res, next) => {
-        {
-            // toLowercase, um Fehler bei den redirects zu vermeiden
-            if (req.session.rights[right.toLowerCase()] === 0) {
-                res.redirect("/home");
-            } else {
-                next();
-            }
-        }
-    }
-}
-
-
 module.exports =
     {
         redirectLogin: redirectLogin,
         redirectHome: redirectHome,
-        authRight
     }

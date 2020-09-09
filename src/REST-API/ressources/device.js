@@ -4,13 +4,15 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection')
-const app = require('../../../src/app');
+//const app = require('../../../src/app');
+const express = require('express');
+const router = express();
 
 /**
  * route for getting all users out of database
  */
 
-app.get("/api/device/getAllDevices", function (request, response) {
+router.get("/api/device/getAllDevices", function (request, response) {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "gurantee AS guarantee,note,\n" +
         "device_status AS deviceStatus,DEVICE_STATUS.description,CATEGORY.category,\n" +
@@ -56,7 +58,7 @@ app.get("/api/device/getAllDevices", function (request, response) {
  * route for getting all users out of database
  */
 
-app.get("/api/device/getSpecificDevice/:inventoryNumber", function (request, response) {
+router.get("/api/device/getSpecificDevice/:inventoryNumber", function (request, response) {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "       gurantee AS guarantee,note,\n" +
         "       device_status, DEVICE_STATUS.description,CATEGORY.category,LOCATION.longitude,latitude," +
@@ -96,7 +98,7 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", function (request, res
  * route for getting all users out of database
  */
 
-app.post("/api/device/createDevice", function (request, response) {
+router.post("/api/device/createDevice", function (request, response) {
     sql = "INSERT INTO DEVICE (model, serial_number, gurantee, note, device_status, beacon_minor, beacon_major, manufacturer) VALUES " +
         "('" + request.body.model + "','" + request.body.serialNumber + "','" + request.body.guarantee + "','"
         + request.body.note + "','" + request.body.deviceStatus + "','" + request.body.beaconMinor + "','"
@@ -118,7 +120,7 @@ app.post("/api/device/createDevice", function (request, response) {
  * route for getting all users out of database
  */
 
-app.put("/api/device/updateDevice/:inventoryNumber", function (request, response) {
+router.put("/api/device/updateDevice/:inventoryNumber", function (request, response) {
     update = "UPDATE DEVICE SET model ='" + request.body.model + "', manufacturer ='" + request.body.manufacturer + "'," +
         "beacon_major ='" + request.body.beaconMajor + "', serial_number ='" + request.body.serialNumber + "'," +
         "gurantee ='" + request.body.guarantee + "',note ='" + request.body.note + "'," +
@@ -138,7 +140,7 @@ app.put("/api/device/updateDevice/:inventoryNumber", function (request, response
  * route for getting all users out of database
  */
 
-app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
+router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
     sql = "DELETE FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ";";
     connection.query(sql, function (err) {
         if (err) {
@@ -151,10 +153,13 @@ app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, respo
     })
 });
 
+
+
+module.exports = router;
 /**
  * Port listener
  */
 
-app.listen(3001, () => {
+/*router.listen(3001, () => {
     console.log('Listening on port 3001...');
-});
+});*/

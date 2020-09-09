@@ -4,13 +4,15 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection')
-const app = require('../../../src/app');
+//const app = require('../../../src/app');
+const express = require('express');
+const router = express();
 
 /**
  * route for getting all reservations data
  */
 
-app.get("/api/borrow/getReservations",function (request,response)
+router.get("/api/borrow/getReservations",function (request,response)
 {
     sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd, WORKER.name, WORKER.surname,\n" +
         "PROJECT.project_id AS projectId, PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
@@ -40,7 +42,7 @@ app.get("/api/borrow/getReservations",function (request,response)
  * route for creating a reservation
  */
 
-app.post("/api/borrow/createReservation",function (request,response)
+router.post("/api/borrow/createReservation",function (request,response)
 {
     sql  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
          "('"+request.body.loanDay+"','"+request.body.loanEnd+"','"+request.body.workerId+"','"
@@ -68,7 +70,7 @@ app.post("/api/borrow/createReservation",function (request,response)
  * route for canceling a reservation
  */
 
-app.delete('/api/borrow/cancelReservation/:inventoryNumber',function (request,response)
+router.delete('/api/borrow/cancelReservation/:inventoryNumber',function (request,response)
 {
     sql = "DELETE FROM BORROWS WHERE inventory_number = " + request.params.inventoryNumber +";";
     sql2= "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = "+request.params.inventoryNumber+";";
@@ -92,7 +94,5 @@ app.delete('/api/borrow/cancelReservation/:inventoryNumber',function (request,re
  * Port listener
  */
 
-app.listen(3003, () => {
-    console.log('Listening on port 3003...');
-});
+module.exports = router
 

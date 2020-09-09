@@ -4,13 +4,15 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection')
-const app = require('../../../src/app');
+//const app = require('../../../src/app');
+const express = require('express');
+const router = express();
 
 /**
  * route for getting history for a specific device
  */
 
-app.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (request,response)
+router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (request,response)
 {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,serial_number AS serialNumber,gurantee AS guarantee,\n" +
         " note,device_status AS deviceStatus,beacon_minor AS beaconMinor,beacon_major AS beaconMajor,model,\n" +
@@ -42,7 +44,7 @@ app.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (re
  * route for getting all history data
  */
 
-app.get("/api/history/getHistory",function (request,response)
+router.get("/api/history/getHistory",function (request,response)
 {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,serial_number AS serialNumber,gurantee AS guarantee,\n" +
         " note,device_status AS deviceStatus,beacon_minor AS beaconMinor,beacon_major AS beaconMajor,model,\n" +
@@ -69,10 +71,11 @@ app.get("/api/history/getHistory",function (request,response)
 
 });
 
+module.exports = router;
 /**
  * Port listener
  */
 
-app.listen(3002, () => {
-    console.log('Listening on port 3002...');
-});
+/*router.listen(3001, () => {
+    console.log('Listening on port 3001...');
+});*/

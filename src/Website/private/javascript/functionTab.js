@@ -1,4 +1,8 @@
 /**
+ * author = Constantin Brans
+ */
+
+/**
  * Timeout to call the "Benutzerdaten" tab as standard
  */
 setTimeout(() => {

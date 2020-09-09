@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const redirect = require('./helproutes/redirect');
+const authentication = require('./helproutes/rightAuthentication');
 const fetch = require('node-fetch');
 // const fetch = require('./helproutes/fetch');
 
 
 router.post("/historie", redirect.redirectLogin,
-    redirect.authRight("view_device"), function (request, response) {
+   authentication.authRight("view_device"), function (request, response) {
 
 
     let datum = [];

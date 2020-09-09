@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('./fetch');
 const redirect = require('./redirect');
+const authentication = require('./rightAuthentication');
 const notification = require('./notifications');
-const {
-    sessionName = "Session",
-} = process.env;
 
 router.get('/', redirect.redirectHome,
     (req, res) =>
@@ -19,13 +17,13 @@ router.get("/logout",
             if (err) {
                 return res.redirect("/home");
             }
-            res.clearCookie(sessionName);
+            res.clearCookie("Session");
             res.status(302).redirect("/");
         });
     });
 
 
-router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"),
+router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
     (req, res) => {
         res.status(200).render("adminCreateUser.ejs",
             {
@@ -37,7 +35,7 @@ router.get("/add", redirect.redirectLogin, redirect.authRight("add_User"),
     });
 
 router.get("/addDevice", redirect.redirectLogin,
-    redirect.authRight("add_Device"), (res) => {
+    authentication.authRight("add_Device"), (res) => {
         res.sendFile("C:\\Users\\c.brans\\IdeaProjects\\" +
             "Dallmann_Asset_Management_SW\\src\\Website\\private\\" +
             "html\\addDevice.html");
@@ -46,7 +44,7 @@ router.get("/addDevice", redirect.redirectLogin,
 
 
 router.get("/booking", redirect.redirectLogin,
-    redirect.authRight("booking_device"),
+    authentication.authRight("booking_device"),
     (req, res) => {
         res.render("booking.ejs",
             {
@@ -60,7 +58,7 @@ router.get("/booking", redirect.redirectLogin,
 
     });
 router.get("/bookinglist", redirect.redirectLogin,
-    redirect.authRight("booking_device"),
+    authentication.authRight("booking_device"),
     (req, res) => {
         res.render("bookinglist.ejs",
             {
@@ -72,9 +70,9 @@ router.get("/bookinglist", redirect.redirectLogin,
     });
 
 router.get("/devices", redirect.redirectLogin,
-    redirect.authRight("view_device"),
+    authentication.authRight("view_device"),
     (req, res) => {
-        fetch.getFetch("devices")
+        fetch.getFetch("/api/device/getAllDevices")
             .then(data =>
                 res.render("newDeviceManagement.ejs",
                     {
@@ -126,7 +124,7 @@ router.get("/profil", (req, res) => {
 
 
 router.get("/update", redirect.redirectLogin,
-    redirect.authRight("add_user"),
+    authentication.authRight("add_user"),
     (req, res) => {
         res.render("adminUpdateUser.ejs",
             {
@@ -138,18 +136,20 @@ router.get("/update", redirect.redirectLogin,
     });
 
 router.get("/userManagement", redirect.redirectLogin,
-    redirect.authRight("add_user"),
-    redirect.authRight("delete_User"),
+    authentication.authRight("add_user"),
+   authentication.authRight("delete_User"),
     (req, res) => {
-        fetch.getFetch("users")
+        fetch.getFetch("/api/user/getAllUsers")
             .then(data =>
-                res.render("userManagement.ejs",
+
+                res.status(200).render("userManagement.ejs",
                     {
                         benutzername: req.session.userName,
                         role: req.session.role,
                         rights: req.session.rights,
                         data: data,
-                    }));
+                    })
+            );
     });
 
 
