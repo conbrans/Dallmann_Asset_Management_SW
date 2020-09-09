@@ -12,7 +12,7 @@ const constraint = require('../middelwareFunctions/validation')
  * route for getting all reservations data
  */
 
-app.get("/api/borrow/getReservations",(request, response) => {
+router.get("/api/borrow/getReservations",(request, response) => {
 
     sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd, WORKER.name, WORKER.surname,\n" +
         "PROJECT.project_id AS projectId, PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
@@ -42,7 +42,7 @@ app.get("/api/borrow/getReservations",(request, response) => {
  * route for creating a reservation
  */
 
-app.post("/api/borrow/createReservation", constraint.reservationConstraints, (request, response) => {
+router.post("/api/borrow/createReservation", constraint.reservationConstraints, (request, response) => {
 
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
@@ -76,7 +76,7 @@ app.post("/api/borrow/createReservation", constraint.reservationConstraints, (re
  * route for canceling a reservation
  */
 
-app.delete('/api/borrow/cancelReservation/:inventoryNumber', (request, response) => {
+router.delete('/api/borrow/cancelReservation/:inventoryNumber', (request, response) => {
 
     let sql1 = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.inventoryNumber + ");";
 
@@ -117,7 +117,5 @@ app.delete('/api/borrow/cancelReservation/:inventoryNumber', (request, response)
  * Port listener
  */
 
-app.listen(3003, () => {
-    console.log('Listening on port 3003...');
-});
+module.exports = router
 

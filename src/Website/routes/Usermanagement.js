@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const redirect = require('./helproutes/redirect');
+const authentication = require('./helproutes/rightAuthentication');
 const fetch = require('./helproutes/fetch');
 
 //TODO BRAUCHT NICHT GETESTET WERDEN, da alle Bestandteile grundlegend schon getest worden sind
-router.post("/addUser", redirect.authRight("add_user"), (request,response) =>
+router.post("/addUser", authentication.authRight("add_user"), (request,response) =>
 {
-    fetch.postFetch("user",request)
+    fetch.postFetch("/api/user/createUser",request)
         .catch((error) => {
             console.error('Error:', error);
         });
@@ -14,7 +14,7 @@ router.post("/addUser", redirect.authRight("add_user"), (request,response) =>
 
 });
 
-router.post("/updateUser", redirect.authRight("edit_user"),
+router.post("/updateUser", authentication.authRight("edit_user"),
     function (request,response)
 {
     fetch.postFetch("updateUser",request)
@@ -25,9 +25,7 @@ router.post("/updateUser", redirect.authRight("edit_user"),
 
 });
 
-
-
-router.post("/deleteU", redirect.authRight("delete_user"),
+router.post("/deleteU", authentication.authRight("delete_user"),
     function (request,response)
 {
     fetch.postFetch("deleteUser", request)
@@ -37,7 +35,7 @@ router.post("/deleteU", redirect.authRight("delete_user"),
     response.redirect("/userManagement");
 });
 
-router.post("/resetPW",redirect.authRight("delete_user"),
+router.post("/resetPW",authentication.authRight("delete_user"),
     function (request,response)
 {
     fetch.postFetch("resetPassword", request)
@@ -46,6 +44,6 @@ router.post("/resetPW",redirect.authRight("delete_user"),
         });
     response.redirect("/userManagement");
 
-})
+});
 
 module.exports = router;

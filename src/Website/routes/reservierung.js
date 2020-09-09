@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('./helproutes/fetch');
-const redirect = require('./helproutes/redirect');
+const authentication = require('./helproutes/rightAuthentication');
 
-router.post("/booking", redirect.authRight("booking_device"),
+router.post("/booking", authentication.authRight("booking_device"),
     function (request, response) {
-
-
     response.render("booking.ejs",
         {
             benutzername: request.session.userName,
@@ -15,11 +13,11 @@ router.post("/booking", redirect.authRight("booking_device"),
             geraetenummer: request.body.invNumber,
             maxDate: '2020-08-31',
 
-        })
-})
+        });
+});
 
 
-router.post("/book", redirect.authRight("booking_device"),
+router.post("/book", authentication.authRight("booking_device"),
     function (request, response) {
 
     fetch.postFetch("book", request)

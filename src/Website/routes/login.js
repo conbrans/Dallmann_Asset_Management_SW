@@ -3,11 +3,6 @@ const fetch = require('node-fetch');
 //const hash = require('./helproutes/passwordhashing');
 const router = express.Router();
 
-
-const lifetime = 1000 * 60 * 60 * 24;
-const longLifetime = 1000 * 60 * 60 * 24 * 365;
-
-
 /**
  * set the session Values
  * @param request
@@ -35,9 +30,9 @@ function getAccess(request, data, response) {
 
 
         if (request.body.checkbox === "on") {
-            request.session.cookie.maxAge = longLifetime;
+            request.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365;
         } else {
-            request.session.cookie.maxAge = lifetime;
+            request.session.cookie.maxAge =  1000 * 60 * 60 * 24;
         }
 
         response.redirect("/home");

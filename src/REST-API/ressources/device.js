@@ -16,7 +16,7 @@ const constraint = require('../middelwareFunctions/validation')
  * route for getting all users out of database
  */
 
-app.get("/api/device/getAllDevices", (request, response) => {
+router.get("/api/device/getAllDevices", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "gurantee AS guarantee,note,\n" +
         "device_status AS deviceStatus,DEVICE_STATUS.description,CATEGORY.category,\n" +
@@ -63,7 +63,7 @@ app.get("/api/device/getAllDevices", (request, response) => {
  * route for getting all users out of database
  */
 
-app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
+router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "       gurantee AS guarantee,note,\n" +
         "       device_status, DEVICE_STATUS.description,CATEGORY.category,LOCATION.longitude,latitude," +
@@ -104,7 +104,7 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) =>
  * route for getting all users out of database
  */
 
-    app.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
+    router.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
 
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(request);
@@ -134,7 +134,7 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) =>
  * route for getting all users out of database
  */
 
-app.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
+router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
 
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
@@ -183,7 +183,7 @@ app.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraint
  * route for getting all users out of database
  */
 
-app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
+router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
 
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
@@ -216,10 +216,13 @@ app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, respo
     })
 });
 
+
+
+module.exports = router;
 /**
  * Port listener
  */
 
-app.listen(3001, () => {
+/*app.listen(3001, () => {
     console.log('Listening on port 3001...');
-});
+}); */

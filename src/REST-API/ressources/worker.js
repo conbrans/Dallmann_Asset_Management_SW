@@ -12,7 +12,7 @@ const constraint = require('../middelwareFunctions/validation')
  * route for getting all users out of database
  */
 
-app.get("/api/user/getAllUsers",(request, response) => {
+router.get("/api/user/getAllUsers",(request, response) => {
 
     sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,name,surname,\n" +
         "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
@@ -38,7 +38,7 @@ app.get("/api/user/getAllUsers",(request, response) => {
  * route for getting specific user out of database depending on the worker id
  */
 
-app.get("/api/user/getSpecificUser/:workerId",(request, response) => {
+router.get("/api/user/getSpecificUser/:workerId",(request, response) => {
 
     sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,name,surname,\n" +
         "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
@@ -65,7 +65,7 @@ app.get("/api/user/getSpecificUser/:workerId",(request, response) => {
  * route for creating an new user
  */
 
-app.post("/api/user/createUser", constraint.workerConstraints, (request, response) => {
+router.post("/api/user/createUser", constraint.workerConstraints, (request, response) => {
 
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
@@ -94,7 +94,7 @@ app.post("/api/user/createUser", constraint.workerConstraints, (request, respons
  * route for updating an existing user
  */
 
-app.put("/api/user/updateUser/:userId", constraint.workerConstraints, (request, response) => {
+router.put("/api/user/updateUser/:userId", constraint.workerConstraints, (request, response) => {
 
     sql = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.userId + ");";
 
@@ -142,7 +142,7 @@ app.put("/api/user/updateUser/:userId", constraint.workerConstraints, (request, 
  * route for deleting an existing user
  */
 
-app.delete("/api/user/deleteUser/:userId",(request, response) => {
+router.delete("/api/user/deleteUser/:userId",(request, response) => {
 
     let sql = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.userId + ");";
 
@@ -176,10 +176,11 @@ app.delete("/api/user/deleteUser/:userId",(request, response) => {
 
 });
 
+module.exports = router;
 /**
  * Port listener
  */
 
-app.listen(3000, () => {
+/*app.listen(3000, () => {
     console.log('Listening on port 3000...');
-});
+}); */

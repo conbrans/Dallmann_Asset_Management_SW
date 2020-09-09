@@ -1,3 +1,6 @@
+/**
+ * author = Constantin Brans
+ */
 function loadData(i){
    document.getElementById("firstName").value  =
        document.getElementById("tr"+i.toString()+"td1").innerHTML;

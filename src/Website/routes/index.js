@@ -26,6 +26,20 @@ app.use(routerGet);
 app.use(usermanagement);
 
 
+/**
+ * Require of Rest routes
+ */
+
+const restBorrow = require('../../REST-API/ressources/borrow');
+const restDevice = require('../../REST-API/ressources/device');
+const restHistory = require('../../REST-API/ressources/history');
+const restWorker = require('../../REST-API/ressources/worker');
+
+app.use(restBorrow);
+app.use(restDevice);
+app.use(restHistory);
+app.use(restWorker);
+
 app.listen(3000, () => console.log(
     "listening on: " +
     `http://localhost:3000`
