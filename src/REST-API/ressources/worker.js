@@ -5,13 +5,15 @@
 
 const connection = require('../../../src/REST-API/databaseConnection/connection')
 const app = require('../../../src/app');
+const { body, validationResult } = require('express-validator');
+const constraint = require('../middelwareFunctions/validation')
 
 /**
  * route for getting all users out of database
  */
 
-app.get("/api/user/getAllUsers",function (request,response)
-{
+app.get("/api/user/getAllUsers",(request, response) => {
+
     sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,name,surname,\n" +
         "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
         "view_device AS viewDevice,delete_device AS deleteDevice,add_user AS addUser,delete_user AS deleteUser,\n" +
@@ -36,8 +38,8 @@ app.get("/api/user/getAllUsers",function (request,response)
  * route for getting specific user out of database depending on the worker id
  */
 
-app.get("/api/user/getSpecificUser/:workerId",function (request,response)
-{
+app.get("/api/user/getSpecificUser/:workerId",(request, response) => {
+
     sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,name,surname,\n" +
         "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
         "view_device AS viewDevice,delete_device AS deleteDevice,add_user AS addUser,delete_user AS deleteUser,\n" +
@@ -63,8 +65,14 @@ app.get("/api/user/getSpecificUser/:workerId",function (request,response)
  * route for creating an new user
  */
 
-app.post("/api/user/createUser",function (request,response)
-{
+app.post("/api/user/createUser", constraint.workerConstraints, (request, response) => {
+
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+        return response.status(400).json({ errors: errors.array() });
+    }
+
     sql = "INSERT INTO WORKER(password,e_mail,name,surname,role) VALUES " +
         "('"+request.body.password+"','"+request.body.eMail+"','"+ request.body.name+"','"
         +request.body.surname+"','"+request.body.role+"')";
@@ -86,44 +94,86 @@ app.post("/api/user/createUser",function (request,response)
  * route for updating an existing user
  */
 
-app.put("/api/user/updateUser/:userId",function (request,response)
-{
-    update = "UPDATE WORKER SET e_mail ='"+request.body.eMail +"'," +
-        "name ='"+request.body.name+"', surname ='"+ request.body.surname+ "'," +
-        "role ='"+request.body.role+ "'" +
-        "WHERE worker_id = " + request.params.userId +";";
+app.put("/api/user/updateUser/:userId", constraint.workerConstraints, (request, response) => {
 
-    connection.query(update,function (err)
-    {
-        if(err){
-            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+    sql = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.userId + ");";
+
+    connection.query(sql, function (err, result) {
+
+        var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2);
+
+
+        if (err) {
+            response.json({"Message": "Test"});
             console.log('Error connecting to Db');
             return;
+        } else if (str == "1") {
+
+            const errors = validationResult(request);
+            if (!errors.isEmpty()) {
+                return response.status(400).json({errors: errors.array()});
+            }
+
+
+            update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
+                "name ='" + request.body.name + "', surname ='" + request.body.surname + "'," +
+                "role ='" + request.body.role + "'" +
+                "WHERE worker_id = " + request.params.userId + ";";
+
+            connection.query(update, function (err) {
+                if (err) {
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                    console.log('Error connecting to Db');
+                    return;
+                }
+                console.log('updateUser.Connection established');
+                response.json({"Message": "User mit der ID: " + request.params.userId + " wurde erfolgreich geupdatet"});
+            })
         }
-        console.log('DeleteDevice.Connection established');
-        response.json({"Message": "User mit der ID: "+ request.params.userId +" wurde erfolgreich geupdatet"});
+
+        else return response.json({"Message": "Ein User mit der ID: " + request.params.userId + " ist nicht vorhanden."})
+
     })
 });
+
 
 /**
  * route for deleting an existing user
  */
 
-app.delete("/api/user/deleteUser/:userId",function (request,response)
-{
-    sql = "DELETE FROM WORKER" +
-        "WHERE WORKER.worker_id = " + request.params.userId +";";
+app.delete("/api/user/deleteUser/:userId",(request, response) => {
 
-    connection.query(sql,function (err)
-    {
-        if(err){
+    let sql = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.userId + ");";
+
+    connection.query(sql, function (err, result) {
+
+        var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2);
+
+        if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
+        } else if (str == "1") {
+
+            let sql2 = "DELETE FROM WORKER" +
+                "WHERE WORKER.worker_id = " + request.params.userId + ";";
+
+            connection.query(sql2, function (err) {
+                if (err) {
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                    console.log('Error connecting to Db');
+                    return;
+                }
+                console.log('updateUser.Connection established');
+                response.json({"Message": "User mit der ID: " + request.params.userId + " wurde erfolgreich gelöscht"});
+            })
+
         }
-        console.log('DeleteDevice.Connection established');
-        response.json({"Message": "User mit der ID: "+ request.params.userId +" wurde erfolgreich gelöscht"});
+        else return response.json({"Message": "Ein Gerät mit der ID: " + request.params.userId + " ist nicht vorhanden."})
     })
+
 });
 
 /**

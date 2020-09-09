@@ -3,14 +3,20 @@
  * @type {Connection} database connector
  */
 
-const connection = require('../../../src/REST-API/databaseConnection/connection')
+
+const connection = require('../../../src/REST-API/databaseConnection/connection');
 const app = require('../../../src/app');
+const logger = require('../middelwareFunctions/logger');
+const { body, validationResult } = require('express-validator');
+const constraint = require('../middelwareFunctions/validation')
+
+
 
 /**
  * route for getting all users out of database
  */
 
-app.get("/api/device/getAllDevices", function (request, response) {
+app.get("/api/device/getAllDevices", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "gurantee AS guarantee,note,\n" +
         "device_status AS deviceStatus,DEVICE_STATUS.description,CATEGORY.category,\n" +
@@ -38,6 +44,7 @@ app.get("/api/device/getAllDevices", function (request, response) {
         "                   ON BEACON.major = CATEGORY.major\n" +
         "\n" +
         "GROUP BY inventoryNumber;";
+
     connection.query(sql, function (err, result) {
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -56,7 +63,7 @@ app.get("/api/device/getAllDevices", function (request, response) {
  * route for getting all users out of database
  */
 
-app.get("/api/device/getSpecificDevice/:inventoryNumber", function (request, response) {
+app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "       gurantee AS guarantee,note,\n" +
         "       device_status, DEVICE_STATUS.description,CATEGORY.category,LOCATION.longitude,latitude," +
@@ -78,6 +85,7 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", function (request, res
         "                   ON BEACON.major = CATEGORY.major\n" +
         "\n" +
         "WHERE DEVICE.inventory_number ='" + request.params.inventoryNumber + "' GROUP BY inventoryNumber;";
+
     connection.query(sql, function (err, result) {
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -88,7 +96,7 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", function (request, res
         console.log('GetAllDevices.Connection established');
         console.log(json)
         response.json(result);
-    });
+    })
 
 });
 
@@ -96,20 +104,28 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", function (request, res
  * route for getting all users out of database
  */
 
-app.post("/api/device/createDevice", function (request, response) {
-    sql = "INSERT INTO DEVICE (model, serial_number, gurantee, note, device_status, beacon_minor, beacon_major, manufacturer) VALUES " +
-        "('" + request.body.model + "','" + request.body.serialNumber + "','" + request.body.guarantee + "','"
-        + request.body.note + "','" + request.body.deviceStatus + "','" + request.body.beaconMinor + "','"
-        + request.body.beaconMajor + "','" + request.body.manufacturer + "');";
-    connection.query(sql, function (err) {
-        if (err) {
-            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-            console.log('Error connecting to Db');
-            return;
+    app.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
+
+        // Finds the validation errors in this request and wraps them in an object with handy functions
+        const errors = validationResult(request);
+        if (!errors.isEmpty()) {
+            return response.status(400).json({ errors: errors.array() });
         }
-        console.log('CreateDevice.Connection established');
-        response.json({"Message": "Gerät wurde hinzugefügt"});
-    })
+        sql = "INSERT INTO DEVICE (model, serial_number, gurantee, note, device_status, beacon_minor, beacon_major, manufacturer) VALUES " +
+            "('" + request.body.model + "','" + request.body.serialNumber + "','" + request.body.guarantee + "','"
+            + request.body.note + "','" + request.body.deviceStatus + "','" + request.body.beaconMinor + "','"
+            + request.body.beaconMajor + "','" + request.body.manufacturer + "');";
+
+        connection.query(sql, function (err) {
+            if (err) {
+                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                console.log('Error connecting to Db');
+                return;
+            }
+            console.log('CreateDevice.Connection established');
+
+            response.json({"Message": "Gerät wurde hinzugefügt"});
+        })
 
 
 });
@@ -118,20 +134,49 @@ app.post("/api/device/createDevice", function (request, response) {
  * route for getting all users out of database
  */
 
-app.put("/api/device/updateDevice/:inventoryNumber", function (request, response) {
-    update = "UPDATE DEVICE SET model ='" + request.body.model + "', manufacturer ='" + request.body.manufacturer + "'," +
-        "beacon_major ='" + request.body.beaconMajor + "', serial_number ='" + request.body.serialNumber + "'," +
-        "gurantee ='" + request.body.guarantee + "',note ='" + request.body.note + "'," +
-        "device_status ='" + request.body.deviceStatus + "' WHERE inventory_number = " + request.params.inventoryNumber + ";";
-    connection.query(update, function (err) {
+app.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
+
+    sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
+
+    connection.query(sql, function (err, result) {
+        var string = JSON.stringify(result);
+
+        var str = string.substring(string.length -3, string.length - 2);
+
+
         if (err) {
-            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            response.json({"Message": "Test"});
             console.log('Error connecting to Db');
             return;
         }
-        console.log('DeleteDevice.Connection established');
-        response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich geupdatet"});
+
+         else if (str == "1") {
+
+            const errors = validationResult(request);
+            if (!errors.isEmpty()) {
+                return response.status(400).json({ errors: errors.array() });
+            }
+
+            update = "UPDATE DEVICE SET model ='" + request.body.model + "', manufacturer ='" + request.body.manufacturer + "'," +
+                "beacon_major ='" + request.body.beaconMajor + "', serial_number ='" + request.body.serialNumber + "'," +
+                "gurantee ='" + request.body.guarantee + "',note ='" + request.body.note + "'," +
+                "device_status ='" + request.body.deviceStatus + "' WHERE inventory_number = " + request.params.inventoryNumber + ";";
+
+            connection.query(update, function (err) {
+                if (err) {
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                    console.log('Error connecting to Db');
+                    return;
+                }
+                console.log('DeleteDevice.Connection established');
+                response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich geupdatet"});
+            })
+        }
+
+        else return response.json({"Message": "Ein Gerät mit der ID: " + request.params.inventoryNumber + " ist nicht vorhanden."})
+
     })
+
 });
 
 /**
@@ -139,15 +184,35 @@ app.put("/api/device/updateDevice/:inventoryNumber", function (request, response
  */
 
 app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
-    sql = "DELETE FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ";";
-    connection.query(sql, function (err) {
+
+    sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
+
+    connection.query(sql, function (err, result) {
+        var json = JSON.stringify(result);
+
+        var str = json.substring(json.length - 3, json.length - 2);
+
+
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
+        } else if (str == "1") {
+
+            sql = "DELETE FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ";";
+            connection.query(sql, function (err) {
+                if (err) {
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                    console.log('Error connecting to Db');
+                    return;
+                }
+                console.log('DeleteDevice.Connection established');
+                response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich gelöscht"});
+            })
         }
-        console.log('DeleteDevice.Connection established');
-        response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich gelöscht"});
+
+        else return response.json({"Message": "Ein Gerät mit der ID: " + request.params.inventoryNumber + " ist nicht vorhanden."})
+
     })
 });
 

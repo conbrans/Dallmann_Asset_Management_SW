@@ -5,13 +5,15 @@
 
 const connection = require('../../../src/REST-API/databaseConnection/connection')
 const app = require('../../../src/app');
+const { body, validationResult } = require('express-validator');
+const constraint = require('../middelwareFunctions/validation')
 
 /**
  * route for getting all reservations data
  */
 
-app.get("/api/borrow/getReservations",function (request,response)
-{
+app.get("/api/borrow/getReservations",(request, response) => {
+
     sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd, WORKER.name, WORKER.surname,\n" +
         "PROJECT.project_id AS projectId, PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
         "FROM BORROWS\n" +
@@ -40,8 +42,14 @@ app.get("/api/borrow/getReservations",function (request,response)
  * route for creating a reservation
  */
 
-app.post("/api/borrow/createReservation",function (request,response)
-{
+app.post("/api/borrow/createReservation", constraint.reservationConstraints, (request, response) => {
+
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+        return response.status(400).json({ errors: errors.array() });
+    }
+
     sql  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
          "('"+request.body.loanDay+"','"+request.body.loanEnd+"','"+request.body.workerId+"','"
              +request.body.inventoryNumber+"','" +request.body.projectId+"');";
@@ -68,23 +76,40 @@ app.post("/api/borrow/createReservation",function (request,response)
  * route for canceling a reservation
  */
 
-app.delete('/api/borrow/cancelReservation/:inventoryNumber',function (request,response)
-{
-    sql = "DELETE FROM BORROWS WHERE inventory_number = " + request.params.inventoryNumber +";";
-    sql2= "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = "+request.params.inventoryNumber+";";
+app.delete('/api/borrow/cancelReservation/:inventoryNumber', (request, response) => {
 
-    connection.query(sql,function (err)
-    {
-        if(err){
+    let sql1 = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.inventoryNumber + ");";
+
+    connection.query(sql1, function (err, result) {
+
+        var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2);
+
+        if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
+        } else if (str == "1") {
+
+            sql = "DELETE FROM BORROWS WHERE inventory_number = " + request.params.inventoryNumber + ";";
+            sql2 = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.params.inventoryNumber + ";";
+
+            connection.query(sql, function (err) {
+                if (err) {
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                    console.log('Error connecting to Db');
+                    return;
+                }
+                connection.query(sql2, function (err) {
+                    if (err) throw err;
+                })
+                console.log('DeleteDevice.Connection established');
+                response.json({"Message": "Reservierung des Gerätes mit der ID: " + request.params.inventoryNumber + "" +
+                        " wurde erfolgreich gelöscht"})
+            })
         }
-        connection.query(sql2,function (err) {
-            if (err) throw err;
-        })
-        console.log('DeleteDevice.Connection established');
-        response.json({"Message": "Reservierung des Gerätes mit der ID: "+ request.params.inventoryNumber +" wurde erfolgreich gelöscht"});
+        else return response.json({"Message": "Eine Reservation des Gerätes" +
+                    " mit der ID: " + request.params.inventoryNumber + " ist nicht vorhanden."})
     })
 });
 
