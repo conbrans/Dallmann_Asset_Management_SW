@@ -37,6 +37,7 @@ function sendMessage(messagetype) {
                         'Wartungsarbeit : Putzen', title = 'Anstehende Wartung', options = {});
                     req.session.maintenanceShown = true;
                     break;
+                default: next();
             }
             next();
         } else next();

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Reservierung</title>
-    <link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
-    <link rel="stylesheet" type="text/css" href="css/reservierung.css">
-    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+<meta charset="UTF-8">
+<title>Reservierung</title>
+<link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
+<link rel="stylesheet" type="text/css" href="css/reservierung.css">
+<link rel="icon" type="image/x-icon"
+      href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <script src="javascript/booking.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<script src="javascript/booking.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -23,7 +26,8 @@
             <% if (geraetenummer === ""){ %>
                 <h1>Reservierung für ein Gerät vornehmen: </h1>
             <% } else{ %>
-                <h1>Reservierung für das Gerät mit der Nummer: <span><%= geraetenummer %></span> vornehmen:</h1>
+                <h1>Reservierung für das Gerät mit der Nummer:
+                    <span><%= geraetenummer %></span> vornehmen:</h1>
             <% } %>
         </div>
     </div>
@@ -41,7 +45,8 @@
                             <div class="md-form mt-0">
 
                                 <label for="deviceNumber">Gerätenummer</label>
-                                <input type="number" class="form-control" id="deviceNumber" name="Gerätenummer"
+                                <input type="number" class="form-control"
+                                       id="deviceNumber" name="Gerätenummer"
                                        placeholder="1234678">
                             </div>
                         </div>
@@ -60,7 +65,8 @@
 
                             <div class="md-form mt-0">
                                 <label for="deviceNumber">Gerätenummer:</label>
-                                <input type="number" class="form-control" id="deviceNumber" name="Gerätenummer"
+                                <input type="number" class="form-control"
+                                       id="deviceNumber" name="Gerätenummer"
                                        value="<%= geraetenummer %>" readonly>
 
                             </div>
@@ -77,8 +83,12 @@
 
                         <!-- //TODO Möglichkeit finden, den Kalender so zu erweitern, dass Resevrierungen vorgenommen werden können, wie bei Booking.com o.Ä. -->
                         <div class="md-form mt-0">
-                            <label for="booking-start">Startdatum der Leihe:</label>
-                            <input type="date" class="form-control" id="booking_start" name="booking_start" min="" max="<%= maxDate%>"  onclick="getCurrentDate()" required>
+                            <label for="booking-start">Startdatum der
+                                Leihe:</label>
+                            <input type="date" class="form-control"
+                                   id="booking_start" name="booking_start"
+                                   min="" max="<%= maxDate %>"
+                                   onclick="getCurrentDate()" required>
 
                         </div>
                     </div>
@@ -92,7 +102,9 @@
 
                         <div class="md-form mt-0">
                             <label for="booking-end">Enddatum der Leihe:</label>
-                            <input type="date" class="form-control" id="booking_end" name="booking_end" max="<%= maxDate%>" required>
+                            <input type="date" class="form-control"
+                                   id="booking_end" name="booking_end"
+                                   max="<%= maxDate %>" required>
 
                         </div>
                     </div>
@@ -100,17 +112,22 @@
             </div>
 
 
-                <div class="form-group">
+            <div class="form-group">
 
-                    <div class="form-row">
+                <div class="form-row">
 
-                        <div class="col">
+                    <div class="col">
 
-                            <div class="md-form mt-0">
-                                <label for="borrower">Ausleiher:</label>
-                                <input type="text" class="form-control" id="borrower" name="borrower" value="<%= benutzername%>" readonly >
+                        <div class="md-form mt-0">
+                            <label for="borrower">Ausleiher:</label>
+                            <input type="text" class="form-control"
+                                   id="borrower" name="borrower"
+                                   value="<%= benutzername %>" readonly>
 
-            <button type="submit" id="submit" class="btn btn-outline-primary" >Reservieren<i class="far fa-calendar-plus"></i></button>
+                            <button type="submit" id="submit"
+                                    class="btn btn-outline-primary">
+                                Reservieren<i class="far fa-calendar-plus"></i>
+                            </button>
         </form>
 
     </div>

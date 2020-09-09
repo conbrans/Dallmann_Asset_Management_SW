@@ -27,7 +27,7 @@ var {
  app.post("/json", function (request,response)
 {
 
-    var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
+    var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking,picking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
         "GROUP BY worker.role; ";
 
     con.query(firstsql, function (err,res)
@@ -57,28 +57,14 @@ var {
                                 "delete_user": res[0].delete_user,
                                 "edit_user": res[0].edit_user,
                                 "delete_booking": res[0].delete_booking,
-                                "edit_booking": res[0].edit_booking
+                                "edit_booking": res[0].edit_booking,
+                                "picking": res[0].picking,
                             }
                     });
             }
     })
 })
-/**
- * Hinzufügen von Nutzern
- */
-app.post("/user",function (request,response)
-{
-    sql = "INSERT INTO worker(password,e_mail,user_identification,name,surname,role) VALUES " +
-        "('"+request.body.password+"','"+request.body.email+"','"+request.body.email+"','"
-        + request.body.firstName+"','"+request.body.lastName+"','"+request.body.role+"')";
-    con.query(sql,function (err)
-    {
-        if (err) throw err;
-        response.json({"Messagge": "Nutzer wurde hinzugefügt"});
-    })
 
-
-});
 /**
  * Geräteliste
  */
@@ -138,11 +124,31 @@ app.post("/user",function (request,response)
         response.json(result);
     })
 });
+
+/**
+ * Hinzufügen von Nutzern
+ */
+app.post("/user",function (request,response)
+{
+
+    sql = "INSERT INTO worker(password,e_mail,user_identification,name,surname,role) VALUES " +
+        "('"+request.body.password+"','"+request.body.email+"','"+request.body.email+"','"
+        + request.body.firstName+"','"+request.body.lastName+"','"+request.body.role+"')";
+    con.query(sql,function (err)
+    {
+        if (err) throw err;
+        response.json({"Messagge": "Nutzer wurde hinzugefügt"});
+    })
+
+
+});
+
 /**
  * Löschen eines Nutzers anhand der Mail-Adresse
  */
- app.post("/deleteUser",function (request,response)
+ app.post("/deleteUser",function (request)
 {
+
     sql = "DELETE FROM worker WHERE e_mail ='"+request.body.e_Mail+"';";
     con.query(sql,function (err)
     {
@@ -152,7 +158,7 @@ app.post("/user",function (request,response)
 /**
  * Zurücksetzen des Passwortes auf "Werkseinstellungen" in dem Fall 123456
  */
- app.post("/resetPassword",function (request,response)
+ app.post("/resetPassword",function (request)
 {
     sql = "UPDATE worker SET password='123456' WHERE e_mail ='"+request.body.e_Mail+"';";
     con.query(sql,function (err)
@@ -162,8 +168,9 @@ app.post("/user",function (request,response)
 });
 
 
-app.post("/updateUser",function (request,response)
+app.post("/updateUser",function (request)
 {
+    console.log(request.body);
     update = "UPDATE worker SET name ='"+request.body.firstName +"', surname ='"+ request.body.surname+"', e_mail = '"+request.body.mail+"' WHERE e_mail = '"+ request.body.firstmail+ "'";
     con.query(update,function (err)
     {
