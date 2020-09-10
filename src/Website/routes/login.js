@@ -18,7 +18,7 @@ function getAccess(request, data, response) {
     } else {
         console.log("Zugriff gewährt");
         request.session.userID = data.worker_id;
-        request.session.userName = data.firstname + " " + data.surname;
+        request.session.userName =data.firstname + " " + data.surname;
         request.session.email = data.e_mail;
         request.session.role = data.role;
         request.session.rights = data.rights;

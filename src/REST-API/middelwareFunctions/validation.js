@@ -23,10 +23,20 @@ const { body, validationResult } = require('express-validator');
      body('password').notEmpty().withMessage('Es muss ein Passwort angegeben werden.'),
      body('eMail').isEmail().withMessage('Die E-Mail muss folgendes Format haben:...'),
      body('firstName').notEmpty().withMessage('Es muss ein Vorname angegeben werden.'),
-     body('surName').notEmpty().withMessage('Es muss ein Nachname angegeben werden'),
+     body('surname').notEmpty().withMessage('Es muss ein Nachname angegeben werden'),
      body('role').notEmpty().withMessage('Dem neuen User muss eine Rolle zugewiesen werden.')
 
  ];
+
+
+const workerUpdateConstraints = [
+
+    body('eMail').isEmail().withMessage('Die E-Mail muss folgendes Format haben:...'),
+    body('firstName').notEmpty().withMessage('Es muss ein Vorname angegeben werden.'),
+    body('surname').notEmpty().withMessage('Es muss ein Nachname angegeben werden'),
+    body('role').notEmpty().withMessage('Dem neuen User muss eine Rolle zugewiesen werden.')
+
+];
 
  const reservationConstraints = [
 
@@ -44,6 +54,7 @@ module.exports = {
 
     deviceConstraints: deviceConstraints,
     workerConstraints: workerConstraints,
+    workerUpdateConstraints : workerUpdateConstraints,
     reservationConstraints: reservationConstraints
 
 }

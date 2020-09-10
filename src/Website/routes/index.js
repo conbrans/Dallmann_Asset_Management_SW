@@ -2,12 +2,26 @@
  * Import of node packages
  */
 const app = require('../../app');
+const fs = require('fs');
+const https =require('https');
+const path = require('path');
 
 /**
  * Require of helproutes
  * @type {Router}
  */
 const routerGet = require('./helproutes/routerGet');
+
+
+/*
+const httpsOptions =
+    {
+        cert: fs.readFileSync(path.dirname('sslfiles'),'','cert.pem'),
+        key : fs.readFileSync(path.dirname('sslfiles'),'','key.pem')
+    }
+    */
+
+
 
 
 /**

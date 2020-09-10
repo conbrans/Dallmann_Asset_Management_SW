@@ -16,7 +16,6 @@ router.post("/booking", authentication.authRight("booking_device"),
         });
 });
 
-
 router.post("/book", authentication.authRight("booking_device"),
     function (request, response) {
 

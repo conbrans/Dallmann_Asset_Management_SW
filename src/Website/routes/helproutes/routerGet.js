@@ -36,7 +36,7 @@ router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
 
 router.get("/addDevice", redirect.redirectLogin,
     authentication.authRight("add_Device"), (res) => {
-        res.sendFile("C:\\Users\\c.brans\\IdeaProjects\\" +
+        res.send("C:\\Users\\c.brans\\IdeaProjects\\" +
             "Dallmann_Asset_Management_SW\\src\\Website\\private\\" +
             "html\\addDevice.html");
 

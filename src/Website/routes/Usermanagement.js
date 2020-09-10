@@ -19,11 +19,10 @@ router.post("/updateUser", authentication.authRight("edit_user"),
 {
 
     fetch.putFetch("/api/user/updateUser/"+request.body.workerid,request)
+        .then(() => response.redirect("back"))
         .catch((error) => {
             console.error('Error:', error);
         });
-    response.redirect("/userManagement");
-
 });
 
 router.post("/deleteU", authentication.authRight("delete_user"),

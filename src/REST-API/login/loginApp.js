@@ -53,7 +53,7 @@ app.post('/login', function (req, res) {
 
     if (givenUsername && givenPassword) {
 
-        connection.query('SELECT password, worker_id, e_mail, surname, firstname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rightsS WHERE e_mail = ?', givenUsername, (error, results, fields) => {
+        connection.query('SELECT password, worker_id, e_mail, surname, firstname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking FROM worker,rights WHERE e_mail = ?', givenUsername, (error, results, fields) => {
             var sync = bcrypt.compareSync(results[0].password, givenPassword);
             if (sync) {
                 res.send('Success');

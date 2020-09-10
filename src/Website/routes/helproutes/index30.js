@@ -55,8 +55,8 @@ var {
                         "access" : true,
                         "worker_id" : res[0].worker_id,
                         "e_mail" : res[0].e_mail,
-                        "name" : res[0].surname,
-                        "surname" : res[0].firstname,
+                        "surname" : res[0].surname,
+                        "firstname" : res[0].firstname,
                         "role" : res[0].role,
                         "rights" :
                             {
@@ -190,7 +190,4 @@ app.post("/updateUser",function (request)
     })
 });
 
-app.listen(PORT, () => console.log(
-    "listening on: " +
-    `http://localhost:${PORT}`
-));
+app.listen(PORT);
