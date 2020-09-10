@@ -3,8 +3,7 @@
  * @type {Connection} database connector
  */
 
-const connection = require('../../../src/REST-API/databaseConnection/connection')
-const app = require('../../../src/app');
+const connection = require('../../../src/REST-API/databaseConnection/connection');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
@@ -16,7 +15,7 @@ const router = express();
 
 router.get("/api/user/getAllUsers",(request, response) => {
 
-    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,surname,firstname,\n" +
+    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,name,surname,\n" +
         "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
         "view_device AS viewDevice,delete_device AS deleteDevice,add_user AS addUser,delete_user AS deleteUser,\n" +
         "edit_user AS editUser,delete_booking AS deleteBooking,edit_booking AS editBooking\n" +
@@ -76,9 +75,9 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
         return response.status(400).json({ errors: errors.array() });
     }
 
-    sql = "INSERT INTO WORKER(password,e_mail,surname,firstname,role) VALUES " +
-        "('"+request.body.password+"','"+request.body.eMail+"','"+ request.body.surname+"','"
-        +request.body.firstname+"','"+request.body.role+"')";
+    sql = "INSERT INTO WORKER(password,e_mail,firstname,surname,role) VALUES " +
+        "('"+request.body.password+"','"+request.body.eMail+"','"+ request.body.firstName+"','"
+        +request.body.surName+"','"+request.body.role+"')";
 
     connection.query(sql,function (err)
     {
@@ -122,7 +121,7 @@ router.put("/api/user/updateUser/:userId", constraint.workerConstraints, (reques
 
 
             update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
-                "surname ='" + request.body.surname + "', firstname ='" + request.body.firstname + "'," +
+                "surname ='" + request.body.firstName + "', firstname ='" + request.body.surName + "'," +
                 "role ='" + request.body.role + "'" +
                 "WHERE worker_id = " + request.params.userId + ";";
 

@@ -18,7 +18,7 @@ const router = express();
  * route for getting all users out of database
  */
 
-router.get("/api/device/getAllDevices", (request, response) => {
+app.get("/api/device/getAllDevices", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "gurantee AS guarantee,note,\n" +
         "device_status AS deviceStatus,DEVICE_STATUS.description,CATEGORY.category,\n" +
@@ -65,7 +65,7 @@ router.get("/api/device/getAllDevices", (request, response) => {
  * route for getting all users out of database
  */
 
-router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
+app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "       gurantee AS guarantee,note,\n" +
         "       device_status, DEVICE_STATUS.description,CATEGORY.category,LOCATION.longitude,latitude," +
@@ -106,7 +106,7 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
  * route for getting all users out of database
  */
 
-    router.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
+    app.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
 
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(request);
@@ -136,7 +136,7 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
  * route for getting all users out of database
  */
 
-router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
+app.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
 
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
@@ -185,7 +185,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
  * route for getting all users out of database
  */
 
-router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
+app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
 
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
@@ -224,7 +224,6 @@ module.exports = router;
 /**
  * Port listener
  */
-
 /*app.listen(3001, () => {
     console.log('Listening on port 3001...');
 }); */

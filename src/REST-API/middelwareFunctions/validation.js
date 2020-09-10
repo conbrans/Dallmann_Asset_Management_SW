@@ -22,8 +22,8 @@ const { body, validationResult } = require('express-validator');
 
      body('password').notEmpty().withMessage('Es muss ein Passwort angegeben werden.'),
      body('eMail').isEmail().withMessage('Die E-Mail muss folgendes Format haben:...'),
-     body('firstName').isEmpty().withMessage('Es muss ein Vorname angegeben werden.'),
-     body('surName').isEmpty().withMessage('Es muss ein Nachname angegeben werden'),
+     body('firstName').notEmpty().withMessage('Es muss ein Vorname angegeben werden.'),
+     body('surName').notEmpty().withMessage('Es muss ein Nachname angegeben werden'),
      body('role').notEmpty().withMessage('Dem neuen User muss eine Rolle zugewiesen werden.')
 
  ];
