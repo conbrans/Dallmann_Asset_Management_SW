@@ -17,7 +17,8 @@ router.post("/addUser", authentication.authRight("add_user"), (request,response)
 router.post("/updateUser", authentication.authRight("edit_user"),
     function (request,response)
 {
-    fetch.postFetch("updateUser",request)
+
+    fetch.putFetch("/api/user/updateUser/"+request.body.workerid,request)
         .catch((error) => {
             console.error('Error:', error);
         });
@@ -28,7 +29,7 @@ router.post("/updateUser", authentication.authRight("edit_user"),
 router.post("/deleteU", authentication.authRight("delete_user"),
     function (request,response)
 {
-    fetch.postFetch("deleteUser", request)
+    fetch.deleteFetch("/api/user/deleteUser/"+request.body.workerid, request)
         .catch((error) => {
             console.error('Error:', error);
         });

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ- Asset Management</title>
+<title>Asset Management</title>
 <link type="text/css" rel="stylesheet" href="../css/userManagement.css">
 <link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
 <link rel="stylesheet"
@@ -65,10 +65,12 @@
                 <tbody id="userListContent">
                 <% for (var i = 0;i < data.length;i++){ %>
                 <tr onclick="loadData(<%= i %>); loadDataForBox(<%= i %>)">
-                    <td id="tr<%= i %>td1"><%= data[i].name %></td>
+
+                    <td id="tr<%= i %>td1"><%= data[i].firstname %></td>
                     <td id="tr<%= i %>td2"><%= data[i].surname %></td>
                     <td id="tr<%= i %>td3"><%= data[i].eMail %></td>
                     <td id="tr<%= i %>td4"><%= data[i].role %></td>
+                    <td id="tr<%= i %>td5" style="display: none" ><%=data[i].workerId%></td>
                 </tr>
                 <% } %>
                 </tbody>
@@ -82,6 +84,7 @@
                 <br>
                 <div class="box1">
                     <form method="post" action="/updateUser">
+                        <input type="hidden" name="workerid" id="hiddenWorkerId">
 
 
                         <div class="deviceInfoBoxes">
@@ -122,9 +125,6 @@
                             <div>
                                 <input name="mail" class="inputBox" type="text"
                                        value="E-Mail" id="e-Mail">
-                                <input name="firstmail" class="inputBox"
-                                       type="hidden" value="E-Mail"
-                                       id="e-Mailhidden">
                                 <button id="emailBtn" type="button"
                                         onclick="changeFieldStatus('e-Mail')"
                                         class="btn btn-default"
@@ -139,8 +139,8 @@
                             <label for="rolleBtn"> Rolle:</label>
                             <div>
 
-                                <select name="role" form="update"
-                                        class="inputBox" id="rolle" disabled>
+                                <select name="role"
+                                        class="inputBox" id="rolle" >
                                     <option disabled selected>Rolle</option>
                                     <option value="Admin">Admin</option>
                                     <option value="Werkstatt">Werkstatt</option>
@@ -209,7 +209,7 @@
                 </div>
                 <div style="margin-top: 1em">
                     <form method="post" action="/deleteU" id="deleteUser">
-                        <input type="hidden" name="e_Mail" id="deleteE_mail">
+                        <input type="hidden" name="workerid" id="deleteHiddenWorkerId">
                         <button type="submit" form="deleteUser"
                                 class="btn btn-outline-danger">
                             Benutzer löschen

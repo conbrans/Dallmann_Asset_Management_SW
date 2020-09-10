@@ -27,8 +27,20 @@ var {
  app.post("/json", function (request,response)
 {
 
-    var firstsql = "SELECT worker_id, e_mail, name, surname, worker.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking,picking FROM worker,rights WHERE e_mail = '" + request.body.usermail+ "' and password='"+ request.body.password +"' and worker.role = rights.role\n" +
-        "GROUP BY worker.role; ";
+
+    var firstsql = "SELECT worker_id, e_mail, surname, firstname, worker.role," +
+        "booking_device, edit_device, add_device, view_device," +
+        "delete_device, add_user, delete_user, edit_user," +
+        "delete_booking, edit_booking,picking " +
+        "FROM worker,rights " +
+        "WHERE e_mail ='"
+        + request.body.usermail +
+        "'and password='"+
+        request.body.password +
+        "' and worker.role = rights.role " +
+        "GROUP BY worker.role;"
+
+
 
     con.query(firstsql, function (err,res)
     {
@@ -43,8 +55,8 @@ var {
                         "access" : true,
                         "worker_id" : res[0].worker_id,
                         "e_mail" : res[0].e_mail,
-                        "name" : res[0].name,
-                        "surname" : res[0].surname,
+                        "name" : res[0].surname,
+                        "surname" : res[0].firstname,
                         "role" : res[0].role,
                         "rights" :
                             {
@@ -131,7 +143,7 @@ var {
 app.post("/user",function (request,response)
 {
 
-    sql = "INSERT INTO worker(password,e_mail,user_identification,name,surname,role) VALUES " +
+    sql = "INSERT INTO worker(password,e_mail,user_identification,surname,firstname,role) VALUES " +
         "('"+request.body.password+"','"+request.body.email+"','"+request.body.email+"','"
         + request.body.firstName+"','"+request.body.lastName+"','"+request.body.role+"')";
     con.query(sql,function (err)
@@ -171,7 +183,7 @@ app.post("/user",function (request,response)
 app.post("/updateUser",function (request)
 {
     console.log(request.body);
-    update = "UPDATE worker SET name ='"+request.body.firstName +"', surname ='"+ request.body.surname+"', e_mail = '"+request.body.mail+"' WHERE e_mail = '"+ request.body.firstmail+ "'";
+    update = "UPDATE worker SET surname ='"+request.body.firstName +"', surname ='"+ request.body.surname+"', e_mail = '"+request.body.mail+"' WHERE e_mail = '"+ request.body.firstmail+ "'";
     con.query(update,function (err)
     {
         if (err) throw err;

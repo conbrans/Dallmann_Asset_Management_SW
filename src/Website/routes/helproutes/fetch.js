@@ -6,11 +6,35 @@ async function postFetch(url, req)
         {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
-            mode: 'cors',
             body: JSON.stringify(req.body)
         });
-    return await res;
+    return await res.json();
 }
+
+async function putFetch(url, req)
+{
+    let res = await fetch("http://localhost:3000" + url,
+        {
+            method: 'PUT',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(req.body)
+        });
+    return await res.json();
+}
+
+
+async function deleteFetch(url, req)
+{
+    let res = await fetch("http://localhost:3000" + url,
+        {
+            method: 'DELETE',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(req.body)
+        });
+    return res.json();
+}
+
+
 
 async function getFetch(name)
 {
@@ -22,4 +46,6 @@ module.exports =
     {
         postFetch,
         getFetch,
+        putFetch,
+        deleteFetch
     }

@@ -76,7 +76,7 @@ app.post("/historie", function (request, response) {
                     edit_booking: 1,
                     picking: 1
             },
-                    geraetenummer: request.body.invNumber,
+                    geraetenummer:"Placeholder",
                     datum: datum,
                     bau_ID: bauId,
                     bauBZ: bauBZ,
@@ -84,12 +84,12 @@ app.post("/historie", function (request, response) {
                     lastLocation: vorStandort,
                 });
 
-        }, 1000);
+        }, 1);
 
 
     });
 
-var server = app.listen(3000, () => {
+var server = app.listen(3001, () => {
 });
 
 module.exports = server;

@@ -27,4 +27,24 @@ describe("Test of fetch methods",()=>
         });
 
     });
+    it('putFetch', function (done)
+    {
+        spyOn(fetch,"putFetch").and.
+        returnValue(Promise.resolve(promisedDataGet));
+        fetch.putFetch().then((result)=>
+        {
+            expect(result).toEqual(promisedDataGet);
+            done();
+        });
+    });
+    it('deleteFetch', function (done)
+    {
+        spyOn(fetch,"deleteFetch").and.
+        returnValue(Promise.resolve(promisedDataPost));
+        fetch.deleteFetch().then((result)=>
+        {
+            expect(result).toEqual(promisedDataPost);
+            done();
+        });
+    });
 });
