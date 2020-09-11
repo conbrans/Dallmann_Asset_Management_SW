@@ -1,8 +1,14 @@
+:root{
+    --primary:  #faba31;
+    --dark:     #fabd38;
+    --yellow:   #fbbb11;
+    --grey:     #f1f1f1;
+}
+
 html {
     padding: 0;
     margin: 0;
 }
-
 
 body {
     margin: 0;
@@ -12,17 +18,16 @@ body {
     font-family: "acumin-pro", sans-serif;
     color: #0d0d0d;
     font-weight: 300;
-
 }
 
 
 header{
-    background: #faba31; /* #fbbb11; */
+    background: var(--grey); /* #fbbb11; */
     width: 100%;
     height: 140px;
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #fabd38;
+    border-bottom: 1px solid var(--dark);
 }
 
 #menu {
@@ -63,8 +68,7 @@ header{
 #header-Search {
     display: inline-block;
     width: 50%;
-    background-color: #fbcd6a ;
-    border: 1px solid #fbcd6a;
+
 
 }
 
@@ -111,14 +115,14 @@ header{
     white-space: nowrap;
     width: auto;
     z-index: 99;
-    border-top: 1px solid #faba31;
+    border-top: 1px solid var(--grey);
 }
 
 #main-menu .main-menu-sub > li {
     display: block;
     float: none;
     width: 100%;
-    background: #faba31; /*#f1f1f1;*/
+    background: var(--grey); /*#f1f1f1;*/
     padding: 0 30px;
     border-bottom: 1px solid #fff;
 }
@@ -151,13 +155,13 @@ header{
 
 footer
 {
-    background:#faba31 ;
+    background: var(--primary) ;
     width: 100%;
     height: 5%;
     position: fixed;
     float: left;
     bottom: 0;
-    border-top: 1px solid #fabd38;
+    border-top: 1px solid var(--dark);
     text-align: left;
     font-size: 16px;
 

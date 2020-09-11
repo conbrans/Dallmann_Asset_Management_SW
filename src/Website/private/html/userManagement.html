@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html">
-    <link type="text/css" rel="stylesheet" href="../css/userManagement.css" >
+    <link type="text/css" rel="stylesheet" href="../css/deviceManagement.css" >
     <link type="text/css" rel="stylesheet" href="../css/navigationBar.css">
     <link  rel="stylesheet" type="text/css" href="../css/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
@@ -108,7 +108,7 @@
             </table>
 
         </div>
-        <div>
+        <div  id="deviceInfoBoxes">
             <form class="box" action="">
                 <h3>Benutzerinfomationen</h3>
                 <br>
@@ -117,70 +117,47 @@
                     <div class="deviceInfoBoxes">
                         <label for="Vorname" style="float: left"> Vorname: </label>
                         <div>
-                            <input class="inputBox" type="text" value="Vorname" id="vorname" readonly>
-                            <button id="vornameBtn" type="button" onclick="changeFieldStatus('vorname')"
-                                    class="btn btn-default" aria-label="Left Align"
-                                    style="float: left; border: none">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
+                            <input class="inputBox" type="text" value="Vorname" id="vorname">
                         </div>
                     </div>
-
+                    <br>
                     <div class="deviceInfoBoxes">
                         <label for="nachname"> Nachname: </label>
                         <div>
-                            <input class="inputBox" type="text" value="Nachname" id="nachname" readonly>
-                            <button id="nachnameBtn" type="button" onclick="changeFieldStatus('nachname')"
-                                    class="btn btn-default" aria-label="Left Align"
-                                    style="float: left; border: none">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
+                            <input class="inputBox" type="text" value="Nachname" id="nachname">
                         </div>
                     </div>
-
+                    <br>
                     <div class="deviceInfoBoxes">
                         <label for="e-Mail">E-Mail:</label>
                         <div>
-                            <input class="inputBox" type="text" value="E-Mail" id="e-Mail" readonly>
-                            <button id="emailBtn" type="button"  onclick="changeFieldStatus('e-Mail')"
-                                    class="btn btn-default" aria-label="Left Align"
-                                    style="float: left; border: none">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
+                            <input class="inputBox" type="text" value="E-Mail" id="e-Mail">
                         </div>
                     </div>
-
+                    <br>
                     <div class="deviceInfoBoxes">
                         <label for="rolleBtn"> Rolle:</label>
                         <div>
 
-                            <select class="inputBox" id="rolle" disabled="disabled">
+                            <select class="inputBox" id="rolle">
                                 <option selected>Rolle</option>
                                 <option value="admin">Admin</option>
                                 <option value="mechanic">Werkstatt</option>
                                 <option value="foreman">Polier</option>
                                 <option value="accounting">Buchhaltung</option>
                             </select>
-                            <button id="rolleBtn" type="button" onclick="changeSelectStatus('rolle')" class="btn btn-default" aria-label="Left Align"
-                                    style="border: none">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
                         </div>
                     </div>
-
+                    <br>
 
                     <div class="deviceInfoBoxes">
                         <label for="verfiedBtn"> Verifiziert:</label>
                         <div>
 
-                            <select class="inputBox" id="verified" disabled="disabled">
+                            <select class="inputBox" id="verified">
                                 <option value="1">Ja</option>
                                 <option value="0">Nein</option>
                             </select>
-                            <button id="verfiedBtn" type="button" onclick="changeSelectStatus('verified')" class="btn btn-default" aria-label="Left Align"
-                                    style="border: none">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
                         </div>
                     </div>
 

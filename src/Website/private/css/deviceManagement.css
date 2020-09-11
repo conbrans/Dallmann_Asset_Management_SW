@@ -32,17 +32,35 @@ padding-left: 1em;
 
 .wrapper{
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
 }
+
 
 .wrapper > div{
     padding: 1em;
 }
 
-.deviceInfoBoxes{
-    display: grid;
+.filterDevices{
+    height: 100px;
+    margin: 20px;
+    border: 1px solid black;
 
 }
+
+
+.filterBox{
+    float: left;
+    padding: 10px;
+}
+
+.deviceInfoBoxes{
+    display: grid;
+}
+
+.deviceInfoBoxes.filter{
+    margin: 20px;
+}
+
 .deviceInfoBoxes:nth-child {
     color: #eee;
 }
@@ -64,6 +82,21 @@ label{
     float: left;
 }
 
+
+.header_button {
+    font-family: "Roboto Light";
+    color: #555555;
+    font-size: 16px;
+    letter-spacing: .6px;
+    height: 52px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.deviceInfoBoxes{
+    width: 200px;
+}
 
 
 

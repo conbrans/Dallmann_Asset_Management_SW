@@ -88,7 +88,12 @@ background-color: #f1f1f1 ;
     color: #fbb904;
 }
 
-
+div.toggle-inner{
+    display: none;
+}
+div.toggle-inner.show{
+    display: block !important;
+}
 
 
 
