@@ -49,7 +49,7 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
-        return response.status(400).json({ errors: errors.array() });
+        return response.json(errors.array());
     }
 
     sql  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
@@ -91,7 +91,7 @@ router.delete('/api/borrow/cancelReservation/:inventoryNumber', (request, respon
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
-        } else if (str == "1") {
+        } else if (str === "1") {
 
             sql = "DELETE FROM BORROWS WHERE inventory_number = " + request.params.inventoryNumber + ";";
             sql2 = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.params.inventoryNumber + ";";
