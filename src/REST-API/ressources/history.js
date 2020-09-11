@@ -6,7 +6,7 @@
 const connection = require('../../../src/REST-API/databaseConnection/connection')
 //const app = require('../../../src/app');
 const express = require('express');
-const router = express();
+const router = express.Router();
 
 /**
  * route for getting history for a specific device

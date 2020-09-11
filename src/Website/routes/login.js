@@ -1,6 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
-//const hash = require('./helproutes/passwordhashing');
+const hash = require('./helproutes/passwordhashing');
 const router = express.Router();
 
 /**
@@ -12,13 +12,14 @@ const router = express.Router();
 function getAccess(request, data, response) {
 
 
+
     if (!data.access) {
         response.redirect("/");
 
     } else {
         console.log("Zugriff gewährt");
         request.session.userID = data.worker_id;
-        request.session.userName =data.firstname + " " + data.surname;
+        request.session.userName =data.firstName + " " + data.surname;
         request.session.email = data.e_mail;
         request.session.role = data.role;
         request.session.rights = data.rights;
@@ -43,16 +44,12 @@ function getAccess(request, data, response) {
 
 router.post("/login", function (request, response) {
 
-    // zur Verwendung wenn später in Rest bcyrpt läuft
-
-
-    /*var hashedPassword = hash.hash(request.body.password)
+    var hashedPassword = hash.hash(request.body.password)
         .then(function (result)
         {
-            fetch('http://localhost:3032/json', {
+            fetch('http://localhost:3000/api/login', {
                 method : 'POST',
                 headers: { "Content-Type": "application/json" },
-                mode: 'cors',
                 body: JSON.stringify({
                     usermail : request.body.useremail,
                     password : result,
@@ -63,25 +60,7 @@ router.post("/login", function (request, response) {
                 .catch((error) => {
                     console.error('Error:', error);
                 });
-
-        }
-    )*/
-
-    fetch('http://localhost:3032/json', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        mode: 'cors',
-        body: JSON.stringify({
-            usermail: request.body.useremail,
-            password: request.body.password,
         })
-    })
-        .then((response) => response.json())
-        .then(data => getAccess(request, data, response))
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-
 });
 
 

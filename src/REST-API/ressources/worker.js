@@ -7,7 +7,7 @@ const connection = require('../../../src/REST-API/databaseConnection/connection'
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
-const router = express();
+const router = express.Router();
 
 /**
  * route for getting all users out of database

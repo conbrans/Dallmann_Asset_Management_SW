@@ -49,7 +49,7 @@
                         <a href="/profil">
                             <i class="fas fa-user"></i>
                             <tab class="header-icons-description">
-                                <%= benutzername %>
+                                <%= userName %>
                             </tab>
                         </a>
                     </li>
@@ -76,7 +76,7 @@
                         </li>
                     <% } %>
                     <!-- Komissionieren -->
-                    <% if ( rights.picking === 1 ) { %>
+                    <% if ( rights.add_user === 1 ) { %>
                         <li>
                             <a href="/picking">
                                 <i class="fas fa-list"></i>

@@ -7,7 +7,7 @@ router.post("/booking", authentication.authRight("booking_device"),
     function (request, response) {
     response.render("booking.ejs",
         {
-            benutzername: request.session.userName,
+            userName: request.session.userName,
             role: request.session.role,
             rights: request.session.rights,
             geraetenummer: request.body.invNumber,

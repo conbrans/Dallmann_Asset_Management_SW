@@ -6,8 +6,7 @@ const authentication = require('./rightAuthentication');
 const notification = require('./notifications');
 
 router.get('/', redirect.redirectHome,
-    (req, res) =>
-    {
+    (req, res) => {
         res.status(201).render("login.ejs");
     });
 
@@ -27,7 +26,7 @@ router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
     (req, res) => {
         res.status(200).render("adminCreateUser.ejs",
             {
-                benutzername: req.session.userName,
+                userName: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
             })
@@ -48,7 +47,7 @@ router.get("/booking", redirect.redirectLogin,
     (req, res) => {
         res.render("booking.ejs",
             {
-                benutzername: req.session.userName,
+                userName: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
                 geraetenummer: "",
@@ -62,7 +61,7 @@ router.get("/bookinglist", redirect.redirectLogin,
     (req, res) => {
         res.render("bookinglist.ejs",
             {
-                benutzername: req.session.userName,
+                userName: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
 
@@ -76,7 +75,7 @@ router.get("/devices", redirect.redirectLogin,
             .then(data =>
                 res.render("newDeviceManagement.ejs",
                     {
-                        benutzername: req.session.userName,
+                        userName: req.session.userName,
                         role: req.session.role,
                         rights: req.session.rights,
                         data: data,
@@ -90,14 +89,14 @@ router.get("/faQ",
     (req, res) => {
         res.render("FAQ.ejs",
             {
-                benutzername: req.session.userName,
+                userName: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
             });
 
     });
 
-router.get("/home", redirect.redirectLogin,notification.sendMessage("login"),
+router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
     notification.sendMessage("booking"),
     notification.sendMessage("tuvUvv"),
     notification.sendMessage("maintenance"),
@@ -105,17 +104,17 @@ router.get("/home", redirect.redirectLogin,notification.sendMessage("login"),
 
         res.render('index.ejs',
             {
-                benutzername: req.session.userName,
+                userName: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
-                req : req,
+                req: req,
             });
     });
 
 router.get("/profil", (req, res) => {
     res.render("profil.ejs",
         {
-            benutzername: req.session.userName,
+            userName: req.session.userName,
             role: req.session.role,
             rights: req.session.rights,
         });
@@ -128,7 +127,7 @@ router.get("/update", redirect.redirectLogin,
     (req, res) => {
         res.render("adminUpdateUser.ejs",
             {
-                benutzername: req.session.userName,
+                userName: req.session.userName,
                 role: req.session.role,
                 rights: req.session.rights,
             })
@@ -137,14 +136,14 @@ router.get("/update", redirect.redirectLogin,
 
 router.get("/userManagement", redirect.redirectLogin,
     authentication.authRight("add_user"),
-   authentication.authRight("delete_User"),
+    authentication.authRight("delete_User"),
     (req, res) => {
         fetch.getFetch("/api/user/getAllUsers")
             .then(data =>
 
                 res.status(200).render("userManagement.ejs",
                     {
-                        benutzername: req.session.userName,
+                        userName: req.session.userName,
                         role: req.session.role,
                         rights: req.session.rights,
                         data: data,

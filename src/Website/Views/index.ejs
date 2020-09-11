@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Willkommen zurück <%= benutzername %></title>
+<title>Willkommen zurück <%= userName %></title>
 <link rel="stylesheet" type="text/css" href="css/startseite.css">
 <link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
 <link rel="stylesheet" type="text/css" href="css/table.css">
@@ -65,7 +65,7 @@
         </div>
     </div>
     <% /* access for users with role 1 & 2 */ %>
-    <% if ( role === "Admin" || role === "Werkstatt" ) { %>
+    <% if ( rights.picking===1 ) { %>
         <div class="overview">
             <div id="picking">
                 <a href="/picking"

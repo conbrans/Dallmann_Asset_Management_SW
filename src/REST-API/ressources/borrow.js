@@ -8,7 +8,7 @@ const app = require('../../../src/app');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
-const router = express();
+const router = express.Router();
 
 /**
  * route for getting all reservations data
