@@ -61,7 +61,7 @@ app.post("/historie", function (request, response) {
 
             response.status(201).render("historie.ejs",
                 {
-                    benutzername: "Teo Tester",
+                    username: "Teo Tester",
                     role: "Tester",
                     rights: {
                         booking_device: 1,

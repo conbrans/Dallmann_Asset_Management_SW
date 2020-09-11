@@ -7,11 +7,10 @@ const https =require('https');
 const path = require('path');
 
 /**
- * Require of helproutes
+ * Require of the get Methods
  * @type {Router}
  */
 const routerGet = require('./helproutes/routerGet');
-
 
 /*
 const httpsOptions =
@@ -21,17 +20,14 @@ const httpsOptions =
     }
     */
 
-
-
-
 /**
  * Require of standard routes
  * @type {Router}
  */
-const booking = require('../routes/reservierung');
-const history = require('../routes/historie');
-const login = require('../routes/login');
-const usermanagement = require('../routes/Usermanagement');
+const booking = require('./routesBooking');
+const history = require('./routesHistory');
+const login = require('./routesLogin');
+const usermanagement = require('./routesUserManagement');
 
 app.use(booking);
 app.use(history);

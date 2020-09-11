@@ -19,10 +19,6 @@ app.use(session({
     }
 }));
 
-
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'Website/Views'));
 app.set('view engine', 'ejs');
@@ -35,7 +31,5 @@ app.use(cookieParser('secret'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, '/Website/public')));
 app.use(express.static(path.join(__dirname, '/Website/private')));
-
-
 
 module.exports = app;

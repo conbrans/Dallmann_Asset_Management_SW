@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservierung</title>
-    <link rel="stylesheet" type="text/css" href="css/headFootDesign.css">
-    <link rel="stylesheet" type="text/css" href="css/reservierung.css">
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <link rel="stylesheet" href="css/reservierung.css">
     <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -108,7 +108,7 @@
 
                             <div class="md-form mt-0">
                                 <label for="borrower">Ausleiher:</label>
-                                <input type="text" class="form-control" id="borrower" name="borrower" value="<%= benutzername%>" readonly >
+                                <input type="text" class="form-control" id="borrower" name="borrower" value="<%=  username%>" readonly >
 
             <button type="submit" id="submit" class="btn btn-outline-primary" >Reservieren<i class="far fa-calendar-plus"></i></button>
         </form>

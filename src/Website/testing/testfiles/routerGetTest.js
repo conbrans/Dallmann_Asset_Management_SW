@@ -27,7 +27,7 @@ app.get("/add",
 
         res.status(200).render("adminCreateUser.ejs",
             {
-                benutzername: "Teo Tester",
+                username: "Teo Tester",
                 role: "Tester",
                 rights: {
                     booking_device: 0,
@@ -58,7 +58,7 @@ app.get("/booking",
     (req, res) => {
         res.render("booking.ejs",
             {
-                benutzername: "Teo Tester",
+                username: "Teo Tester",
                 role: "Tester",
                 rights: {
                     booking_device: 1,
@@ -83,7 +83,7 @@ app.get("/bookinglist",
     (req, res) => {
         res.render("bookinglist.ejs",
             {
-                benutzername: "Teo Tester",
+                username: "Teo Tester",
                 role: "Tester",
                 rights: {
                     booking_device: 1,
@@ -106,7 +106,7 @@ app.get("/devices",
     (req, res) => {
                 res.render("newDeviceManagement.ejs",
                     {
-                        benutzername: "Teo Tester",
+                        username: "Teo Tester",
                         role: "Tester",
                         rights: {
                             booking_device: 1,
@@ -167,7 +167,7 @@ app.get("/faQ",
     (req, res) => {
         res.render("FAQ.ejs",
             {
-                benutzername: "Teo Tester",
+                username: "Teo Tester",
                 role: "Tester",
                 rights: {
                     booking_device: 1,
@@ -191,7 +191,7 @@ app.get("/home",
 
         res.status(200).render('index.ejs',
             {
-                benutzername: "Teo Tester",
+                username: "Teo Tester",
                 role: "Tester",
                 rights: {
                     booking_device: 1,
@@ -213,7 +213,7 @@ app.get("/home",
 app.get("/profil", (req, res) => {
     res.render("profil.ejs",
         {
-            benutzername: "Teo Tester",
+            username: "Teo Tester",
             role: "Tester",
             rights: {
                 booking_device: 1,
@@ -237,7 +237,7 @@ app.get("/update",
     (req, res) => {
         res.render("adminUpdateUser.ejs",
             {
-                benutzername: "Teo Tester",
+                username: "Teo Tester",
                 role: "Tester",
                 rights: {
                     booking_device: 1,
@@ -260,7 +260,7 @@ app.get("/userManagement",
     (req, res) => {
                 res.render("userManagement.ejs",
                     {
-                        benutzername: "Teo Tester",
+                        username: "Teo Tester",
                         role: "Tester",
                         rights: {
                             booking_device: 1,

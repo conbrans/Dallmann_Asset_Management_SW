@@ -8,13 +8,10 @@
         <div id="header-menu">
             <nav id="main-menu">
                 <ul>
-                    <li>
-                        <% if (rights.view_device === 1){ %>
+                    <li><% if (rights.view_device === 1){ %>
                         <a href="/devices">
                             <i class="fas fa-briefcase"></i>
-                            <tab class="header-icons-description">
-                                Geräte
-                            </tab>
+                            <tab class="header-icons-description">Geräte</tab>
                         </a>
                             <% if (rights.add_device === 1){ %>
                         <ul class="main-menu-sub">
@@ -35,10 +32,14 @@
                             </a>
                             <ul class="main-menu-sub">
                                 <li>
-                                    <a href="/booking">Reservierung vornehmen</a>
+                                    <a href="/booking">
+                                        Reservierung vornehmen
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="/bookinglist">Reservierungsliste einsehen</a>
+                                    <a href="/bookinglist">
+                                        Reservierungsliste einsehen
+                                    </a>
                                 </li>
                             </ul>
 
@@ -49,7 +50,7 @@
                         <a href="/profil">
                             <i class="fas fa-user"></i>
                             <tab class="header-icons-description">
-                                <%= userName %>
+                                <%= username %>
                             </tab>
                         </a>
                     </li>
@@ -76,7 +77,7 @@
                         </li>
                     <% } %>
                     <!-- Komissionieren -->
-                    <% if ( rights.add_user === 1 ) { %>
+                    <% if ( rights.picking === 1 ) { %>
                         <li>
                             <a href="/picking">
                                 <i class="fas fa-list"></i>

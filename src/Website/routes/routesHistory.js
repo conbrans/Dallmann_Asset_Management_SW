@@ -1,3 +1,7 @@
+/**
+ * Import of node packages and Modules
+ */
+
 const express = require('express');
 const router = express.Router();
 const redirect = require('./helproutes/redirect');
@@ -7,7 +11,8 @@ const fetch = require('node-fetch');
 
 
 router.post("/historie", redirect.redirectLogin,
-   authentication.authRight("view_device"), function (request, response) {
+   authentication.authRight("view_device"), function (req, res) {
+
 
 
     let datum = [];
@@ -16,13 +21,12 @@ router.post("/historie", redirect.redirectLogin,
     let standort = [];
     let vorStandort = [];
 
-    /* fetch.getFetch("")
+     fetch.getFetch("/api/history/getHistoryForSpecificDevice/"+req.body.invNumber)
          .then(
-             data => result = data);
-         )*/
+             data => console.log(data))
 
 
-    fetch('https://gist.githubusercontent.com/conbrans/88140516ddcb3421fa8d4d441669f71b/raw/308ac59f6c492a796b26865a301a68f73f0b8e25/hsitorie')
+    /*fetch('https://gist.githubusercontent.com/conbrans/88140516ddcb3421fa8d4d441669f71b/raw/308ac59f6c492a796b26865a301a68f73f0b8e25/hsitorie')
         .then(response => response.json())
         .then(json => result = json);
 
@@ -35,12 +39,12 @@ router.post("/historie", redirect.redirectLogin,
             vorStandort[i] = result[i].lastLocation;
         }
 
-        response.render("historie.ejs",
+        res.render("historie.ejs",
             {
-                userName: request.session.userName,
-                role: request.session.role,
-                rights: request.session.rights,
-                geraetenummer: request.body.invNumber,
+                username: req.session.username,
+                role: req.session.role,
+                rights: req.session.rights,
+                geraetenummer: req.body.invNumber,
                 datum: datum,
                 bau_ID: bauId,
                 bauBZ: bauBZ,
@@ -48,7 +52,7 @@ router.post("/historie", redirect.redirectLogin,
                 lastLocation: vorStandort,
             });
 
-    }, 1000);
+    }, 1000);*/
 
 
 });

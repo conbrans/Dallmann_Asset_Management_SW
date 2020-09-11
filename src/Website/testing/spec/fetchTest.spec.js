@@ -47,4 +47,15 @@ describe("Test of fetch methods",()=>
             done();
         });
     });
+    it('loginFetch',function (done)
+    {
+        spyOn(fetch,"loginFetch").and.
+        returnValue(Promise.resolve(promisedDataPost));
+        fetch.loginFetch().then((result)=>
+        {
+            expect(result).toEqual(promisedDataPost);
+            done();
+        });
+
+    });
 });

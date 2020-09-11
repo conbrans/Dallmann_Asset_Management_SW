@@ -75,7 +75,7 @@ router.get("/devices", redirect.redirectLogin,
             .then(data =>
                 res.render("newDeviceManagement.ejs",
                     {
-                        userName: req.session.userName,
+                        username: req.session.username,
                         role: req.session.role,
                         rights: req.session.rights,
                         data: data,
@@ -89,7 +89,7 @@ router.get("/faQ",
     (req, res) => {
         res.render("FAQ.ejs",
             {
-                userName: req.session.userName,
+                username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
             });
@@ -104,7 +104,7 @@ router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
 
         res.render('index.ejs',
             {
-                userName: req.session.userName,
+                username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
                 req: req,
@@ -114,7 +114,7 @@ router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
 router.get("/profil", (req, res) => {
     res.render("profil.ejs",
         {
-            userName: req.session.userName,
+            username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
         });
@@ -127,7 +127,7 @@ router.get("/update", redirect.redirectLogin,
     (req, res) => {
         res.render("adminUpdateUser.ejs",
             {
-                userName: req.session.userName,
+                username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
             })
@@ -143,7 +143,7 @@ router.get("/userManagement", redirect.redirectLogin,
 
                 res.status(200).render("userManagement.ejs",
                     {
-                        userName: req.session.userName,
+                        username: req.session.username,
                         role: req.session.role,
                         rights: req.session.rights,
                         data: data,
