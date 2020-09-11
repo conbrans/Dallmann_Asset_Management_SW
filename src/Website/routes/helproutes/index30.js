@@ -23,7 +23,7 @@ var {
  *  zum einloggen von Nutzern
  */
 
-
+//READY
  app.post("/json", function (request,response)
 {
 
@@ -123,7 +123,7 @@ var {
         ]);
 
 });
-
+//READY
 /**
  * Abfrage aller Nutzer
  */
@@ -136,7 +136,7 @@ var {
         response.json(result);
     })
 });
-
+//READY
 /**
  * Hinzufügen von Nutzern
  */

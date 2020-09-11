@@ -18,7 +18,7 @@ const router = express();
  * route for getting all users out of database
  */
 
-app.get("/api/device/getAllDevices", (request, response) => {
+router.get("/api/device/getAllDevices", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "gurantee AS guarantee,note,\n" +
         "device_status AS deviceStatus,DEVICE_STATUS.description,CATEGORY.category,\n" +
@@ -65,7 +65,7 @@ app.get("/api/device/getAllDevices", (request, response) => {
  * route for getting all users out of database
  */
 
-app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
+router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "       gurantee AS guarantee,note,\n" +
         "       device_status, DEVICE_STATUS.description,CATEGORY.category,LOCATION.longitude,latitude," +
@@ -106,12 +106,12 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) =>
  * route for getting all users out of database
  */
 
-    app.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
+    router.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
 
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(request);
         if (!errors.isEmpty()) {
-            return response.status(400).json({ errors: errors.array() });
+            return response.json(errors.array());
         }
         sql = "INSERT INTO DEVICE (model, serial_number, gurantee, note, device_status, beacon_minor, beacon_major, manufacturer) VALUES " +
             "('" + request.body.model + "','" + request.body.serialNumber + "','" + request.body.guarantee + "','"
@@ -136,7 +136,7 @@ app.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) =>
  * route for getting all users out of database
  */
 
-app.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
+router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
 
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
@@ -152,11 +152,11 @@ app.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraint
             return;
         }
 
-         else if (str == "1") {
+         else if (str === "1") {
 
             const errors = validationResult(request);
             if (!errors.isEmpty()) {
-                return response.status(400).json({ errors: errors.array() });
+                return response.json(errors.array());
             }
 
             update = "UPDATE DEVICE SET model ='" + request.body.model + "', manufacturer ='" + request.body.manufacturer + "'," +
@@ -185,7 +185,7 @@ app.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraint
  * route for getting all users out of database
  */
 
-app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
+router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
 
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
@@ -199,7 +199,7 @@ app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, respo
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
-        } else if (str == "1") {
+        } else if (str === "1") {
 
             sql = "DELETE FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ";";
             connection.query(sql, function (err) {
@@ -217,8 +217,6 @@ app.delete('/api/device/deleteDevice/:inventoryNumber', function (request, respo
 
     })
 });
-
-
 
 module.exports = router;
 /**

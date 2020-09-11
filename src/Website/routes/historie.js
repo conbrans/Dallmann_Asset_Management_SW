@@ -37,7 +37,7 @@ router.post("/historie", redirect.redirectLogin,
 
         response.render("historie.ejs",
             {
-                benutzername: request.session.userName,
+                userName: request.session.userName,
                 role: request.session.role,
                 rights: request.session.rights,
                 geraetenummer: request.body.invNumber,

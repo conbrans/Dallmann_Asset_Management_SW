@@ -7,7 +7,7 @@ const connection = require('../../../src/REST-API/databaseConnection/connection'
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
-const router = express();
+const router = express.Router();
 
 /**
  * route for getting all users out of database
@@ -72,7 +72,7 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
-        return response.status(400).json({ errors: errors.array() });
+        return response.json(errors.array());
     }
 
     sql = "INSERT INTO WORKER(password,e_mail,surname,firstname,role) VALUES " +
@@ -117,7 +117,7 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
 
             const errors = validationResult(request);
             if (!errors.isEmpty()) {
-                return response.status(400).json({errors: errors.array()});
+                return response.json(errors.array());
             }
 
 
