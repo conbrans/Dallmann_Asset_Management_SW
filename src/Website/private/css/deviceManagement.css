@@ -41,16 +41,14 @@ padding-left: 1em;
 }
 
 .filterDevices{
+
     height: 100px;
     margin: 20px;
-    border: 1px solid black;
-
 }
 
 
 .filterBox{
     float: left;
-    padding: 10px;
 }
 
 .deviceInfoBoxes{
@@ -58,7 +56,8 @@ padding-left: 1em;
 }
 
 .deviceInfoBoxes.filter{
-    margin: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .deviceInfoBoxes:nth-child {
@@ -73,15 +72,6 @@ padding-left: 1em;
 #courseSelection{
 
 }
-
-input{
-    float: left;
-}
-
-label{
-    float: left;
-}
-
 
 .header_button {
     font-family: "Roboto Light";
@@ -98,5 +88,34 @@ label{
     width: 200px;
 }
 
+.test{
+    display: grid;
+    grid-column-gap: 20px;
+    grid-template-areas:
+            'box-a box-b box-c'
+            'input-a input-b input-c ';
+}
+
+.input-a{
+    grid-area: input-a;
+}
+
+.input-b{
+    grid-area: input-b;
+}
+
+.input-c{
+    grid-area: input-c;
+}
+
+.box-a{
+    grid-area: box-a;
+}
+.box-b{
+    grid-area: box-b;
+}
+.box-c{
+    grid-area: box-c;
+}
 
 

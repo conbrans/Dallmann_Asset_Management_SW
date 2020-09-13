@@ -1,16 +1,27 @@
 const fetch = require('node-fetch');
 
+/**
+ * method for fetch task which need to be posted
+ * @param url completes the fetch url
+ * @param req contains the body, which has to be posted
+ * @returns a json object
+ */
 async function postFetch(url, req)
 {
     let res = await fetch("http://localhost:3000" + url,
         {
             method: 'POST',
             headers: headers,
-            body: JSON.strigify(req.body)
+            body: JSON.stringify(req.body)
         });
     return await res.json();
 }
-
+/**
+ * method for fetch task which need to be put
+ * @param url completes the fetch url
+ * @param req contains the body, which has to be put
+ * @returns a json object
+ */
 async function putFetch(url, req)
 {
     let res = await fetch("http://localhost:3000" + url,
@@ -22,7 +33,12 @@ async function putFetch(url, req)
     return await res.json();
 }
 
-
+/**
+ * method for fetch task, where something will be deleted
+ * @param url completes the fetch url
+ * @param req contains the body, which has to be deleted
+ * @returns a json object
+ */
 async function deleteFetch(url, req)
 {
     let res = await fetch("http://localhost:3000" + url,
@@ -33,7 +49,12 @@ async function deleteFetch(url, req)
         });
     return res.json();
 }
-
+/**
+ * method specially written for the login
+ * @param request contains a mail address, which tries to access the service
+ * @param result contains a hashed password, which is compared in REST-Service
+ * @returns a json object
+ */
 async function loginFetch(request,result)
 {
     let res = await fetch('http://localhost:3000/api/login',
@@ -48,9 +69,14 @@ async function loginFetch(request,result)
     return res.json();
 }
 
-async function getFetch(name)
+/**
+ *
+ * @param url
+ * @returns {Promise<*>}
+ */
+async function getFetch(url)
 {
-    let res = await fetch('http://localhost:3000' + name);
+    let res = await fetch('http://localhost:3000' + url);
     return await res.json();
 }
 

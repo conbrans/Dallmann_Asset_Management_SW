@@ -43,10 +43,8 @@ function changeSelectStatus(input) {
 }*/
 
 function resetUserPasswordMessage() {
-    if(confirm("ACHTUNG!\nSie sind dabei das Passwort des Benutzers zurückzusetzten.")){
-
-    }
-
+    confirm("ACHTUNG!\nSie sind dabei das Passwort des Benutzers" +
+        " zurückzusetzten.");
 }
 
 

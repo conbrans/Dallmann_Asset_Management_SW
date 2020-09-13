@@ -4,15 +4,20 @@
 let rows;
 setTimeout(() => {
         setTimeout(() => {
+            longitude = document.getElementById("longitude0").value;
+            latitude = document.getElementById("latitude0").value;
+            src = "https://www.openstreetmap.org/export/embed.html?bbox="
+                +longitude +"%2C"+latitude+"%2C" +longitude+"%2C"+latitude+
+                "&layer=mapnik&marker="+latitude+"%2C"+longitude;
             let table = document.getElementById("Table");
             document.getElementsByTagName("iframe")[0]
-                .src= "https://www.openstreetmap.org/export/embed.html?bbox=9.965848%2C53.562287%2C9.965848%2C53.562287&layer=mapnik&marker=53.562287%2C9.965848&marker1=52.404950%2C8.062129";
-        }, 0);
+                .src= src
+        }, 1);
         rows = table.rows;
         for (var i = 1; i < rows.length; i++) {
             let row = rows[i];
             let cells = row.cells;
-            cells[5].innerHTML =
+            cells[1].innerHTML =
 
             "<button name='button' class='btn btn-warning px-3' " +
                 "style='background: #fbbb11' onclick='setSrc("+i+")'>" +
@@ -20,17 +25,29 @@ setTimeout(() => {
 
         }
     }
-    , 0);
+    , 1);
 
 function setSrc(element)
 {
+    let longitude =[];
+    let latitude =[];
     let test= [];
-    test.length = rows.length;
-    test[1] = "https://www.openstreetmap.org/export/embed.html?bbox=8.062129%2C52.404950%2C8.062129%2C52.404950&layer=mapnik&marker=52.404950%2C8.062129";
-    test[2] = "https://www.openstreetmap.org/export/embed.html?bbox=7.322685%2C52.519718%2C7.322685%2C52.519718&layer=mapnik&marker=52.519718%2C7.322685";
-    test[3] = "https://www.openstreetmap.org/export/embed.html?bbox=7.634803%2C51.956928%2C7.634803%2C51.956928&layer=mapnik&marker=51.956928%2C7.634803";
-    test[4] = "https://www.openstreetmap.org/export/embed.html?bbox=9.965848%2C53.562287%2C9.965848%2C53.562287&layer=mapnik&marker=53.562287%2C9.965848";
+    for(var i=1;i<rows.length;i++)
+    {
+        var j = i-1;
+        let longitudeID = "longitude"+j.toString();
+        let latitudeID = "latitude"+j.toString();
+        //console.log(longitudeID);
+        longitude[i] = document.getElementById(longitudeID).value;
+        latitude[i] = document.getElementById(latitudeID).value;
+        test[i] = "https://www.openstreetmap.org/export/embed.html?bbox="
+            +longitude[i].toString() +"%2C"+latitude[i].toString()+"%2C"
+            +longitude[i].toString()+"%2C"+latitude[i].toString()+
+            "&layer=mapnik&marker="+latitude[i].toString()+"%2C"+longitude[i].toString();
 
-
-    document.getElementsByTagName("iframe")[0].src= test[element];
+    }
+        console.log(longitude[0]);
+        console.log(latitude[0]);
+        console.log(test[0]);
+        document.getElementsByTagName("iframe")[0].src= test[element];
 }

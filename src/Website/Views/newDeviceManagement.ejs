@@ -11,6 +11,7 @@
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="javascript/userManagement.js"></script>
+    <script src="javascript/devicemanagement.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
@@ -19,7 +20,7 @@
 
     <title>Geräteverwaltung</title>
 
-
+    <!-- TODO den hiddeninput zu session ergänzen -->
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -49,7 +50,6 @@
             <table id="userlist" width="100%" class="table user-list" onload>
                 <thead>
                 <tr>
-                    <th>Nr.</th>
                     <th>Inventarnummer</th>
                     <th>Kategorie</th>
                     <th>Produktbezeichnung</th>
@@ -58,12 +58,12 @@
                 </thead>
                 <tbody id="deviceContent">
                 <% for (var i = 0;i < data.length;i++){ %>
-                    <tr>
-                        <td><%= i + 1 + "." %></td>
-                        <td><%= data[i].inventoryNumber %></td>
-                        <td><%= data[i].category %></td>
-                        <td><%= data[i].model %></td>
-                        <td><%= data[i].deviceStatus %></td>
+                    <tr onclick="loadData(<%= i %>);">
+
+                        <td id="tr<%= i %>td1"><%= data[i].inventoryNumber %></td>
+                        <td id="tr<%= i %>td2"><%= data[i].category %></td>
+                        <td id="tr<%= i %>td3"><%= data[i].model %></td>
+                        <td id="tr<%= i %>td4"><%= data[i].deviceStatus %></td>
 
                     </tr>
                 <% } %>
@@ -84,32 +84,34 @@
                         <div>
                             <input class="form-control" form="changeDevice"
                                    type="text" value="Inventarnummer"
-                                   id="inventarnummer">
-                            <input type="hidden" name="invNumber" form="booking"
-                                   value="100420">
-                            <input type="hidden" name="invNumber" value="100420"
-                                   form="historie">
+                                   id="invnumber" name="invnumber">
+                            <input type="hidden" name="invnumber"
+                                   form="booking" id="hiddeninvnumberbooking"
+                                   value="Inventarnummer">
+                            <input type="hidden" name="invNumber"
+                                   value="Inventarnummer"
+                                   form="historie" id="hiddeninvnumberhistory">
                         </div>
                     </div>
 
                     <div class="deviceInfoBoxes">
-                        <label for="kategorie"> Kategorie: </label>
+                        <label for="category"> Kategorie: </label>
                         <div>
                             <select class="browser-default custom-select form-control"
-                                    id="kategorie"
+                                    id="category"
                                     onchange="getSelectedOption()"
                                     style="width: 100%; display: inline-block">
                                 <option value="0" selected disabled>Kategorie
                                     zuordnen
                                 </option>
-                                <option value="">Rüttelplatte</option>
-                                <option value="">Stampfer</option>
-                                <option value="">Motorflex</option>
-                                <option value="">Rohrreiniger</option>
-                                <option value="">Kettensäge</option>
-                                <option value="">Motorhammer</option>
-                                <option value="">Leiter</option>
-                                <option value="">Exoten</option>
+                                <option value="Rüttelplatten">Rüttelplatten</option>
+                                <option value="Stampfer">Stampfer</option>
+                                <option value="Motorflex">Motorflex</option>
+                                <option value="Rohrgreifer">Rohrgreifer</option>
+                                <option value="Kettensägen">Kettensägen</option>
+                                <option value="Motorhammer">Motorhammer</option>
+                                <option value="Leiter">Leiter</option>
+                                <option value="Exoten">Exoten</option>
                             </select>
                         </div>
                     </div>
@@ -118,7 +120,7 @@
                         <label>Produktbezeichnung</label>
                         <div>
                             <input class="form-control" type="text"
-                                   name="username"
+                                   name="test" id="model"
                                    placeholder="Produktbezeichnung"
                                    value="Z350">
                         </div>
