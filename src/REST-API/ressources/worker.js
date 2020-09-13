@@ -157,17 +157,16 @@ router.delete("/api/user/deleteUser/:userId",(request, response) => {
         var str = string.substring(string.length - 3, string.length - 2);
 
         if (err) {
-            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql"});
             console.log('Error connecting to Db');
             return;
         } else if (str === "1") {
 
-            let sql2 = "DELETE FROM WORKER" +
-                "WHERE WORKER.worker_id = " + request.params.userId + ";";
+            let sql2 = "DELETE FROM WORKER WHERE WORKER.worker_id = " + request.params.userId + ";";
 
             connection.query(sql2, function (err) {
                 if (err) {
-                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql2"});
                     console.log('Error connecting to Db');
                     return;
                 }
