@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kommissionieren</title>
+    <link rel="stylesheet" type="text/css" href="../css/headFootDesign.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../css/booking.css">
+</head>
+<body>
+<!-- Menu Start -->
+<header>
+    <div id="menu">
+        <div id="header-logo">
+            <a href="index.html">
+                <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
+                     alt="Firmenlogo Dallmann"></a>
+        </div>
+        <div id="header-menu">
+            <nav id="main-menu">
+                <ul>
+                    <li>
+                        <a href="GeräteAnzeige.html">
+                            <i class="fas fa-briefcase"></i>
+                            <tab class="header-icons-description">
+                                Geräte
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Gerät hinzufügen</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <!-- Reservierung -->
+                    <li>
+                        <a href="Reservierung.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <tab class="header-icons-description">
+                                Reservierung
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Reservierung vornehmen</a>
+                            </li>
+                            <li>
+                                <a href="/">Reservierungsliste einsehen</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <!-- Benutzer -->
+                    <li>
+                        <a href="index.html">
+                            <!--<img src="../public/picture/worker.jpg" class="header-icons"
+                                 alt="Bauarbeiter Icon">-->
+                            <i class="fas fa-user"></i>
+                            <tab class="header-icons-description">
+                                Benutzerprofil
+                            </tab>
+                        </a>
+                        <ul class="main-menu-sub">
+                            <li>
+                                <a href="/">Berechtigungen</a>
+                            </li>
+                            <li>
+                                <a href="/">Benutzername</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Suche -->
+                    <li>
+                        <a href="/">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <tab class="header-icons-description">
+                            <input id="header-Search" class="form-control" type="text"
+                                   placeholder="java.Search" aria-label="java.Search">
+                        </tab>
+
+                    </li>
+
+                    <!-- Logout -->
+                    <li>
+                        <a href="/">
+                            <i class="fas fa-power-off fa-1x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<hr class="clear">
+<!-- Menu End -->
+
+<div class="actionMenu">
+    <div class="container">
+        <div class="box">
+            <a href="#">
+                <div class="hoverColor">
+                    <img class="boxImage" src="../img/construction.jpeg">
+                    <div class="bottom-left">
+                        <h2>Baustelle</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="box">
+            <a href="#">
+                <div class="hoverColor">
+                    <img class="boxImage" src="../img/garage.jpeg">
+                    <div class="bottom-left">
+                        <h2>Reperatur</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="box">
+            <a href="#">
+                <div class="hoverColor">
+                    <img class="boxImage" src="../img/warehouse.jpeg">
+                    <div class="bottom-left">
+                        <h2>Lager</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+<div class="inputMenu">
+    <hr><br>
+    <div class="inputConstruction">
+        <label for="inputDevice"><h4>Baustelle</h4></label>
+        <div id="inputDevice" class="inputBoxes">
+            <div class="wrapper">
+                <label for="exampleForm2">GeräteID</label>
+                <input type="text" id="exampleForm2" class="form-control">
+            </div>
+            <div class="wrapper">
+                <label for="exampleForm2">BaustellenID</label>
+                <input type="text" id="exampleForm2" class="form-control">
+            </div>
+        </div>
+    </div>
+
+<br><hr><br>
+
+    <div class="inputRepair">
+        <label for="inputDevice"><h4>Reperatur</h4></label>
+        <div id="inputDevice" class="inputBoxes">
+            <div class="wrapper">
+                <label for="exampleForm2">GeräteID</label>
+                <input type="text" id="exampleForm2" class="form-control">
+            </div>
+            <div class="wrapper">
+                <label for="exampleForm2">BaustellenID</label>
+                <input type="text" id="exampleForm2" class="form-control">
+            </div>
+        </div>
+    </div>
+    <br><hr><br>
+    <div class="inputWarehouse">
+        <label for="inputDevice"><h4>Lager</h4></label>
+        <div id="inputDevice" class="inputBoxes">
+            <div class="wrapper">
+                <label for="exampleForm2">GeräteID</label>
+                <input type="text" id="exampleForm2" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
