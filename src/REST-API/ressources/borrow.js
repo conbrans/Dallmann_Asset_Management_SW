@@ -52,24 +52,43 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
         return response.json(errors.array());
     }
 
-    sql  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
-         "('"+request.body.loanDay+"','"+request.body.loanEnd+"','"+request.body.workerId+"','"
-             +request.body.inventoryNumber+"','" +request.body.projectId+"');";
-    sql2 = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventoryNumber+";";
+    let sql = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = "+request.body.inventoryNumber+"" +
+        " AND ((CAST('"+request.body.loanDay+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
+        " OR (CAST('"+request.body.loanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));"
 
-    connection.query(sql,function (err)
-    {
-        if(err){
+    connection.query(sql,function (err,result) {
+        var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2);
+        console.log(result);
+        if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
             console.log('Error connecting to Db');
             return;
-        }
-        connection.query(sql2,function (err) {
-        if (err) throw err;
-        })
-        console.log('Connection established');
-        response.json({"Message": "Das Gerät mit der ID: "+request.body.inventoryNumber+" ist refolgreich" +
-                " reserviert worden"});
+        } else if (str === "0") {
+
+           let sql2  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
+                "('"+request.body.loanDay+"','"+request.body.loanEnd+"','"+request.body.workerId+"','"
+                +request.body.inventoryNumber+"','" +request.body.projectId+"');";
+           let sql3 = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventoryNumber+";";
+
+            connection.query(sql2,function (err)
+            {
+                if(err){
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
+                    console.log('Error connecting to Db');
+                    return;
+                }
+                connection.query(sql3,function (err) {
+                    if (err) throw err;
+                })
+                console.log('Connection established');
+                response.json({"Message": "Das Gerät mit der ID: "+request.body.inventoryNumber+" ist refolgreich" +
+                        " reserviert worden"});
+            })
+
+        } else return response.json({"Message": "Im gewählten Zeitraum ist das Gerät bereits reserviert. Bitte einen " +
+                "anderen Zeitraum wählen!"})
+
     })
 
 });
@@ -78,14 +97,15 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
  * route for canceling a reservation
  */
 
-router.delete('/api/borrow/cancelReservation/:inventoryNumber', (request, response) => {
+router.delete('/api/borrow/cancelReservation', (request, response) => {
 
-    let sql1 = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.inventoryNumber + ");";
+    let sql = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + ");";
 
-    connection.query(sql1, function (err, result) {
+    connection.query(sql, function (err, result) {
 
         var string = JSON.stringify(result);
         var str = string.substring(string.length - 3, string.length - 2);
+        console.log(result);
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -93,25 +113,57 @@ router.delete('/api/borrow/cancelReservation/:inventoryNumber', (request, respon
             return;
         } else if (str === "1") {
 
-            sql = "DELETE FROM BORROWS WHERE inventory_number = " + request.params.inventoryNumber + ";";
-            sql2 = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.params.inventoryNumber + ";";
+            let sql2 = "DELETE FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
+                " AND CAST(loan_day AS DATE) = CAST('" + request.body.loanDay + "' AS DATE) AND CAST(loan_end AS DATE) = CAST('" + request.body.loanEnd + "' AS DATE);";
 
-            connection.query(sql, function (err) {
+            let sql3 = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
+                " AND CURDATE() BETWEEN CAST('" + request.body.loanDay + "' AS DATE )" +
+                " AND CAST('" + request.body.loanEnd + "' AS DATE ));"
+
+            let sql4 = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.body.inventoryNumber + ";";
+
+            connection.query(sql2, function (err) {
                 if (err) {
                     response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                    console.log('Error connecting to Db');
+                    console.log('Error connecting.sql2 to Db');
                     return;
                 }
-                connection.query(sql2, function (err) {
-                    if (err) throw err;
+                console.log('Test')
+                connection.query(sql3, function (err, result) {
+
+                    var string = JSON.stringify(result);
+                    var str = string.substring(string.length - 3, string.length - 2);
+                    console.log(result);
+
+                    if (err) {
+                        response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                        console.log('Error connecting.sql3 to Db');
+                        return;
+                    } else if (str === "1") {
+
+                        connection.query(sql4, function (err) {
+                            if (err) {
+                                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                                console.log('Error connecting.sql4 to Db');
+                                return;
+                            } else console.log("Test2")
+                        })
+                        console.log('DeleteDevice.Connection established');
+                        response.json({
+                            "Message": "Reservierung des Gerätes mit der ID: " + request.params.inventoryNumber + "" +
+                                " wurde erfolgreich gelöscht"
+                        })
+                    } console.log("Test3")
+
+                    response.json({"Message": "Reservierung ist erfolgreich gelöscht worden!"})
+
                 })
-                console.log('DeleteDevice.Connection established');
-                response.json({"Message": "Reservierung des Gerätes mit der ID: " + request.params.inventoryNumber + "" +
-                        " wurde erfolgreich gelöscht"})
             })
+
         }
+
         else return response.json({"Message": "Eine Reservation des Gerätes" +
-                    " mit der ID: " + request.params.inventoryNumber + " ist nicht vorhanden."})
+                    " mit der ID: " + request.body.inventoryNumber + " ist nicht vorhanden."})
     })
 });
 

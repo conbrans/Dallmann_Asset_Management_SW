@@ -20,11 +20,11 @@ const router = express();
 
 router.get("/api/device/getAllDevices", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
-        "gurantee AS guarantee,note,\n" +
-        "device_status AS deviceStatus,DEVICE_STATUS.description,CATEGORY.category,\n" +
-        "LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
-        "TUEV.timestamp AS lastTuev, UVV.timestamp AS lastUvv,\n" +
-        "PROJECT.project_id AS projectId, name, street, postcode, city\n" +
+        "        gurantee AS guarantee,DEVICE.note,\n" +
+        "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
+        "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
+        "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
+        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId, name, street, postcode, city\n" +
         "FROM DEVICE\n" +
         "        LEFT JOIN BORROWS\n" +
         "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
@@ -42,6 +42,8 @@ router.get("/api/device/getAllDevices", (request, response) => {
         "                   ON DEVICE.inventory_number = TUEV.inventory_number\n" +
         "        LEFT JOIN UVV\n" +
         "                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
+        "        LEFT JOIN REPAIR\n" +
+        "                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
         "        INNER JOIN CATEGORY\n" +
         "                   ON BEACON.major = CATEGORY.major\n" +
         "\n" +
@@ -67,26 +69,34 @@ router.get("/api/device/getAllDevices", (request, response) => {
 
 router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
-        "       gurantee AS guarantee,note,\n" +
-        "       device_status, DEVICE_STATUS.description,CATEGORY.category,LOCATION.longitude,latitude," +
-        "       Max(timesstamp) AS lastLocationUpdate, TUEV.timestamp AS lastTuev, UVV.timestamp AS lastUvv\n" +
+        "        gurantee AS guarantee,DEVICE.note,\n" +
+        "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
+        "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
+        "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
+        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId, name, street, postcode, city\n" +
         "FROM DEVICE\n" +
+        "        LEFT JOIN BORROWS\n" +
+        "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
+        "        LEFT JOIN PROJECT\n" +
+        "                    ON BORROWS.project_id = PROJECT.project_id\n" +
         "        INNER JOIN DEVICE_STATUS\n" +
         "                    ON DEVICE.device_status = DEVICE_STATUS.device_status_id\n" +
-        "        INNER JOIN BEACON\n" +
+        "        LEFT JOIN BEACON\n" +
         "                    ON DEVICE.beacon_major = BEACON.major and DEVICE.beacon_minor = BEACON.minor\n" +
-        "        INNER JOIN BEACON_POSITION\n" +
+        "        LEFT JOIN BEACON_POSITION\n" +
         "                    ON BEACON.major = BEACON_POSITION.major and BEACON.minor = BEACON_POSITION.minor\n" +
-        "        INNER JOIN LOCATION\n" +
+        "        LEFT JOIN LOCATION\n" +
         "                    ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
-        "        INNER JOIN TUEV\n" +
+        "        LEFT JOIN TUEV\n" +
         "                   ON DEVICE.inventory_number = TUEV.inventory_number\n" +
-        "        INNER JOIN UVV\n" +
+        "        LEFT JOIN UVV\n" +
         "                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
+        "        LEFT JOIN REPAIR\n" +
+        "                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
         "        INNER JOIN CATEGORY\n" +
         "                   ON BEACON.major = CATEGORY.major\n" +
         "\n" +
-        "WHERE DEVICE.inventory_number ='" + request.params.inventoryNumber + "' GROUP BY inventoryNumber;";
+        "WHERE DEVICE.inventory_number ='" + request.params.inventoryNumber + "';";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -222,6 +232,4 @@ module.exports = router;
 /**
  * Port listener
  */
-/*app.listen(3001, () => {
-    console.log('Listening on port 3001...');
-}); */
+
