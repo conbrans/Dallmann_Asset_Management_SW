@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/historie.css">
 <script src="javascript/sortTable.js"></script>
 <script src="javascript/historie.js"></script>
-
+<!-- TODO den hiddeninput zu session ergänzen -->
 <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -46,10 +46,10 @@
         <thead>
         <tr>
             <th onclick="sortTable(1)">Datum</th>
-            <th onclick="sortTable(2)">Baustellen ID</th>
+           <!-- <th onclick="sortTable(2)">Baustellen ID</th>
             <th onclick="sortTable(3)">Baustellen Bezeichnung</th>
             <th onclick="sortTable(4)">Standort</th>
-            <th onclick="sortTable(5)">vorheriger<br> Standort</th>
+            <th onclick="sortTable(5)">vorheriger<br> Standort</th>-->
             <th style="text-align: center">Karte</th>
         </tr>
         </thead>
@@ -57,10 +57,9 @@
         <% for (var i = 0; i < datum.length;i++) { %>
             <tr>
                 <td><%= datum[i] %></td>
-                <td><%= bau_ID[i] %></td>
-                <td><%= bauBZ[i] %></td>
-                <td><%= location[i] %></td>
-                <td><%= lastLocation[i] %></td>
+                <input id="longitude<%=i%>" type="hidden"
+                       value="<%=longitude%>">
+                <input id="latitude<%=i%>" type="hidden" value="<%=latitude%>">
                 <td></td>
             </tr>
         <% } %>
@@ -68,6 +67,7 @@
         </tbody>
 
     </table>
+
 </div>
 <div id="historyMap">
     <iframe width="" height="500" src=""

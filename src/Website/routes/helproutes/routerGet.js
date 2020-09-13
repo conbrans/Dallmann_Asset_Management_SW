@@ -5,6 +5,7 @@ const redirect = require('./redirect');
 const authentication = require('./rightAuthentication');
 const notification = require('./notifications');
 
+
 router.get('/', redirect.redirectHome,
     (req, res) => {
         res.status(201).render("login.ejs");
@@ -26,7 +27,7 @@ router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
     (req, res) => {
         res.status(200).render("adminCreateUser.ejs",
             {
-                userName: req.session.userName,
+                username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
             })
@@ -47,7 +48,7 @@ router.get("/booking", redirect.redirectLogin,
     (req, res) => {
         res.render("booking.ejs",
             {
-                userName: req.session.userName,
+                username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
                 geraetenummer: "",
@@ -61,7 +62,7 @@ router.get("/bookinglist", redirect.redirectLogin,
     (req, res) => {
         res.render("bookinglist.ejs",
             {
-                userName: req.session.userName,
+                username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
 
