@@ -22,9 +22,11 @@ router.get("/api/device/getAllDevices", (request, response) => {
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "        gurantee AS guarantee,DEVICE.note,\n" +
         "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
+        "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
         "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
         "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
-        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId, name, street, postcode, city\n" +
+        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId, name AS buildingSite, street, postcode, city," +
+        "        DEVICE.date_of_change AS lastChange\n" +
         "FROM DEVICE\n" +
         "        LEFT JOIN BORROWS\n" +
         "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
@@ -71,9 +73,11 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
     sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
         "        gurantee AS guarantee,DEVICE.note,\n" +
         "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
+        "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
         "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
         "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
-        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId, name, street, postcode, city\n" +
+        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
+        "        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
         "FROM DEVICE\n" +
         "        LEFT JOIN BORROWS\n" +
         "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
