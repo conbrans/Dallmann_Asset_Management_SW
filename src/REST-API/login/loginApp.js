@@ -51,7 +51,7 @@ router.post('/api/login', (req, res) => {
             " FROM WORKER,RIGHTS " +
             "WHERE e_mail ='" +
             req.body.usermail +
-            "' GROUP BY worker_id";
+            "' and WORKER.role=RIGHTS.role GROUP BY worker_id";
 
         connection.query(statement, function (err, results) {
 

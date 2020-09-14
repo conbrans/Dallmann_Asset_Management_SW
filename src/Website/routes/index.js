@@ -26,12 +26,14 @@ const httpsOptions =
  */
 const booking = require('./routesBooking');
 const history = require('./routesHistory');
+const device = require('./routerDevice');
 const login = require('./routesLogin');
 const usermanagement = require('./routesUserManagement');
 
 app.use(booking);
 app.use(history);
 app.use(login);
+app.use(device);
 app.use(routerGet);
 app.use(usermanagement);
 
