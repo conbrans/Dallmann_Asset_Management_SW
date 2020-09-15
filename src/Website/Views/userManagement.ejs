@@ -33,6 +33,7 @@
         <div id="content" style="overflow-x: auto">
             <h3>Benutzerliste</h3>
             <div style="text-align: right">
+                <% if (rights.add_user===1){%>
                 <form method="get" id="add" action="/add">
                     <button id="submit" class="btn btn-outline-primary">Neuen
                         Benutzer hinzufügen
@@ -47,6 +48,7 @@
                         </svg>
                     </button>
                 </form>
+                <%}%>
             </div>
             <table id="userlist" width="100%" class="table user-list" onload>
                 <thead>
@@ -171,12 +173,13 @@
                              </div>-->
 
                         <div style="margin-top: 1em">
-
+                            <% if (rights.edit_user===1){%>
                             <button type="submit"
                                     class="btn btn-outline-primary"
                                     onclick="sendData()">
                                 Bestätigen
                             </button>
+                            <%}%>
                         </div>
                     </form>
                 </div>

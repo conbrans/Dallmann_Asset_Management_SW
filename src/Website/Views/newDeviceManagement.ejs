@@ -31,8 +31,10 @@
             <h3>Geräteliste</h3>
             <div>
                 <div style=" float: left">
+                    <% if (rights.add_device===1){%>
                     <form method="get" action="/addDevice"
                           <!--onclick="addDeviceWindow()"-->>
+
                         <button class="header_button">Neues Gerät hinzufügen
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class='fas fa-pencil'
                                  fill="currentColor"
@@ -43,9 +45,8 @@
                                       d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
                             </svg>
                         </button>
-
-
                     </form>
+                    <% }%>
                 </div>
                 <div class="toggle-title" style="text-align: right;float: left">
                     <button class="header_button">Filtern
@@ -288,7 +289,7 @@
                         </div>
                     </div>
 
-
+                    <% if (rights.edit_device===1){%>
                     <div style="margin-top: 1em">
                         <p>
                             <button type="submit"
@@ -296,6 +297,7 @@
                                     onclick="sendData()">
                                 Daten ändern
                             </button>
+                    <% }%>
             </form>
             <form method="post" action="/historie" id="historie">
                 <div class="row">
@@ -308,6 +310,7 @@
                     </div>
                 </div>
             </form>
+            <% if (rights.booking_device===1){%>
             <form method="post" action="/booking" id="booking">
                 <div class="row">
                     <div class="col">
@@ -319,6 +322,7 @@
                     </div>
                 </div>
             </form>
+            <%} if (rights.delete_device===1){%>
             <form method="post" action="/deleteDevice" id="deleteDevice">
                 <div class="row">
                     <div class="col">
@@ -331,6 +335,7 @@
                     </div>
                 </div>
             </form>
+            <%}%>
         </div>
         <br>
         <hr>

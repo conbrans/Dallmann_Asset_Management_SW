@@ -1,4 +1,4 @@
-const crypto = require('Website/routes/helproutes/crypto');
+const crypto = require('crypto');
 
 const key = crypto.randomBytes(32);
 const iv = crypto.randomBytes(16);

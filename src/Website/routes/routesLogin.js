@@ -39,7 +39,6 @@ function getAccess(req, data, res) {
     }
 }
 
-
 router.post("/login", function (req, res) {
 
     var hashedPassword = hash.hash(req.body.password)
