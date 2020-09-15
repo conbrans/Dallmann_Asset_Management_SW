@@ -25,10 +25,10 @@ router.post("/updateUser", authentication.authRight("edit_user"),(req,res)=> {
 
 router.post("/deleteU", authentication.authRight("delete_user"),(req,res)=> {
     fetch.deleteFetch("/api/user/deleteUser/"+req.body.workerid, req)
+        .then(() => res.redirect("/userManagement"))
         .catch((error) => {
             console.error('Error:', error);
         });
-    res.redirect("/userManagement");
 });
 
 router.post("/resetPW",authentication.authRight("delete_user"),(req, res)=>

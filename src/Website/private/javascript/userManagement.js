@@ -22,25 +22,12 @@ function changeSelectStatus(input) {
 }
 
 
-/*function deleteUserMessage() {
-    if(confirm("ACHTUNG!\nSie sind dabei den gewälten User zu löschen.")){
+function deleteUserMessage() {
+    confirm("ACHTUNG!\nSie sind dabei den gewälten User zu löschen.")){
 
-        let user = new UserToUpdate().getSelectedUser();
-        console.log(user);
-        console.log(JSON.stringify(user))
 
-        const options = {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(user)
-        };
-
-        fetch(' http://localhost:3032/deleteUser', options)
-            .then(response => response.json())
-            .then(data => { console.log(data)})
-        location.reload();
     }
-}*/
+}
 
 function resetUserPasswordMessage() {
     confirm("ACHTUNG!\nSie sind dabei das Passwort des Benutzers" +

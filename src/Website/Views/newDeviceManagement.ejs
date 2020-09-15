@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script  src="https://kit.fontawesome.com/a076d05399.js"></script>
     <!--<script src="javascript/userManagement.js"></script>-->
+    <script src="javascript/devicemanagement.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
 
@@ -31,7 +32,7 @@
             <div>
                 <div style=" float: left">
                     <form method="get" action="/addDevice"
-                          onclick="addDeviceWindow()">
+                          <!--onclick="addDeviceWindow()"-->>
                         <button class="header_button">Neues Gerät hinzufügen
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class='fas fa-pencil'
                                  fill="currentColor"
@@ -140,6 +141,9 @@
                             <input type="hidden" name="inventoryNumber"
                                    value="Inventarnummer"
                                    form="historie" id="hiddeninvnumberhistory">
+                            <input type="hidden" name="inventoryNumber"
+                                   form="deleteDevice"
+                                   id="hiddeninvnumberdelete">
                         </div>
                     </div>
 
@@ -158,7 +162,7 @@
                             Hersteller: </label>
                         <div>
                             <input class="form-control" form="updateDevice"
-                                   type="text" value="Seriennummer"
+                                   type="text" value="Herstellername"
                                    id="manufacturer" name="manufacturer">
                         </div>
                     </div>
@@ -310,6 +314,18 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-warning">Gerät
                                 reservieren
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form method="post" action="/deleteDevice" id="deleteDevice">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="deleteDeviceMessage()">Gerät
+                                löschen
                             </button>
                         </div>
                     </div>

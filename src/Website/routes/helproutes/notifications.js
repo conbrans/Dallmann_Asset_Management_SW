@@ -8,9 +8,15 @@ function sendMessage(messagetype)
             {
                 case "login":
                     req.toastr.success('Sie sind eingeloggt.',
-                        title = 'Willkommen zurück  ' + req.session.userName + '!',
+                        title = 'Willkommen zurück  ' + req.session.username + '!',
                         options = {});
                     req.session.loginShown = true;
+                    break;
+
+                case "failedLogin":
+                    req.toastr.error('Da ist etwas schiefgelaufen',
+                        title = 'Login nicht möglich',
+                        options = {});
                     break;
                 case "booking" :
                     req.toastr.error(

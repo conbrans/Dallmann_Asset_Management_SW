@@ -28,10 +28,10 @@ router.post("/updateDevice",redirect.redirectLogin,
 router.post("/deleteDevice",redirect.redirectLogin,authentication.authRight("delete_Device"),(req, res) =>
 {
     fetch.deleteFetch("/api/device/deleteDevice/"+req.body.inventoryNumber,req)
+        .then(() => res.redirect("/devices"))
         .catch((error) => {
             console.error('Error:', error);
         });
-    res.redirect("/devices");
 
 });
 

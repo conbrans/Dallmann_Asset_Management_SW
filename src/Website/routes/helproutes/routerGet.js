@@ -8,7 +8,18 @@ const notification = require('./notifications');
 
 router.get('/', redirect.redirectHome,
     (req, res) => {
-        res.status(201).render("login.ejs");
+        res.status(201).render("login.ejs",
+            {
+                req :req,
+            });
+    });
+
+router.get('/failedLogin', redirect.redirectHome,notification.sendMessage("failedLogin"),
+    (req, res) => {
+        res.status(403).render("login.ejs",
+            {
+                req :req,
+            });
     });
 
 router.get("/logout",
