@@ -11,7 +11,7 @@ async function postFetch(url, req)
     let res = await fetch("http://localhost:3000" + url,
         {
             method: 'POST',
-            headers: headers,
+            headers:  {"Content-Type": "application/json"},
             body: JSON.stringify(req.body)
         });
     return await res.json();

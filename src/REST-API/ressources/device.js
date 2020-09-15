@@ -59,7 +59,7 @@ router.get("/api/device/getAllDevices", (request, response) => {
         }
         var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
-        console.log(result)
+        //console.log(result)
         response.json(result);
     });
 
@@ -122,8 +122,10 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
 
     router.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
 
+
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(request);
+        console.log(errors);
         if (!errors.isEmpty()) {
             return response.json(errors.array());
         }
@@ -169,6 +171,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
          else if (str === "1") {
 
             const errors = validationResult(request);
+            console.log(errors);
             if (!errors.isEmpty()) {
                 return response.json(errors.array());
             }

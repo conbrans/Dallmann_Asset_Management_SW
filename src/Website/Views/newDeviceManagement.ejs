@@ -33,8 +33,10 @@
         <div id="content" style="overflow-x: auto">
             <h3>Geräteliste</h3>
             <div style="text-align: right">
-                <form onclick="addDeviceWindow()">
-                    <button class="header_button">Neues Gerät hinzufügen
+                <form method="get" action="/addDevice">
+                    <!--onclick="addDeviceWindow()"-->
+                    <button type="submit"  class="header_button">Neues
+                        Gerät hinzufügen
                         <svg width="1em" height="1em" viewBox="0 0 16 16"
                              class='fas fa-pencil'
                              fill="currentColor"
@@ -72,7 +74,7 @@
 
         </div>
         <div>
-            <form class="box" action="/changeDevice" method="post"
+            <form class="box" action="/updateDevice" method="post"
                   id="changeDevice">
                 <h3>Geräteinformationen</h3>
                 <br>
@@ -84,11 +86,11 @@
                         <div>
                             <input class="form-control" form="changeDevice"
                                    type="text" value="Inventarnummer"
-                                   id="invnumber" name="invnumber">
-                            <input type="hidden" name="invnumber"
+                                   id="invnumber" name="inventoryNumber">
+                            <input type="hidden" name="inventoryNumber"
                                    form="booking" id="hiddeninvnumberbooking"
                                    value="Inventarnummer">
-                            <input type="hidden" name="invNumber"
+                            <input type="hidden" name="inventoryNumber"
                                    value="Inventarnummer"
                                    form="historie" id="hiddeninvnumberhistory">
                         </div>
@@ -100,18 +102,17 @@
                             <select class="browser-default custom-select form-control"
                                     id="category"
                                     onchange="getSelectedOption()"
-                                    style="width: 100%; display: inline-block">
-                                <option value="0" selected disabled>Kategorie
-                                    zuordnen
+                                    style="width: 100%; display: inline-block" name="beaconMajor">
+                                <option selected disabled>Kategorie</option>
+                                <option value="0001">Rüttelplatte</option>
+                                <option value="0002">Stampfer</option>
+                                <option value="0003">Motorflex</option>
+                                <option value="0004">Rohrgreifer</option>
+                                <option value="0005">Kettensäge</option>
+                                <option value="0006">Motorhammer</option>
+                                <option value="0007">Leiter</option>
+                                <option value="0008">Exoten</option>
                                 </option>
-                                <option value="Rüttelplatten">Rüttelplatten</option>
-                                <option value="Stampfer">Stampfer</option>
-                                <option value="Motorflex">Motorflex</option>
-                                <option value="Rohrgreifer">Rohrgreifer</option>
-                                <option value="Kettensägen">Kettensägen</option>
-                                <option value="Motorhammer">Motorhammer</option>
-                                <option value="Leiter">Leiter</option>
-                                <option value="Exoten">Exoten</option>
                             </select>
                         </div>
                     </div>
@@ -119,10 +120,10 @@
                     <div class="deviceInfoBoxes">
                         <label>Produktbezeichnung</label>
                         <div>
-                            <input class="form-control" type="text"
-                                   name="test" id="model"
-                                   placeholder="Produktbezeichnung"
-                                   value="Z350">
+                            <label for="produktbezeichnung">Produktbezeichnung</label>
+                            <input type="text" class="form-control"
+                                   name="produktbezichnung"
+                                   placeholder="Produktbezeichnung" id="produktbezeichnung">
                         </div>
                     </div>
 
@@ -131,18 +132,16 @@
                         <div>
                             <select class="browser-default custom-select form-control"
                                     id="sort" onchange="getSelectedOption()"
-                                    style="width: 100%; display: inline-block">
-                                <option value="0" selected disabled>Status
-                                    festlegen/ändern
-                                </option>
-                                <option value="available">Verfügbar</option>
-                                <option value="borrowed">Ausgeliehen</option>
-                                <option value="maintenance">In Wartung</option>
-                                <option value="outOfOrder">Außer Betrieb
-                                </option>
-                                <option value="lost">Verschollen/Verschwunden
-                                </option>
-                                <option value="stolen">Gestohlen</option>
+                                    style="width: 100%; display:
+                                    inline-block" name="deviceStatus">
+                                <option selected disabled>Status</option>
+                                <option value="1">Verfügbar</option>
+                                <option value="2">Ausgeliehen</option>
+                                <option value="3">In Wartung</option>
+                                <option value="4">Außer Betrieb</option>
+                                <option value="5">Defekt</option>
+                                <option value="6">Verschollen/Verschwunden</option>
+                                <option value="7">Gestohlen</option>
                             </select>
 
 
