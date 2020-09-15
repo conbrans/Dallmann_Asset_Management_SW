@@ -211,15 +211,26 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-            console.log('Error connecting to Db');
+            console.log('Error connecting.sql to Db');
             return;
         } else if (str === "1") {
+
+            sql2 = "DELETE FROM BORROWS WHERE inventory_number = " + request.params.inventoryNumber + ";";
+
+            connection.query(sql2, function (err) {
+                if (err) {
+                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                    console.log('Error connecting.sql2 to Db');
+                    return;
+                }
+
+            })
 
             sql = "DELETE FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ";";
             connection.query(sql, function (err) {
                 if (err) {
                     response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                    console.log('Error connecting to Db');
+                    console.log('Error connecting.sql2 to Db');
                     return;
                 }
                 console.log('DeleteDevice.Connection established');
