@@ -119,7 +119,7 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
 /**
  * route for getting all users out of database
  */
-
+// in Website enthalten
     router.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
 
 
@@ -140,7 +140,7 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
                 console.log('Error connecting to Db');
                 return;
             }
-            console.log('CreateDevice.Connection established');
+            //console.log('CreateDevice.Connection established');
 
             response.json({"Message": "Gerät wurde hinzugefügt"});
         })
@@ -151,9 +151,9 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
 /**
  * route for getting all users out of database
  */
-
+//in Website enthalten
 router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
-
+console.log(request.body);
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
     connection.query(sql, function (err, result) {

@@ -18,9 +18,24 @@ router.post("/addDevice", redirect.redirectLogin,
 router.post("/updateDevice",redirect.redirectLogin,
     authentication.authRight("edit_Device"), (req, res) =>
     {
-        fetch
-
+        fetch.putFetch("/api/device/updateDevice/"+req.body.inventoryNumber,req)
+            .then(() => res.redirect("back"))
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     });
+
+router.post("/deleteDevice",redirect.redirectLogin,authentication.authRight("delete_Device"),(req, res) =>
+{
+    fetch.deleteFetch("/api/device/deleteDevice/"+req.body.inventoryNumber,req)
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    res.redirect("/devices");
+
+});
+
+
 
 
 
