@@ -23,10 +23,10 @@ function changeSelectStatus(input) {
 
 
 function deleteUserMessage() {
-    confirm("ACHTUNG!\nSie sind dabei den gewälten User zu löschen.")){
+    confirm("ACHTUNG!\nSie sind dabei den gewälten User zu löschen.")
 
 
-    }
+
 }
 
 function resetUserPasswordMessage() {

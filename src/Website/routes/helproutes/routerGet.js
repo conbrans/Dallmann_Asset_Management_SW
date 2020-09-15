@@ -14,13 +14,6 @@ router.get('/', redirect.redirectHome,
             });
     });
 
-router.get('/failedLogin', redirect.redirectHome,notification.sendMessage("failedLogin"),
-    (req, res) => {
-        res.status(403).render("login.ejs",
-            {
-                req :req,
-            });
-    });
 
 router.get("/logout",
     (req, res) => {

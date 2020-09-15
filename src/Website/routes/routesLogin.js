@@ -15,7 +15,7 @@ const router = express.Router();
 function getAccess(req, data, res) {
 
     if (!data.access) {
-        res.redirect("/failedLogin");
+        res.redirect("/");
 
     } else {
         console.log("Zugriff gewährt");

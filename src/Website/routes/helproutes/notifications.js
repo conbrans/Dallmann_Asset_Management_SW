@@ -14,6 +14,7 @@ function sendMessage(messagetype)
                     break;
 
                 case "failedLogin":
+
                     req.toastr.error('Da ist etwas schiefgelaufen',
                         title = 'Login nicht möglich',
                         options = {});
