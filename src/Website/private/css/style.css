@@ -4,24 +4,23 @@ AUTHOR Dominik Dziersan
  */
 
 body {
+    background: #fffcfc;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background: #fffcfc;
 }
 
 .box1 {
-    border: 0;
-    background: #ffffff;
+    background: #fff;
+    border: 0 solid #3498db;
+    border-radius: 0;
+    color: #757575;
     display: block;
     margin: 20px auto;
-    text-align: center;
-    border: 0px solid #3498db;
-    width: 300px;
     outline: none;
-    color: #757575;
-    border-radius: 0px;
-    transition: 0.25s;
+    text-align: center;
+    transition: .25s;
+    width: 300px;
 
 }
 
@@ -41,67 +40,66 @@ body {
 }
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
     background-color: #e8f0fe;
-    color: #000000;
+    bottom: 0;
+    color: #000;
+    left: 0;
+    position: fixed;
     text-align: center;
+    width: 100%;
 }
 
 .box h1 {
-    color: #000000;
-    text-transform: uppercase;
+    color: #000;
     display: block;
     font-weight: 200;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .box a {
     display: block;
-    text-align: center;
     margin-left: auto;
     margin-right: auto;
-
+    text-align: center;
 }
 
 .box input[type = "text"], .box input[type = "password"] {
-    outline: #324aff solid 10px;
     background: #E8F0FE;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
     border: 0px solid #fffcfc;
-    padding: 14px 10px;
-    width: 200px;
-    outline: none;
-    color: #000000;
-    font-size: 15px;
     border-radius: 5px;
-    transition: 0.25s;
+    color: #000;
+    display: block;
+    font-size: 15px;
+    margin: 20px auto;
+    outline: #324aff solid 10px;
+    outline: none;
+    padding: 14px 10px;
+    text-align: center;
+    transition: .25s;
+    width: 200px;
 }
 
 .box input[type = "text"]:focus, .box input[type = "password"]:focus {
+    border-color: #e5e5e5;
     font-size: 20px;
     width: 230px;
-    border-color: #e5e5e5;
 }
 
 .box input[type = "submit"] {
-    border: 0;
     background: #1c9dd9;
+    border: 0;
+    border-radius: 5px;
+    color: #fffcfc;
+    cursor: pointer;
     display: block;
     margin: 20px auto;
-    text-align: center;
-    padding: 14px 40px;
     outline: none;
-    color: #fffcfc;
-    border-radius: 5px;
+    padding: 14px 40px;
+    text-align: center;
     transition: 0.25s;
-    cursor: pointer;
 }
 
 .box input[type = "submit"]:hover {

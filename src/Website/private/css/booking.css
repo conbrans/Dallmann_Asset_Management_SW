@@ -1,43 +1,43 @@
 
 .container {
+    box-sizing: border-box;
     display: grid;
-    width: 1920px;
+    grid-gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     height: auto;
     margin: 0 auto;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    grid-gap: 50px;
     padding: 10px;
-    box-sizing: border-box;
     text-align: center;
+    width: 1920px;
 }
 
 .container .box {
-    position: relative;
-    max-height: 300px;
     background: lightgray;
-    text-align: center;
-    overflow: hidden;
     border-radius: 20px;
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
 }
 
 .boxImage {
-    z-index: 100;
-    width: 100%;
     height: 100%;
     object-fit: cover;
+    width: 100%;
+    z-index: 100;
 }
 
 
 .bottom-left h2 {
-    z-index: 3;
-    position: absolute;
     color: black;
     font-weight: bold;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
 }
 
 
@@ -50,18 +50,18 @@
 }
 
 .hoverColor {
-    z-index: 1;
-    width: 100%;
+    background: #faba31;
     height: 100%;
     object-fit: cover;
-    background: #faba31;
+    width: 100%;
+    z-index: 1;
 }
 
 .inputMenu {
-    width: 55%;
-    text-align: center;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    width: 55%;
 }
 
 .inputBoxes {
@@ -72,6 +72,5 @@
 
 .wrapper{
     margin: 10px;
-
 }
 

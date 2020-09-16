@@ -4,25 +4,24 @@ background-color: #f1f1f1 ;
 }
 /* The side navigation menu */
 .sidenav {
-
-    width: 15%;
-    position: fixed;
-    top: 15%;
     left: 0;
     overflow: hidden;
     padding-top: 20px;
+    position: fixed;
+    top: 15%;
+    width: 15%;
 }
 
 /* The navigation menu links */
 .sidenav a {
-    padding: 5% 5% 5% 5% ;
-    margin-top: 2.5%;
-    margin-left: 10%;
-    text-decoration: none;
-    font-size: 156.25%;
-    color:  #0d0d0d;
     background-color: #faba31;
+    color:  #0d0d0d;
     display: block;
+    font-size: 156.25%;
+    margin-left: 10%;
+    margin-top: 2.5%;
+    padding: 5%;
+    text-decoration: none;
     transition: 0.3s;
 }
 
@@ -45,25 +44,25 @@ background-color: #f1f1f1 ;
 }
 
 .sidenav .nav-menu-sub {
-    list-style-type: none;
     display: none;
-    width: 90%;
-    padding: 5% 5% 5% 5% ;
+    list-style-type: none;
     margin-top: 2.5%;
     overflow: hidden;
+    padding: 5%;
+    width: 90%;
 }
 
 #text .nav-menu-sub > li a {
-    font-size: 110%;
-    text-decoration: none;
     color: #0d0d0d;
     display: block;
+    font-size: 110%;
+    text-decoration: none;
 }
 
 #text .nav-menu-sub li:hover a, #nav-menu .nav-menu-sub li.active a {
-
-    transform: scale(1.1);
     color: #f1f1f1;
+    transform: scale(1.1);
+
 }
 
 #text li:hover a, #text li.active a {
@@ -84,8 +83,9 @@ background-color: #f1f1f1 ;
 
 #picture i
 {
-    display: none;
     color: #fbb904;
+    display: none;
+
 }
 
 div.toggle-inner{

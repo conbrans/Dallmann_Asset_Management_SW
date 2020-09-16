@@ -1,20 +1,42 @@
 
 .overview
 {
-    width: 20%;
+    float: left;
     margin-left: 10%;
     margin-top: 6.0%;
     text-align: center;
-    float: left;
-
+    width: 20%;
 }
 
-#showDevices {border: 1px solid #fbbb12;background-color: #fbbb11;border-radius: 27px 27px 27px 27px;}
-#reservations {border: 1px solid #f1f1f1;background-color: #f1f1f1;border-radius: 27px 27px 27px 27px;}
-#search {border: 1px solid /*#284668;*/ #ffff4d;background-color: /*#284668;*/ #ffff4d;border-radius: 27px 27px 27px 27px;}
-#picking {border: 1px solid #36b6e3; /*#4d4dff;*/background-color: #36b6e3; /*#4d4dff;*/border-radius: 27px 27px 27px 27px;}
-#userProfil {border: 1px solid #0b9a2f;background-color: #0b9a2f;border-radius: 27px 27px 27px 27px;}
-#userManagement {border: 1px solid #b3b3b3;background-color:#b3b3b3;border-radius: 27px 27px 27px 27px;}
+#showDevices {
+    background-color: #fbbb11;
+    border: 1px solid #fbbb12;
+    border-radius: 27px;
+}
+#reservations {
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    border-radius:27px;
+}
+#search {
+    background-color: /*#284668;*/ #ffff4d;
+    border: 1px solid /*#284668;*/ #ffff4d;
+    border-radius: 27px;}
+#picking {
+    background-color: #36b6e3; /*#4d4dff;*/
+    border: 1px solid #36b6e3; /*#4d4dff;*/
+    border-radius: 27px;
+}
+#userProfil {
+    background-color: #0b9a2f;
+    border: 1px solid #0b9a2f;
+    border-radius: 27px;
+}
+#userManagement {
+    background-color:#b3b3b3;
+    border: 1px solid #b3b3b3;
+    border-radius: 27px;
+}
 
 
  #overview:hover{

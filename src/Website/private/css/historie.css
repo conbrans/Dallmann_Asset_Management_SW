@@ -1,33 +1,32 @@
 #historycontent
 {
     float: left;
-    width: 50%;
     height: 100%;
     text-align: center;
+    width: 50%;
 }
 
 #header-caption {
-    width: auto;
     float: left;
-    margin: 1.5% 0 3.0% 20%;
     font-size: medium;
-
+    margin: 1.5% 0 3.0% 20%;
+    width: auto;
 }
 
 #table
 {
     margin: 5%;
-    width: 100%
+    width: 100%;
 
 }
 
 #historyMap
 {
-    height: 100%;
-    margin-top: 0.5%;
-    margin-right: 1%;
-    width: 45%;
     float: right;
+    height: 100%;
+    margin-right: 1%;
+    margin-top: 0.5%;
+    width: 45%;
 }
 
 /*#historyMap frame
@@ -40,8 +39,8 @@
 {
     #table
     {
-        width: 800px;
         margin: 5%;
+        width: 800px;
     }
 
 }
@@ -66,7 +65,6 @@
     {
         margin-left: 55%;
         width: 100%;
-
     }
 
 }

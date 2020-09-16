@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
 
 html {
-    height: 100%;
     font-family: Roboto;
     font-size: 100%;
+    height: 100%;
+    letter-spacing: .6px !important;
+    -ms-text-size-adjust: 100%;
     overflow-y: scroll;
     -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    letter-spacing: .6px !important;
 }
 body{
     font-family: "Roboto Thin";
@@ -56,8 +56,8 @@ padding-left: 1em;
 }
 
 .deviceInfoBoxes.filter{
-    margin-right: 10px;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 .deviceInfoBoxes:nth-child {
@@ -65,8 +65,8 @@ padding-left: 1em;
 }
 
 .inputBox{
-    width: 350px;
     height: 26px;
+    width: 350px;
 }
 
 #courseSelection{
@@ -74,13 +74,13 @@ padding-left: 1em;
 }
 
 .header_button {
-    font-family: "Roboto Light";
-    color: #555555;
-    font-size: 16px;
-    letter-spacing: .6px;
-    height: 52px;
-    border: none;
     background-color: transparent;
+    border: none;
+    color: #555555;
+    font-family: "Roboto Light";
+    font-size: 16px;
+    height: 52px;
+    letter-spacing: .6px;
     outline: none;
 }
 
