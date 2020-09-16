@@ -27,17 +27,13 @@
                 <a id="info" href="#info" class="link active">Allgemeines</a>
                 <ul class="nav-menu-sub">
                     <li>
-                        <a id="info" href="#firstStart" class="link">Erstverwednung
-                            der Anwendung</a>
-                    </li>
-                    <li>
                         <a id="info" href="#login" class="link">Login</a>
                     </li>
                 </ul>
             </li>
 
             <li>
-                <a id="home" href="#homepage" class="link">Startseite</a>
+                <a id="home" href="#homepage" class="link">Dashboard</a>
                 <ul class="nav-menu-sub">
                     <li>
                         <a id="home" href="#menueleiste"
@@ -92,7 +88,7 @@
                     </ul>
                 </li>
             <% } %>
-            <% if ( role === 1 || role === 2 ) { %>
+            <% if ( rights.picking===1 ) { %>
                 <li>
                     <a id="list" href="#picking" class="link">Komissionieren</a>
                 </li>
@@ -137,88 +133,52 @@
             wenn sich der Benutzer mit den Funktionen der Anwendung
             auseinandersetzen möchte.
         </p>
-        <div id="firstStart">
-            <h2>Erstverwendung der Anwendung</h2>
-            <p>
-                Vor der ersten Verwendung der Anwendung sollten Sie sichergehen,
-                dass für Sie bereits ein Account vom Administrator angelegt
-                worden ist.
-                Sollte dies nicht der Fall sein,
-                kontaktieren Sie einen der Administratoren mit der Bitte einen
-                Account für Sie einzurichten.
-            </p>
-            <p>
-                Ihr Benutzername wird Ihre interne Dallmann E-Mail-Adresse sein,
-                also für den Mitarbeiter Max Mustermann würde der Benutzername
-                "m.mustermann@dallmann-bau.de" lauten. Für Ihre erste Anmeldung
-                erhalten Sie ein vom Administrator
-                vergebenes Passwort, dieses Passwort muss nach dem ersten Mal
-                anmelden geändert werden.
-                Nach dem Einloggen mit dem ersten Passwort werden Sie
-                automatisch auf eine Seite umgeleitet,
-                auf der Sie ihr Passwort ändern können.
-
-            </p>
-            <p>
-                Nach dem Sie das Passwort geändert haben, werden Sie automatisch
-                abgemeldet
-                und müssen sich erneut anmelden, damit die Anwendung ihr
-                Passwort festlegen kann,
-                nach der erneuten Anmeldung können Sie die Anwendung
-                vollumfänglich nutzen.
-            </p>
-        </div>
-
         <div id="login">
             <h3>Login</h3>
             <p>
-
+                Die Anmeldung erfolgt mit der internen Mail-Adresse und mit
+                einem Standardpasswort, welches vom Administrator der Seite
+                festgelegt worden ist. Dieses Passwort sollte nach dem ersten
+                Login geändert werden, diese Passwortänderung kann über das
+                Benutzerprofil vorgenommen werden.
             </p>
         </div>
     </div>
 
     <div id="homepage">
-        <h1>Startseite</h1>
+        <h1>Dashboard</h1>
         <p>
 
-            Nach dem erfolgreichen Login gelangen Sie zur Startseite. Auf der
-            Startseite befindet sich die Menüleiste,
-            die auf jeder Seite gleich ist. Die Menüleiste ist abhängig von den
-            Benutzerrechten, das heißt,
-            für unterschiedliche Benutzer sind unterschiedliche Ansichten
-            verfügbar.
-            Ebenfalls abhängig von den Rechten des Nutzer sind die
-            Schaltflächen,
-            die sich auch auf der Startseite befinden, diese können sich auch
-            von Nutzer zu Nutzer unterscheiden.
 
         </p>
         <figure>
-            <% if (role === 1){ %>
+            <% if (role === "Admin"){ %>
                 <img src="img/adminhomepage.png"
                      alt=" Standardansicht der Admin Startseite" width="100%"
                      height="100%" style="float: left ">
-                <figcaption>Standardansicht der Admin Startseite</figcaption>
+                <figcaption>
+                    Standardansicht des Admin Dashboards</figcaption>
             <% } %>
-            <% if (role === 2){ %>
+            <% if (role === "Werkstatt"){ %>
                 <img src="img/workshophomepage.png"
                      alt=" Standardansicht der Werkstatt Startseite"
                      width="100%" height="100%" style="float: left ">
-                <figcaption>Standardansicht der Werkstatt Startseite
-                </figcaption>
+                <figcaption>
+                    Standardansicht des Werkstatt Dashboards</figcaption>
             <% } %>
-            <% if (role === 3){ %>
+            <% if (role === "Polier"){ %>
                 <img src="img/foremanhomepage.png"
                      alt=" Standardansicht der Polier Startseite" width="100%"
                      height="100%" style="float: left ">
-                <figcaption>Standardansicht der Polier Startseite</figcaption>
+                <figcaption>
+                    Standardansicht des Polier Dashboards</figcaption>
             <% } %>
-            <% if (role === 4){ %>
+            <% if (role === "Buchhaltung"){ %>
                 <img src="img/accountinghomepage.png"
                      alt=" Standardansicht der Buchhaltungs Startseite"
                      width="100%" height="100%" style="float: left ">
-                <figcaption>Standardansicht der Buchhaltungs Startseite
-                </figcaption>
+                <figcaption>
+                    Standardansicht des Buchhaltungs Dashboards</figcaption>
             <% } %>
 
         </figure>
@@ -252,18 +212,65 @@
 
     <div id="devices">
         <h1>Geräte</h1>
-
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+            sed diam nonumy eirmod tempor invidunt ut labore et dolore
+            magna aliquyam erat, sed diam voluptua.
+            At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren,
+            no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+            sed diam nonumy eirmod tempor invidunt ut labore et dolore
+            magna aliquyam erat, sed diam voluptua.
+            At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+            dolor sit amet.
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+            sed diam nonumy eirmod tempor invidunt ut labore et dolore
+            magna aliquyam erat, sed diam voluptua.
+            At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren,
+            no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
     </div>
 
     <% if (rights.booking_device === 1){ %>
         <div id="booking">
             <h1>Reservierung</h1>
-
+            <p> Über die Schaltfläche Reservierung gelangen Sie zu einer
+                Übersicht über die bereits reservierten und ausgeliehen
+                Geräte. Ebenfalls enthält diese Seite Informationen über das
+                Anfangsdatum und Enddatum der Reservierung/Leihe.
+                Weiter Informationen die auf dieser Seite sichtbar sind, sind
+                der Entleiher mit Vor und Nachname, die BaustellenID und den
+                Baustellennamen.
+            <p>
+                Über die Schaltflächen im oberen Bereich der Seite, kann die
+                Reservierungsliste nach bestimmten Werten gefiltert werden.</p>
+            <p> Über den Button "Reservierung vornehmen" kann eine
+                Reservierung für ein beliebiges Gerät vorgenommen werden.
+                Allerdings muss über diesen Weg die Inventarnummer des
+                Gerätes angegeben werden.</p>
+            <% if (rights.delete_booking===1){%>
+            <p>
+                Über die Schaltfläche "Resevierung löschen" können die
+                eigenen Reservierung nach der Eingabe der Inventarnummer und
+                des Anfangsdatums der zu löschenden Reservierung gelöscht
+                werden.
+            </p>
+            <% }%>
         </div>
     <% } %>
 
     <div id="userProfil">
         <h1>Benutzerprofil</h1>
+        <p>
+            Im Benutzerprofil können Sie Ihre persönlichen Daten ändern, wie
+            zum Beispiel den Vornamen, Nachnamen, die Mail-Adresse und das
+            Passwort. Im Feld "Passwort bestätigen" muss das neue Passwort
+            erneut bestätigt werden. Zwischen den Feldern "Passwort" und
+            "Passwort bestätigten" können Sie die Stärke ihres neuen
+            Passworts einsehen.
+        </p>
     </div>
 
     <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
@@ -286,7 +293,7 @@
         </div>
     <% } %>
 
-    <% if ( role === 1 || role === 2 ) { %>
+    <% if ( rights.picking === 1 ) { %>
         <div id="picking">
             <h1>Komissionieren</h1>
 
@@ -302,11 +309,11 @@
         <h1>Logout/Abmelden</h1>
         <p>
             Durch einen Klick auf die Schaltfläche Logout oder das Logout-Symbol
-            melden Sie sich von der Website ab, wenn Sie die Seite erneut
-            öffnen, müssen Sie sich erneut mi
+            melden Sie sich von der Website ab. Wenn die Seite geschlossen
+            wird, werden Sie automatisch abgemeldet.
         </p>
-
     </div>
+    <br>
 </div>
 <%- include('../Views/general/footer.ejs'); -%>
 

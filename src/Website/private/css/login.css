@@ -15,110 +15,112 @@ input:focus {
 }
 
 html {
-    font-size: 100%;
     height:100%;
-    -ms-text-size-adjust: 100%;
+    font-size: 100%;
     overflow-y: scroll;
     -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 body {
+    -webkit-font-smoothing:antialiased;
     font-size: 16px;
     font-smoothing:antialiased;
     height:100%;
     line-height: 1.5em;
     margin: 0;
     text-align: center;
-    -webkit-font-smoothing:antialiased;
 }
 
 #brickwall {
     background-image: url(../../public/image/background_uebergang.jpg);
-    background-size: cover;
-    bottom: 0;
-    left: 0;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    position: absolute;
-    right: 0;
-    top: 0;
+
     -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 #background-compat {
-    background-color: rgba(255, 165, 0, 0.7);
-    bottom: 0;
     display: none;
-    left: 0;
     position: fixed;
-    right: 0;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 165, 0, 0.7);
 }
 #background {
-    background-attachment: fixed;
-    background-image: url();
-    background-size: cover;
-    bottom: 0;
-    filter:"progid:DXImageTransform.Microsoft.Blur(PixelRadius='6')";
-    left: 0;
-    mix-blend-mode: normal;
-    -moz-background-size: cover;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Blur(PixelRadius='6')";
-    -o-background-size: cover;
     position: absolute;
-    right: 0;
     top: 0;
-    -webkit-background-size: cover;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: -1;
+    background-image: url("");
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+    background-attachment: fixed;
+    mix-blend-mode: normal;
+    filter:"progid:DXImageTransform.Microsoft.Blur(PixelRadius='6')";
+    -ms-filter:"progid:DXImageTransform.Microsoft.Blur(PixelRadius='6')";
 }
 
 #blur {
-    bottom: 0;
-    filter: blur(7px);
-    filter: url("data:image/svg+xml;utf9,<svg%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'><filter%20id='blur'><feGaussianBlur%20stdDeviation='5'%20/></filter></svg>#blur");
-    left: 0;
-    overflow: hidden;
     position: absolute;
-    right: 0;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     -webkit-filter: blur(7px);
+    filter: url("data:image/svg+xml;utf9,<svg%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'><filter%20id='blur'><feGaussianBlur%20stdDeviation='5'%20/></filter></svg>#blur");
+    filter: blur(7px);
+    overflow: hidden;
     z-index: -1;
 }
 
 body, input {
-    color: #000;
     font-family: helvetica, arial, sans-serif;
+    color: #000;
 }
 
 #loginBox {
-    border-radius: 5px;
     box-shadow:0 0 50px 5px rgba(0,0,0,0.3), 0 0 5px -1px white;
-    box-sizing: border-box;
-    isolation: isolate;
-    left: 50%;
-    margin-left: -200px;
     mix-blend-mode: normal;
-    -moz-box-sizing: border-box;
-    padding:1em;
-    position: fixed;
-    text-align:center;
-    top: 15%;
-    -webkit-box-sizing: border-box;
+    isolation: isolate;
     width:400px;
+    padding:1em;
+    padding-bottom: 1em;
+    text-align:center;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: fixed;
+    left: 50%;
+    top: 15%;
+    margin-left: -200px;
+    border-radius: 5px;
 }
 
 #loginBox:after {
-    background-color: rgba(255,255,255,0.6);
-    border: 1px solid rgba(0,0,0,0.3);
-    border-radius: 5px;
-    bottom: 0;
     content: " ";
-    left: 0;
-    mix-blend-mode: normal;
     position: absolute;
+    left: 0;
     right: 0;
     top: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 5px;
     z-index: -1;
+    mix-blend-mode: normal;
+    border: 1px solid rgba(0,0,0,0.3);
 }
 /* IE 9-10 */
 @media screen\0 {
@@ -132,37 +134,37 @@ h1 {
 }
 
 #logo a {
-    height: 100px;
-    text-decoration:none;
     display:block;
+    text-decoration:none;
+    height: 100px;
 }
 
 #logo a img {
-    border: none;
-    height: auto;
     max-height:66px;
     max-width: 300px;
-    outline: none;
-    vertical-align: middle;
+    height: auto;
     width: auto;
+    vertical-align: middle;
+    outline: none;
+    border: none;
 }
 .valign-helper {
-    display: inline-block;
     height: 100%;
+    display: inline-block;
     vertical-align: middle;
 }
 
 h3 {
-    color:#d00;
-    font-size:0.8em;
-    font-weight:normal;
     margin:1em 0;
     text-align:center;
+    font-size:0.8em;
+    font-weight:normal;
+    color:#d00;
 }
 
 form {
-    margin:0 auto;
     width:220px;
+    margin:0 auto;
 }
 
 fieldset {
@@ -172,21 +174,21 @@ fieldset {
 }
 
 fieldset input {
-    background: rgba(255, 255, 255, 0.5);
-    background: white;
-    border:1px solid #ccc;
-    border:1px solid rgba(0,0,0,0.3);
     display:block;
     margin-bottom:1em;
+    border:1px solid #ccc;
+    border:1px solid rgba(0,0,0,0.3);
+    background: white;
+    background: rgba(255, 255, 255, 0.5);
     padding:2px 4px;
     width: 100%;
 }
 
 hr {
-    border: none;
-    border-bottom: 1px solid #eee;
-    height: 0;
     margin: 20px;
+    border: none;
+    height: 0;
+    border-bottom: 1px solid #eee;
 }
 
 div.banner {
@@ -206,29 +208,29 @@ input[type="reset"],
 input[type="button"],
 .action-button,
 .button {
-    background-color: #f0f0f0;
-    background-color: rgba(0,0,0,0.02);
-    border: none;
-    border-radius: 3px;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.25) inset;
-    color: #555;
     cursor: pointer;
     display:inline-block;
-    font-family: inherit;
-    font-size: 0.8em;
+    vertical-align:bottom;
     height:24px;
     line-height: 22px;
-    -moz-border-radius: 3px;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    border: none;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.25) inset;
     padding:2px 11px;
-    text-decoration: none;
-    transition: opacity 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease, color 0.1s ease, background 0.1s ease;
-    user-select: none;
-    vertical-align:bottom;
+    color: #555;
+    background-color: #f0f0f0;
+    background-color: rgba(0,0,0,0.02);
     -webkit-border-radius: 3px;
-    -webkit-transition: opacity 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease, color 0.1s ease, background 0.1s ease;
-    -webkit-user-select: none;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 0.8em;
+    text-decoration: none;
+-webkit-user-select: none;
+   -moz-user-select: none;
+    -ms-user-select: none;
+        user-select: none;
+-webkit-transition: opacity 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease, color 0.1s ease, background 0.1s ease;
+        transition: opacity 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease, color 0.1s ease, background 0.1s ease;
 }
 input[type="submit"] i,
 input[type="reset"] i,
@@ -243,16 +245,16 @@ input[type="button"] i,
 }
 
 button[type=submit], input[type="submit"], .primary.button {
-    background-color: rgba(0,0,0,0.07);
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.45) inset;
     font-weight: bold;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.45) inset;
+    background-color: rgba(0,0,0,0.07);
 }
 
 button[type=submit]:hover, input[type=submit]:hover, input[type=submit]:active {
-    background-color: #888;
-    background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.7) inset;
-    color: white;
+  color: white;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.7) inset;
+  background-color: #888;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 input.submit:hover, input.submit:active {
@@ -260,17 +262,17 @@ input.submit:hover, input.submit:active {
 }
 
 #poweredBy {
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 5px;
-    bottom: 10px;
-    box-shadow: inset 0 0 3px white, 0 0 2px black, inset 0 0 4px black;
-    color:#ccc;
     font-size:0.8em;
+    color:#ccc;
     padding:5px 15px;
-    position: fixed;
-    right: 10px;
     text-align:center;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    box-shadow: inset 0 0 3px white, 0 0 2px black, inset 0 0 4px black;
     text-shadow: 0 0 2px black;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.3)
 }
 
 #poweredBy a {
@@ -278,24 +280,24 @@ input.submit:hover, input.submit:active {
 }
 
 #poweredBy .osticket-logo {
-    border: none;
-    filter: drop-shadow(0 0 4px black);
-    filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444');
     height: auto;
-    ms-filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444');
-    vertical-align: baseline;
-    -webkit-filter: drop-shadow(0 0 4px black);
     width: 55px;
+    vertical-align: baseline;
+    border: none;
+    -webkit-filter: drop-shadow(0 0 4px black);
+    filter: drop-shadow(0 0 4px black);
+    ms-filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444');
+    filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444');
 }
 
 #company .content {
-    background-color: rgba(0,0,0,0.3);
     border-radius: 10px;
+    background-color: rgba(0,0,0,0.3);
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
-    color: white;
+    text-shadow: 0 0 2px black;
     display: inline-block;
     padding: 0 15px;
-    text-shadow: 0 0 2px black;
+    color: white;
 }
 
 .external-auth {
@@ -309,37 +311,37 @@ a.external-sign-in {
     text-decoration: none;
 }
 .external-auth-box {
-    border: 1px solid #777;
-    border-radius: 4px;
     vertical-align: middle;
+    border-radius: 4px;
+    border: 1px solid #777;
 }
 .external-auth-icon {
-    border-right: 1px solid #ddd;
-    color: #333;
     display: inline-block;
-    padding: 5px 10px;
+    color: #333;
     width: 30px;
+    padding: 5px 10px;
+    border-right: 1px solid #ddd;
 }
 .external-auth-name {
     color: #333;
-    font-size: 11pt;
-    line-height:30px;
-    padding: 5px 10px;
     width: 100px;
+    padding: 5px 10px;
+    line-height:30px;
+    font-size: 11pt;
 }
 img.sign-in-image {
     border: none;
-    height: auto;
     max-height: 40px;
     max-width: 200px;
     width: auto;
+    height: auto;
 }
 
 input[type=text],
 input[type=password] {
     border-radius: 4px;
-    font-size: 0.75em;
     padding: 5px;
+    font-size: 0.75em;
 }
 .hidden {
     display: none;

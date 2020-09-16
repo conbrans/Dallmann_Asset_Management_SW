@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
 
 html {
+    height: 100%;
     font-family: Roboto;
     font-size: 100%;
-    letter-spacing: .6px !important;
-    -ms-text-size-adjust: 100%;
     overflow-y: scroll;
     -webkit-text-size-adjust: 100%;
-    height: 100%;
+    -ms-text-size-adjust: 100%;
+    letter-spacing: .6px !important;
 }
 body{
     font-family: "Roboto Thin";
@@ -29,20 +29,20 @@ body{
 }
 
 .userImage{
-    display: block;
+    width: 200px;
     height: 200px;
     object-fit: cover;
-    width: 200px;
+    display: block;
 }
 .form-group{
-    margin-bottom: 1rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 hr {
 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
-    margin-top: 1rem;
 }

@@ -6,13 +6,13 @@
 
 .tab button {
     background-color: inherit;
-    border: none;
-    border-right: 1px solid #d0d0d0;
-    cursor: pointer;
     float: left;
+    border: none;
     outline: none;
+    cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
+    border-right: 1px solid #d0d0d0;
 }
 
 .tab button:hover {
@@ -24,19 +24,22 @@
 }
 
 .tabcontent {
-    border: 1px solid #ccc;
-    border-top: none;
     display: none;
     padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
+
+
+
 
 #submit, #submit1
 {
-    background-color: #fb1;
-    border-color:#fbb904;
-    color: black;
     margin-left: 35%;
     margin-top: 5%;
+    background-color: #fbbb11;
+    color: black;
+    border-color:#fbb904;
 }
 
 #submit:hover, #submit1:hover
