@@ -21,6 +21,8 @@ function getAccess(req, data, res) {
         console.log("Zugriff gewährt");
         req.session.userID = data.worker_id;
         req.session.username =data.firstName + " " + data.surname;
+        req.session.firstname = data.firstName;
+        req.session.surname = data.surname;
         req.session.email = data.e_mail;
         req.session.role = data.role;
         req.session.rights = data.rights;

@@ -283,9 +283,9 @@
 
                         <div class="deviceInfoBoxes">
                             <label for="minor">Minor</label>
-                            <input type="text" class="form-control"
-                                   name="beaconMinor"
-                                   id="minor">
+                            <input type="number" class="form-control"
+                                    id="minor"
+                                   name="beaconMinor">
                         </div>
                     </div>
 
@@ -294,7 +294,8 @@
                         <p>
                             <button type="submit"
                                     class="btn btn-outline-primary"
-                                    onclick="sendData()">
+                            onclick="">
+<!--                                    onclick="sendData()"-->
                                 Daten ändern
                             </button>
                     <% }%>

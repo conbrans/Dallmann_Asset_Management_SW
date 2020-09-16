@@ -167,9 +167,15 @@ h3 {
     font-size: 80%;
 }
 
-#reset-link
+#reset-link,#firsttime
 {
     font-size: 60%;
+}
+
+#firsttime
+{
+    font-size: 60%;
+    color: red;
 }
 
 form {

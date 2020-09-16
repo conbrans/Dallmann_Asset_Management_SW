@@ -107,8 +107,6 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
         var str = string.substring(string.length - 3, string.length - 2);
 
 
-
-
         if (err) {
             response.json({"Message": "Test"});
             console.log('Error connecting to Db');

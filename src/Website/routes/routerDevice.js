@@ -7,6 +7,7 @@ const redirect = require('./helproutes/redirect');
 
 router.post("/addDevice", redirect.redirectLogin,
     authentication.authRight("add_Device"), (req,res) => {
+    console.log(req.body);
 
     fetch.postFetch("/api/device/createDevice",req)
         .catch((error) => {
@@ -18,6 +19,7 @@ router.post("/addDevice", redirect.redirectLogin,
 router.post("/updateDevice",redirect.redirectLogin,
     authentication.authRight("edit_Device"), (req, res) =>
     {
+
         fetch.putFetch("/api/device/updateDevice/"+req.body.inventoryNumber,req)
             .then(() => res.redirect("back"))
             .catch((error) => {
@@ -32,7 +34,6 @@ router.post("/deleteDevice",redirect.redirectLogin,authentication.authRight("del
         .catch((error) => {
             console.error('Error:', error);
         });
-
 });
 
 

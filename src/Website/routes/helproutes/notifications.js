@@ -7,6 +7,7 @@ function sendMessage(messagetype)
             switch (messagetype)
             {
                 case "login":
+
                     req.toastr.success('Sie sind eingeloggt.',
                         title = 'Willkommen zurück  ' + req.session.username + '!',
                         options = {});

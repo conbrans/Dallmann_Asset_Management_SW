@@ -38,9 +38,9 @@ function loadData(i){
     }
 }
 
-
-
-function deleteDeviceMessage() {
+function deleteDeviceMessage()
+{
     confirm("ACHTUNG!\nSie sind dabei das gewählte Gerät undwideruflich zu" +
         " löschen.");
 }
+
