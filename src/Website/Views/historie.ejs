@@ -58,8 +58,9 @@
             <tr>
                 <td><%= datum[i] %></td>
                 <input id="longitude<%=i%>" type="hidden"
-                       value="<%=longitude%>">
-                <input id="latitude<%=i%>" type="hidden" value="<%=latitude%>">
+                       value="<%=longitude[i]%>">
+                <input id="latitude<%=i%>" type="hidden"
+                       value="<%=latitude[i]%>">
                 <td></td>
             </tr>
         <% } %>

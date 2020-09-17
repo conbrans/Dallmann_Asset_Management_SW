@@ -153,7 +153,6 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
  */
 //in Website enthalten
 router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
-console.log(request.body);
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
     connection.query(sql, function (err, result) {
