@@ -212,25 +212,35 @@
 
     <div id="devices">
         <h1>Geräte</h1>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore
-            magna aliquyam erat, sed diam voluptua.
-            At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren,
-            no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore
-            magna aliquyam erat, sed diam voluptua.
-            At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-            dolor sit amet.
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore
-            magna aliquyam erat, sed diam voluptua.
-            At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren,
-            no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        <p>Auf der Geräteseite ist eine Tabelle der gesamten Geräte
+            verfügbar, diese Tabelle enthält Informationen zur
+            Inventarnummer, Kategorie, Modell und dem Status des Gerätes.
+            Recht daneben befindet sich eine genauere Information zu den
+            einzelnen Geräten. Die einzelnen Informationen können eingesehen
+            werden, wenn Sie auf eine der Tabellenzeilen drücken, damit
+            werden die Informationen für das Gerät geladen.
         </p>
+        <% if (rights.edit_device===1){%>
+        <p>Auf dieser Seite können auch die Informationen für ein einzelnes
+            Gerät geändert werden, so ist es möglich zum Beispiel die
+            Inventarnummer zu ändern, das Gerät einer anderen Kategorie
+            zuzuordnen, den Status des Gerätes zu ändern oder das
+            TÜV/UVV-Datum zu ändern. Die Änderungen können über die
+            Schaltfläche "Daten ändern" gespeichert werden.</p>
+        <% } %>
+        <p>Ein weiteres Feature ist das Einsehen der Historie eines Gerätes.
+            Dafür muss nachdem die Daten für ein einzelnes Gerät geladen
+            worden sind, auf die Schaltfläche "Historie anzeigen" geklickt
+            werden, damit gelangt man auf eine Übersicht über die letzten
+            Veränderungen eines spezifischen Gerätes.
+        </p>
+        <!-- Bild von Historie ergänzen -->
+        <p style="text-indent: 10%">Platzhalter</p>
+        <p>Über die Schaltfläche "Gerät reservieren" kann das zuvor
+            ausgewählte Gerät reserviert werden. Auf diese Funktion wird im
+            nächsten Teil genauer eingegangen.</p>
+
+
     </div>
 
     <% if (rights.booking_device === 1){ %>
