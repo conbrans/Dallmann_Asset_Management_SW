@@ -27,13 +27,17 @@
                 <a id="info" href="#info" class="link active">Allgemeines</a>
                 <ul class="nav-menu-sub">
                     <li>
+                        <a id="info" href="#firstStart" class="link">Erstverwednung
+                            der Anwendung</a>
+                    </li>
+                    <li>
                         <a id="info" href="#login" class="link">Login</a>
                     </li>
                 </ul>
             </li>
 
             <li>
-                <a id="home" href="#homepage" class="link">Dashboard</a>
+                <a id="home" href="#homepage" class="link">Startseite</a>
                 <ul class="nav-menu-sub">
                     <li>
                         <a id="home" href="#menueleiste"
@@ -88,7 +92,7 @@
                     </ul>
                 </li>
             <% } %>
-            <% if ( rights.picking===1 ) { %>
+            <% if ( role === 1 || role === 2 ) { %>
                 <li>
                     <a id="list" href="#picking" class="link">Komissionieren</a>
                 </li>
@@ -133,52 +137,88 @@
             wenn sich der Benutzer mit den Funktionen der Anwendung
             auseinandersetzen möchte.
         </p>
+        <div id="firstStart">
+            <h2>Erstverwendung der Anwendung</h2>
+            <p>
+                Vor der ersten Verwendung der Anwendung sollten Sie sichergehen,
+                dass für Sie bereits ein Account vom Administrator angelegt
+                worden ist.
+                Sollte dies nicht der Fall sein,
+                kontaktieren Sie einen der Administratoren mit der Bitte einen
+                Account für Sie einzurichten.
+            </p>
+            <p>
+                Ihr Benutzername wird Ihre interne Dallmann E-Mail-Adresse sein,
+                also für den Mitarbeiter Max Mustermann würde der Benutzername
+                "m.mustermann@dallmann-bau.de" lauten. Für Ihre erste Anmeldung
+                erhalten Sie ein vom Administrator
+                vergebenes Passwort, dieses Passwort muss nach dem ersten Mal
+                anmelden geändert werden.
+                Nach dem Einloggen mit dem ersten Passwort werden Sie
+                automatisch auf eine Seite umgeleitet,
+                auf der Sie ihr Passwort ändern können.
+
+            </p>
+            <p>
+                Nach dem Sie das Passwort geändert haben, werden Sie automatisch
+                abgemeldet
+                und müssen sich erneut anmelden, damit die Anwendung ihr
+                Passwort festlegen kann,
+                nach der erneuten Anmeldung können Sie die Anwendung
+                vollumfänglich nutzen.
+            </p>
+        </div>
+
         <div id="login">
             <h3>Login</h3>
             <p>
-                Die Anmeldung erfolgt mit der internen Mail-Adresse und mit
-                einem Standardpasswort, welches vom Administrator der Seite
-                festgelegt worden ist. Dieses Passwort sollte nach dem ersten
-                Login geändert werden, diese Passwortänderung kann über das
-                Benutzerprofil vorgenommen werden.
+
             </p>
         </div>
     </div>
 
     <div id="homepage">
-        <h1>Dashboard</h1>
+        <h1>Startseite</h1>
         <p>
 
+            Nach dem erfolgreichen Login gelangen Sie zur Startseite. Auf der
+            Startseite befindet sich die Menüleiste,
+            die auf jeder Seite gleich ist. Die Menüleiste ist abhängig von den
+            Benutzerrechten, das heißt,
+            für unterschiedliche Benutzer sind unterschiedliche Ansichten
+            verfügbar.
+            Ebenfalls abhängig von den Rechten des Nutzer sind die
+            Schaltflächen,
+            die sich auch auf der Startseite befinden, diese können sich auch
+            von Nutzer zu Nutzer unterscheiden.
 
         </p>
         <figure>
-            <% if (role === "Admin"){ %>
+            <% if (role === 1){ %>
                 <img src="img/adminhomepage.png"
                      alt=" Standardansicht der Admin Startseite" width="100%"
                      height="100%" style="float: left ">
-                <figcaption>
-                    Standardansicht des Admin Dashboards</figcaption>
+                <figcaption>Standardansicht der Admin Startseite</figcaption>
             <% } %>
-            <% if (role === "Werkstatt"){ %>
+            <% if (role === 2){ %>
                 <img src="img/workshophomepage.png"
                      alt=" Standardansicht der Werkstatt Startseite"
                      width="100%" height="100%" style="float: left ">
-                <figcaption>
-                    Standardansicht des Werkstatt Dashboards</figcaption>
+                <figcaption>Standardansicht der Werkstatt Startseite
+                </figcaption>
             <% } %>
-            <% if (role === "Polier"){ %>
+            <% if (role === 3){ %>
                 <img src="img/foremanhomepage.png"
                      alt=" Standardansicht der Polier Startseite" width="100%"
                      height="100%" style="float: left ">
-                <figcaption>
-                    Standardansicht des Polier Dashboards</figcaption>
+                <figcaption>Standardansicht der Polier Startseite</figcaption>
             <% } %>
-            <% if (role === "Buchhaltung"){ %>
+            <% if (role === 4){ %>
                 <img src="img/accountinghomepage.png"
                      alt=" Standardansicht der Buchhaltungs Startseite"
                      width="100%" height="100%" style="float: left ">
-                <figcaption>
-                    Standardansicht des Buchhaltungs Dashboards</figcaption>
+                <figcaption>Standardansicht der Buchhaltungs Startseite
+                </figcaption>
             <% } %>
 
         </figure>
@@ -212,75 +252,18 @@
 
     <div id="devices">
         <h1>Geräte</h1>
-        <p>Auf der Geräteseite ist eine Tabelle der gesamten Geräte
-            verfügbar, diese Tabelle enthält Informationen zur
-            Inventarnummer, Kategorie, Modell und dem Status des Gerätes.
-            Recht daneben befindet sich eine genauere Information zu den
-            einzelnen Geräten. Die einzelnen Informationen können eingesehen
-            werden, wenn Sie auf eine der Tabellenzeilen drücken, damit
-            werden die Informationen für das Gerät geladen.
-        </p>
-        <% if (rights.edit_device===1){%>
-        <p>Auf dieser Seite können auch die Informationen für ein einzelnes
-            Gerät geändert werden, so ist es möglich zum Beispiel die
-            Inventarnummer zu ändern, das Gerät einer anderen Kategorie
-            zuzuordnen, den Status des Gerätes zu ändern oder das
-            TÜV/UVV-Datum zu ändern. Die Änderungen können über die
-            Schaltfläche "Daten ändern" gespeichert werden.</p>
-        <% } %>
-        <p>Ein weiteres Feature ist das Einsehen der Historie eines Gerätes.
-            Dafür muss nachdem die Daten für ein einzelnes Gerät geladen
-            worden sind, auf die Schaltfläche "Historie anzeigen" geklickt
-            werden, damit gelangt man auf eine Übersicht über die letzten
-            Veränderungen eines spezifischen Gerätes.
-        </p>
-        <!-- Bild von Historie ergänzen -->
-        <p style="text-indent: 10%">Platzhalter</p>
-        <p>Über die Schaltfläche "Gerät reservieren" kann das zuvor
-            ausgewählte Gerät reserviert werden. Auf diese Funktion wird im
-            nächsten Teil genauer eingegangen.</p>
-
 
     </div>
 
     <% if (rights.booking_device === 1){ %>
         <div id="booking">
             <h1>Reservierung</h1>
-            <p> Über die Schaltfläche Reservierung gelangen Sie zu einer
-                Übersicht über die bereits reservierten und ausgeliehen
-                Geräte. Ebenfalls enthält diese Seite Informationen über das
-                Anfangsdatum und Enddatum der Reservierung/Leihe.
-                Weiter Informationen die auf dieser Seite sichtbar sind, sind
-                der Entleiher mit Vor und Nachname, die BaustellenID und den
-                Baustellennamen.
-            <p>
-                Über die Schaltflächen im oberen Bereich der Seite, kann die
-                Reservierungsliste nach bestimmten Werten gefiltert werden.</p>
-            <p> Über den Button "Reservierung vornehmen" kann eine
-                Reservierung für ein beliebiges Gerät vorgenommen werden.
-                Allerdings muss über diesen Weg die Inventarnummer des
-                Gerätes angegeben werden.</p>
-            <% if (rights.delete_booking===1){%>
-            <p>
-                Über die Schaltfläche "Resevierung löschen" können die
-                eigenen Reservierung nach der Eingabe der Inventarnummer und
-                des Anfangsdatums der zu löschenden Reservierung gelöscht
-                werden.
-            </p>
-            <% }%>
+
         </div>
     <% } %>
 
     <div id="userProfil">
         <h1>Benutzerprofil</h1>
-        <p>
-            Im Benutzerprofil können Sie Ihre persönlichen Daten ändern, wie
-            zum Beispiel den Vornamen, Nachnamen, die Mail-Adresse und das
-            Passwort. Im Feld "Passwort bestätigen" muss das neue Passwort
-            erneut bestätigt werden. Zwischen den Feldern "Passwort" und
-            "Passwort bestätigten" können Sie die Stärke ihres neuen
-            Passworts einsehen.
-        </p>
     </div>
 
     <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
@@ -303,7 +286,7 @@
         </div>
     <% } %>
 
-    <% if ( rights.picking === 1 ) { %>
+    <% if ( role === 1 || role === 2 ) { %>
         <div id="picking">
             <h1>Komissionieren</h1>
 
@@ -319,11 +302,11 @@
         <h1>Logout/Abmelden</h1>
         <p>
             Durch einen Klick auf die Schaltfläche Logout oder das Logout-Symbol
-            melden Sie sich von der Website ab. Wenn die Seite geschlossen
-            wird, werden Sie automatisch abgemeldet.
+            melden Sie sich von der Website ab, wenn Sie die Seite erneut
+            öffnen, müssen Sie sich erneut mi
         </p>
+
     </div>
-    <br>
 </div>
 <%- include('../Views/general/footer.ejs'); -%>
 

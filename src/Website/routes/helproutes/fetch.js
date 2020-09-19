@@ -70,8 +70,8 @@ async function loginFetch(request,result)
 }
 
 /**
- * method for an easy get fetch
- * @param url completes the url
+ *
+ * @param url
  * @returns {Promise<*>}
  */
 async function getFetch(url)

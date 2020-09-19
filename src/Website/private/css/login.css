@@ -62,7 +62,7 @@ body {
     right: 0;
     bottom: 0;
     z-index: -1;
-    background-image: url("");
+    background-image: url();
     -webkit-background-size: cover;
        -moz-background-size: cover;
          -o-background-size: cover;

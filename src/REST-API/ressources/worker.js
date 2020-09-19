@@ -8,6 +8,7 @@ const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
 const router = express.Router();
+const hashing = require("crypto");
 
 /**
  * route for getting all users out of database
@@ -107,6 +108,8 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
         var str = string.substring(string.length - 3, string.length - 2);
 
 
+
+
         if (err) {
             response.json({"Message": "Test"});
             console.log('Error connecting to Db');
@@ -177,6 +180,23 @@ router.delete("/api/user/deleteUser/:userId",(request, response) => {
     })
 
 });
+
+router.post("/api/user/updatePassword/", (request, response) => {
+
+    sql = "UPDATE worker SET password='"+request.body.newPassword+"' WHERE e_mail ='"+request.body.eMail+"';";
+
+    connection.query(sql, function (err) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql2"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        console.log('updateUser.Connection established');
+        response.json({"Message": "Passwort wurde erfolgreich zurückgesetzt"});
+    })
+
+
+})
 
 module.exports = router;
 /**
