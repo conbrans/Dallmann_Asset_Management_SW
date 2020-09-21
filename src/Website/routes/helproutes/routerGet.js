@@ -10,9 +10,18 @@ router.get('/', redirect.redirectHome,
     (req, res) => {
         res.status(201).render("login.ejs",
             {
-                req :req,
+                req : req,
             });
     });
+
+router.get('/failedLogin',redirect.redirectHome,notification.sendMessage("failedLogin"),(req, res) =>
+{
+    res.status(403).render("login.ejs",
+        {
+           req:req,
+        });
+
+});
 
 
 router.get("/logout",
@@ -40,7 +49,7 @@ router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
 
 router.get("/addDevice", redirect.redirectLogin,
     authentication.authRight("add_Device"), (req,res) => {
-    res.render("addDevice.ejs");
+        res.render("addDevice.ejs");
     });
 
 
@@ -61,13 +70,16 @@ router.get("/booking", redirect.redirectLogin,
 router.get("/bookinglist", redirect.redirectLogin,
     authentication.authRight("booking_device"),
     (req, res) => {
-        res.render("bookinglist.ejs",
-            {
-                username: req.session.username,
-                role: req.session.role,
-                rights: req.session.rights,
-
-            });
+        fetch.getFetch("/api/borrow/getReservations")
+            .then(data =>
+                res.render("bookinglist.ejs",
+                    {
+                        username: req.session.username,
+                        role: req.session.role,
+                        rights: req.session.rights,
+                        data :data,
+                    })
+            )
     });
 
 router.get("/devices", redirect.redirectLogin,
@@ -84,7 +96,6 @@ router.get("/devices", redirect.redirectLogin,
 
                     })
             );
-
     });
 
 router.get("/faQ",
@@ -98,10 +109,22 @@ router.get("/faQ",
 
     });
 
+
+router.get("/picking",
+    (req, res) => {
+        res.render("picking.ejs",
+            {
+                username: req.session.username,
+                role: req.session.role,
+                rights: req.session.rights,
+            });
+
+    });
+
 router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
-    notification.sendMessage("booking"),
+    /*notification.sendMessage("booking"),
     notification.sendMessage("tuvUvv"),
-    notification.sendMessage("maintenance"),
+    notification.sendMessage("maintenance"),*/
     (req, res) => {
 
         res.render('index.ejs',
@@ -113,12 +136,15 @@ router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
             });
     });
 
-router.get("/profil", (req, res) => {
+router.get("/profil", redirect.redirectLogin, (req, res) => {
     res.render("profil.ejs",
         {
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
+            firstname: req.session.firstname,
+            surname: req.session.surname,
+            email : req.session.email,
         });
 
 });

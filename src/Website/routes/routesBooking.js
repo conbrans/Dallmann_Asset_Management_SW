@@ -15,7 +15,6 @@ router.post("/booking",
             rights: req.session.rights,
             geraetenummer: req.body.invNumber,
             maxDate: '2020-08-31',
-
         });
 });
 

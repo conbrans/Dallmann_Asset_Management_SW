@@ -1,6 +1,3 @@
-/**
- * author = Constantin Brans
- */
 function checkPasswordRequirements() {
     let strength = 0;
     const strengthBar = document.getElementById("strength");

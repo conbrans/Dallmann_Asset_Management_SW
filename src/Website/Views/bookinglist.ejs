@@ -1,37 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
-<link rel="stylesheet" href="css/headFootDesign.css">
-<link rel="icon" type="image/x-icon"
-      href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Google Fonts -->
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-      rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
-      rel="stylesheet">
-
-
-<!-- JQuery -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <link rel="stylesheet" href="css/deviceManagement.css">
+    <link rel="stylesheet" href="css/table.css">
+    <script src="javascript/devicemanagement.js"></script>
+    <script src="javascript/bookinglist.js"></script>
+    <link rel="icon" type="image/x-icon"
+          href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script  src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 
 </head>
@@ -40,7 +20,148 @@
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
 <main>
+    <div id="content" style="overflow-x: auto">
+        <h3>Reservierungsliste</h3>
+        <div>
+            <div style=" float: left">
+                <% if (rights.booking_device===1){%>
+                    <form method="get" action="/addBooking">
+                        <!--onclick="addDeviceWindow()"-->
+
+                        <button class="header_button">Ein Gerät buchen
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class='fas fa-pencil'
+                                 fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                <path fill-rule="evenodd"
+                                      d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                            </svg>
+                        </button>
+                    </form>
+                <% }%>
+            </div>
+            <div class="toggle-title" style="text-align: right;float: left">
+                <button class="header_button">Filtern
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-funnel" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                    </svg>
+                </button>
+            </div>
+
+
+            <div class="toggle-inner">
+                <br>
+                <hr>
+                <div class="test">
+                    <label class="box-a">Inventarnummer</label>
+                    <!-- <label class="box-b">Kategorie</label>
+                     <label class="box-c">Status</label>-->
+
+                    <input class="form-control input-a" type="text" placeholder="Nach Inventarnummer suchen">
+
+                    <!--<select class="browser-default custom-select
+                    form-control input-b" id="kategorie"
+                            onchange="getSelectedOption()">
+                        <option value="0" selected disabled>Kategorie zuordnen</option>
+                        <option value="available">Rüttelplatte</option>
+                        <option value="borrowed">Stampfer</option>
+                        <option value="maintenance">Motorflex</option>
+                        <option value="outOfOrder">Rohrgreifer</option>
+                        <option value="lost">Kettensäge</option>
+                        <option value="stolen">Motorhammer</option>
+                        <option value="">Leiter</option>
+                        <option value="">Exoten</option>
+                    </select>
+
+                    <select class="browser-default custom-select form-contro input-cl" id="sort"
+                            onchange="getSelectedOption()" style="width: 100%; display: inline-block">
+                        <option value="0" selected disabled>Status festlegen/ändern</option>
+                        <option value="available">Verfügbar</option>
+                        <option value="borrowed">Ausgeliehen</option>
+                        <option value="maintenance">In Wartung</option>
+                        <option value="outOfOrder">Außer Betrieb</option>
+                        <option value="lost">Verschollen/Verschwunden</option>
+                        <option value="stolen">Gestohlen</option>
+                    </select>-->
+                </div>
+                <hr>
+            </div>
+
+
+        </div>
+        <table id="userlist" style="width: 100%" class="table
+            user-list"
+               onload>
+            <thead>
+            <tr>
+                <th>Inventarnummer</th>
+                <th>Starttag Buchung</th>
+                <th>Ende Buchung</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Baustellennummer</th>
+                <th>Baustellenname</th>
+            </tr>
+            </thead>
+            <tbody id="deviceContent">
+            <% for (var i = 0;i < data.length;i++){ %>
+                <tr onclick="loadData(<%= i %>);">
+
+                    <td id="tr<%= i %>td1"><%= data[i].inventoryNumber %></td>
+                    <td id="tr<%= i %>td2"><%= data[i].loanDay %></td>
+                    <td id="tr<%= i %>td3"><%= data[i].loanEnd %></td>
+                    <td id="tr<%= i %>td4"><%= data[i].firstname %></td>
+                    <td id="tr<%= i %>td5"><%= data[i].surname %></td>
+                    <td id="tr<%= i %>td6"><%= data[i].projectId %></td>
+                    <td id="tr<%= i %>td7"><%= data[i].buildingSite %></td>
+
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+
+
+    </div>
 </main>
 <%- include('../Views/general/footer.ejs'); -%>
+<style>
+
+    div.toggle-inner, div.toggle-inner-button {
+        display: none;
+    }
+
+    div.toggle-inner.show ,div.toggle-inner-button.show {
+        display: block !important;
+    }
+</style>
+<script>
+    var acc = document.getElementsByClassName("toggle-title");
+
+    var panel = document.getElementsByClassName('toggle-inner');
+
+
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].onclick = function () {
+            var setClasses = !this.classList.contains('active');
+            setClass(acc, 'active', 'remove');
+            setClass(panel, 'show', 'remove');
+
+            if (setClasses) {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    }
+
+
+    function setClass(els, className, fnName) {
+        for (var i = 0; i < els.length; i++) {
+            els[i].classList[fnName](className);
+        }
+    }
+</script>
 </body>
 </html>

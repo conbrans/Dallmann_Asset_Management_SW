@@ -2,12 +2,10 @@
  * author = Constantin Brans
  */
 
-/**
- * Timeout to call the "Benutzerdaten" tab as standard
- */
-setTimeout(() => {
-
-    document.getElementById("defaultOpen").click();},1)
+window.onload = function ()
+{
+    document.getElementById("defaultOpen").click();
+}
 
 /**
  * method to switch between the tabs "Benutzerdaten" and "Rechte"

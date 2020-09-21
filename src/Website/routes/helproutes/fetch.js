@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+//const crypto = require('../helproutes/crypto');
 
 /**
  * method for fetch task which need to be posted
@@ -70,8 +71,8 @@ async function loginFetch(request,result)
 }
 
 /**
- *
- * @param url
+ * method for an easy get fetch
+ * @param url completes the url
  * @returns {Promise<*>}
  */
 async function getFetch(url)

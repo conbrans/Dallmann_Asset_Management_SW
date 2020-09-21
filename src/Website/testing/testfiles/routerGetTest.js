@@ -228,6 +228,9 @@ app.get("/profil", (req, res) => {
                 edit_booking: 1,
                 picking: 1
             },
+            firstname: "Teo",
+            surname: "Teo Tester",
+            email : "t.test@dallmann-bau.de",
         });
 
 });

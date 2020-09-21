@@ -32,8 +32,8 @@
             <div>
                 <div style=" float: left">
                     <% if (rights.add_device===1){%>
-                    <form method="get" action="/addDevice"
-                          <!--onclick="addDeviceWindow()"-->>
+                        <form method="get" action="/addDevice"
+                        <!--onclick="addDeviceWindow()"-->>
 
                         <button class="header_button">Neues Gerät hinzufügen
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class='fas fa-pencil'
@@ -45,7 +45,7 @@
                                       d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
                             </svg>
                         </button>
-                    </form>
+                        </form>
                     <% }%>
                 </div>
                 <div class="toggle-title" style="text-align: right;float: left">
@@ -113,7 +113,7 @@
                         <td id="tr<%= i %>td1"><%= data[i].inventoryNumber %></td>
                         <td id="tr<%= i %>td2"><%= data[i].category %></td>
                         <td id="tr<%= i %>td3"><%= data[i].model %></td>
-                        <td id="tr<%= i %>td4"><%= data[i].deviceStatus %></td>
+                        <td id="tr<%= i %>td4"><%= data[i].statusDescription %></td>
 
                     </tr>
                 <% } %>
@@ -283,9 +283,9 @@
 
                         <div class="deviceInfoBoxes">
                             <label for="minor">Minor</label>
-                            <input type="text" class="form-control"
-                                   name="beaconMinor"
-                                   id="minor">
+                            <input type="number" class="form-control"
+                                   id="minor"
+                                   name="beaconMinor">
                         </div>
                     </div>
 
@@ -294,10 +294,11 @@
                         <p>
                             <button type="submit"
                                     class="btn btn-outline-primary"
-                                    onclick="sendData()">
+                                    onclick="">
+                                <!--                                    onclick="sendData()"-->
                                 Daten ändern
                             </button>
-                    <% }%>
+                            <% }%>
             </form>
             <form method="post" action="/historie" id="historie">
                 <div class="row">
@@ -311,30 +312,30 @@
                 </div>
             </form>
             <% if (rights.booking_device===1){%>
-            <form method="post" action="/booking" id="booking">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-warning">Gerät
-                                reservieren
-                            </button>
+                <form method="post" action="/booking" id="booking">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-warning">Gerät
+                                    reservieren
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
             <%} if (rights.delete_device===1){%>
-            <form method="post" action="/deleteDevice" id="deleteDevice">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-danger"
-                                    onclick="deleteDeviceMessage()">Gerät
-                                löschen
-                            </button>
+                <form method="post" action="/deleteDevice" id="deleteDevice">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger"
+                                        onclick="deleteDeviceMessage()">Gerät
+                                    löschen
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
             <%}%>
         </div>
         <br>

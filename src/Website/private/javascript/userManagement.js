@@ -1,4 +1,4 @@
-function changeEntries() {
+/*function changeEntries() {
     let sql = "UPDATE USER SET name = '', surname = '', e_mail = '', password ='', course='', authorization='' " +
         "WHERE e_mail = ''";
     connection.query(sql,
@@ -7,7 +7,9 @@ function changeEntries() {
             if (result)
                 console.log("Erfolgreich")
         })
-}
+}*/
+
+//TODO zusammenführen von userManagement und usermanegementtest
 
 
 

@@ -1,3 +1,6 @@
+/**
+ * Import of helproutes and declaration of Router Method
+ */
 const express = require('express');
 const router = express.Router();
 const fetch = require('./helproutes/fetch');
@@ -35,10 +38,4 @@ router.post("/deleteDevice",redirect.redirectLogin,authentication.authRight("del
 
 });
 
-
-
-
-
 module.exports = router;
-
-

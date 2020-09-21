@@ -1,6 +1,4 @@
-/**
- * author = Constantin Brans
- */
+
 function loadData(i){
     document.getElementById("hiddenWorkerId").value  =
         document.getElementById("tr"+i.toString()+"td5").innerHTML;

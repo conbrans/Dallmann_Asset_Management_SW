@@ -6,6 +6,8 @@ const app = express();
 const ONE_YEAR = 1000 * 60 * 60 * 24 * 365;
 const connection = require('../../../src/REST-API/databaseConnection/connection');
 const router = express.Router();
+const crypto = require('../../Website/routes/helproutes/crypto');
+const fs = require('fs');
 
 /*const {
     PORT = 3000,
@@ -27,23 +29,10 @@ app.use(session({
     }
 ))*/
 
-/*TODO
-        - Reciving Json from App
-   DONE - Reading Json File
-   DONE- session
-   DONE - Comparing Login Data
-   DONE - Sending the Users informations
-   DOING - Clear Session
-        - test the function
- */
-
-const fs = require('fs');
 router.post('/api/login', (req, res) => {
-
 
     let givenUserMail = req.body.usermail;
     let givenPassword = req.body.password;
-
 
     if (givenUserMail && givenPassword) {
 
@@ -55,8 +44,9 @@ router.post('/api/login', (req, res) => {
 
         connection.query(statement, function (err, results) {
 
+            var password = results[0].password;
 
-            var sync = bcrypt.compareSync(results[0].password, givenPassword);
+            var sync = bcrypt.compareSync(password, givenPassword);
             if (sync) {
                 res.json(
                     {

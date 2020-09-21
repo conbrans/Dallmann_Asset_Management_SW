@@ -19,7 +19,7 @@ setTimeout(() => {
             let cells = row.cells;
             cells[1].innerHTML =
 
-            "<button name='button' class='btn btn-warning px-3' " +
+                "<button name='button' class='btn btn-warning px-3' " +
                 "style='background: #fbbb11' onclick='setSrc("+i+")'>" +
                 "<i class='fas fa-map-marker'></i></button>";
 
@@ -31,23 +31,20 @@ function setSrc(element)
 {
     let longitude =[];
     let latitude =[];
-    let test= [];
+    //let test= []
     for(var i=1;i<rows.length;i++)
     {
         var j = i-1;
         let longitudeID = "longitude"+j.toString();
         let latitudeID = "latitude"+j.toString();
-        //console.log(longitudeID);
         longitude[i] = document.getElementById(longitudeID).value;
         latitude[i] = document.getElementById(latitudeID).value;
         test[i] = "https://www.openstreetmap.org/export/embed.html?bbox="
             +longitude[i].toString() +"%2C"+latitude[i].toString()+"%2C"
             +longitude[i].toString()+"%2C"+latitude[i].toString()+
             "&layer=mapnik&marker="+latitude[i].toString()+"%2C"+longitude[i].toString();
+        console.log(test[i]);
 
     }
-        console.log(longitude[0]);
-        console.log(latitude[0]);
-        console.log(test[0]);
-        document.getElementsByTagName("iframe")[0].src= test[element];
+    document.getElementsByTagName("iframe")[0].src= test[element];
 }

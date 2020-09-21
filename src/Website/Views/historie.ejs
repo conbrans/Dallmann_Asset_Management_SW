@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
-<link rel="stylesheet" href="css/headFootDesign.css">
-<link rel="stylesheet" href="css/table.css">
-<link rel="stylesheet" href="css/historie.css">
-<script src="javascript/sortTable.js"></script>
-<script src="javascript/historie.js"></script>
-<!-- TODO den hiddeninput zu session ergänzen -->
-<link rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/historie.css">
+    <script src="javascript/sortTable.js"></script>
+    <script src="javascript/historie.js"></script>
+    <!-- TODO den hiddeninput zu session ergänzen -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 </head>
 <body>
 
@@ -46,10 +46,10 @@
         <thead>
         <tr>
             <th onclick="sortTable(1)">Datum</th>
-           <!-- <th onclick="sortTable(2)">Baustellen ID</th>
-            <th onclick="sortTable(3)">Baustellen Bezeichnung</th>
-            <th onclick="sortTable(4)">Standort</th>
-            <th onclick="sortTable(5)">vorheriger<br> Standort</th>-->
+            <!-- <th onclick="sortTable(2)">Baustellen ID</th>
+             <th onclick="sortTable(3)">Baustellen Bezeichnung</th>
+             <th onclick="sortTable(4)">Standort</th>
+             <th onclick="sortTable(5)">vorheriger<br> Standort</th>-->
             <th style="text-align: center">Karte</th>
         </tr>
         </thead>
@@ -58,8 +58,9 @@
             <tr>
                 <td><%= datum[i] %></td>
                 <input id="longitude<%=i%>" type="hidden"
-                       value="<%=longitude%>">
-                <input id="latitude<%=i%>" type="hidden" value="<%=latitude%>">
+                       value="<%=longitude[i]%>">
+                <input id="latitude<%=i%>" type="hidden"
+                       value="<%=latitude[i]%>">
                 <td></td>
             </tr>
         <% } %>
