@@ -33,9 +33,8 @@ router.get("/api/borrow/getReservations",(request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
+
         console.log('GetAllDevices.Connection established');
-        console.log(result)
         response.json(result);
     });
 
@@ -58,14 +57,17 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
         " OR (CAST('"+request.body.loanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));"
 
     connection.query(sql,function (err,result) {
-        var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2);
-        console.log(result);
+
+        let str = Object.values(result[0])[0];
+
+       /* var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2); */
+
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
             console.log('Error connecting to Db');
             return;
-        } else if (str === "0") {
+        } else if (str == "0") {
 
            let sql2  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
                 "('"+request.body.loanDay+"','"+request.body.loanEnd+"','"+request.body.workerId+"','"
@@ -104,15 +106,16 @@ router.delete('/api/borrow/cancelReservation', (request, response) => {
 
     connection.query(sql, function (err, result) {
 
-        var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2);
-        console.log(result);
+        let str = Object.values(result[0])[0];
+
+     /*   var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2); */
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
-        } else if (str === "1") {
+        } else if (str == "1") {
 
             let sql2 = "DELETE FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
                 " AND CAST(loan_day AS DATE) = CAST('" + request.body.loanDay + "' AS DATE) AND CAST(loan_end AS DATE) = CAST('" + request.body.loanEnd + "' AS DATE);";
@@ -132,15 +135,16 @@ router.delete('/api/borrow/cancelReservation', (request, response) => {
                 console.log('Test')
                 connection.query(sql3, function (err, result) {
 
-                    var string = JSON.stringify(result);
-                    var str = string.substring(string.length - 3, string.length - 2);
-                    console.log(result);
+                    let str = Object.values(result[0])[0];
+
+                  /*  var string = JSON.stringify(result);
+                    var str = string.substring(string.length - 3, string.length - 2); */
 
                     if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                         console.log('Error connecting.sql3 to Db');
                         return;
-                    } else if (str === "1") {
+                    } else if (str == "1") {
 
                         connection.query(sql4, function (err) {
                             if (err) {
