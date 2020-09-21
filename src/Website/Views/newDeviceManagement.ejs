@@ -84,12 +84,12 @@
                         <select class="browser-default custom-select form-contro input-cl" id="sort"
                                 onchange="getSelectedOption()" style="width: 100%; display: inline-block">
                             <option value="0" selected disabled>Status festlegen/ändern</option>
-                            <option value="available">Verfügbar</option>
-                            <option value="borrowed">Ausgeliehen</option>
-                            <option value="maintenance">In Wartung</option>
-                            <option value="outOfOrder">Außer Betrieb</option>
-                            <option value="lost">Verschollen/Verschwunden</option>
-                            <option value="stolen">Gestohlen</option>
+                            <option value="1">Verfügbar</option>
+                            <option value="2">Ausgeliehen</option>
+                            <option value="3">In Wartung</option>
+                            <option value="4">Außer Betrieb</option>
+                            <option value="5">Verschollen/Verschwunden</option>
+                            <option value="6">Gestohlen</option>
                         </select>
                     </div>
                     <hr>
@@ -104,6 +104,7 @@
                     <th>Kategorie</th>
                     <th>Modell</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody id="deviceContent">
@@ -114,11 +115,31 @@
                         <td id="tr<%= i %>td2"><%= data[i].category %></td>
                         <td id="tr<%= i %>td3"><%= data[i].model %></td>
                         <td id="tr<%= i %>td4"><%= data[i].statusDescription %></td>
+                        <td id="tr<%= i %>serialNumber"
+                            class="hiddendeviceInfos">
+                            <%= data[i].serialNumber %></td>
+                        <td id="tr<%= i %>manufacturer"
+                            class="hiddendeviceInfos">
+                            <%= data[i].manufacturer %></td>
+                        <td id="tr<%= i %>note"
+                            class="hiddendeviceInfos">
+                            <%= data[i].note %></td>
+                        <td id="tr<%= i %>longitude"
+                            class="hiddendeviceInfos">
+                            <%= data[i].longitude %></td>
+                        <td id="tr<%= i %>latitude"
+                            class="hiddendeviceInfos">
+                            <%= data[i].latitude %></td>
+
 
                     </tr>
                 <% } %>
                 </tbody>
             </table>
+
+
+
+
 
 
         </div>
@@ -203,7 +224,7 @@
                         <label for="status"> Status:</label>
                         <div>
                             <select class="browser-default custom-select form-control"
-                                    id="sort" onchange="getSelectedOption()"
+                                    id="status" onchange="getSelectedOption()"
                                     style="width: 100%; display:
                                     inline-block" name="deviceStatus">
                                 <option selected disabled>Status</option>
@@ -259,13 +280,13 @@
                         <div>
                             <div style="float: left;">
 
-                                <input id="Longitude" class="form-control"
+                                <input id="longitude" class="form-control"
                                        type="text" value="52.52"
                                        style="width: 170px" readonly>
                             </div>
                             <div style="float: right">
 
-                                <input id="Latitude" class="form-control"
+                                <input id="latitude" class="form-control"
                                        type="text" value="7.32"
                                        style="width: 170px" readonly>
                             </div>

@@ -118,4 +118,9 @@ padding-left: 1em;
     grid-area: box-c;
 }
 
+.hiddendeviceInfos
+{
+    display: none;
+}
+
 
