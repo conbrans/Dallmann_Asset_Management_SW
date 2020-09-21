@@ -11,6 +11,7 @@ const fetch = require('./helproutes/fetch');
 
 router.post("/historie", redirect.redirectLogin,
     authentication.authRight("view_device"), function (req, res) {
+    console.log(req.body);
 
 
         let datum = [];
@@ -34,9 +35,8 @@ router.post("/historie", redirect.redirectLogin,
 
 
 
-        fetch.getFetch("/api/history/getHistoryForSpecificDevice/" + req.body.invNumber)
+        fetch.getFetch("/api/history/getHistoryForSpecificDevice/" + req.body.inventoryNumber)
             .then(function (result) {
-                console.log(result);
                 for (let i = 0; i < result.length; i++) {
                     datum[i] = result[i].lastChange;
                     latitude[i] = result[i].latitude;

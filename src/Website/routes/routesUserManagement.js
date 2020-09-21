@@ -15,6 +15,26 @@ router.post("/addUser", authentication.authRight("add_user"), (req,res) => {
 
 });
 
+/*router.post("/editUser", authentication.authRight("edit_User"),(req, res) =>
+{
+    const passwordEncrypt = crypto.encrypt(req.body.password);
+    const passwordCorrectEncrypt = crypto.encrypt(req.body.passwordCorrect);
+
+    if (passwordEncrypt.encryptedData===passwordCorrectEncrypt.encryptedData)
+    {
+        req.body.password= passwordEncrypt;
+            console.log(req.body.password);
+
+
+        fetch.putFetch("/api/user/editUser/"+req.session.userID,req)
+            .then(res.redirect("/editUser"))
+            .catch((error)=>
+            {
+                console.error('Error:',error);
+            })
+    }
+});*/
+
 router.post("/updateUser", authentication.authRight("edit_user"),(req,res)=> {
     fetch.putFetch("/api/user/updateUser/"+req.body.workerid,req)
         .then(() => res.redirect("back"))

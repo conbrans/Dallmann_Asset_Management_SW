@@ -21,11 +21,13 @@ const {
 function getAccess(req, data, res) {
 
     if (!data.access) {
-        res.redirect("/");
+        res.redirect("/failedLogin");
 
     } else {
         req.session.userID = data.worker_id;
         req.session.username = data.firstName + " " + data.surname;
+        req.session.firstname = data.firstName;
+        req.session.surname = data.surname;
         req.session.email = data.e_mail;
         req.session.role = data.role;
         req.session.rights = data.rights;
@@ -43,7 +45,6 @@ function getAccess(req, data, res) {
 }
 
 router.post("/login", function (req, res) {
-    console.log(req.body);
 
     var hashedPassword = hash.hash(req.body.password)
         .then(function (result) {

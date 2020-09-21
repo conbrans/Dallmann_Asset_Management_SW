@@ -15,7 +15,11 @@ function sendMessage(messagetype)
 
                 case "failedLogin":
 
-                    req.toastr.error('Da ist etwas schiefgelaufen',
+                    req.toastr.error('Die Login Daten sind Ihre interne' +
+                        ' Mail-Adresse (m.mustermann@dallmann-bau.de) und' +
+                        ' ein personalisertes Passwort oder das' +
+                        ' Standardpassword, welches vom Admin festgelegt' +
+                        ' worden ist. ',
                         title = 'Login nicht möglich',
                         options = {});
                     break;
