@@ -8,7 +8,8 @@ const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
 const router = express.Router();
-const hashing = require("crypto");
+const crypto = require('../../Website/routes/helproutes/crypto.js');
+const bcrypt = require('bcrypt');
 
 /**
  * route for getting all users out of database
@@ -69,6 +70,12 @@ router.get("/api/user/getSpecificUser/:workerId",(request, response) => {
 
 router.post("/api/user/createUser", constraint.workerConstraints, (request, response) =>
 {
+
+    let test = crypto.encrypt('Hallo');
+    console.log(test);
+    console.log(crypto.decrypt(test));
+   // console.log(crypto.encrypt(test));
+
    console.log(request.body);
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
@@ -104,23 +111,21 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
 
     connection.query(sql, function (err, result) {
 
-        var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2);
+      /*  var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2); */
 
-
-
+        let str = Object.values(result[0])[0];
 
         if (err) {
             response.json({"Message": "Test"});
             console.log('Error connecting to Db');
             return;
-        } else if (str === "1") {
+        } else if (str == "1") {
 
             const errors = validationResult(request);
             if (!errors.isEmpty()) {
                 return response.json(errors.array());
             }
-
 
             update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
                 "surname ='" + request.body.firstName + "', firstname ='" + request.body.surname + "'," +
@@ -154,14 +159,16 @@ router.delete("/api/user/deleteUser/:userId",(request, response) => {
 
     connection.query(sql, function (err, result) {
 
-        var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2);
+      /*  var string = JSON.stringify(result);
+        var str = string.substring(string.length - 3, string.length - 2); */
+
+        let str = Object.values(result[0])[0];
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql"});
             console.log('Error connecting to Db');
             return;
-        } else if (str === "1") {
+        } else if (str == "1") {
 
             let sql2 = "DELETE FROM WORKER WHERE WORKER.worker_id = " + request.params.userId + ";";
 
@@ -181,22 +188,95 @@ router.delete("/api/user/deleteUser/:userId",(request, response) => {
 
 });
 
-router.post("/api/user/updatePassword/", (request, response) => {
+router.put("/api/user/updatePassword", async (request, response) => {
 
-    sql = "UPDATE worker SET password='"+request.body.newPassword+"' WHERE e_mail ='"+request.body.eMail+"';";
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(request.body.password, salt);
 
-    connection.query(sql, function (err) {
+        sql = "UPDATE WORKER SET password='"+hashed+"' WHERE e_mail ='"+request.body.eMail+"';";
+
+        connection.query(sql, function (err) {
+            if (err) {
+                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql2"});
+                console.log('Error connecting to Db');
+                return;
+            }
+            console.log('updateUser.Connection established');
+            response.json({"Message": "Passwort wurde erfolgreich zurückgesetzt"});
+        })
+
+});
+
+router.put("/api/user/comparePassword", (request, response) => {
+
+    sql = "SELECT WORKER.password FROM WORKER WHERE e_mail ='"+request.body.eMail+"';";
+
+    connection.query(sql, async function (err,result) {
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql2"});
             console.log('Error connecting to Db');
             return;
         }
         console.log('updateUser.Connection established');
-        response.json({"Message": "Passwort wurde erfolgreich zurückgesetzt"});
+        const compare = await bcrypt.compare(request.body.password, result[0].password);
+        if(!compare) {
+            return response.json({"Message": "Kombination aus Passwort und EMail stimmt nicht."})                   //Klartextpasswort ist 1234
+            console.log(compare);
+
+        } else return response.json({"Message": "Kombination ist korrekt."});
+
+            console.log(compare);
+    })
+});
+
+router.put("/api/user/editProfile/:userId", (request, response) => {
+
+
+  /*  select = "SELECT password, iv FROM WORKER WHERE worker_id = "+request.params.userId+";";
+
+    connection.query(select, function (err, result) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql2"});
+            console.log('Error connecting to Db');
+            return;
+        }
+
+        var encrypted =
+            {
+
+                iv: result[0].iv.toString('hex'),
+                encryptedData: result[0].password.toString('hex')
+
+            };
+
+        console.log(encrypted);
+       console.log(crypto.decrypt(encryptet));
+
     })
 
+    let password = crypto.encrypt(request.body.password);
 
-})
+    update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
+        "surname ='" + request.body.firstName + "', firstname ='" + request.body.surname + "', password ='" +password.encryptedData+ "', iv = '" +password.iv+"' " +
+        "WHERE worker_id = " + request.params.userId + ";"; */
+
+        update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
+        "surname ='" + request.body.firstName + "', firstname ='" + request.body.surname + "', password ='" +request.body.password+ "'" +
+        "WHERE worker_id = " + request.params.userId + ";";
+
+
+    connection.query(update, function (err) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen sql2"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        console.log('updateUser.Connection established');
+        response.json({"Message": "Profil wurde erfolgreich bearbeitet."});
+
+    })
+
+});
 
 module.exports = router;
 /**
