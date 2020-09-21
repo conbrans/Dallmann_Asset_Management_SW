@@ -6,8 +6,21 @@
 <link rel="stylesheet" href="css/headFootDesign.css">
 <link rel="stylesheet" href="css/table.css">
 <link rel="stylesheet" href="css/historie.css">
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="js/colResizable.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+
 <script src="javascript/sortTable.js"></script>
 <script src="javascript/historie.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
 <!-- TODO den hiddeninput zu session ergänzen -->
 <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -15,6 +28,7 @@
       href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 </head>
 <body>
+<script> $("#table").colResizable({liveDrag:true});</script
 
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
@@ -46,10 +60,19 @@
         <thead>
         <tr>
             <th onclick="sortTable(1)">Datum</th>
-           <!-- <th onclick="sortTable(2)">Baustellen ID</th>
-            <th onclick="sortTable(3)">Baustellen Bezeichnung</th>
-            <th onclick="sortTable(4)">Standort</th>
-            <th onclick="sortTable(5)">vorheriger<br> Standort</th>-->
+            <th onclick="sortTable(1)">Modell</th>
+            <th onclick="sortTable(1)">Hersteller</th>
+            <th onclick="sortTable(1)">Seriennummer</th>
+            <th onclick="sortTable(1)">Garantie</th>
+            <th onclick="sortTable(1)">Notiz</th>
+            <th onclick="sortTable(1)">Status</th>
+            <th onclick="sortTable(1)">Kategorie/th>
+            <th onclick="sortTable(1)">TÜV</th>
+            <th onclick="sortTable(1)">UVV</th>
+            <th onclick="sortTable(1)">Reparatur</th>
+            <th onclick="sortTable(1)">ReparaturNotiz</th>
+            <th onclick="sortTable(1)">BaustellenId</th>
+            <th onclick="sortTable(1)">BaustellenName</th>
             <th style="text-align: center">Karte</th>
         </tr>
         </thead>
@@ -57,6 +80,19 @@
         <% for (var i = 0; i < datum.length;i++) { %>
             <tr>
                 <td><%= datum[i] %></td>
+                <td><%= model[i] %></td>
+                <td><%= manufacturer[i] %></td>
+                <td><%= serialNumber[i] %></td>
+                <td><%= guarantee[i] %></td>
+                <td><%= note[i] %></td>
+                <td><%= statusDescription[i] %></td>
+                <td><%= category[i] %></td>
+                <td><%= lastTuev[i] %></td>
+                <td><%= lastUvv[i] %></td>
+                <td><%= lastRepair[i] %></td>
+                <td><%= repairNote[i] %></td>
+                <td><%= projectId[i] %></td>
+                <td><%= buildingSite[i] %></td>
                 <input id="longitude<%=i%>" type="hidden"
                        value="<%=longitude%>">
                 <input id="latitude<%=i%>" type="hidden" value="<%=latitude%>">
@@ -70,9 +106,23 @@
 
 </div>
 <div id="historyMap">
-    <iframe width="" height="500" src=""
-            style='height:500px;width:100%;'></iframe>
+    <div id="mapid"></div>
+    <!--<iframe width="" height="500" src=""
+            style='height:500px;width:100%;'></iframe>-->
 </div>
+<!--<script>
+    var map = L.map('mapid').setView([52.52, 7, 32], 5);
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+
+    }).addTo(map);
+    var markerElement = L.marker([52.52, 7, 32]).addTo(map);
+    //var marker2 = L.marker([52, 7, 32]).addTo(map);
+</script>-->
+
+<style>
+    #mapid { height: 400px; }
+</style>
 
 
 <%- include('../Views/general/footer.ejs'); -%>

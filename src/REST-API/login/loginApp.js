@@ -6,7 +6,7 @@ const app = express();
 const ONE_YEAR = 1000 * 60 * 60 * 24 * 365;
 const connection = require('../../../src/REST-API/databaseConnection/connection');
 const router = express.Router();
-const crypto = require('../src/Website/routes/helproutes/crypto');
+const crypto = require('../../Website/routes/helproutes/crypto');
 const fs = require('fs');
 
 /*const {

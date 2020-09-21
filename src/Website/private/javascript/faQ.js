@@ -1,7 +1,10 @@
-setTimeout(() => {
+window.onload = function ()
+{
     const container = document.getElementById("text");
     const links = container.getElementsByClassName("link");
     const picture = document.getElementById("picture");
+
+
     // show the first icon
     picture.getElementsByClassName("fas")[0].style.display = "block";
 
@@ -23,5 +26,7 @@ setTimeout(() => {
             this.className += " active";
         });
     }
-}, 1);
+}
+
+
 

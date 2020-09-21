@@ -115,7 +115,7 @@ public class Rent
 
 
 
-    public String deleteReservation() //TODO
+    public String deleteReservation()
     {
         return null;
 

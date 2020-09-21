@@ -17,7 +17,7 @@ setTimeout(() => {
         for (var i = 1; i < rows.length; i++) {
             let row = rows[i];
             let cells = row.cells;
-            cells[1].innerHTML =
+            cells[cells.length-1].innerHTML =
 
             "<button name='button' class='btn btn-warning px-3' " +
                 "style='background: #fbbb11' onclick='setSrc("+i+")'>" +
