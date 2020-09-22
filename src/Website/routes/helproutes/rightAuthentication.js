@@ -6,7 +6,8 @@
 function authRight(right) {
     return (req, res, next) => {
         {
-            // toLowercase, um Fehler bei den redirects zu vermeiden
+            // right.toLowerCase to avoid wrong access because of wrong
+            // uppercase_lowercase
             if (req.session.rights[right.toLowerCase()] === 0) {
                 res.redirect("/home");
             } else {

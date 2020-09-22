@@ -12,13 +12,6 @@ const path = require('path');
  */
 const routerGet = require('./helproutes/routerGet');
 
-/*
-const httpsOptions =
-    {
-        cert: fs.readFileSync(path.dirname('sslfiles'),'','cert.pem'),
-        key : fs.readFileSync(path.dirname('sslfiles'),'','key.pem')
-    }
-    */
 
 /**
  * Require of standard routes
@@ -53,6 +46,15 @@ app.use(restDevice);
 app.use(restHistory);
 app.use(restWorker);
 app.use(restLogin);
+
+/*https.createServer(
+    {
+    cert : fs.readFileSync('C:\\Users\\co99b\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\sslfiles\\server.crt'),
+        key : fs.readFileSync('C:\\Users\\co99b\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\sslfiles\\server.key')
+    },app).listen(3000, () => console.log(
+    "listening on: " +
+    `https://localhost:3000`
+));*/
 
 app.listen(3000, () => console.log(
     "listening on: " +

@@ -44,6 +44,9 @@ function getAccess(req, data, res) {
     }
 }
 
+/**
+ * send the login values to REST, the password is hashed and compared in REST
+ */
 router.post("/login", function (req, res) {
 
     var hashedPassword = hash.hash(req.body.password)

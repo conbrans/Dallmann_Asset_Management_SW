@@ -164,6 +164,7 @@ footer
     border-top: 1px solid /*var(--dark)*/ #fbb904;;
     text-align: left;
     font-size: 16px;
+    z-index: 10000;
 
 }
 

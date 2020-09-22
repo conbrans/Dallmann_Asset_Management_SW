@@ -56,14 +56,13 @@ router.get("/addDevice", redirect.redirectLogin,
 router.get("/booking", redirect.redirectLogin,
     authentication.authRight("booking_device"),
     (req, res) => {
+        console.log("TEST");
         res.render("booking.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
-                geraetenummer: "",
-                minDate: "",
-                maxDate: "",
+                inventoryNumber : "23221320",
             })
 
     });
