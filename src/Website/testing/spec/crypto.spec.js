@@ -9,9 +9,4 @@ describe("Encryption",()=>
         //expect(testencrypt).toContain("iv");
         //expect(testencrypt).toContain("encryptedData");
     });
-
-});
-describe("Decrpytion",()=>
-{
-
 });

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
-    <link rel="stylesheet" href="css/startseite.css">
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/adminCreateUser.css">
@@ -13,7 +12,6 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <script src="../javascript/functionTab.js"></script>
     <script src="../javascript/adminUpdateUser.js"></script>
 </head>
 <body>
@@ -21,20 +19,12 @@
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
 <main>
-    <h2 style="margin-left: 10%">Nutzerdaten ändern</h2>
+    <h2>Nutzerdaten ändern</h2>
 
     <div id="form">
 
-        <div class="tab">
 
-            <button class="tablinks" id="defaultOpen"
-                    onclick="openTab(event ,'infos')">Benutzerdaten
-            </button>
-        </div>
-        <br>
-        <div id="infos" class="tabcontent">
-
-            <h3 style="text-align: center">Benutzer Daten</h3>
+            <h3>Benutzer Daten</h3>
 
             <form class="userProfilContent" action="/editUser" method="post">
                 <div class="form-group">
@@ -101,7 +91,6 @@
                 <br>
             </form>
         </div>
-    </div>
 </main>
 <%- include('../Views/general/footer.ejs'); -%>
 </body>

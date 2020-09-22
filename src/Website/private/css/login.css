@@ -25,6 +25,7 @@ html {
 body {
     -webkit-font-smoothing:antialiased;
     font-size: 16px;
+    /* //TODO ändern */
     font-smoothing:antialiased;
     height:100%;
     line-height: 1.5em;
@@ -123,7 +124,7 @@ body, input {
     border: 1px solid rgba(0,0,0,0.3);
 }
 /* IE 9-10 */
-@media screen\0 {
+@media screen/*\0*/ {
     #loginBox:after {
         background-color: white;
     }

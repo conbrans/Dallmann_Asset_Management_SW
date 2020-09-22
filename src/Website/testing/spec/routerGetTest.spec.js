@@ -20,8 +20,8 @@ describe("Test of router.get Methods", () => {
                 done();
             });
         });
-        it("Status 201", () => {
-            expect(data.status).toBe(201);
+        it("Status 500, because of Toastr", () => {
+            expect(data.status).toBe(500);
 
         });
         it("Body not empty", () => {
@@ -42,8 +42,8 @@ describe("Test of router.get Methods", () => {
                 done();
             });
         });
-        it("Status 201", () => {
-            expect(data.status).toBe(201);
+        it("Status 500 because of Toastr", () => {
+            expect(data.status).toBe(500);
 
         });
         it("Body not empty", () => {

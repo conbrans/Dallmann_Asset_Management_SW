@@ -30,8 +30,6 @@ function decrypt(text) {
     return decrypted.toString();
 }
 
-
-
 module.exports=
     {
         encrypt,

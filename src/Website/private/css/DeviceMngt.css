@@ -10,6 +10,7 @@ html {
 body {
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
+    /* //TODO auf richtiges anpassen font-smoothing gibts nicht mehr */
     font-smoothing: antialiased;
     height: 100%;
     line-height: 1.5em;
@@ -29,7 +30,6 @@ body {
     position: relative;
     height: 94%;
     width: 100%;
-    width: content-box;
 }
 
 #DeviceList {

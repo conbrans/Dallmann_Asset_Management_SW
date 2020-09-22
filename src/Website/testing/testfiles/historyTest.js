@@ -82,12 +82,50 @@ app.post("/historie", function (request, response) {
                     bauBZ: bauBZ,
                     location: standort,
                     lastLocation: vorStandort,
+                    longitude: "50.32",
+                    latitude: "8.25",
+                    model: "model",
+                    manufacturer:"manufacturer",
+                    serialNumber : "serialNumber",
+                    guarantee : "guarantee",
+                    note : "note",
+                    statusDescription : "statusDescription",
+                    category : "category",
+                    lastTuev : "lastTuev",
+                    lastUvv : "lastUvv",
+                    lastRepair : "lastRepair",
+                    repairNote : "repairNote",
+                    projectId : "projectId",
+                    buildingSite : "buildingSite",
                 });
 
         }, 1);
 
 
     });
+
+
+/*
+
+
+
+
+                    longitude: longitude,
+                    latitude: latitude,
+                    model: model,
+                    manufacturer:manufacturer,
+                    serialNumber : serialNumber,
+                    guarantee : guarantee,
+                    note : note,
+                    statusDescription : statusDescription,
+                    category : category,
+                    lastTuev : lastTuev,
+                    lastUvv : lastUvv,
+                    lastRepair : lastRepair,
+                    repairNote : repairNote,
+                    projectId : projectId,
+                    buildingSite : buildingSite,
+ */
 
 var server = app.listen(3001, () => {
 });

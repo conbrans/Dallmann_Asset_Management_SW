@@ -2,7 +2,7 @@ const promisedDataGet = require('../supportfiles/devices.json');
 const promisedDataPost = require('../supportfiles/success.json');
 const fetch = require('../../routes/helproutes/fetch');
 
-describe("Test of fetch methods",()=>
+describe("Test if the the fetch method contains the right Promises",()=>
 {
 
     it('getFetch',function (done)

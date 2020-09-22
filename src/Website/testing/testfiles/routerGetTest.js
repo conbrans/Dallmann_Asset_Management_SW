@@ -76,6 +76,8 @@ app.get("/booking",
                 geraetenummer: "",
                 minDate: "",
                 maxDate: "",
+                data : "tets",
+                inventoryNumber :"12344",
             })
 
     });
@@ -98,6 +100,7 @@ app.get("/bookinglist",
                     edit_booking: 1,
                     picking: 0
                 },
+                data:"data",
 
             });
     });
