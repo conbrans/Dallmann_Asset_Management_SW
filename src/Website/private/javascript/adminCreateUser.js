@@ -1,8 +1,4 @@
 /**
- * author = Constantin Brans
- */
-
-/**
  * autocompletion for the mail input, takes the first letter
  * of the first name and transform it to lowercase
  */
@@ -32,9 +28,9 @@ function setDefaultPassword()
  */
 function selectPermission()
 {
-    var lenght = document.getElementsByName("adminPermission")
+    var length = document.getElementsByName("adminPermission")
         .length
-    for (var i = 0; i < lenght ; i++)
+    for (var i = 0; i < length ; i++)
     {
         document.getElementsByName("adminPermission")
             [i].checked = false;

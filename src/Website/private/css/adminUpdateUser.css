@@ -30,9 +30,6 @@
     border-top: none;
 }
 
-
-
-
 #submit, #submit1
 {
     margin-left: 35%;
@@ -46,4 +43,8 @@
 {
     border-radius: 27px 27px 27px 27px;
     transform: scale(1.2);
+}
+
+h2{
+    margin-left: 10;
 }

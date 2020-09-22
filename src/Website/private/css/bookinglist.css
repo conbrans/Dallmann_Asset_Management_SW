@@ -1,0 +1,25 @@
+#content {
+    overflow-x: auto;
+}
+
+#button-container{
+    float: left;
+}
+
+.toggle-title{
+    text-align: right;
+    float: left;
+}
+
+#userlist
+{
+    width: 100%;
+}
+
+div.toggle-inner, div.toggle-inner-button {
+    display: none;
+}
+
+div.toggle-inner.show ,div.toggle-inner-button.show {
+    display: block !important;
+}

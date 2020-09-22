@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/historie.css">
-    <link rel="stylesheet" href="css/adminUpdateUser.css">
+    <link rel="stylesheet" href="css/adminCreateUser.css">
      <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -16,14 +16,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../javascript/adminUpdateUser.js"></script>
-    <script src="../javascript/functionTab.js"></script>
+    <script src="javascript/adminUpdateUser.js"></script>
+    <script src="javascript/functionTab.js"></script>
 </head>
 <body>
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
-<h2 style="margin-left: 10%">Nutzerdaten ändern</h2>
+<h2>Nutzerdaten ändern</h2>
 
 <div id="form">
 
@@ -37,7 +37,7 @@
     <br>
     <div id="infos" class="tabcontent">
 
-        <h3 style="text-align: center">Benutzer Daten</h3>
+        <h3>Benutzer Daten</h3>
 
         <form class="userProfilContent" action="/addUser" method="post">
             <div class="form-group">
@@ -115,7 +115,7 @@
 
 
     <div id="permission" class="tabcontent">
-        <h3 style="text-align: center">Rechte des Benutzers</h3>
+        <h3>Rechte des Benutzers</h3>
         <table id="permissiontable">
             <tr>
                 <th>Rechte</th>
@@ -150,9 +150,9 @@
                 </td>
                 <td>
 
-                    <button style=" border:none; border-radius: 50%; background-color: #fbbb11;"
+                    <button class="removeRadioButton"
                             onclick="removeCheckedRadio('adminPermission')">
-                        <i class="fas fa-times" style="color: white"></i>
+                        <i class="fas fa-times"></i>
                     </button>
                 </td>
             </tr>
@@ -180,9 +180,9 @@
                     </div>
                 </td>
                 <td>
-                    <button style=" border:none; border-radius: 50%; background-color: #fbbb11;"
+                    <button class="removeRadioButton"
                             onclick="removeCheckedRadio('workshopPermission')">
-                        <i class="fas fa-times" style="color: white"></i>
+                        <i class="fas fa-times"></i>
                     </button>
                 </td>
             </tr>
@@ -211,14 +211,14 @@
                     </div>
                 </td>
                 <td>
-                    <button style=" border:none; border-radius: 50%; background-color: #fbbb11;"
+                    <button class="removeRadioButton"
                             onclick="removeCheckedRadio('foremanPermission')">
-                        <i class="fas fa-times" style="color: white"></i>
+                        <i class="fas fa-times"></i>
                     </button>
                 </td>
             </tr>
 
-            <tr style=" border-bottom: 1px solid black;">
+            <tr>
                 <td>Buchhaltung</td>
                 <td>
                     <div class="custom-control custom-radio">
@@ -242,9 +242,9 @@
                     </div>
                 </td>
                 <td>
-                    <button style=" border:none; border-radius: 50%; background-color: #fbbb11;"
+                    <button class="removeRadioButton"
                             onclick="removeCheckedRadio('accountingPermission')">
-                        <i class="fas fa-times" style="color: white"></i>
+                        <i class="fas fa-times"></i>
                     </button>
                 </td>
             </tr>

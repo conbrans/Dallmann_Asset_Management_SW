@@ -36,6 +36,10 @@
     width:100%;
 }*/
 
+#sort{
+    width: 50%;
+}
+
 @media screen and (max-width: 1630px)
 {
     #table
