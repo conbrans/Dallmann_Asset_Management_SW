@@ -1,3 +1,6 @@
+.actionMenu{
+    margin-top: 50px;
+}
 
 .container {
     display: grid;
@@ -70,8 +73,13 @@
     text-align: center;
 }
 
+.inputDiv{
+    display: none;
+}
+
 .wrapper{
     margin: 10px;
 
 }
+
 

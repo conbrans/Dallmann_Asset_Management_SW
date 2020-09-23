@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Kommissionieren</title>
-    <link rel="stylesheet" type="text/css" href="../css/headFootDesign.css">
+    <link rel="stylesheet" href="../css/headFootDesign.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link rel="stylesheet" type="text/css" href="../css/booking.css">
+    <link rel="stylesheet" type="text/css" href="../css/commission.css">
+    <script src="../javascript/commission.js"></script>
 </head>
 <body>
 <!-- Menu Start -->
@@ -100,30 +101,30 @@
 
 <div class="actionMenu">
     <div class="container">
-        <div class="box">
+        <div class="box"  onclick="toggleElement('inputConstruction')">
             <a href="#">
                 <div class="hoverColor">
-                    <img class="boxImage" src="../img/construction.jpeg">
+                    <img class="boxImage" src="../img/construction.jpeg" alt="Baustelle">
                     <div class="bottom-left">
                         <h2>Baustelle</h2>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="box">
+        <div class="box"  onclick="toggleElement('inputRepair')">
             <a href="#">
                 <div class="hoverColor">
-                    <img class="boxImage" src="../img/garage.jpeg">
+                    <img class="boxImage" src="../img/garage.jpeg" alt="Reperatur">
                     <div class="bottom-left">
                         <h2>Reperatur</h2>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="box">
+        <div class="box"  onclick="toggleElement('inputWarehouse')">
             <a href="#">
                 <div class="hoverColor">
-                    <img class="boxImage" src="../img/warehouse.jpeg">
+                    <img class="boxImage" src="../img/warehouse.jpeg" alt="Lager">
                     <div class="bottom-left">
                         <h2>Lager</h2>
                     </div>
@@ -134,45 +135,54 @@
 </div>
 <br>
 <div class="inputMenu">
-    <hr><br>
-    <div class="inputConstruction">
-        <label for="inputDevice"><h4>Baustelle</h4></label>
-        <div id="inputDevice" class="inputBoxes">
+
+    <div class="inputDiv" id="inputConstruction">
+        <br><hr>
+        <h4>Baustelle</h4>
+        <div  class="inputBoxes">
             <div class="wrapper">
-                <label for="exampleForm2">GeräteID</label>
-                <input type="text" id="exampleForm2" class="form-control">
+                <label for="inputBoxConstruction deviceID">GeräteID</label>
+                <input type="text" id="inputBoxConstruction deviceID" class="form-control">
             </div>
             <div class="wrapper">
-                <label for="exampleForm2">BaustellenID</label>
-                <input type="text" id="exampleForm2" class="form-control">
+                <label for="inputBoxConstruction constructionID">BaustellenID</label>
+                <input type="text" id="inputBoxConstruction constructionID" class="form-control">
             </div>
         </div>
+        <input type="submit" class="btn btn-primary btn-md">
+        <hr><br>
     </div>
 
-<br><hr><br>
 
-    <div class="inputRepair">
-        <label for="inputDevice"><h4>Reperatur</h4></label>
-        <div id="inputDevice" class="inputBoxes">
+    <div class="inputDiv" id="inputRepair">
+        <br><hr>
+       <h4>Reperatur</h4>
+        <div class="inputBoxes">
             <div class="wrapper">
-                <label for="exampleForm2">GeräteID</label>
-                <input type="text" id="exampleForm2" class="form-control">
+                <label for="inputBoxRepair deviceID">GeräteID</label>
+                <input type="text" id="inputBoxRepair deviceID" class="form-control">
             </div>
             <div class="wrapper">
-                <label for="exampleForm2">BaustellenID</label>
-                <input type="text" id="exampleForm2" class="form-control">
+                <label for="inputBoxRepair constructionID">BaustellenID</label>
+                <input type="text" id="inputBoxRepair constructionID" class="form-control">
             </div>
         </div>
+        <input type="submit" class="btn btn-primary btn-md">
+        <hr><br>
     </div>
-    <br><hr><br>
-    <div class="inputWarehouse">
-        <label for="inputDevice"><h4>Lager</h4></label>
+
+
+    <div class="inputDiv" id="inputWarehouse">
+        <br><hr>
+        <h4>Lager</h4>
         <div id="inputDevice" class="inputBoxes">
             <div class="wrapper">
-                <label for="exampleForm2">GeräteID</label>
-                <input type="text" id="exampleForm2" class="form-control">
+                <label for="inputBoxWarehouse deviceID">GeräteID</label>
+                <input type="text" id="inputBoxWarehouse deviceID" class="form-control">
             </div>
         </div>
+        <input type="submit" class="btn btn-warning btn-md">
+        <hr><br>
     </div>
 </div>
 </body>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kommissionieren</title>
+    <link rel="stylesheet" href="../css/headFootDesign.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="../css/commission.css">
+    <script src="../javascript/commission.js"></script>
+</head>
+<body>
+
+<!-- NavigationBar Start -->
+<%- include('../Views/general/header.ejs'); -%>
+<!--Nav Ende -->
+
+<div class="actionMenu">
+    <div class="container">
+        <div class="box"  onclick="toggleElement('inputConstruction')">
+            <a href="#">
+                <div class="hoverColor">
+                    <img class="boxImage" src="../img/construction.jpeg" alt="Baustelle">
+                    <div class="bottom-left">
+                        <h2>Baustelle</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="box"  onclick="toggleElement('inputRepair')">
+            <a href="#">
+                <div class="hoverColor">
+                    <img class="boxImage" src="../img/garage.jpeg" alt="Reperatur">
+                    <div class="bottom-left">
+                        <h2>Reperatur</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="box"  onclick="toggleElement('inputWarehouse')">
+            <a href="#">
+                <div class="hoverColor">
+                    <img class="boxImage" src="../img/warehouse.jpeg" alt="Lager">
+                    <div class="bottom-left">
+                        <h2>Lager</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+<div class="inputMenu">
+
+    <div class="inputDiv" id="inputConstruction">
+        <br><hr>
+        <h4>Baustelle</h4>
+        <div  class="inputBoxes">
+            <div class="wrapper">
+                <label for="inputBoxConstruction deviceID">GeräteID</label>
+                <input type="text" id="inputBoxConstruction deviceID" class="form-control">
+            </div>
+            <div class="wrapper">
+                <label for="inputBoxConstruction constructionID">BaustellenID</label>
+                <input type="text" id="inputBoxConstruction constructionID" class="form-control">
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-md">
+        <hr><br>
+    </div>
+
+
+    <div class="inputDiv" id="inputRepair">
+        <br><hr>
+        <h4>Reperatur</h4>
+        <div class="inputBoxes">
+            <div class="wrapper">
+                <label for="inputBoxRepair deviceID">GeräteID</label>
+                <input type="text" id="inputBoxRepair deviceID" class="form-control">
+            </div>
+            <div class="wrapper">
+                <label for="inputBoxRepair constructionID">BaustellenID</label>
+                <input type="text" id="inputBoxRepair constructionID" class="form-control">
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-md">
+        <hr><br>
+    </div>
+
+
+    <div class="inputDiv" id="inputWarehouse">
+        <br><hr>
+        <h4>Lager</h4>
+        <div id="inputDevice" class="inputBoxes">
+            <div class="wrapper">
+                <label for="inputBoxWarehouse deviceID">GeräteID</label>
+                <input type="text" id="inputBoxWarehouse deviceID" class="form-control">
+            </div>
+        </div>
+        <input type="submit" class="btn btn-warning btn-md">
+        <hr><br>
+    </div>
+</div>
+
+<%- include('../Views/general/footer.ejs'); -%>
+</body>
+</html>
