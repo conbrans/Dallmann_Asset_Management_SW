@@ -45,7 +45,7 @@
 
 
 .box:hover .boxImage {
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .box:hover .bottom-left h2 {

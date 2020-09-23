@@ -6,6 +6,7 @@ describe("Redirects",()=>
         spyOn(authenfication,"authRight");
         authenfication.authRight("add_device");
         expect(authenfication.authRight).toHaveBeenCalledWith("add_device");
+
     });
 
 });

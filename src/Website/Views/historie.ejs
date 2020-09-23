@@ -29,7 +29,7 @@
     <div id="select">
         <p>
             <select class="browser-default custom-select" id="sort"
-                    onchange="getSelectedOption()" style="width: 50%">
+                    onchange="getSelectedOption()">
                 <option value="0" selected disabled>Sortieren nach</option>
                 <option value="1">Datum</option>
                 <option value="2">BaustellenID</option>
@@ -46,11 +46,20 @@
         <thead>
         <tr>
             <th onclick="sortTable(1)">Datum</th>
-            <!-- <th onclick="sortTable(2)">Baustellen ID</th>
-             <th onclick="sortTable(3)">Baustellen Bezeichnung</th>
-             <th onclick="sortTable(4)">Standort</th>
-             <th onclick="sortTable(5)">vorheriger<br> Standort</th>-->
-            <th style="text-align: center">Karte</th>
+            <th onclick="sortTable(1)">Modell</th>
+            <th onclick="sortTable(1)">Hersteller</th>
+            <th onclick="sortTable(1)">Seriennummer</th>
+            <th onclick="sortTable(1)">Garantie</th>
+            <th onclick="sortTable(1)">Notiz</th>
+            <th onclick="sortTable(1)">Status</th>
+            <th onclick="sortTable(1)">Kategorie/th>
+            <th onclick="sortTable(1)">TÜV</th>
+            <th onclick="sortTable(1)">UVV</th>
+            <th onclick="sortTable(1)">Reparatur</th>
+            <th onclick="sortTable(1)">ReparaturNotiz</th>
+            <th onclick="sortTable(1)">BaustellenId</th>
+            <th onclick="sortTable(1)">BaustellenName</th>
+            <th>Karte</th>
         </tr>
         </thead>
         <tbody>
@@ -61,6 +70,19 @@
                        value="<%=longitude[i]%>">
                 <input id="latitude<%=i%>" type="hidden"
                        value="<%=latitude[i]%>">
+                <td><%= model[i] %></td>
+                <td><%= manufacturer[i] %></td>
+                <td><%= serialNumber[i] %></td>
+                <td><%= guarantee[i] %></td>
+                <td><%= note[i] %></td>
+                <td><%= statusDescription[i] %></td>
+                <td><%= category[i] %></td>
+                <td><%= lastTuev[i] %></td>
+                <td><%= lastUvv[i] %></td>
+                <td><%= lastRepair[i] %></td>
+                <td><%= repairNote[i] %></td>
+                <td><%= projectId[i] %></td>
+                <td><%= buildingSite[i] %></td>
                 <td></td>
             </tr>
         <% } %>

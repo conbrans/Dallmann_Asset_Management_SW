@@ -49,21 +49,20 @@ router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
 
 router.get("/addDevice", redirect.redirectLogin,
     authentication.authRight("add_Device"), (req,res) => {
-        res.render("addDevice.ejs");
+        res.status(200).render("addDevice.ejs");
     });
 
 
 router.get("/booking", redirect.redirectLogin,
     authentication.authRight("booking_device"),
     (req, res) => {
-        res.render("booking.ejs",
+        console.log("TEST");
+        res.status(200).render("booking.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
-                geraetenummer: "",
-                minDate: "",
-                maxDate: "",
+                inventoryNumber : "23221320",
             })
 
     });
@@ -72,7 +71,7 @@ router.get("/bookinglist", redirect.redirectLogin,
     (req, res) => {
         fetch.getFetch("/api/borrow/getReservations")
             .then(data =>
-                res.render("bookinglist.ejs",
+                res.status(200).render("bookinglist.ejs",
                     {
                         username: req.session.username,
                         role: req.session.role,
@@ -87,7 +86,7 @@ router.get("/devices", redirect.redirectLogin,
     (req, res) => {
         fetch.getFetch("/api/device/getAllDevices")
             .then(data =>
-                res.render("newDeviceManagement.ejs",
+                res.status(200).render("newDeviceManagement.ejs",
                     {
                         username: req.session.username,
                         role: req.session.role,
@@ -100,7 +99,7 @@ router.get("/devices", redirect.redirectLogin,
 
 router.get("/faQ",
     (req, res) => {
-        res.render("FAQ.ejs",
+        res.status(200).render("FAQ.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,
@@ -112,7 +111,7 @@ router.get("/faQ",
 
 router.get("/picking",
     (req, res) => {
-        res.render("picking.ejs",
+        res.status(200).render("picking.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,

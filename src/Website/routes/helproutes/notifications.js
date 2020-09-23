@@ -63,7 +63,6 @@ function sendMessage(messagetype)
 module.exports =
     {
         sendMessage
-
     }
 
 

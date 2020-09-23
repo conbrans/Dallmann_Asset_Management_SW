@@ -20,18 +20,18 @@
 <main>
     <div id="bookingcontent">
         <div id="menu-caption">
-            <% if (geraetenummer === ""){ %>
+            <% if (inventoryNumber === ""){ %>
                 <h1>Reservierung für ein Gerät vornehmen: </h1>
             <% } else{ %>
-                <h1>Reservierung für das Gerät mit der Nummer: <span><%= geraetenummer %></span> vornehmen:</h1>
+                <h1>Reservierung für das Gerät mit der Nummer: <span><%=inventoryNumber %></span> vornehmen:</h1>
             <% } %>
         </div>
     </div>
 
     <div id="form">
-        <h3 style="text-align: center">Gerät reservieren</h3>
+        <h3>Gerät reservieren</h3>
         <form method="post" action="/book">
-            <% if (geraetenummer === ""){ %>
+            <% if (inventoryNumber=== ""){ %>
                 <div class="form-group">
 
                     <div class="form-row">
@@ -61,7 +61,7 @@
                             <div class="md-form mt-0">
                                 <label for="deviceNumber">Gerätenummer:</label>
                                 <input type="number" class="form-control" id="deviceNumber" name="Gerätenummer"
-                                       value="<%= geraetenummer %>" readonly>
+                                       value="<%= inventoryNumber %>" readonly>
 
                             </div>
                         </div>
