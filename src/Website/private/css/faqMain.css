@@ -1,0 +1,21 @@
+.linkcontainer{
+    float: left;
+    margin-left: 15%;
+    margin-top: 10%;
+    padding: 2.5%;
+    color: #0d0d0d;
+    border-radius: 27px;
+
+    background-color: #faba31;
+}
+
+h3
+{
+    padding-top: 20%;
+    text-align: center;
+}
+
+a
+{
+    text-decoration: none;
+}

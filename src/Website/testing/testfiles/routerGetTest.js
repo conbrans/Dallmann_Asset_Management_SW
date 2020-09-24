@@ -168,7 +168,7 @@ app.get("/devices",
 
 app.get("/faQ",
     (req, res) => {
-        res.render("FAQ.ejs",
+        res.render("FAQWebsite.ejs",
             {
                 username: "Teo Tester",
                 role: "Tester",

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ-BEREICH</title>
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <link rel="stylesheet" href="css/faqMain.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+<!-- NavigationBar Start -->
+<%- include('../Views/general/header.ejs'); -%>
+<!--Nav Ende -->
+
+<div>
+    <a href="/Website-FAQ">
+        <div id="web" class="linkcontainer">
+            <i class="fas fa-globe fa-10x"></i>
+            <h3>FAQ<br>Website</h3>
+        </div>
+    </a>
+    <a href="/App-FAQ">
+        <div class="linkcontainer">
+            <i class="fab fa-android fa-10x"></i>
+            <h3>FAQ<br>App</h3>
+        </div>
+    </a>
+    <a href="/Traccar-FAQ">
+    <div class="linkcontainer">
+        <i class="fas fa-map-marker-alt fa-10x"></i>
+        <h3>FAQ<br>Traccar</h3>
+    </div>
+    </a>
+
+</div>
+
+
+</div>
+
+<%- include('../Views/general/footer.ejs'); -%>

@@ -102,9 +102,9 @@ router.get("/searchDevice", (req, res) =>
     console.log(req.body);
 })
 
-router.get("/faQ",
+router.get("/FAQ",
     (req, res) => {
-        res.status(200).render("FAQ.ejs",
+        res.status(200).render("FAQ_MAIN.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,
@@ -113,6 +113,37 @@ router.get("/faQ",
 
     });
 
+router.get("/Website-FAQ",
+    (req, res) => {
+        res.status(200).render("newFAQ.ejs",
+            {
+                username: req.session.username,
+                role: req.session.role,
+                rights: req.session.rights,
+            });
+
+    });
+
+router.get("/App-FAQ",
+    (req, res) => {
+        res.status(200).render("FAQWebsite.ejs",
+            {
+                username: req.session.username,
+                role: req.session.role,
+                rights: req.session.rights,
+            });
+
+    });
+router.get("/Traccar-FAQ",
+    (req, res) => {
+        res.status(200).render("FAQWebsite.ejs",
+            {
+                username: req.session.username,
+                role: req.session.role,
+                rights: req.session.rights,
+            });
+
+    });
 
 router.get("/picking",
     (req, res) => {
