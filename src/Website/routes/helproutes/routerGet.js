@@ -97,6 +97,11 @@ router.get("/devices", redirect.redirectLogin,
             );
     });
 
+router.get("/searchDevice", (req, res) =>
+{
+    console.log(req.body);
+})
+
 router.get("/faQ",
     (req, res) => {
         res.status(200).render("FAQ.ejs",
@@ -111,7 +116,7 @@ router.get("/faQ",
 
 router.get("/picking",
     (req, res) => {
-        res.status(200).render("picking.ejs",
+        res.status(200).render("commission.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,

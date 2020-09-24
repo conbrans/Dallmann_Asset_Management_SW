@@ -19,8 +19,14 @@ const generator = (time, index) => {
 
 var requestLogStream = rfs.createStream(generator, {
 
+
     interval: '5d',
-    path: path.join('C:/Users/bvb-k/IdeaProjects/Dallmann_Asset_Management_SW/src/REST-API/ressources/logFiles/')
+    path : '../ressources/logFiles/'
+    /**
+     * PATH gewechselt, so dass es für alle funktioniert ;)
+     */
+    //path:
+    // path.join('C:/Users/bvb-k/IdeaProjects/Dallmann_Asset_Management_SW/src/REST-API/ressources/logFiles/')
 
 })
 

@@ -59,7 +59,7 @@ padding-left: 1em;
     margin-right: 10px;
     margin-left: 10px;
 }
-/* //TODO umstellen auf nen richtiges Element,Validierung
+/* //TODO umstellen auf nen richtiges Element,Validierung */
 .deviceInfoBoxes:nth-child {
     color: #eee;
 }

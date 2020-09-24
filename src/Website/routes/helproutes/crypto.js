@@ -9,6 +9,10 @@ const initializationVector = crypto.randomBytes(16);
  * @return {{encryptedData: string, initializationVector: string}}
  */
 
+var testtext = "TEST";
+
+var test = encrypt(testtext);
+var log = decrypt(test);
 function encrypt(text)
 {
     let chiper = crypto.createCipheriv('aes-256-cbc',Buffer.from(key),initializationVector);
@@ -22,9 +26,10 @@ function encrypt(text)
  * @return {string}
  */
 function decrypt(text) {
-    let iv = Buffer.from(text.iv, 'hex');
+    console.log(text);
+    let iv = Buffer.from(text.initializationVector, 'hex');
     let encryptedText = Buffer.from(text.encryptedData, 'hex');
-    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv);
+    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
     let decrypted = decipher.update(encryptedText);
     decrypted = Buffer.concat([decrypted, decipher.final()]);
     return decrypted.toString();
