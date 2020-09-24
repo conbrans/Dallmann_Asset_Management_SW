@@ -4,9 +4,10 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection')
-//const app = require('../../../src/app');
+const log = require('../middelwareFunctions/logger');
 const express = require('express');
-const router = express.Router();
+const router = express();
+
 
 /**
  * route for getting history for a specific device

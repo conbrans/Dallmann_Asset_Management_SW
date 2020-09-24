@@ -6,6 +6,17 @@ const connection = mysql.createConnection({
     database: 'dallmann_am2020',
     url: 'jdbc:mysql://131.173.64.49:3306/dallmann_am2020?serverTimezone=gmt'
 });
+
+var dbConfig = {
+
+    host: '131.173.64.49',
+    user: 'dallmann_am',
+    password: 'Eib5choowu',
+    database: 'dallmann_am2020',
+    url: 'jdbc:mysql://131.173.64.49:3306/dallmann_am2020?serverTimezone=gmt'
+
+};
+
 connection.connect((err) => {
     if(err){
         console.log('Error connecting to Db');
@@ -13,6 +24,8 @@ connection.connect((err) => {
     }
     console.log('Connection established');
 });
+
+
 
 module.exports = connection;
 

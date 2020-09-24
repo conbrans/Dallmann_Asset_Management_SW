@@ -4,11 +4,12 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection')
-const app = require('../../../src/app');
+const log = require('../middelwareFunctions/logger');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
-const router = express.Router();
+const router = express();
+
 
 /**
  * route for getting all reservations data

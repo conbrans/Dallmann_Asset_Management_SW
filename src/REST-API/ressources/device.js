@@ -5,8 +5,7 @@
 
 
 const connection = require('../../../src/REST-API/databaseConnection/connection');
-const app = require('../../../src/app');
-const logger = require('../middelwareFunctions/logger');
+const log = require('../middelwareFunctions/logger');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
@@ -17,38 +16,71 @@ const router = express();
  * route for getting all users out of database
  */
 
+
+/*"SELECT * FROM (SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
+"        gurantee AS guarantee,DEVICE.note,\n" +
+"        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
+"        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
+"        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
+"        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
+"        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
+"        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
+"FROM DEVICE\n" +
+"        LEFT JOIN BORROWS\n" +
+"                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
+"        LEFT JOIN PROJECT\n" +
+"                    ON BORROWS.project_id = PROJECT.project_id\n" +
+"        INNER JOIN DEVICE_STATUS\n" +
+"                    ON DEVICE.device_status = DEVICE_STATUS.device_status_id\n" +
+"        LEFT JOIN BEACON\n" +
+"                    ON DEVICE.beacon_major = BEACON.major and DEVICE.beacon_minor = BEACON.minor\n" +
+"        LEFT JOIN BEACON_POSITION\n" +
+"                    ON BEACON.major = BEACON_POSITION.major and BEACON.minor = BEACON_POSITION.minor\n" +
+"        LEFT JOIN LOCATION\n" +
+"                    ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
+"        LEFT JOIN TUEV\n" +
+"                   ON DEVICE.inventory_number = TUEV.inventory_number\n" +
+"        LEFT JOIN UVV\n" +
+"                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
+"        LEFT JOIN REPAIR\n" +
+"                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
+"        INNER JOIN CATEGORY\n" +
+"                   ON BEACON.major = CATEGORY.major GROUP BY DEVICE.inventory_number) t WHERE statusDescription = '"+request.body.status+"';"; */
+// router.use(log.logRequest);
+
+let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
+    "        gurantee AS guarantee,DEVICE.note,\n" +
+    "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
+    "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
+    "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
+    "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
+    "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
+    "        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
+    "FROM DEVICE\n" +
+    "        LEFT JOIN BORROWS\n" +
+    "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
+    "        LEFT JOIN PROJECT\n" +
+    "                    ON BORROWS.project_id = PROJECT.project_id\n" +
+    "        INNER JOIN DEVICE_STATUS\n" +
+    "                    ON DEVICE.device_status = DEVICE_STATUS.device_status_id\n" +
+    "        LEFT JOIN BEACON\n" +
+    "                    ON DEVICE.beacon_major = BEACON.major and DEVICE.beacon_minor = BEACON.minor\n" +
+    "        LEFT JOIN BEACON_POSITION\n" +
+    "                    ON BEACON.major = BEACON_POSITION.major and BEACON.minor = BEACON_POSITION.minor\n" +
+    "        LEFT JOIN LOCATION\n" +
+    "                    ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
+    "        LEFT JOIN TUEV\n" +
+    "                   ON DEVICE.inventory_number = TUEV.inventory_number\n" +
+    "        LEFT JOIN UVV\n" +
+    "                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
+    "        LEFT JOIN REPAIR\n" +
+    "                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
+    "        INNER JOIN CATEGORY\n" +
+    "                   ON BEACON.major = CATEGORY.major";
+
 router.get("/api/device/getAllDevices", (request, response) => {
-    sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
-        "        gurantee AS guarantee,DEVICE.note,\n" +
-        "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
-        "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
-        "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
-        "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
-        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId, name AS buildingSite, street, postcode, city," +
-        "        DEVICE.date_of_change AS lastChange\n" +
-        "FROM DEVICE\n" +
-        "        LEFT JOIN BORROWS\n" +
-        "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
-        "        LEFT JOIN PROJECT\n" +
-        "                    ON BORROWS.project_id = PROJECT.project_id\n" +
-        "        INNER JOIN DEVICE_STATUS\n" +
-        "                    ON DEVICE.device_status = DEVICE_STATUS.device_status_id\n" +
-        "        LEFT JOIN BEACON\n" +
-        "                    ON DEVICE.beacon_major = BEACON.major and DEVICE.beacon_minor = BEACON.minor\n" +
-        "        LEFT JOIN BEACON_POSITION\n" +
-        "                    ON BEACON.major = BEACON_POSITION.major and BEACON.minor = BEACON_POSITION.minor\n" +
-        "        LEFT JOIN LOCATION\n" +
-        "                    ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
-        "        LEFT JOIN TUEV\n" +
-        "                   ON DEVICE.inventory_number = TUEV.inventory_number\n" +
-        "        LEFT JOIN UVV\n" +
-        "                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
-        "        LEFT JOIN REPAIR\n" +
-        "                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
-        "        INNER JOIN CATEGORY\n" +
-        "                   ON BEACON.major = CATEGORY.major\n" +
-        "\n" +
-        "GROUP BY inventoryNumber;";
+    sql = selectSpecificDevice + " GROUP BY inventoryNumber;"
+
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -64,42 +96,14 @@ router.get("/api/device/getAllDevices", (request, response) => {
 
 });
 
+
+
 /**
  * route for getting all users out of database
  */
 
-router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response) => {
-    sql = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
-        "        gurantee AS guarantee,DEVICE.note,\n" +
-        "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
-        "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
-        "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
-        "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
-        "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
-        "        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
-        "FROM DEVICE\n" +
-        "        LEFT JOIN BORROWS\n" +
-        "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
-        "        LEFT JOIN PROJECT\n" +
-        "                    ON BORROWS.project_id = PROJECT.project_id\n" +
-        "        INNER JOIN DEVICE_STATUS\n" +
-        "                    ON DEVICE.device_status = DEVICE_STATUS.device_status_id\n" +
-        "        LEFT JOIN BEACON\n" +
-        "                    ON DEVICE.beacon_major = BEACON.major and DEVICE.beacon_minor = BEACON.minor\n" +
-        "        LEFT JOIN BEACON_POSITION\n" +
-        "                    ON BEACON.major = BEACON_POSITION.major and BEACON.minor = BEACON_POSITION.minor\n" +
-        "        LEFT JOIN LOCATION\n" +
-        "                    ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
-        "        LEFT JOIN TUEV\n" +
-        "                   ON DEVICE.inventory_number = TUEV.inventory_number\n" +
-        "        LEFT JOIN UVV\n" +
-        "                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
-        "        LEFT JOIN REPAIR\n" +
-        "                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
-        "        INNER JOIN CATEGORY\n" +
-        "                   ON BEACON.major = CATEGORY.major\n" +
-        "\n" +
-        "WHERE DEVICE.inventory_number ='" + request.params.inventoryNumber + "';";
+router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, response) => {
+    sql = selectSpecificDevice + " WHERE DEVICE.inventory_number ='" + request.body.inventoryNumber + "';";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -109,7 +113,108 @@ router.get("/api/device/getSpecificDevice/:inventoryNumber", (request, response)
         }
         var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
-        console.log(json)
+        response.json(result);
+    })
+
+});
+
+router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+        " WHERE statusDescription LIKE '%"+request.body.status+"%';";
+
+    connection.query(sql, function (err, result) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        var json = JSON.stringify(result)
+        console.log('GetAllDevices.Connection established');
+        response.json(result);
+    })
+
+});
+
+router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+        " WHERE category LIKE '%"+request.body.category+"%';";
+
+    connection.query(sql, function (err, result) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        var json = JSON.stringify(result)
+        console.log('GetAllDevices.Connection established');
+        response.json(result);
+    })
+
+});
+
+router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+        " WHERE model LIKE '%"+request.body.model+"%';";
+
+    connection.query(sql, function (err, result) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        var json = JSON.stringify(result)
+        console.log('GetAllDevices.Connection established');
+        response.json(result);
+    })
+
+});
+
+router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+        " WHERE lastTuev LIKE '%"+request.body.tuev+"%';";
+
+    connection.query(sql, function (err, result) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        var json = JSON.stringify(result)
+        console.log('GetAllDevices.Connection established');
+        response.json(result);
+    })
+
+});
+
+router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+        " WHERE lastUvv LIKE '%"+request.body.uvv+"%';";
+
+    connection.query(sql, function (err, result) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        var json = JSON.stringify(result)
+        console.log('GetAllDevices.Connection established');
+        response.json(result);
+    })
+
+});
+
+router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+        " WHERE lastRepair LIKE '%"+request.body.repair+"%';";
+
+    connection.query(sql, function (err, result) {
+        if (err) {
+            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        var json = JSON.stringify(result)
+        console.log('GetAllDevices.Connection established');
         response.json(result);
     })
 

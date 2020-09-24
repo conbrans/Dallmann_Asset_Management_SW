@@ -40,12 +40,16 @@ const restDevice = require('../../REST-API/ressources/device');
 const restHistory = require('../../REST-API/ressources/history');
 const restWorker = require('../../REST-API/ressources/worker');
 const restLogin= require('../../REST-API/login/loginApp');
+const restLogger = require('../../REST-API/middelwareFunctions/logger')
 
+app.use(restLogger.assignId);
+app.use(restLogger.logRequest);
 app.use(restBorrow);
 app.use(restDevice);
 app.use(restHistory);
 app.use(restWorker);
 app.use(restLogin);
+
 
 /*https.createServer(
     {
