@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <! //TODO ab hier  css aus html entfernen -->
+
+    <link rel="stylesheet" href="css/headFootDesign.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script  src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="icon" type="image/x-icon"
+          href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+
+    <title>Dallmann Asset-Management</title>
+</head>
+<body>
+<!-- NavigationBar Start -->
+<%- include('../Views/general/header.ejs'); -%>
+<!--Nav Ende -->
+
+<table>
+    <tr>
+        <td><form method="post" action="/searchStatus">
+                <label for="sort">nach Status suchen</label>
+                <select name="status" class="browser-default custom-select
+                form-control input-cl" id="sort" style="width: 100%; display: inline-block">
+                    <option value="0" selected disabled>Status festlegen/ändern</option>
+                    <option value="1">Verfügbar</option>
+                    <option value="2">Ausgeliehen</option>
+                    <option value="3">In Wartung</option>
+                    <option value="4">Außer Betrieb</option>
+                    <option value="5">Verschollen/Verschwunden</option>
+                    <option value="6">Gestohlen</option>
+                </select>
+                <input type="submit">
+            </form></td>
+        <td><form method="post" action="/searchCategory">
+                <label for="category">nach Kategorien suchen</label>
+
+                <select class="browser-default custom-select form-control"
+                        id="category"
+                        onchange="getSelectedOption()"
+                        style="width: 100%; display: inline-block"
+                        name="category">
+                    <option selected disabled>Kategorie</option>
+                    <option value="Rüttelplatte">Rüttelplatte</option>
+                    <option value="Stampfer">Stampfer</option>
+                    <option value="Motorflex">Motorflex</option>
+                    <option value="Rohrgreifer">Rohrgreifer</option>
+                    <option value="Kettensäge">Kettensäge</option>
+                    <option value="Motorhammer">Motorhammer</option>
+                    <option value="Leiter">Leiter</option>
+                    <option value="Exoten">Exoten</option>
+                </select>
+                <input type="submit">
+            </form></td>
+    </tr>
+
+    <tr>
+        <td><form method="post" action="/searchModel">
+                <label for="model">nach Model suchen</label>
+                <input type="text" name="model" id="model">
+                <input type="submit">
+            </form></td>
+        <td><form method="post" action="/searchTuv">
+                <label for="tuv">nach TÜV</label>
+                <input type="date" name="tuev" id="tuv">
+                <input type="submit">
+            </form></td>
+    </tr>
+
+    <tr>
+        <td><form method="post" action="/searchUvv">
+                <label for="uvv">nach UVV</label>
+                <input type="date" name="uvv" id="uvv">
+                <input type="submit">
+            </form></td>
+        <td><form method="post" action="/searchRepair">
+                <label for="repair">nach Reperaturdatum suchen </label>
+                <input type="date" name="repair" id="repair">
+                <input type="submit">
+            </form></td>
+    </tr>
+</table>
+
+</body>
+</html>

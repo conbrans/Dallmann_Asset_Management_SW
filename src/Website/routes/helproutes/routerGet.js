@@ -153,6 +153,17 @@ router.get("/profil", redirect.redirectLogin, (req, res) => {
 
 });
 
+router.get("/search",redirect.redirectLogin, (req, res) =>
+{
+    res.status(200).render("search.ejs",
+        {
+            username: req.session.username,
+            role : req.session.role,
+            rights : req.session.rights,
+
+        });
+});
+
 
 router.get("/update", redirect.redirectLogin,
     authentication.authRight("add_user"),

@@ -22,6 +22,7 @@ const history = require('./routesHistory');
 const device = require('./routerDevice');
 const login = require('./routesLogin');
 const usermanagement = require('./routesUserManagement');
+const search = require('./routesSearch');
 
 app.use(booking);
 app.use(history);
@@ -29,6 +30,7 @@ app.use(login);
 app.use(device);
 app.use(routerGet);
 app.use(usermanagement);
+app.use(search);
 
 
 /**

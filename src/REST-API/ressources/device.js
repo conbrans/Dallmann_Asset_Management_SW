@@ -117,10 +117,10 @@ router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, respons
     })
 
 });
-
+//TODO geändert auf status_id
 router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
-        " WHERE statusDescription LIKE '%"+request.body.status+"%';";
+        " WHERE deviceStatus LIKE '%"+request.body.status+"%';";
 
     connection.query(sql, function (err, result) {
         if (err) {
