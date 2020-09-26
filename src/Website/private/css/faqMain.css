@@ -19,3 +19,13 @@ a
 {
     text-decoration: none;
 }
+
+#WebFAQ{
+  display: none;
+}
+
+.linkcontainer:hover {
+   transform: scale(1.02);
+}
+
+

@@ -20,7 +20,7 @@ app.use(session({
 }));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'Website/Views'));
+app.set('views', path.join(__dirname, 'Website/Views'),path.join(__dirname,'Wensite/Views/FAQ'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());

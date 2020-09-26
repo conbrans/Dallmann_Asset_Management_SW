@@ -115,14 +115,14 @@ header{
     white-space: nowrap;
     width: auto;
     z-index: 99;
-    border-top: 1px solid var(--grey);
+    border-top: 1px solid #faba31 /*var(--primary)*/;
 }
 
 #main-menu .main-menu-sub > li {
     display: block;
     float: none;
     width: 100%;
-    background: var(--grey); /*#f1f1f1;*/
+    background: /*var(--primary)*/ #faba31; /*#f1f1f1;*/
     padding: 0 30px;
     border-bottom: 1px solid #fff;
 }

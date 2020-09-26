@@ -211,7 +211,8 @@ router.put("/api/user/updatePassword", async (request, response) => {
 
 });
 
-router.put("/api/user/editProfile/:userId", (request, response) => {
+router.post("/api/user/editProfile/:userId", (request, response) => {
+
 
     let password = crypto.decrypt(request.body.password);
 

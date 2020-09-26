@@ -45,19 +45,61 @@
         <div class="toggle-title ">
             <h3>
                 <i></i>
-                <span class="title-name">Startseite</span>
+                <span class="title-name">Dashboard</span>
             </h3>
         </div>
         <div class="toggle-inner">
+            <figure>
+                <% if (role === "Admin"){ %>
+                    <img src="img/adminhomepage.png"
+                         alt=" Standardansicht der Admin Startseite" width="100%"
+                         height="100%" >
+                    <figcaption>
+                        Standardansicht des Admin Dashboards</figcaption>
+                <% } %>
+                <% if (role === "Werkstatt"){ %>
+                    <img src="img/workshophomepage.png"
+                         alt=" Standardansicht der Werkstatt Startseite"
+                         width="100%" height="100%">
+                    <figcaption>
+                        Standardansicht des Werkstatt Dashboards</figcaption>
+                <% } %>
+                <% if (role === "Polier"){ %>
+                    <img src="img/foremanhomepage.png"
+                         alt=" Standardansicht der Polier Startseite" width="100%"
+                         height="100%" >
+                    <figcaption>
+                        Standardansicht des Polier Dashboards</figcaption>
+                <% } %>
+                <% if (role === "Buchhaltung"){ %>
+                    <img src="img/accountinghomepage.png"
+                         alt=" Standardansicht der Buchhaltungs Startseite"
+                         width="100%" height="100%">
+                    <figcaption>
+                        Standardansicht des Buchhaltungs Dashboards</figcaption>
+                <% } %>
+
+            </figure>
             <p>
-                ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                Über die einzelnen Schaltflächen gelangt man zu den Funktionen der
+                Website,
+                diese reichen von der einfachen Ansicht der Geräte bis hin zum
+                Reservieren einzelner Geräte
+                für einen Zeitraum und/oder für eine Baustelle.
+                Auf die einzelnen Funktionen wird im weiteren Verlauf dieses FAQ
+                genauer eingegangen.
+            </p>
+            <h2>Menüleiste</h2>
+            <p>
+                Die Menüleiste am oberen Rand der Seite enthält die gleichen
+                Funktionen wie die Schaltflächen.
+                Durch einen Klick auf das Dallmann Logo gelangt man zurück auf
+                die Startseite,
+                diese Verlinkung kann von allen Seiten aufgerufen werden.
+
+
+            </p>
+            <p>
             </p>
         </div>
     </div><!-- END OF TOGGLE -->
@@ -70,19 +112,37 @@
             </h3>
         </div>
         <div class="toggle-inner">
-            <p>
-                ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            <p>Auf der Geräteseite ist eine Tabelle der gesamten Geräte
+                verfügbar, diese Tabelle enthält Informationen zur
+                Inventarnummer, Kategorie, Modell und dem Status des Gerätes.
+                Recht daneben befindet sich eine genauere Information zu den
+                einzelnen Geräten. Die einzelnen Informationen können eingesehen
+                werden, wenn Sie auf eine der Tabellenzeilen drücken, damit
+                werden die Informationen für das Gerät geladen.
             </p>
+            <% if (rights.edit_device===1){%>
+                <p>Auf dieser Seite können auch die Informationen für ein einzelnes
+                    Gerät geändert werden, so ist es möglich zum Beispiel die
+                    Inventarnummer zu ändern, das Gerät einer anderen Kategorie
+                    zuzuordnen, den Status des Gerätes zu ändern oder das
+                    TÜV/UVV-Datum zu ändern. Die Änderungen können über die
+                    Schaltfläche "Daten ändern" gespeichert werden.</p>
+            <% } %>
+            <p>Ein weiteres Feature ist das Einsehen der Historie eines Gerätes.
+                Dafür muss nachdem die Daten für ein einzelnes Gerät geladen
+                worden sind, auf die Schaltfläche "Historie anzeigen" geklickt
+                werden, damit gelangt man auf eine Übersicht über die letzten
+                Veränderungen eines spezifischen Gerätes.
+            </p>
+            <!-- Bild von Historie ergänzen -->
+            <p>Platzhalter</p>
+            <p>Über die Schaltfläche "Gerät reservieren" kann das zuvor
+                ausgewählte Gerät reserviert werden. Auf diese Funktion wird im
+                nächsten Teil genauer eingegangen.</p>
         </div>
     </div><!-- END OF TOGGLE -->
 
+    <% if (rights.booking_device === 1){ %>
     <div class="toggle" id="booking">
         <div class="toggle-title ">
             <h3>
@@ -91,18 +151,31 @@
             </h3>
         </div>
         <div class="toggle-inner">
+            <p> Über die Schaltfläche Reservierung gelangen Sie zu einer
+                Übersicht über die bereits reservierten und ausgeliehen
+                Geräte. Ebenfalls enthält diese Seite Informationen über das
+                Anfangsdatum und Enddatum der Reservierung/Leihe.
+                Weiter Informationen die auf dieser Seite sichtbar sind, sind
+                der Entleiher mit Vor und Nachname, die BaustellenID und den
+                Baustellennamen.
             <p>
-                ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
+                Über die Schaltflächen im oberen Bereich der Seite, kann die
+                Reservierungsliste nach bestimmten Werten gefiltert werden.</p>
+            <p> Über den Button "Reservierung vornehmen" kann eine
+                Reservierung für ein beliebiges Gerät vorgenommen werden.
+                Allerdings muss über diesen Weg die Inventarnummer des
+                Gerätes angegeben werden.</p>
+            <% if (rights.delete_booking===1){%>
+                <p>
+                    Über die Schaltfläche "Resevierung löschen" können die
+                    eigenen Reservierung nach der Eingabe der Inventarnummer und
+                    des Anfangsdatums der zu löschenden Reservierung gelöscht
+                    werden.
+                </p>
+            <% }%>
         </div>
     </div><!-- END OF TOGGLE -->
+    <% } %>
 
     <div class="toggle" id="userProfil">
         <div class="toggle-title ">
@@ -113,18 +186,17 @@
         </div>
         <div class="toggle-inner">
             <p>
-                ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                Im Benutzerprofil können Sie Ihre persönlichen Daten ändern, wie
+                zum Beispiel den Vornamen, Nachnamen, die Mail-Adresse und das
+                Passwort. Im Feld "Passwort bestätigen" muss das neue Passwort
+                erneut bestätigt werden. Zwischen den Feldern "Passwort" und
+                "Passwort bestätigten" können Sie die Stärke ihres neuen
+                Passworts einsehen.
             </p>
         </div>
     </div><!-- END OF TOGGLE -->
 
+    <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
     <div class="toggle" id="userManagement">
         <div class="toggle-title ">
             <h3>
@@ -134,17 +206,21 @@
         </div>
         <div class="toggle-inner">
             <p>
-                ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                Diese Schaltfläche ist nur für die Administratoren sichtbar oder
+                für Benutzer mit den Berechtigungen Nutzer hinzufügen und Nutzer
+                löschen.
+                Über die Schaltfläche gelangt man zu einer Übersicht über alle
+                registrierten Nutzer der Anwendung.
+                Mit dem Button am rechten oberen Rand der Tabelle mit der
+                Beschriftung "Neuen Benutzer hinzufügen" gelangt man zu einer
+                weiteren Seite
+                Auf dieser könen die Stammdaten, wie Name, Nachname usw.
+                festgelegt werden. Ebenfalls kann hier die Zuordnung von Rechten
+                erfolgen.
             </p>
         </div>
     </div><!-- END OF TOGGLE -->
+    <%} %>
 
     <div class="toggle" id="picking">
         <div class="toggle-title ">
@@ -197,14 +273,9 @@
         </div>
         <div class="toggle-inner">
             <p>
-                ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                Durch einen Klick auf die Schaltfläche Logout oder das Logout-Symbol
+                melden Sie sich von der Website ab. Wenn die Seite geschlossen
+                wird, werden Sie automatisch abgemeldet.
             </p>
         </div>
     </div><!-- END OF TOGGLE -->
