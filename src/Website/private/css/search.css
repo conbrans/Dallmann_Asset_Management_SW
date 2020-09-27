@@ -1,0 +1,28 @@
+table{
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    background-color: #faba31;
+    border-radius: 27px;
+}
+
+th,tr,td{
+    text-align: center;
+    padding: 20px;
+}
+
+.searchInputs{
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: #faba31;
+}
+
+.searchInputs:focus{
+    outline: none;
+}
+
+option{
+    background-color: white;
+}

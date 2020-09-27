@@ -10,15 +10,14 @@ router.get('/', redirect.redirectHome,
     (req, res) => {
         res.status(201).render("login.ejs",
             {
-                req : req,
+                req: req,
             });
     });
 
-router.get('/failedLogin',redirect.redirectHome,notification.sendMessage("failedLogin"),(req, res) =>
-{
+router.get('/failedLogin', redirect.redirectHome, notification.sendMessage("failedLogin"), (req, res) => {
     res.status(403).render("login.ejs",
         {
-           req:req,
+            req: req,
         });
 
 });
@@ -48,7 +47,7 @@ router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
     });
 
 router.get("/addDevice", redirect.redirectLogin,
-    authentication.authRight("add_Device"), (req,res) => {
+    authentication.authRight("add_Device"), (req, res) => {
         res.status(200).render("addDevice.ejs");
     });
 
@@ -62,8 +61,8 @@ router.get("/booking", redirect.redirectLogin,
                 username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
-                inventoryNumber : "23221320",
-            })
+                inventoryNumber: "23221320",
+            });
 
     });
 router.get("/bookinglist", redirect.redirectLogin,
@@ -76,7 +75,7 @@ router.get("/bookinglist", redirect.redirectLogin,
                         username: req.session.username,
                         role: req.session.role,
                         rights: req.session.rights,
-                        data :data,
+                        data: data,
                     })
             )
     });
@@ -97,10 +96,9 @@ router.get("/devices", redirect.redirectLogin,
             );
     });
 
-router.get("/searchDevice", (req, res) =>
-{
+/*router.get("/searchDevice", (req, res) => {
     console.log(req.body);
-})
+});*/
 
 router.get("/FAQ",
     (req, res) => {
@@ -158,9 +156,6 @@ router.get("/commission",
     });
 
 router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
-    /*notification.sendMessage("booking"),
-    notification.sendMessage("tuvUvv"),
-    notification.sendMessage("maintenance"),*/
     (req, res) => {
 
         res.render('index.ejs',
@@ -180,40 +175,63 @@ router.get("/profil", redirect.redirectLogin, (req, res) => {
             rights: req.session.rights,
             firstname: req.session.firstname,
             surname: req.session.surname,
-            email : req.session.email,
+            email: req.session.email,
+            req: req,
         });
 
 });
 
+router.get("/editProfil", notification.sendMessage("editProfil"), (req, res) => {
+    res.render("profil.ejs",
+        {
+            username: req.session.username,
+            role: req.session.role,
+            rights: req.session.rights,
+            firstname: req.session.firstname,
+            surname: req.session.surname,
+            email: req.session.email,
+            req: req,
+        });});
 
-router.get("/update", redirect.redirectLogin,
-    authentication.authRight("add_user"),
-    (req, res) => {
-        res.render("adminUpdateUser.ejs",
+
+    router.get("/update", redirect.redirectLogin,
+        authentication.authRight("add_user"),
+        (req, res) => {
+            res.render("adminUpdateUser.ejs",
+                {
+                    username: req.session.username,
+                    role: req.session.role,
+                    rights: req.session.rights,
+                })
+
+        });
+
+    router.get("/search", redirect.redirectLogin, (req, res) => {
+        res.status(200).render("search.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
-            })
 
+            });
     });
 
-router.get("/userManagement", redirect.redirectLogin,
-    authentication.authRight("add_user"),
-    authentication.authRight("delete_User"),
-    (req, res) => {
-        fetch.getFetch("/api/user/getAllUsers")
-            .then(data =>
+    router.get("/userManagement", redirect.redirectLogin,
+        authentication.authRight("add_user"),
+        authentication.authRight("delete_User"),
+        (req, res) => {
+            fetch.getFetch("/api/user/getAllUsers")
+                .then(data =>
 
-                res.status(200).render("userManagement.ejs",
-                    {
-                        username: req.session.username,
-                        role: req.session.role,
-                        rights: req.session.rights,
-                        data: data,
-                    })
-            );
-    });
+                    res.status(200).render("userManagement.ejs",
+                        {
+                            username: req.session.username,
+                            role: req.session.role,
+                            rights: req.session.rights,
+                            data: data,
+                        })
+                );
+        });
 
 
-module.exports = router;
+    module.exports = router;

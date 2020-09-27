@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <! //TODO ab hier  css aus html entfernen -->
 
     <link rel="stylesheet" href="css/headFootDesign.css">
+    <link rel="stylesheet" href="css/search.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script  src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -19,11 +19,16 @@
 
 <table>
     <tr>
-        <td><form method="post" action="/searchStatus">
-                <label for="sort">nach Status suchen</label>
-                <select name="status" class="browser-default custom-select
-                form-control input-cl" id="sort" style="width: 100%; display: inline-block">
-                    <option value="0" selected disabled>Status festlegen/ändern</option>
+        <th colspan="2">Suchmethoden</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td><form  method="post" action="/searchStatus">
+                <select onchange="this.form.submit()" name="status"
+                        class="searchInputs" id="sort" style="width: 100%; display:
+                        inline-block">
+                    <option value="0" selected
+                            disabled>Status</option>
                     <option value="1">Verfügbar</option>
                     <option value="2">Ausgeliehen</option>
                     <option value="3">In Wartung</option>
@@ -31,14 +36,12 @@
                     <option value="5">Verschollen/Verschwunden</option>
                     <option value="6">Gestohlen</option>
                 </select>
-                <input type="submit">
             </form></td>
         <td><form method="post" action="/searchCategory">
-                <label for="category">nach Kategorien suchen</label>
 
-                <select class="browser-default custom-select form-control"
+                <select class="searchInputs"
                         id="category"
-                        onchange="getSelectedOption()"
+                        onchange="this.form.submit()"
                         style="width: 100%; display: inline-block"
                         name="category">
                     <option selected disabled>Kategorie</option>
@@ -51,33 +54,35 @@
                     <option value="Leiter">Leiter</option>
                     <option value="Exoten">Exoten</option>
                 </select>
-                <input type="submit">
             </form></td>
     </tr>
 
     <tr>
         <td><form method="post" action="/searchModel">
-                <label for="model">nach Model suchen</label>
-                <input type="text" name="model" id="model">
-                <input type="submit">
+                <input onchange="this.form.submit()" type="text" name="model"
+                        id="model" class="searchInputs" placeholder="Model">
             </form></td>
         <td><form method="post" action="/searchTuv">
-                <label for="tuv">nach TÜV</label>
-                <input type="date" name="tuev" id="tuv">
-                <input type="submit">
+                <input placeholder="TÜV" class="searchInputs" type="text"
+                       onfocus="(this.type='date')" onblur="(this
+                       .type='text')" onchange="this.form.submit()" name="tuev">
             </form></td>
     </tr>
 
     <tr>
         <td><form method="post" action="/searchUvv">
-                <label for="uvv">nach UVV</label>
-                <input type="date" name="uvv" id="uvv">
-                <input type="submit">
+                <input onchange="this.form.submit()" type="text" name="uvv"
+                       placeholder="UVV" onfocus="(this
+                .type='date')" onblur="(this
+                       .type='text')"
+                        id="uvv" class="searchInputs">
             </form></td>
         <td><form method="post" action="/searchRepair">
-                <label for="repair">nach Reperaturdatum suchen </label>
-                <input type="date" name="repair" id="repair">
-                <input type="submit">
+                <input onchange="this.form.submit()" onfocus="(this
+                .type='date')" onblur="(this
+                       .type='text')" type="text" name="repair"
+                       id="repair" class="searchInputs"
+                       placeholder="Reparaturdatum">
             </form></td>
     </tr>
 </table>

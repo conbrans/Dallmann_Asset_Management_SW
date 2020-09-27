@@ -142,7 +142,46 @@ header{
     height: 5%;
     transform: scale(1.1);
 }
+ #main-menu li > .searchBox {
+     margin-top: 25%;
+     background-color:red;
+     height: 40px;
+     width: auto;
+     border-radius: 40px;
+     padding: 10px;
+}
 
+.searchBox:hover > .searchValue {
+
+}
+
+.searchBox:hover > .searchButton {
+
+}
+
+.searchButton {
+    float: right;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+
+}
+
+.searchButton > i {
+    justify-content: center;
+    align-content: center;
+
+}
+
+.searchValue {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    text-align: left;
+    color: white;
+}
 
 
 .clear {
@@ -152,6 +191,7 @@ header{
 
 
 }
+
 
 footer
 {
