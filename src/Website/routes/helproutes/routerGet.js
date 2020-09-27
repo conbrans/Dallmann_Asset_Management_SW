@@ -115,7 +115,7 @@ router.get("/FAQ",
 
 router.get("/Website-FAQ",
     (req, res) => {
-        res.status(200).render("newFAQ.ejs",
+        res.status(200).render("newFAQWebsite.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,
@@ -180,7 +180,24 @@ router.get("/profil", redirect.redirectLogin, (req, res) => {
             firstname: req.session.firstname,
             surname: req.session.surname,
             email : req.session.email,
+            req:req,
         });
+
+});
+
+router.get("/editProfil",notification.sendMessage("editProfil"),(req, res) =>
+{
+    res.render("profil.ejs",
+        {
+            username: req.session.username,
+            role: req.session.role,
+            rights: req.session.rights,
+            firstname: req.session.firstname,
+            surname: req.session.surname,
+            email : req.session.email,
+            req:req,
+        });
+
 
 });
 

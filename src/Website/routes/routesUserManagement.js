@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const authentication = require('./helproutes/rightAuthentication');
 const fetch = require('./helproutes/fetch');
+const crypto = require('./helproutes/crypto');
 
 router.post("/addUser", authentication.authRight("add_user"), (req,res) => {
     fetch.postFetch("/api/user/createUser",req)
@@ -23,15 +24,14 @@ router.post("/editUser", authentication.authRight("edit_User"),(req, res) =>
     if (passwordEncrypt.encryptedData===passwordCorrectEncrypt.encryptedData)
     {
         req.body.password= passwordEncrypt;
-            console.log(req.body.password);
 
 
-        fetch.putFetch("/api/user/editUser/"+req.session.userID,req)
-            .then(res.redirect("/editUser"))
+        fetch.postFetch("/api/user/editProfile/" + req.session.userID,req)
+            .then(res.redirect("/editProfil"))
             .catch((error)=>
             {
                 console.error('Error:',error);
-            })
+            });
     }
 });
 

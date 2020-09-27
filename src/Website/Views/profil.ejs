@@ -13,12 +13,18 @@
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <script src="../javascript/adminUpdateUser.js"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
 </head>
 <body>
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
 <main>
+    <%- req.toastr.render() %>
     <h2>Nutzerdaten ändern</h2>
 
     <div id="form">
