@@ -37,7 +37,9 @@ router.post('/api/login', (req, res) => {
     var givenPassword = req.body.password;
 
     console.log(givenUserMail,givenPassword);
-    if (givenUserMail != undefined && givenPassword != undefined) {
+
+    if (givenUserMail && givenPassword) {
+
 
         var statement = "SELECT password, worker_id, e_mail, surname, firstname, WORKER.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking, picking " +
             " FROM WORKER,RIGHTS " +
@@ -45,41 +47,48 @@ router.post('/api/login', (req, res) => {
             req.body.usermail +
             "' and WORKER.role=RIGHTS.role GROUP BY worker_id";
 
+        console.log("SQL REQUEST");
+
         connection.query(statement, function (err, results) {
 
-            if (statement != undefined){
-                var password = results[0].password;
-            }
+            if (results.length != 0){
 
-            var sync = bcrypt.compareSync(password, givenPassword);
-            if (sync) {
-                console.log("LOGIN CORRECT");
-                res.json(
-                    {
-                        "access": true,
-                        "worker_id": results[0].worker_id,
-                        "e_mail": results[0].e_mail,
-                        "firstName": results[0].firstname,
-                        "surname": results[0].surname,
-                        "role": results[0].role,
-                        "rights":
-                            {
-                                "booking_device": results[0].booking_device,
-                                "edit_device": results[0].edit_device,
-                                "add_device": results[0].add_device,
-                                "view_device": results[0].view_device,
-                                "delete_device": results[0].delete_user,
-                                "add_user": results[0].add_user,
-                                "delete_user": results[0].delete_user,
-                                "edit_user": results[0].edit_user,
-                                "delete_booking": results[0].delete_booking,
-                                "edit_booking": results[0].edit_booking,
-                                "picking": results[0].picking
-                            }
-                    }
-                )
-            } else {
-                console.log("LOGIN FAILED");
+                var password = results[0].password;
+
+                var sync = bcrypt.compareSync(password, givenPassword);
+                if (sync) {
+                    console.log("LOGIN CORRECT");
+                    res.json(
+                        {
+                            "access": true,
+                            "worker_id": results[0].worker_id,
+                            "e_mail": results[0].e_mail,
+                            "firstName": results[0].firstname,
+                            "surname": results[0].surname,
+                            "role": results[0].role,
+                            "rights":
+                                {
+                                    "booking_device": results[0].booking_device,
+                                    "edit_device": results[0].edit_device,
+                                    "add_device": results[0].add_device,
+                                    "view_device": results[0].view_device,
+                                    "delete_device": results[0].delete_user,
+                                    "add_user": results[0].add_user,
+                                    "delete_user": results[0].delete_user,
+                                    "edit_user": results[0].edit_user,
+                                    "delete_booking": results[0].delete_booking,
+                                    "edit_booking": results[0].edit_booking,
+                                    "picking": results[0].picking
+                                }
+                        }
+                    )
+                } else {
+                    console.log("LOGIN FAILED - Wrong Password");
+                    res.json({"acces": false});
+                }
+            }
+            else{
+                console.log("LOGIN FAILED - Wrong Usermail");
                 res.json({"acces": false});
             }
         })
