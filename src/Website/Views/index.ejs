@@ -6,6 +6,7 @@
 <link rel="stylesheet"  href="css/startseite.css">
 <link rel="stylesheet"  href="css/headFootDesign.css">
 <link rel="stylesheet"  href="css/table.css">
+    <link rel="stylesheet" href="css/index.css">
 <link rel="icon" type="image/x-icon"
       href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 <link rel="stylesheet"
@@ -29,80 +30,79 @@
 <main>
 
 
-    <div class="overview">
-        <div id="showDevices">
-            <a href="/devices">
-                <h3>Geräte anzeigen</h3>
-                <p>&nbsp;</p>
-                <i class="fas fa-briefcase fa-3x"></i>
-                <p>&nbsp;</p>
+    <div class="grid-container">
+        <div class="side1"></div>
+        <div class="side2"></div>
+
+        <div class="inputBox box1">
+            <a class="link" href="/devices">
+                <div style="height: 100%; width: 100%; position: relative">
+                    <div class="hoverColor">
+                    </div>
+                    <h2 class="textAlign">Geräte anzeigen</h2>
+                </div>
             </a>
         </div>
-    </div>
 
     <% if (rights.booking_device === 1 ) { %>
-        <div class="overview">
-            <div id="reservations">
-                <a href="/bookinglist">
-                    <h3>Reservieren</h3>
-                    <p>&nbsp;</p>
-                    <i class="fas fa-calendar-alt fa-3x"></i>
-                    <p>&nbsp;</p>
+            <div class="inputBox box2">
+                <a class="link" href="/bookinglist">
+                    <div class="wrapper">
+                        <div class="hoverColor">
+                        </div>
+                        <h2 class="textAlign">Reservieren</h2>
+                    </div>
                 </a>
             </div>
-        </div>
     <% } %>
 
-    <div class="overview">
-        <div id="userProfil">
-            <a href="/profil" >
-                <h3>Benutzerprofil</h3>
-                <p>&nbsp;</p>
-                <i class="fas fa-user fa-3x"></i>
-                <p>&nbsp;</p>
+        <div class="inputBox box3">
+            <a class="link" href="profil">
+                <div class="wrapper">
+                    <div class="hoverColor">
+                    </div>
+                    <h2 class="textAlign">Benutzerprofil</h2>
+                </div>
             </a>
         </div>
-    </div>
     <% /* access for users with role 1 & 2 */ %>
     <% if ( rights.picking===1 ) { %>
-        <div class="overview">
-            <div id="picking">
-                <a href="/picking"
-                   >
-                    <h3>Komissionieren</h3>
-                    <p>&nbsp;</p>
-                    <i class="fas fa-list fa-3x"></i>
-                    <p>&nbsp;</p>
-                </a>
+            <div class="inputBox box4">
+                <div  class="wrapper">
+                    <a class="link" href="/commission">
+                        <div class="wrapper">
+                            <div class="hoverColor">
+                            </div>
+                            <h2 class="textAlign">Kommisionieren</h2>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
     <% } %>
 
-    <div class="overview">
-        <div id="search">
-            <a href="/search" >
-                <h3>Suchen</h3>
-                <p>&nbsp;</p>
-                <i class="fas fa-search fa-3x"></i>
-                <p>&nbsp;</p>
+        <div class="inputBox box5">
+            <a class="link" href="/faq">
+                <div class="wrapper">
+                    <div class="hoverColor">
+                    </div>
+                    <h2 class="textAlign">FAQ</h2>
+                </div>
             </a>
         </div>
-    </div>
 
     <% /* access for users with role 1 */ %>
     <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
-        <div class="overview">
-            <div id="userManagement">
-                <a href="/userManagement"
-                   >
-                    <h3>Nutzerverwaltung</h3>
-                    <p>&nbsp;</p>
-                    <i class="fas fa-cogs fa-3x"></i>
-                    <p>&nbsp;</p>
+            <div class="inputBox box6">
+                <a class="link" href="/userManagement">
+                    <div class="wrapper">
+                        <div class="hoverColor">
+                        </div>
+                        <h2 class="textAlign">Nutzerverwaltung</h2>
+                    </div>
                 </a>
             </div>
-        </div>
     <% } %>
+    </div>
 </main>
 
 <%- include('../Views/general/footer.ejs'); -%>

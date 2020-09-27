@@ -79,7 +79,7 @@
                     <!-- Komissionieren -->
                     <% if ( rights.picking === 1 ) { %>
                         <li>
-                            <a href="/picking">
+                            <a href="/commission">
                                 <i class="fas fa-list"></i>
                                 <tab class="header-icons-description">
                                     Komissonieren
@@ -88,16 +88,14 @@
                         </li>
                     <% } %>
 
-                    <!-- Suche -->
+                    <!-- FAQ -->
                     <li>
-                        <a href="/search">
-                            <i class="fas fa-search"></i>
+                        <a href="/FAQ">
+                            <i class="fas fa-info"></i>
+                            <tab class="header-icons-description">
+                                FAQ
+                            </tab>
                         </a>
-                        <form action="/searchDevice" method="get">
-                            <input type="text" name="test" >
-                            <input type="submit">
-                        </form>
-
                     </li>
 
                     <!-- Logout -->
