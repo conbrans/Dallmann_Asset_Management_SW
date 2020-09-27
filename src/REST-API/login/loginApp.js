@@ -31,10 +31,13 @@ app.use(session({
 
 router.post('/api/login', (req, res) => {
 
-    let givenUserMail = req.body.usermail;
-    let givenPassword = req.body.password;
+    console.log("LOGIN ENTERED")
 
-    if (givenUserMail && givenPassword) {
+    var givenUserMail = req.body.usermail;
+    var givenPassword = req.body.password;
+
+    console.log(givenUserMail,givenPassword);
+    if (givenUserMail != undefined && givenPassword != undefined) {
 
         var statement = "SELECT password, worker_id, e_mail, surname, firstname, WORKER.role, booking_device, edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking, picking " +
             " FROM WORKER,RIGHTS " +
@@ -44,10 +47,13 @@ router.post('/api/login', (req, res) => {
 
         connection.query(statement, function (err, results) {
 
-            var password = results[0].password;
+            if (statement != undefined){
+                var password = results[0].password;
+            }
 
             var sync = bcrypt.compareSync(password, givenPassword);
             if (sync) {
+                console.log("LOGIN CORRECT");
                 res.json(
                     {
                         "access": true,
@@ -73,6 +79,7 @@ router.post('/api/login', (req, res) => {
                     }
                 )
             } else {
+                console.log("LOGIN FAILED");
                 res.json({"acces": false});
             }
         })
