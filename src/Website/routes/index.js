@@ -42,7 +42,8 @@ const restDevice = require('../../REST-API/ressources/device');
 const restHistory = require('../../REST-API/ressources/history');
 const restWorker = require('../../REST-API/ressources/worker');
 const restLogin= require('../../REST-API/login/loginApp');
-const restLogger = require('../../REST-API/middelwareFunctions/logger')
+const restLogger = require('../../REST-API/middelwareFunctions/logger');
+const restNotification = require('../../REST-API/ressources/notifcations');
 
 app.use(restLogger.assignId);
 app.use(restLogger.logRequest);
@@ -51,6 +52,7 @@ app.use(restDevice);
 app.use(restHistory);
 app.use(restWorker);
 app.use(restLogin);
+app.use(restNotification);
 
 
 /*https.createServer(

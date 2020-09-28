@@ -33,16 +33,39 @@ function getAccess(req, data, res) {
         req.session.rights = data.rights;
         req.session.loginShown = false;
         req.session.bookingShown = false;
-        req.session.tuvUvvShown = false;
+        req.session.tuvShown = false;
+        req.session.UVVShown = false;
         req.session.maintenanceShown = false;
 
         req.session.cookie.maxAge = req.body.checkbox === "on" ?
             longLifeTime :
             normalLifeTime;
+        getNotificationValues(req, data, res);
 
-        res.redirect("/home");
     }
 }
+
+function getNotificationValues(req, data, res) {
+    fetch.getFetch("/api/notification/booking/" + data.worker_id)
+        .then(result => req.session.bookingData = result)
+        .then(() => {
+            fetch.getFetch("/api/notification/tuv")
+                .then(result => req.session.tuvData = result)
+                .then(() => {
+                    fetch.getFetch("/api/notification/uvv")
+                        .then(result => req.session.uvvData = result)
+                        .then(() => {
+                            fetch.getFetch("/api/notification/maintenance")
+                                .then(result => req.session.maintenanceData = result)
+                                .then(() => {
+                                    console.log(req.session);
+                                    res.redirect("/home");
+                                });
+                        });
+                });
+        });
+}
+
 
 /**
  * send the login values to REST, the password is hashed and compared in REST

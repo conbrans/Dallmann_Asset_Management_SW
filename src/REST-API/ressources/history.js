@@ -3,7 +3,7 @@
  * @type {Connection} database connector
  */
 
-const connection = require('../../../src/REST-API/databaseConnection/connection')
+const connection = require('../../../src/REST-API/databaseConnection/connection');
 const log = require('../middelwareFunctions/logger');
 const express = require('express');
 const router = express();

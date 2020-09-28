@@ -156,7 +156,11 @@ router.get("/commission",
     });
 
 router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
+    notification.sendMessage("booking"),
+    notification.sendMessage("tuv"),
+    notification.sendMessage("uvv"),
     (req, res) => {
+
 
         res.render('index.ejs',
             {
