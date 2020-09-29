@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <! //TODO ab hier  css aus html entfernen -->
+    <! //TODO ab hier css aus html entfernen -->
     <link rel="stylesheet" href="css/deviceManagement.css">
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script  src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <script src="javascript/userManagement.js"></script>
-    <script src="javascript/devicemanagement.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!--<script src="javascript/userManagement.js"></script>-->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
+            integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
+            crossorigin=""></script>
+
+
+    <!-- Load Esri Leaflet Geocoder from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+          integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+          crossorigin="">
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+            integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+            crossorigin=""></script>
+
 
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
@@ -28,41 +51,30 @@
 <div class="outerBox">
     <div class="wrapper">
 
-        <div id="content" style="overflow-x: auto">
+        <div class="content" style="overflow-x: auto">
             <h3>Geräteliste</h3>
             <div>
                 <div style=" float: left">
-                    <% if (rights.add_device===1){%>
+                    <% if (rights.add_device === 1){ %>
                         <form method="get" action="/addDevice">
-                        <!--onclick="addDeviceWindow()"-->
+                            <!--onclick="addDeviceWindow()"-->
 
-                        <button class="header_button">Neues Gerät hinzufügen
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class='fas fa-pencil'
-                                 fill="currentColor"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                                <path fill-rule="evenodd"
-                                      d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
-                            </svg>
-                        </button>
+                            <button class="header_button">Neues Gerät hinzufügen
+                                <i class="fa fa-toolbox"></i>
+                            </button>
                         </form>
-                    <% }%>
+                    <% } %>
                 </div>
                 <div class="toggle-title" style="text-align: right;float: left">
                     <button class="header_button">Filtern
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-funnel" fill="currentColor"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
-                        </svg>
+                        <i class="fas fa-filter"></i>
                     </button>
                 </div>
 
                 <div class="toggle-inner">
                     <br>
                     <hr>
-                    <div class="test">
+                    <div class="filterWrapper">
                         <label class="box-a">Inventarnummer</label>
                         <label class="box-b">Kategorie</label>
                         <label class="box-c">Status</label>
@@ -96,8 +108,7 @@
                     <hr>
                 </div>
             </div>
-            <table id="userlist" style="width: 100%" class="table
-            user-list"
+            <table style="width: 100%" class="table user-list"
                    onload>
                 <thead>
                 <tr>
@@ -115,6 +126,7 @@
                         <td id="tr<%= i %>td2"><%= data[i].category %></td>
                         <td id="tr<%= i %>td3"><%= data[i].model %></td>
                         <td id="tr<%= i %>td4"><%= data[i].statusDescription %></td>
+
                         <td id="tr<%= i %>serialNumber"
                             class="hiddendeviceInfos"><%= data[i].serialNumber %></td>
                         <td id="tr<%= i %>manufacturer"
@@ -130,225 +142,248 @@
                 </tbody>
             </table>
 
+
+
+
+
+
         </div>
-        <div>
-            <form class="box" action="/updateDevice" method="post"
-                  id="updateDevice">
-                <h3>Geräteinformationen</h3>
-                <br>
-                <div class="box1">
-
-                    <div class="deviceInfoBoxes" style="width: 350px">
-                        <label for="inventarnummer" style="float: left">
-                            Inventarnummer: </label>
-                        <div>
-                            <input class="form-control" form="updateDevice"
-                                   type="text" value="Inventarnummer"
-                                   id="invnumber" name="inventoryNumber">
+        <div class="deviceInfo">
+            <div class="inputFields">
+                <form class="box" action="/updateDevice" method="post"
+                      id="updateDevice" >
+                    <h3>Geräteinformationen</h3>
+                    <br>
+                    <div class="deviceInfoOuter">
+                        <div class="deviceInfoWrapper box1">
+                            <div class="deviceInfoBoxes">
+                                <label for="inventarnummer" style="float: left">
+                                    Inventarnummer: </label>
+                                <div>
+                                    <input class="form-control" form="updateDevice"
+                                           type="text" value="Inventarnummer"
+                                           id="invnumber" name="inventoryNumber">
+                                    <input type="hidden" name="inventoryNumber"
+                                           form="booking" id="hiddeninvnumberbooking"
+                                           value="Inventarnummer">
+                                    <input type="hidden" name="inventoryNumber"
+                                           value="Inventarnummer"
+                                           form="historie" id="hiddeninvnumberhistory">
+                                    <input type="hidden" name="inventoryNumber"
+                                           form="deleteDevice"
+                                           id="hiddeninvnumberdelete">
+                                </div>
+                            </div>
+                            <div class="deviceInfoBoxes">
+                                <label for="manufacturer" style="float: left">
+                                    Hersteller: </label>
+                                <div>
+                                    <input class="form-control" form="updateDevice"
+                                           type="text" value="Herstellername"
+                                           id="manufacturer" name="manufacturer" style="text-align: left">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes" style="width: 350px">
-                        <label for="serialNumber" style="float: left">
-                            Seriennummer: </label>
-                        <div>
-                            <input class="form-control" form="updateDevice"
-                                   type="text" value="Seriennummer"
-                                   id="serialNumber" name="serialNumber">
+                        <div class="deviceInfoWrapper box2">
+                            <div class="deviceInfoBoxes">
+                                <label for="category"> Kategorie: </label>
+                                <div>
+                                    <select class="browser-default custom-select form-control"
+                                            id="category"
+                                            onchange="getSelectedOption()"
+                                            style="width: 100%; display: inline-block" name="beaconMajor">
+                                        <option selected disabled>Kategorie</option>
+                                        <option value="0001">Rüttelplatte</option>
+                                        <option value="0002">Stampfer</option>
+                                        <option value="0003">Motorflex</option>
+                                        <option value="0004">Rohrgreifer</option>
+                                        <option value="0005">Kettensäge</option>
+                                        <option value="0006">Motorhammer</option>
+                                        <option value="0007">Leiter</option>
+                                        <option value="0008">Exoten</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="deviceInfoBoxes">
+                                <div>
+                                    <label
+                                            for="model">Modell:</label>
+                                    <input type="text" class="form-control"
+                                           name="model"
+                                           placeholder="Modell" id="model">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes" style="width: 350px">
-                        <label for="manufacturer" style="float: left">
-                            Hersteller: </label>
-                        <div>
-                            <input class="form-control" form="updateDevice"
-                                   type="text" value="Herstellername"
-                                   id="manufacturer" name="manufacturer">
-                        </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes">
-                        <label for="category"> Kategorie: </label>
-                        <div>
-                            <select class="browser-default custom-select form-control"
-                                    id="category"
-                                    onchange="getSelectedOption()"
-                                    style="width: 100%; display: inline-block" name="beaconMajor">
-                                <option selected disabled>Kategorie</option>
-                                <option value="0001">Rüttelplatte</option>
-                                <option value="0002">Stampfer</option>
-                                <option value="0003">Motorflex</option>
-                                <option value="0004">Rohrgreifer</option>
-                                <option value="0005">Kettensäge</option>
-                                <option value="0006">Motorhammer</option>
-                                <option value="0007">Leiter</option>
-                                <option value="0008">Exoten</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes">
-                        <div>
-                            <label
-                                    for="model">Modell:</label>
-                            <input type="text" class="form-control"
-                                   name="model"
-                                   placeholder="Modell" id="model">
-                        </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes">
-                        <label for="status"> Status:</label>
-                        <div>
-                            <select class="browser-default custom-select form-control"
-                                    id="status" onchange="getSelectedOption()"
-                                    style="width: 100%; display:
+                        <div class="deviceInfoWrapper box3">
+                            <div class="deviceInfoBoxes">
+                                <label for="status"> Status:</label>
+                                <div>
+                                    <select class="browser-default custom-select form-control"
+                                            id="status" onchange="getSelectedOption()"
+                                            style="width: 100%; display:
                                     inline-block" name="deviceStatus">
-                                <option selected disabled>Status</option>
-                                <option value="1">Verfügbar</option>
-                                <option value="2">Ausgeliehen</option>
-                                <option value="3">In Wartung</option>
-                                <option value="4">Außer Betrieb</option>
-                                <option value="5">Defekt</option>
-                                <option value="6">Verschollen/Verschwunden</option>
-                                <option value="7">Gestohlen</option>
-                            </select>
+                                        <option selected disabled>Status</option>
+                                        <option value="1">Verfügbar</option>
+                                        <option value="2">Ausgeliehen</option>
+                                        <option value="3">In Wartung</option>
+                                        <option value="4">Außer Betrieb</option>
+                                        <option value="5">Defekt</option>
+                                        <option value="6">Verschollen/Verschwunden</option>
+                                        <option value="7">Gestohlen</option>
+                                    </select>
 
 
-                        </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes">
-                        <label for="guarantee"
-                               style="float: left">Garantie:</label>
-                        <div>
-                            <input  id="guarantee"
-                                    name="guarantee"
-                                    type="date"
-                                    class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes">
-                        <label for="technicalInspection"
-                               style="float: left">TÜV:</label>
-                        <div>
-                            <input  id="technicalInspection"
-                                    name="technicalInspection"
-                                    type="date"
-                                    class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes">
-                        <label for="accidentPrevention"
-                               style="float: left">UVV:</label>
-                        <div>
-                            <input id="accidentPrevention"
-                                   name="accidentPrevention"
-                                   type="date"
-                                   class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="deviceInfoBoxes" style="width: 350px">
-                        <label>Position</label>
-
-                        <div>
-                            <div style="float: left;">
-
-                                <input id="longitude" class="form-control"
-                                       type="text" value="52.52"
-                                       style="width: 170px" readonly>
+                                </div>
                             </div>
-                            <div style="float: right">
-
-                                <input id="latitude" class="form-control"
-                                       type="text" value="7.32"
-                                       style="width: 170px" readonly>
+                            <div class="deviceInfoBoxes">
+                                <label for="serialNumber" style="float: left">
+                                    Seriennummer: </label>
+                                <div>
+                                    <input class="form-control" form="updateDevice"
+                                           type="text" value="Seriennummer"
+                                           id="serialNumber" name="serialNumber">
+                                </div>
                             </div>
                         </div>
+                        <div class="deviceInfoWrapper box4">
+                            <div class="deviceInfoBoxes">
+                                <label for="guarantee"
+                                       style="float: left">Garantie:</label>
+                                <div>
+                                    <input id="guarantee"
+                                           name="guarantee"
+                                           type="date"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="deviceInfoBoxes">
+                                <label for="technicalInspection"
+                                       style="float: left">TÜV:</label>
+                                <div>
+                                    <input id="technicalInspection"
+                                           name="technicalInspection"
+                                           type="date"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="deviceInfoWrapper box5">
+                            <div class="deviceInfoBoxes">
+                                <label for="accidentPrevention"
+                                       style="float: left">UVV:</label>
+                                <div>
+                                    <input id="accidentPrevention"
+                                           name="accidentPrevention"
+                                           type="date"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="deviceInfoBoxes" style="width: 350px">
+                                <label>Position</label>
 
+                                <div>
+                                    <div style="float: left;">
 
-                        <div class="deviceInfoBoxes">
-                            <label for="note">Notiz</label>
-                            <div>
+                                        <input id="longitude" class="form-control"
+                                               type="text" value="52.52"
+                                               style="width: 170px;" readonly>
+                                    </div>
+                                    <div style="float: right">
+
+                                        <input id="latitude" class="form-control"
+                                               type="text" value="7.32"
+                                               style="width: 170px" readonly>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="deviceInfoWrapper box6">
+                            <div class="deviceInfoBoxes">
+                                <label for="note">Notiz</label>
+                                <div>
                             <textarea class="form-control" name="note" id="note"
                                       placeholder="Notiz"
                                       rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="deviceInfoBoxes">
+                                <label for="minor">Minor</label>
+                                <input type="number" class="form-control"
+                                       id="minor"
+                                       name="beaconMinor">
                             </div>
                         </div>
-
-                        <div class="deviceInfoBoxes">
-                            <label for="minor">Minor</label>
-                            <input type="number" class="form-control"
-                                   id="minor"
-                                   name="beaconMinor">
-                        </div>
                     </div>
+    <br>
 
-                    <% if (rights.edit_device===1){%>
-                    <div style="margin-top: 1em">
-                        <p>
-                            <button type="submit"
-                                    class="btn btn-outline-primary"
-                                    onclick="">
-                                <!--                                    onclick="sendData()"-->
-                                Daten ändern
-                            </button>
-                            <% }%>
-            </form>
-            <form method="post" action="/historie" id="historie">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-info">Historie
-                                anzeigen
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <% if (rights.booking_device===1){%>
-                <form method="post" action="/booking" id="booking">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-warning">Gerät
-                                    reservieren
-                                </button>
+                    <div class="actionButton"  style="width: 100%">
+                        <% if (rights.edit_device === 1){ %>
+                            <form class="" method="post" action="" style="float: left">
+                                <div style="margin-top: 1em">
+                                    <p>
+                                        <button type="submit"
+                                                class="btn btn-outline-primary"
+                                                onclick="">
+                                            <!--                                    onclick="sendData()"-->
+                                            Daten ändern
+                                        </button>
+                                    </p>
+                                </div>
+                            </form>
+                        <% } %>
+
+                        <form method="post" action="/historie" id="historie" style="float: left">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info">Historie
+                                            anzeigen
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+                        <% if (rights.booking_device === 1){ %>
+                            <form method="post" action="/booking" id="booking" style="float: left">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-warning">Gerät
+                                                reservieren
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        <% } if (rights.delete_device === 1){ %>
+                            <form method="post" action="/deleteDevice" id="deleteDevice" style="float: left">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-danger"
+                                                    onclick="deleteDeviceMessage()">Gerät
+                                                löschen
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        <% } %>
                     </div>
                 </form>
-            <%} if (rights.delete_device===1){%>
-                <form method="post" action="/deleteDevice" id="deleteDevice">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-danger"
-                                        onclick="deleteDeviceMessage()">Gerät
-                                    löschen
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            <%}%>
-        </div>
-        <br>
-        <hr>
-        <h4>Standort</h4>
-        <br>
-        <div id="map" style="width: 700px; height: 500px">
-            <div></div>
+            </div>
+            <br>
+            <hr>
+            <h4>Standort</h4>
+            <br>
+            <div id="map"></div>
+
         </div>
 
     </div>
-    </form>
-</div>
-</div>
+
 </div>
 
 
@@ -372,15 +407,9 @@
         display: block !important;
     }
 </style>
+<script src="javascript/devicemanagement.js"></script>
 <script>
 
-    var map = L.map('map').setView([52.52, 7, 32], 5);
-    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: ' &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-
-    }).addTo(map);
-    var markerElement = L.marker([52.52, 7, 32]).addTo(map);
-    var marker2 = L.marker([52, 7, 32]).addTo(map);
 
     var acc = document.getElementsByClassName("toggle-title");
     var panel = document.getElementsByClassName('toggle-inner');

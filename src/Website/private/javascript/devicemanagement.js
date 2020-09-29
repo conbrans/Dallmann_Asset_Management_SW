@@ -1,3 +1,13 @@
+
+var map = L.map('map').setView([52.52, 7, 32], 5);
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: ' &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+
+}).addTo(map);
+let marker;
+
+var j = 0;
+
 function loadData(i){
     document.getElementById("invnumber").value  =
         document.getElementById("tr"+i.toString()+"td1").innerHTML;
@@ -7,6 +17,7 @@ function loadData(i){
 
     document.getElementById("manufacturer").value =
         document.getElementById("tr"+i.toString()+"manufacturer").innerHTML;
+    console.log( document.getElementById("tr"+i.toString()+"manufacturer").innerHTML);
 
     switch (document.getElementById("tr"+i.toString()+"td2").innerHTML) {
         case "Rüttelplatten":
@@ -85,7 +96,7 @@ function loadData(i){
         console.log("Inventorynumber is transported")
     });
 
-
+    setView(document.getElementById("tr"+i.toString()+"longitude").innerHTML,document.getElementById("tr"+i.toString()+"latitude").innerHTML)
 
 }
 
@@ -93,5 +104,22 @@ function deleteDeviceMessage()
 {
     confirm("ACHTUNG!\nSie sind dabei das gewählte Gerät undwideruflich zu" +
         " löschen.");
+}
+
+var geocodeService = L.esri.Geocoding.geocodeService();
+function setView(newLong, newLat) {
+
+    if (j=== 1){
+        map.removeLayer(marker);
+        j = 0;
+    }
+    map.panTo(new L.LatLng(newLong, newLat));
+    //marker = L.marker([long, lat]).addTo(map);
+    geocodeService.reverse().latlng([newLong, newLat]).run(function(error, result) {
+       marker = L.marker(result.latlng).addTo(map).bindPopup(result.address.Match_addr).openPopup();
+    });
+
+    j=1;
+
 }
 
