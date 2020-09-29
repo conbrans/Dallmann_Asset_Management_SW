@@ -84,15 +84,16 @@ router.get("/devices", redirect.redirectLogin,
     authentication.authRight("view_device"),
     (req, res) => {
         fetch.getFetch("/api/device/getAllDevices")
-            .then(data =>
-                res.status(200).render("newDeviceManagement.ejs",
-                    {
-                        username: req.session.username,
-                        role: req.session.role,
-                        rights: req.session.rights,
-                        data: data,
-
-                    })
+            .then(data => {
+                var inventroyNumbers=[];
+                    res.status(200).render("newDeviceManagement.ejs",
+                        {
+                            username: req.session.username,
+                            role: req.session.role,
+                            rights: req.session.rights,
+                            data: data,
+                        });
+                }
             );
     });
 
@@ -205,47 +206,48 @@ router.get("/editProfil", notification.sendMessage("editProfil"), (req, res) => 
             surname: req.session.surname,
             email: req.session.email,
             req: req,
-        });});
-
-
-    router.get("/update", redirect.redirectLogin,
-        authentication.authRight("add_user"),
-        (req, res) => {
-            res.render("adminUpdateUser.ejs",
-                {
-                    username: req.session.username,
-                    role: req.session.role,
-                    rights: req.session.rights,
-                })
-
         });
+});
 
-    router.get("/search", redirect.redirectLogin, (req, res) => {
-        res.status(200).render("search.ejs",
+
+router.get("/update", redirect.redirectLogin,
+    authentication.authRight("add_user"),
+    (req, res) => {
+        res.render("adminUpdateUser.ejs",
             {
                 username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,
+            })
 
-            });
     });
 
-    router.get("/userManagement", redirect.redirectLogin,
-        authentication.authRight("add_user"),
-        authentication.authRight("delete_User"),
-        (req, res) => {
-            fetch.getFetch("/api/user/getAllUsers")
-                .then(data =>
+router.get("/search", redirect.redirectLogin, (req, res) => {
+    res.status(200).render("search.ejs",
+        {
+            username: req.session.username,
+            role: req.session.role,
+            rights: req.session.rights,
 
-                    res.status(200).render("userManagement.ejs",
-                        {
-                            username: req.session.username,
-                            role: req.session.role,
-                            rights: req.session.rights,
-                            data: data,
-                        })
-                );
         });
+});
+
+router.get("/userManagement", redirect.redirectLogin,
+    authentication.authRight("add_user"),
+    authentication.authRight("delete_User"),
+    (req, res) => {
+        fetch.getFetch("/api/user/getAllUsers")
+            .then(data =>
+
+                res.status(200).render("userManagement.ejs",
+                    {
+                        username: req.session.username,
+                        role: req.session.role,
+                        rights: req.session.rights,
+                        data: data,
+                    })
+            );
+    });
 
 
-    module.exports = router;
+module.exports = router;

@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script  src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <!--<script src="javascript/userManagement.js"></script>-->
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="javascript/userManagement.js"></script>
     <script src="javascript/devicemanagement.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
@@ -17,7 +18,6 @@
 
     <title>Dallmann Asset-Management</title>
 
-    <!-- TODO den hiddeninput zu session ergänzen -->
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -116,31 +116,19 @@
                         <td id="tr<%= i %>td3"><%= data[i].model %></td>
                         <td id="tr<%= i %>td4"><%= data[i].statusDescription %></td>
                         <td id="tr<%= i %>serialNumber"
-                            class="hiddendeviceInfos">
-                            <%= data[i].serialNumber %></td>
+                            class="hiddendeviceInfos"><%= data[i].serialNumber %></td>
                         <td id="tr<%= i %>manufacturer"
-                            class="hiddendeviceInfos">
-                            <%= data[i].manufacturer %></td>
+                            class="hiddendeviceInfos"><%= data[i].manufacturer %></td>
                         <td id="tr<%= i %>note"
-                            class="hiddendeviceInfos">
-                            <%= data[i].note %></td>
+                            class="hiddendeviceInfos"><%= data[i].note %></td>
                         <td id="tr<%= i %>longitude"
-                            class="hiddendeviceInfos">
-                            <%= data[i].longitude %></td>
+                            class="hiddendeviceInfos"><%= data[i].longitude %></td>
                         <td id="tr<%= i %>latitude"
-                            class="hiddendeviceInfos">
-                            <%= data[i].latitude %></td>
-
-
+                            class="hiddendeviceInfos"><%= data[i].latitude %></td>
                     </tr>
                 <% } %>
                 </tbody>
             </table>
-
-
-
-
-
 
         </div>
         <div>
@@ -157,15 +145,6 @@
                             <input class="form-control" form="updateDevice"
                                    type="text" value="Inventarnummer"
                                    id="invnumber" name="inventoryNumber">
-                            <input type="hidden" name="inventoryNumber"
-                                   form="booking" id="hiddeninvnumberbooking"
-                                   value="Inventarnummer">
-                            <input type="hidden" name="inventoryNumber"
-                                   value="Inventarnummer"
-                                   form="historie" id="hiddeninvnumberhistory">
-                            <input type="hidden" name="inventoryNumber"
-                                   form="deleteDevice"
-                                   id="hiddeninvnumberdelete">
                         </div>
                     </div>
 

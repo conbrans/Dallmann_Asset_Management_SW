@@ -18,13 +18,9 @@ function resetUserPasswordMessage() {
         " zurückzusetzten.");
 }
 
-function addDeviceWindow() {
-     window.open("html/addDevice.html", "Popup", "width=400,height=400");
-}
 
 function loadData(i){
-    document.getElementById("hiddenWorkerId").value  =
-        document.getElementById("tr"+i.toString()+"td5").innerHTML;
+
     document.getElementById("firstName").value  =
         document.getElementById("tr"+i.toString()+"td1").innerHTML;
     document.getElementById("lastName").value =
@@ -33,15 +29,21 @@ function loadData(i){
         document.getElementById("tr"+i.toString()+"td3").innerHTML;
     document.getElementById("rolle").value    =
         document.getElementById("tr"+i.toString()+"td4").innerHTML;
+
+    var data ={
+        inventoryNumber : $('#invnumber').val(),
+    } ;
+    $.ajax({
+        type : 'post',
+        url : '/sendInventoryNumber',
+        data: data,
+        data_type : 'text'
+    }).done(()=>{
+        console.log("Inventorynumber is transported")
+    });
 }
 
-function loadDataForBox(i)
-{
-    document.getElementById("deleteHiddenWorkerId").value =
-        document.getElementById("tr"+i.toString()+"td5").innerHTML;
-    document.getElementById("reset_Password").value =
-        document.getElementById("tr"+i.toString()+"td3").innerHTML;
-}
+
 
 function changeFieldStatus(input) {
     let textarea = document.getElementById(input);

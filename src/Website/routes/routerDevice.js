@@ -18,6 +18,9 @@ router.post("/addDevice", redirect.redirectLogin,
    res.redirect("/devices");
     });
 
+
+
+
 router.post("/updateDevice",redirect.redirectLogin,
     authentication.authRight("edit_Device"), (req, res) =>
     {
@@ -30,12 +33,16 @@ router.post("/updateDevice",redirect.redirectLogin,
 
 router.post("/deleteDevice",redirect.redirectLogin,authentication.authRight("delete_Device"),(req, res) =>
 {
-    fetch.deleteFetch("/api/device/deleteDevice/"+req.body.inventoryNumber,req)
+    console.log(req.session.inventoryNumber);
+    fetch.deleteFetch("/api/device/deleteDevice/"+
+     req.session.inventoryNumber,req)
+
         .then(() => res.redirect("/devices"))
         .catch((error) => {
             console.error('Error:', error);
         });
 
 });
+
 
 module.exports = router;

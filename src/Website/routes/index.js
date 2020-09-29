@@ -11,6 +11,7 @@ const path = require('path');
  * @type {Router}
  */
 const routerGet = require('./helproutes/routerGet');
+const ajax = require('./helproutes/ajaxCalls');
 
 
 /**
@@ -24,6 +25,7 @@ const login = require('./routesLogin');
 const usermanagement = require('./routesUserManagement');
 const search = require('./routesSearch');
 
+app.use(ajax);
 app.use(booking);
 app.use(history);
 app.use(login);

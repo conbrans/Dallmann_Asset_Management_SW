@@ -58,7 +58,6 @@ function getNotificationValues(req, data, res) {
                             fetch.getFetch("/api/notification/maintenance")
                                 .then(result => req.session.maintenanceData = result)
                                 .then(() => {
-                                    console.log(req.session);
                                     res.redirect("/home");
                                 });
                         });

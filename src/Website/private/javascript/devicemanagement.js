@@ -2,15 +2,6 @@ function loadData(i){
     document.getElementById("invnumber").value  =
         document.getElementById("tr"+i.toString()+"td1").innerHTML;
 
-    document.getElementById("hiddeninvnumberbooking").value  =
-        document.getElementById("tr"+i.toString()+"td1").innerHTML;
-
-    document.getElementById("hiddeninvnumberhistory").value  =
-        document.getElementById("tr"+i.toString()+"td1").innerHTML;
-
-    document.getElementById("hiddeninvnumberdelete").value  =
-        document.getElementById("tr"+i.toString()+"td1").innerHTML;
-
     document.getElementById("serialNumber").value =
         document.getElementById("tr"+i.toString()+"serialNumber").innerHTML;
 
@@ -81,6 +72,18 @@ function loadData(i){
 
     document.getElementById("latitude").value =
         document.getElementById("tr"+i.toString()+"latitude").innerHTML;
+
+    var data ={
+        inventoryNumber : $('#invnumber').val(),
+    } ;
+    $.ajax({
+        type : 'post',
+        url : '/sendInventoryNumber',
+        data: data,
+        data_type : 'text'
+    }).done(()=>{
+        console.log("Inventorynumber is transported")
+    });
 
 
 

@@ -13,7 +13,7 @@ router.post("/booking",
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
-            inventoryNumber : req.body.inventoryNumber,
+            inventoryNumber : req.session.inventoryNumber,
             maxDate: '2020-08-31',
         });
 });
