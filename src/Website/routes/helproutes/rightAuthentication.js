@@ -17,7 +17,6 @@ function authRight(right) {
     }
 }
 
-module.exports =
-    {
+module.exports = {
         authRight
     }

@@ -9,13 +9,16 @@ const initializationVector = crypto.randomBytes(16);
  * @return {{encryptedData: string, initializationVector: string}}
  */
 
-function encrypt(text)
-{
-    let chiper = crypto.createCipheriv('aes-256-cbc',Buffer.from(key),initializationVector);
+function encrypt(text) {
+    let chiper = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
     let encrypted = chiper.update(text);
-    encrypted = Buffer.concat([encrypted,chiper.final()]);
-    return {initializationVector:initializationVector.toString('hex'),encryptedData : encrypted.toString('hex')};
+    encrypted = Buffer.concat([encrypted, chiper.final()]);
+    return {
+        initializationVector: initializationVector.toString('hex'),
+        encryptedData: encrypted.toString('hex')
+    };
 }
+
 /**
  * decrpyt a given jsonFile back to text
  * @param jsonFile contains the initalization vetor and encryptedData
@@ -30,8 +33,7 @@ function decrypt(text) {
     return decrypted.toString();
 }
 
-module.exports=
-    {
-        encrypt,
-        decrypt
-    }
+module.exports = {
+    encrypt,
+    decrypt
+}

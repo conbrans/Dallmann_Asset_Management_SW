@@ -172,7 +172,6 @@ function sendMessage(messagetype) {
     }
 }
 
-module.exports =
-    {
+module.exports = {
         sendMessage
     }
