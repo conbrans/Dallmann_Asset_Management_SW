@@ -103,7 +103,7 @@ router.get("/api/device/getAllDevices", (request, response) => {
  */
 
 router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, response) => {
-    sql = selectSpecificDevice + " WHERE DEVICE.inventory_number ='" + request.body.inventoryNumber + "';";
+    sql = selectSpecificDevice + " WHERE DEVICE.inventory_number LIKE'" + request.body.inventoryNumber + "';";
 
     connection.query(sql, function (err, result) {
         if (err) {

@@ -96,9 +96,19 @@ router.get("/devices", redirect.redirectLogin,
             );
     });
 
-/*router.get("/searchDevice", (req, res) => {
-    console.log(req.body);
-});*/
+router.get("/searchDevice", (req, res) => {
+    fetch.getFetch("/api/device/getSpecificDevice/byInventoryNumber")
+        .then(data =>
+            res.status(200).render("newDeviceManagement.ejs",
+                {
+                    username: req.session.username,
+                    role: req.session.role,
+                    rights: req.session.rights,
+                    data: data,
+
+                })
+        );
+});
 
 router.get("/FAQ",
     (req, res) => {

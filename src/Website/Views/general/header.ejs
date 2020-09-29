@@ -88,14 +88,17 @@
                         </li>
                     <% } %>
 
-                    <!-- FAQ -->
+                    <!-- Suche -->
                     <li>
-                        <a href="/FAQ">
-                            <i class="fas fa-info"></i>
-                            <tab class="header-icons-description">
-                                FAQ
-                            </tab>
+                        <a href="/search">
+                            <i class="fas fa-search"></i>
                         </a>
+                        <form action="/searchDevice" method="get">
+                            <input  width="50%" type="text" name="inventoryNumber"
+                                   onchange="this
+                            .form.submit()">
+                        </form>
+
                     </li>
 
                     <!-- Logout -->
