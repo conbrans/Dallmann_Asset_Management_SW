@@ -1,4 +1,6 @@
-
+window.onload = function () {
+    loadData(0);
+}
 var map = L.map('map').setView([52.52, 7, 32], 5);
 L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: ' &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
