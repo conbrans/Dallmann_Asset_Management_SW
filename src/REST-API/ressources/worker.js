@@ -4,17 +4,15 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection');
-const log = require('../middelwareFunctions/logger');
+//const log = require('../middelwareFunctions/logger');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
-const crypto = require('../../Website/routes/helproutes/crypto.js');
+//const crypto = require('../../Website/routes/helproutes/crypto.js');
 const bcrypt = require('bcrypt');
 const router = express();
-const fs = require('fs');
-const path = require('path');
-const morgan = require('morgan');
-const uuid = require('node-uuid');
+//const crypto = require('crypto');
+const hashing = require('../login/passwordHashingBcrypt');
 
 /**
  * route for getting all users out of database
@@ -76,12 +74,6 @@ router.get("/api/user/getSpecificUser/:workerId",(request, response) => {
 router.post("/api/user/createUser", constraint.workerConstraints, (request, response) =>
 {
 
-    let test = crypto.encrypt('Hallo');
-    console.log(test);
-    console.log(crypto.decrypt(test));
-   // console.log(crypto.encrypt(test));
-
-   console.log(request.body);
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -89,7 +81,7 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
     }
 
     sql = "INSERT INTO WORKER(password,e_mail,surname,firstname,role) VALUES " +
-        "('"+request.body.password+"','"+request.body.eMail+"','"+ request.body.surname+"','"
+        "('"+hashing.secondHashe(request.body.password)+"','"+request.body.eMail+"','"+ request.body.surname+"','"
         +request.body.firstName+"','"+request.body.role+"')";
 
 
@@ -164,9 +156,6 @@ router.delete("/api/user/deleteUser/:userId",(request, response) => {
 
     connection.query(sql, function (err, result) {
 
-      /*  var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2); */
-
         let str = Object.values(result[0])[0];
 
         if (err) {
@@ -193,11 +182,9 @@ router.delete("/api/user/deleteUser/:userId",(request, response) => {
 
 });
 
-router.put("/api/user/updatePassword", async (request, response) => {
+router.put("/api/user/updatePassword", (request, response) => {
 
-    let password = crypto.decrypt(request.body.password);
-
-        sql = "UPDATE WORKER SET password='"+password+"' WHERE e_mail ='"+request.body.eMail+"';";
+        sql = "UPDATE WORKER SET password='"+hashing.secondHashe(request.body.password)+"' WHERE e_mail ='"+request.body.eMail+"';";
 
         connection.query(sql, function (err) {
             if (err) {
@@ -234,7 +221,7 @@ router.post("/api/user/editProfile/:userId", (request, response) => {
 
 });
 
-/* router.put("/api/user/comparePassword", (request, response) => {
+ router.put("/api/user/comparePassword", (request, response) => {
 
     sql = "SELECT WORKER.password FROM WORKER WHERE e_mail ='"+request.body.eMail+"';";
 
@@ -244,18 +231,17 @@ router.post("/api/user/editProfile/:userId", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
+
         console.log('updateUser.Connection established');
-        const compare = await bcrypt.compare(request.body.password, result[0].password);
-        if(!compare) {
+
+        if(!hashing.compare(request.body.password, result[0].password)) {
             return response.json({"Message": "Kombination aus Passwort und EMail stimmt nicht."})                   //Klartextpasswort ist 1234
-            console.log(compare);
 
         } else return response.json({"Message": "Kombination ist korrekt."});
 
-            console.log(compare);
     })
-}); */
-
+});
+//const compare = await bcrypt.compare(hashed, result[0].password);
 module.exports = router;
 /**
  * Port listener

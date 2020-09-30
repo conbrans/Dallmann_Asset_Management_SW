@@ -5,7 +5,7 @@
 
 
 const connection = require('../../../src/REST-API/databaseConnection/connection');
-const log = require('../middelwareFunctions/logger');
+//const log = require('../middelwareFunctions/logger');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
@@ -15,38 +15,6 @@ const router = express();
 /**
  * route for getting all users out of database
  */
-
-
-/*"SELECT * FROM (SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
-"        gurantee AS guarantee,DEVICE.note,\n" +
-"        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
-"        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
-"        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
-"        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
-"        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
-"        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
-"FROM DEVICE\n" +
-"        LEFT JOIN BORROWS\n" +
-"                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
-"        LEFT JOIN PROJECT\n" +
-"                    ON BORROWS.project_id = PROJECT.project_id\n" +
-"        INNER JOIN DEVICE_STATUS\n" +
-"                    ON DEVICE.device_status = DEVICE_STATUS.device_status_id\n" +
-"        LEFT JOIN BEACON\n" +
-"                    ON DEVICE.beacon_major = BEACON.major and DEVICE.beacon_minor = BEACON.minor\n" +
-"        LEFT JOIN BEACON_POSITION\n" +
-"                    ON BEACON.major = BEACON_POSITION.major and BEACON.minor = BEACON_POSITION.minor\n" +
-"        LEFT JOIN LOCATION\n" +
-"                    ON BEACON_POSITION.location_id = LOCATION.location_id\n" +
-"        LEFT JOIN TUEV\n" +
-"                   ON DEVICE.inventory_number = TUEV.inventory_number\n" +
-"        LEFT JOIN UVV\n" +
-"                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
-"        LEFT JOIN REPAIR\n" +
-"                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
-"        INNER JOIN CATEGORY\n" +
-"                   ON BEACON.major = CATEGORY.major GROUP BY DEVICE.inventory_number) t WHERE statusDescription = '"+request.body.status+"';"; */
-// router.use(log.logRequest);
 
 let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
     "        gurantee AS guarantee,DEVICE.note,\n" +
@@ -88,9 +56,7 @@ router.get("/api/device/getAllDevices", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
-        //console.log(result)
         response.json(result);
     });
 
@@ -111,13 +77,12 @@ router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, respons
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
         response.json(result);
     })
 
 });
-//TODO geändert auf status_id
+
 router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
         " WHERE deviceStatus LIKE '%"+request.body.status+"%';";
@@ -128,7 +93,6 @@ router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
         response.json(result);
     })
@@ -145,7 +109,6 @@ router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
         response.json(result);
     })
@@ -162,7 +125,6 @@ router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
         response.json(result);
     })
@@ -179,7 +141,6 @@ router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
         response.json(result);
     })
@@ -196,7 +157,6 @@ router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
         response.json(result);
     })
@@ -213,7 +173,6 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
             console.log('Error connecting to Db');
             return;
         }
-        var json = JSON.stringify(result)
         console.log('GetAllDevices.Connection established');
         response.json(result);
     })
@@ -281,10 +240,6 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
 
                         let str = Object.values(result[0])[0];
 
-                      /* var json = JSON.stringify(result);
-                        var str = json.substring(json.length - 8, json.length - 2);
-                        console.log(str); */
-
                         sqlUpdateUvv = "UPDATE DEVICE\n" +
 
                             "INNER JOIN UVV ON DEVICE.inventory_number = UVV.inventory_number\n" +
@@ -325,10 +280,6 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                         }
 
                         let str = Object.values(result[0])[0];
-
-                        /*  var json = JSON.stringify(result);
-                          var str = json.substring(json.length - 8, json.length - 2);
-                          console.log(str); */
 
                         sqlUpdateTuev = "UPDATE DEVICE\n" +
 
@@ -371,10 +322,6 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
 
                         let str = Object.values(result[0])[0];
 
-                        /*  var json = JSON.stringify(result);
-                          var str = json.substring(json.length - 8, json.length - 2);
-                          console.log(str); */
-
                         sqlUpdateRepair = "UPDATE DEVICE\n" +
 
                             "INNER JOIN REPAIR ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
@@ -415,10 +362,6 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
     connection.query(sql, function (err, result) {
 
         let str = Object.values(result[0])[0];
-
-      /*  var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2); */
-
 
         if (err) {
             response.json({"Message": "Test"});
@@ -567,10 +510,6 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
     connection.query(sql, function (err, result) {
 
         let str = Object.values(result[0])[0];
-
-       /* var json = JSON.stringify(result);
-        var str = json.substring(json.length - 3, json.length - 2); */
-
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});

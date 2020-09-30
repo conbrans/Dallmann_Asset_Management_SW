@@ -46,6 +46,7 @@ const restWorker = require('../../REST-API/ressources/worker');
 const restLogin= require('../../REST-API/login/loginApp');
 const restLogger = require('../../REST-API/middelwareFunctions/logger');
 const restNotification = require('../../REST-API/ressources/notifcations');
+const restCommission = require('../../REST-API/ressources/commission');
 
 app.use(restLogger.assignId);
 app.use(restLogger.logRequest);
@@ -55,6 +56,7 @@ app.use(restHistory);
 app.use(restWorker);
 app.use(restLogin);
 app.use(restNotification);
+app.use(restCommission);
 
 
 /*https.createServer(

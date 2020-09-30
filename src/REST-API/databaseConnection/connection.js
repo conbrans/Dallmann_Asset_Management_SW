@@ -1,32 +1,35 @@
 const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: '131.173.64.49',
-    user: 'dallmann_am',
-    password: 'Eib5choowu',
-    database: 'dallmann_am2020',
-    url: 'jdbc:mysql://131.173.64.49:3306/dallmann_am2020?serverTimezone=gmt'
-});
+const config = require('../Config/dbConfig')
 
-var dbConfig = {
+var pool = mysql.createPool(config);
 
-    host: '131.173.64.49',
-    user: 'dallmann_am',
-    password: 'Eib5choowu',
-    database: 'dallmann_am2020',
-    url: 'jdbc:mysql://131.173.64.49:3306/dallmann_am2020?serverTimezone=gmt'
-
+module.exports = {
+    query: function(){
+        var sql_args = [];
+        var args = [];
+        for(var i=0; i<arguments.length; i++){
+            args.push(arguments[i]);
+        }
+        var callback = args[args.length-1]; //last arg is callback
+        pool.getConnection(function(err, connection) {
+            if(err) {
+                console.log(err);
+                return callback(err);
+            }
+            if(args.length > 2){
+                sql_args = args[1];
+            }
+            connection.query(args[0], sql_args, function(err, results) {
+                connection.release(); // always put connection back in pool after last query
+                if(err){
+                    console.log(err);
+                    return callback(err);
+                }
+                callback(null, results);
+            });
+        });
+    }
 };
 
-connection.connect((err) => {
-    if(err){
-        console.log('Error connecting to Db');
-        return;
-    }
-    console.log('Connection established');
-});
-
-
-
-module.exports = connection;
 
 
