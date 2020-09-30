@@ -16,16 +16,13 @@ router.post("/addUser", authentication.authRight("add_user"), (req,res) => {
 
 });
 
-router.post("/editUser", authentication.authRight("edit_User"),(req, res) =>
-{
+router.post("/editUser", authentication.authRight("edit_User"),(req, res) => {
     const passwordEncrypt = crypto.encrypt(req.body.password);
     const passwordCorrectEncrypt = crypto.encrypt(req.body.passwordCorrect);
 
     if (passwordEncrypt.encryptedData===passwordCorrectEncrypt.encryptedData)
     {
         req.body.password= passwordEncrypt;
-
-
         fetch.postFetch("/api/user/editProfile/" + req.session.userID,req)
             .then(res.redirect("/editProfil"))
             .catch((error)=>
@@ -58,7 +55,6 @@ router.post("/resetPW",authentication.authRight("delete_user"),(req, res)=>
             console.error('Error:', error);
         });
     res.redirect("/userManagement");
-
 });
 
 module.exports = router;

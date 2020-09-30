@@ -8,8 +8,7 @@ const authentication = require('./helproutes/rightAuthentication');
 
 router.post("/booking",
     authentication.authRight("booking_device"),(req, res)=> {
-    res.render("booking.ejs",
-        {
+    res.render("booking.ejs", {
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,

@@ -24,6 +24,7 @@ const device = require('./routerDevice');
 const login = require('./routesLogin');
 const usermanagement = require('./routesUserManagement');
 const search = require('./routesSearch');
+const commision = require('./routerCommision');
 
 app.use(ajax);
 app.use(booking);
@@ -33,6 +34,7 @@ app.use(device);
 app.use(routerGet);
 app.use(usermanagement);
 app.use(search);
+app.use(commision);
 
 
 /**
@@ -58,15 +60,6 @@ app.use(restLogin);
 app.use(restNotification);
 app.use(restCommission);
 
-
-/*https.createServer(
-    {
-    cert : fs.readFileSync('C:\\Users\\co99b\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\sslfiles\\server.crt'),
-        key : fs.readFileSync('C:\\Users\\co99b\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\sslfiles\\server.key')
-    },app).listen(3000, () => console.log(
-    "listening on: " +
-    `https://localhost:3000`
-));*/
 
 app.listen(3000, () => console.log(
     "listening on: " +

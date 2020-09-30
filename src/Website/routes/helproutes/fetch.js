@@ -6,24 +6,23 @@ const fetch = require('node-fetch');
  * @param req contains the body, which has to be posted
  * @returns a json object
  */
-async function postFetch(url, req)
-{
+async function postFetch(url, req) {
     let res = await fetch("http://localhost:3000" + url,
         {
             method: 'POST',
-            headers:  {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(req.body)
         });
     return await res.json();
 }
+
 /**
  * method for fetch task which need to be put
  * @param url completes the fetch url
  * @param req contains the body, which has to be put
  * @returns a json object
  */
-async function putFetch(url, req)
-{
+async function putFetch(url, req) {
     let res = await fetch("http://localhost:3000" + url,
         {
             method: 'PUT',
@@ -39,8 +38,7 @@ async function putFetch(url, req)
  * @param req contains the body, which has to be deleted
  * @returns a json object
  */
-async function deleteFetch(url, req)
-{
+async function deleteFetch(url, req) {
     let res = await fetch("http://localhost:3000" + url,
         {
             method: 'DELETE',
@@ -49,21 +47,21 @@ async function deleteFetch(url, req)
         });
     return res.json();
 }
+
 /**
  * method specially written for the login
  * @param request contains a mail address, which tries to access the service
  * @param result contains a hashed password, which is compared in REST-Service
  * @returns a json object
  */
-async function loginFetch(request,result)
-{
+async function loginFetch(request, result) {
     let res = await fetch('http://localhost:3000/api/login',
         {
-            method : 'POST',
-            headers: { "Content-Type": "application/json" },
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                usermail : request.body.useremail,
-                password : result,
+                usermail: request.body.useremail,
+                password: result,
             })
         });
     return res.json();
@@ -74,17 +72,15 @@ async function loginFetch(request,result)
  * @param url completes the url
  * @returns {Promise<*>}
  */
-async function getFetch(url)
-{
+async function getFetch(url) {
     let res = await fetch('http://localhost:3000' + url);
     return await res.json();
 }
 
-module.exports =
-    {
-        postFetch,
-        getFetch,
-        putFetch,
-        deleteFetch,
-        loginFetch
-    }
+module.exports = {
+    postFetch,
+    getFetch,
+    putFetch,
+    deleteFetch,
+    loginFetch
+}

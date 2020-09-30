@@ -18,6 +18,7 @@ table {
     border-collapse: collapse;
     overflow: scroll;
     overflow: auto;
+    cursor: pointer;
 }
 
 

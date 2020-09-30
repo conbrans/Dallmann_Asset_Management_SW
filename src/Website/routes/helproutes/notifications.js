@@ -1,6 +1,14 @@
 const fetch = require('../helproutes/fetch');
 
 
+//TODO function für Comission
+
+/**
+ * sends toastr notifcations
+ * @param messagetype the type of message which will be send e.g. login or
+ * failed login
+ * @return {function(*, *, *): void}
+ */
 function sendMessage(messagetype) {
     return (req, res, next) => {
         if (!req.session[messagetype]) {
@@ -37,7 +45,7 @@ function sendMessage(messagetype) {
                             req.toastr.info("In den nächsten 14 Tagen müssen" +
                                 " keine Geräte zurückgegeben werden.",
                                 title = 'Ablaufende Reservierung', options = {});
-                        } else if (req.session.role==="Werkstatt") {
+                        } else  {
                             for (var i = 0; i < req.session.bookingData.length;
                                  i++) {
                                 req.toastr.info(
@@ -77,7 +85,7 @@ function sendMessage(messagetype) {
                                 " Tage stehen keine" +
                                 " TÜV-Prüfungen an!", title = 'Ablauf des TÜV' +
                                 ' Status', options = {});
-                        } else if (req.session.role==="Werkstatt"){
+                        } else {
                             for (var i = 0; i < req.session.tuvData.length;
                                  i++) {
                                 req.toastr.warning(
@@ -110,7 +118,7 @@ function sendMessage(messagetype) {
                                 " Tage stehen keine" +
                                 " UVV-Prüfungen an!", title = 'Ablauf des UVV' +
                                 ' Status', options = {});
-                        } else if (req.session.role==="Werkstatt") {
+                        } else {
                             for (var i = 0; i < req.session.uvvData.length;
                                  i++) {
                                 req.toastr.warning(
@@ -143,7 +151,7 @@ function sendMessage(messagetype) {
                                 " Tage stehen keine" +
                                 " Reparaturen an!", title = 'Anstehende' +
                                 ' Reparaturen', options = {});
-                        } else if (req.session.role==="Werkstatt") {
+                        } else  {
                             console.log(req.session.maintenanceData);
                             for (var i = 0; i < req.session.maintenanceData.
                                 length; i++) {
@@ -172,7 +180,6 @@ function sendMessage(messagetype) {
     }
 }
 
-module.exports =
-    {
+module.exports = {
         sendMessage
     }

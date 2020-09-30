@@ -45,6 +45,13 @@ function getAccess(req, data, res) {
     }
 }
 
+/**
+ * method for providing the information about expiring reservations, TUV,
+ * UVV and maintenance
+ * @param req
+ * @param data
+ * @param res
+ */
 function getNotificationValues(req, data, res) {
     fetch.getFetch("/api/notification/booking/" + data.worker_id)
         .then(result => req.session.bookingData = result)

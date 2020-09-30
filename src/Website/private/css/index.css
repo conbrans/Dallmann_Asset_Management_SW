@@ -15,6 +15,7 @@ body {
 }
 
 .grid-container {
+
     padding-top: 50px;
     display: grid;
     height: auto;
@@ -36,7 +37,7 @@ body {
     grid-area: side2;
 }
 
-.box1 {
+.deviceInfoOuter {
     grid-area: box1;
     background-image: url("../img/construction_3.jpg");
 }

@@ -37,30 +37,23 @@
         <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
              alt="Firmenlogo Dallmann">
     </h1>
-    <h3 id="login-message">Authentifizierung erforderlich</h3>
     <form action="/login" method="post" id="login" >
         <fieldset>
-            <input type="email" name="useremail" id="email" value="" placeholder="E-Mail-Adresse" required>
+            <input type="email" name="useremail" id="email" placeholder="E-Mail-Adresse" required>
             <input type="password" name="password" id="password" placeholder="Passwort" required>
 
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" name="checkbox" id="defaultUnchecked">
                 <label class="custom-control-label" for="defaultUnchecked">Angemeldet bleiben</label>
             </div>
-            <h3>
-                <p></p>
-                <a id="reset-link" class=""  href="/">Passwort vergessen</a>
-                <!-- Password vergessen Seite ersetzen-->
-            </h3>
-            <h3>
-                <a href="/" class="" id="firsttime">Vor der ersten
-                    Verwendung</a>
-            </h3>
-            <button class="btn btn-info btn-block my-4" type="submit" style="background-color: #faba31;">
-                <i class="fas fa-sign-in-alt">Anmelden</i></button>
+            <button type="submit" class="btn btn-outline-dark waves-effect">Success</button>
             <!--<button id="submitBtn" class="submit button pull-right" type="submit" name="submit">
                 <i class="icon-signin"></i>
                 Anmelden </button>-->
+            <h3>
+                <a id="reset-link" class=""  href="/">Passwort vergessen</a>
+                <!-- Password vergessen Seite ersetzen-->
+            </h3>
         </fieldset>
     </form>
 </div>
