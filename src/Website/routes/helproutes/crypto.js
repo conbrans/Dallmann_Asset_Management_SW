@@ -20,12 +20,12 @@ function encrypt(text) {
 }
 
 /**
- * decrpyt a given jsonFile back to text
- * @param jsonFile contains the initalization vetor and encryptedData
+ * decrypt a given jsonFile back to text
+ * @param text contains the initialization vector and encryptedData
  * @return {string}
  */
 function decrypt(text) {
-    let iv = Buffer.from(text.initializationVector, 'hex');
+    let initializationVector  = Buffer.from(text.initializationVector, 'hex');
     let encryptedText = Buffer.from(text.encryptedData, 'hex');
     let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
     let decrypted = decipher.update(encryptedText);

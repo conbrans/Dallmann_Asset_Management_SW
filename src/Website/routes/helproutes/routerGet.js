@@ -64,6 +64,7 @@ router.get("/booking", redirect.redirectLogin,
             role: req.session.role,
             rights: req.session.rights,
             inventoryNumber: "23221320",
+            maxDate : "2020-10-23",
         });
 
     });
@@ -122,7 +123,7 @@ router.get("/FAQ",
 
 router.get("/Website-FAQ",
     (req, res) => {
-        res.status(200).render("newFAQWebsite.ejs", {
+        res.status(200).render("FAQWebsite.ejs", {
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,

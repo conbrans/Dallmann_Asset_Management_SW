@@ -11,19 +11,29 @@ const redirect = require('./helproutes/redirect');
 
 router.post("/setDeviceConstruction",redirect.redirectLogin, authentication.authRight(""),(req, res) => {
     console.log(req.body);
-    /*fetch.postFetch("").then(()=>{
+    fetch.postFetch("/api/commission/booking",req)
+        .then(()=>{
         res.redirect("/commission");
-    })*/
+    });
 
 });
 
 router.post("/setDeviceRepair",redirect.redirectLogin, authentication.authRight(""),(req, res) => {
     console.log(req.body);
+    fetch.postFetch("/api/commission/maintenance",req)
+        .then(()=>{
+            res.redirect("/commission");
+        });
 
 });
 
 router.post("/setDeviceWarehouse",redirect.redirectLogin, authentication.authRight(""),(req, res) => {
     console.log(req.body);
+    fetch.postFetch("/api/commission/release",req)
+        .then(()=>{
+            res.redirect("/commission");
+        });
+
 });
 
 module.exports = router;

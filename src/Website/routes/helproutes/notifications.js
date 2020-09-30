@@ -1,6 +1,3 @@
-const fetch = require('../helproutes/fetch');
-
-
 //TODO function für Comission
 
 /**
@@ -11,6 +8,7 @@ const fetch = require('../helproutes/fetch');
  */
 function sendMessage(messagetype) {
     return (req, res, next) => {
+        let i;
         if (!req.session[messagetype]) {
             switch (messagetype) {
                 case "login":
@@ -46,7 +44,7 @@ function sendMessage(messagetype) {
                                 " keine Geräte zurückgegeben werden.",
                                 title = 'Ablaufende Reservierung', options = {});
                         } else  {
-                            for (var i = 0; i < req.session.bookingData.length;
+                            for (i = 0; i < req.session.bookingData.length;
                                  i++) {
                                 req.toastr.info(
                                     'Für das Gerät mit der Nummer '
@@ -86,7 +84,7 @@ function sendMessage(messagetype) {
                                 " TÜV-Prüfungen an!", title = 'Ablauf des TÜV' +
                                 ' Status', options = {});
                         } else {
-                            for (var i = 0; i < req.session.tuvData.length;
+                            for (i = 0; i < req.session.tuvData.length;
                                  i++) {
                                 req.toastr.warning(
                                     'Der TÜV-Status für das Gerät mit ' +
@@ -119,7 +117,7 @@ function sendMessage(messagetype) {
                                 " UVV-Prüfungen an!", title = 'Ablauf des UVV' +
                                 ' Status', options = {});
                         } else {
-                            for (var i = 0; i < req.session.uvvData.length;
+                            for (i = 0; i < req.session.uvvData.length;
                                  i++) {
                                 req.toastr.warning(
                                     'Der UVV-Status für das Gerät mit der' +
@@ -153,7 +151,7 @@ function sendMessage(messagetype) {
                                 ' Reparaturen', options = {});
                         } else  {
                             console.log(req.session.maintenanceData);
-                            for (var i = 0; i < req.session.maintenanceData.
+                            for (i = 0; i < req.session.maintenanceData.
                                 length; i++) {
                                 req.toastr.info('In zwei Wochen steht für' +
                                     ' folgendes Gerät eine ' +
