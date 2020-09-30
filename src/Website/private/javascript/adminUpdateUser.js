@@ -1,11 +1,15 @@
+/**
+ * function to demonstrate how save the new password will be, the function
+ * checks for lower & uppercase, numbers, password length and special chars
+ */
+
 function checkPasswordRequirements() {
     let strength = 0;
     const strengthBar = document.getElementById("strength");
     let password = document.getElementById("password").value;
 
 
-    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/))
-    {
+    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/)) {
         strength += 1;
     }
     if (password.match(/[a-z]/)) {
@@ -44,10 +48,12 @@ function checkPasswordRequirements() {
         default:
             strengthBar.value = 0;
     }
-
 }
 
-
+/**
+ * compares the password with the control password, if password matches both
+ * fields get colored green, if not red
+ */
 function checkPasswords() {
     let password = document.getElementById("password").value;
     let password1 = document.getElementById("passwordCorrect").value;
@@ -56,11 +62,8 @@ function checkPasswords() {
 
     if (password != password1 || password.length > 255) {
         passwordBackground.style.background = "red";
-        return false;
     } else {
         passwordBackground.style.background = "lightgreen";
-        document.getElementById("password").style.
-            background = "lightgreen";
-        return true;
+        document.getElementById("password").style.background = "lightgreen";
     }
 }

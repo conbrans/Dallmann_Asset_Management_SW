@@ -1,6 +1,14 @@
 const fetch = require('../helproutes/fetch');
 
 
+//TODO function für Comission
+
+/**
+ * sends toastr notifcations
+ * @param messagetype the type of message which will be send e.g. login or
+ * failed login
+ * @return {function(*, *, *): void}
+ */
 function sendMessage(messagetype) {
     return (req, res, next) => {
         if (!req.session[messagetype]) {

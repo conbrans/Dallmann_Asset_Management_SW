@@ -18,7 +18,7 @@ const router = express();
 router.get("/api/borrow/getReservations",(request, response) => {
 
     sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd," +
-        " WORKER.firstName, WORKER.surname,\n" +
+        " WORKER.firstname, WORKER.surname,\n" +
         "PROJECT.project_id AS projectId, PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
         "FROM BORROWS\n" +
         "INNER JOIN PROJECT\n" +

@@ -86,6 +86,15 @@ function loadData(i){
     document.getElementById("latitude").value =
         document.getElementById("tr"+i.toString()+"latitude").innerHTML;
 
+    document.getElementById("guarantee").value =
+        document.getElementById("tr"+i.toString()+"guarantee").innerHTML;
+
+    document.getElementById("technicalInspection").value =
+        document.getElementById("tr"+i.toString()+"technicalInspection").innerHTML;
+
+    document.getElementById("accidentPrevention").value =
+        document.getElementById("tr"+i.toString()+"accidentPrevention").innerHTML;
+
     var data ={
         inventoryNumber : $('#invnumber').val(),
     } ;

@@ -21,7 +21,7 @@
 <!--Nav Ende -->
 <div id="historycontent">
     <div id="menu-caption">
-        <h1>Standorthistorie für das Gerät: <%= geraetenummer %> </h1>
+        <h1>Standorthistorie für das Gerät: <%= inventoryNumber %> </h1>
     </div>
 
 
@@ -63,26 +63,26 @@
         </tr>
         </thead>
         <tbody>
-        <% for (var i = 0; i < datum.length;i++) { %>
+        <% for (var i = 0; i < data.length;i++) { %>
             <tr>
-                <td><%= datum[i] %></td>
+                <td><%= data[i].lastChance %></td>
                 <input id="longitude<%=i%>" type="hidden"
-                       value="<%=longitude[i]%>">
+                       value="<%=data[i].longitude%>">
                 <input id="latitude<%=i%>" type="hidden"
-                       value="<%=latitude[i]%>">
-                <td><%= model[i] %></td>
-                <td><%= manufacturer[i] %></td>
-                <td><%= serialNumber[i] %></td>
-                <td><%= guarantee[i] %></td>
-                <td><%= note[i] %></td>
-                <td><%= statusDescription[i] %></td>
-                <td><%= category[i] %></td>
-                <td><%= lastTuev[i] %></td>
-                <td><%= lastUvv[i] %></td>
-                <td><%= lastRepair[i] %></td>
-                <td><%= repairNote[i] %></td>
-                <td><%= projectId[i] %></td>
-                <td><%= buildingSite[i] %></td>
+                       value="<%=data[i].latitude%>">
+                <td><%= data[i].model %></td>
+                <td><%= data[i].manufacturer %></td>
+                <td><%= data[i].serialNumber %></td>
+                <td><%= data[i].guarantee %></td>
+                <td><%= data[i].note %></td>
+                <td><%= data[i].statusDescription %></td>
+                <td><%= data[i].category %></td>
+                <td><%= data[i].lastTuev %></td>
+                <td><%= data[i].lastUvv %></td>
+                <td><%= data[i].lastRepair %></td>
+                <td><%= data[i].repairNote %></td>
+                <td><%= data[i].projectId %></td>
+                <td><%= data[i].buildingSite %></td>
                 <td></td>
             </tr>
         <% } %>

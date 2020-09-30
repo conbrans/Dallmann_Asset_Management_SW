@@ -7,7 +7,6 @@ const fetch = require('./helproutes/fetch');
 const authentication = require('./helproutes/rightAuthentication');
 const redirect = require('./helproutes/redirect');
 
-
 router.post("/addDevice", redirect.redirectLogin,
     authentication.authRight("add_Device"), (req,res) => {
 
@@ -17,9 +16,6 @@ router.post("/addDevice", redirect.redirectLogin,
         });
    res.redirect("/devices");
     });
-
-
-
 
 router.post("/updateDevice",redirect.redirectLogin,
     authentication.authRight("edit_Device"), (req, res) => {
