@@ -28,11 +28,11 @@
 <br>
 <div class="outerBox">
     <div class="wrapper">
-        <div id="content" style="overflow-x: auto">
+        <div id="userContent">
             <h3>Benutzerliste</h3>
-            <div style="text-align: right">
+            <div class="newUserWrapper">
                 <% if (rights.add_user === 1){ %>
-                    <form method="get" id="add" action="/add">
+                    <form method="get" id="add" onclick="addUserPopUp()">
                         <button id="submit" class="btn btn-outline-primary">
                             Neuen
                             Benutzer hinzufügen
@@ -75,71 +75,50 @@
             </table>
 
         </div>
-        <div>
+        <div id="userInformation">
 
             <div class="box">
                 <h3>Benutzerinfomationen</h3>
                 <br>
-                <div class="deviceInfoOuter">
+                <div class="inputWrapper">
                     <form method="post" action="/updateUser">
                         <input type="hidden" name="workerid"
                                id="hiddenWorkerId">
 
 
-                        <div class="deviceInfoBoxes">
+                        <div class="userProfilBoxes">
                             <label for="Vorname" style="float: left">
                                 Vorname: </label>
                             <div>
-                                <input name="firstName" class="inputBox"
+                                <input name="firstName" class="form-control"
                                        type="text" value="Vorname"
                                        id="firstName">
-                                <button id="vornameBtn" type="button"
-                                        onclick="changeFieldStatus('vorname')"
-                                        class="btn btn-default"
-                                        aria-label="Left Align"
-                                        style="float: left; border: none">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
                             </div>
                         </div>
 
-                        <div class="deviceInfoBoxes">
+                        <div class="userProfilBoxes">
                             <label for="nachname"> Nachname: </label>
                             <div>
-                                <input name="surname" class="inputBox"
+                                <input name="surname" class="form-control"
                                        type="text" value="Nachname"
                                        id="lastName">
-                                <button id="nachnameBtn" type="button"
-                                        onclick="changeFieldStatus('nachname')"
-                                        class="btn btn-default"
-                                        aria-label="Left Align"
-                                        style="float: left; border: none">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
                             </div>
                         </div>
 
-                        <div class="deviceInfoBoxes">
+                        <div class="userProfilBoxes">
                             <label for="e-Mail">E-Mail:</label>
                             <div>
-                                <input name="eMail" class="inputBox" type="text"
+                                <input name="eMail" class="form-control" type="text"
                                        value="E-Mail" id="e-Mail">
-                                <button id="emailBtn" type="button"
-                                        onclick="changeFieldStatus('e-Mail')"
-                                        class="btn btn-default"
-                                        aria-label="Left Align"
-                                        style="float: left; border: none">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
                             </div>
                         </div>
 
-                        <div class="deviceInfoBoxes">
+                        <div class="userProfilBoxes">
                             <label for="rolleBtn"> Rolle:</label>
                             <div>
 
                                 <select name="role"
-                                        class="inputBox" id="rolle">
+                                        class="form-control" id="rolle">
                                     <option disabled selected>Rolle</option>
                                     <option value="Admin">Admin</option>
                                     <option value="Werkstatt">Werkstatt</option>
@@ -147,13 +126,6 @@
                                     <option value="Buchhaltung">Buchhaltung
                                     </option>
                                 </select>
-                                <button id="rolleBtn" type="button"
-                                        onclick="changeSelectStatus('rolle')"
-                                        class="btn btn-default"
-                                        aria-label="Left Align"
-                                        style="border: none">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
                             </div>
                         </div>
 
