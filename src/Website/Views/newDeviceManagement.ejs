@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
-    <script  src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
@@ -54,19 +54,20 @@
         <div class="content" style="overflow-x: auto">
             <h3>Geräteliste</h3>
             <div>
-                <div style=" float: left">
+                <div class="newDeviceWrapper">
                     <% if (rights.add_device === 1){ %>
-                        <form method="get" action="/addDevice">
+                        <form class="form" method="get" action="/addDevice">
                             <!--onclick="addDeviceWindow()"-->
 
-                            <button class="header_button">Neues Gerät hinzufügen
+                            <button class="btn btn-outline-warning" id="btn-newDevice" class="header_button" style="color: #666 !important;
+    border: none !important">Neues Gerät hinzufügen
                                 <i class="fa fa-toolbox"></i>
                             </button>
                         </form>
                     <% } %>
                 </div>
                 <div class="toggle-title" style="text-align: right;float: left">
-                    <button class="header_button">Filtern
+                    <button class="btn btn-outline-warning" id="btn-filter" class="header_button">Filtern
                         <i class="fas fa-filter"></i>
                     </button>
                 </div>
@@ -149,18 +150,14 @@
             </table>
 
 
-
-
-
-
         </div>
-        <div class="deviceInfo">
+        <div class="deviceInformation">
             <div class="inputFields">
                 <form class="box" action="/updateDevice" method="post"
-                      id="updateDevice" >
+                      id="updateDevice">
                     <h3>Geräteinformationen</h3>
                     <br>
-                    <div class="deviceInfoOuter">
+                    <div class="box1">
                         <div class="deviceInfoWrapper box1">
                             <div class="deviceInfoBoxes">
                                 <label for="inventarnummer" style="float: left">
@@ -312,64 +309,68 @@
                             </div>
                         </div>
                     </div>
-    <br>
 
-                    <div class="actionButton"  style="width: 100%">
-                        <% if (rights.edit_device === 1){ %>
-                            <form class="" method="post" action="" style="float: left">
-                                <div style="margin-top: 1em">
-                                    <p>
-                                        <button type="submit"
-                                                class="btn btn-outline-primary"
-                                                onclick="">
-                                            <!--                                    onclick="sendData()"-->
-                                            Daten ändern
-                                        </button>
-                                    </p>
+                </form>
+                <br>
+                <hr>
+                <div class="actionButton">
+
+                    <% if (rights.edit_device === 1){ %>
+                        <form class="btn-from" method="post" action="">
+                            <div>
+                                <p>
+                                    <button type="submit"
+                                            class="btn btn-outline-primary"
+                                            onclick="">
+                                        <!--                                    onclick="sendData()"-->
+                                        Daten ändern
+                                    </button>
+                                </p>
+                            </div>
+                        </form>
+                    <% } %>
+
+                    <form class="btn-from" method="post" action="/historie" id="historie">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info">Historie
+                                        anzeigen
+                                    </button>
                                 </div>
-                            </form>
-                        <% } %>
+                            </div>
+                        </div>
+                    </form>
 
-                        <form method="post" action="/historie" id="historie" style="float: left">
+                    <% if (rights.booking_device === 1){ %>
+                        <form class="btn-from" method="post" action="/booking" id="booking">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-info">Historie
-                                            anzeigen
+                                        <button type="submit" class="btn btn-warning">Gerät
+                                            reservieren
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <% if (rights.booking_device === 1){ %>
-                            <form method="post" action="/booking" id="booking" style="float: left">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-warning">Gerät
-                                                reservieren
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
 
-                        <% } if (rights.delete_device === 1){ %>
-                            <form method="post" action="/deleteDevice" id="deleteDevice" style="float: left">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-danger"
-                                                    onclick="deleteDeviceMessage()">Gerät
-                                                löschen
-                                            </button>
-                                        </div>
+                    <% } if (rights.delete_device === 1){ %>
+                        <form class="btn-from" method="post" action="/deleteDevice" id="deleteDevice"
+                              style="float: left">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-danger"
+                                                onclick="deleteDeviceMessage()">Gerät
+                                            löschen
+                                        </button>
                                     </div>
                                 </div>
-                            </form>
-                        <% } %>
-                    </div>
-                </form>
+                            </div>
+                        </form>
+                    <% } %>
+                </div>
             </div>
             <br>
             <hr>

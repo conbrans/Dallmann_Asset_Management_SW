@@ -26,7 +26,7 @@ body {
 
 }*/
 
-#content {
+#userContent {
     position: relative;
     height: 94%;
     width: 100%;
@@ -159,4 +159,34 @@ th, td {
 
 tr:hover {
     background-color: #f5f5f5;
+}
+
+.toggle-title:hover #btn-filter{
+    color: #faba31;
+    background-color: #1c9dd9;
+}
+
+#btn-filter:hover{
+    color: #faba31;
+    background-color: #1c9dd9;
+}
+
+.toggle-title:hover{
+    background-color: #1c9dd9;
+}
+
+.form:hover{
+    color: #faba31;
+    background-color: #1c9dd9;
+}
+
+.form:hover #btn-newDevice{
+    color: #faba31;
+    background-color: #1c9dd9;
+}
+
+
+test:hover .form #btn-newDevice{
+    color: #faba31;
+    background-color: #1c9dd9;
 }
