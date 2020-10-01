@@ -24,7 +24,6 @@
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
-<!-- TODO den hiddeninput zu session ergänzen -->
 <br>
 <div class="outerBox">
     <div class="wrapper">
@@ -82,9 +81,6 @@
                 <br>
                 <div class="inputWrapper">
                     <form method="post" action="/updateUser">
-                        <input type="hidden" name="workerid"
-                               id="hiddenWorkerId">
-
 
                         <div class="userProfilBoxes">
                             <label for="Vorname" style="float: left">
@@ -144,20 +140,20 @@
             </div>
             <hr>
             <br>
+            <!--
             <div>
                 <h2>Passwort zurücksetzen</h2>
                 <div>Hier können Sie das Passwort des User's zurücksetzen
                 </div>
                 <div style="margin-top: 1em">
                     <form method="post" action="/resetPw" id="resetPW">
-                        <input type="hidden" name="e_Mail" id="reset_Password">
                         <button type="submit" class="btn btn-outline-danger"
                                 onclick="resetUserPasswordMessage()">
                             Passwort zurücksetzen
                         </button>
                     </form>
                 </div>
-            </div>
+            </div>-->
             <hr>
             <br>
             <div>
@@ -166,10 +162,8 @@
                 </div>
                 <div style="margin-top: 1em">
                     <form method="post" action="/deleteU" id="deleteUser">
-                        <input type="hidden" name="workerid"
-                               id="deleteHiddenWorkerId">
                         <button type="submit" form="deleteUser"
-                                class="btn btn-outline-danger">
+                                class="btn btn-outline-danger" onclick="deleteUserMessage()">
                             Benutzer löschen
                         </button>
                     </form>

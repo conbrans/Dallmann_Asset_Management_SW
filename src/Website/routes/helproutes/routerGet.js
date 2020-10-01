@@ -1,6 +1,5 @@
 /**
  * Require of alll helproutes which are used and declaration of router
- * @type {e | (() => Express)}
  */
 const express = require('express');
 const router = express.Router();
@@ -154,8 +153,19 @@ router.get("/commission",
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
+            req :req,
         });
     });
+
+router.get("/commissionDone", notification.sendMessage("commission"),(req, res) =>{
+    res.render("commission.ejs", {
+        username: req.session.username,
+        role: req.session.role,
+        rights: req.session.rights,
+        req :req,
+    });
+})
+
 
 router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
     notification.sendMessage("booking"),

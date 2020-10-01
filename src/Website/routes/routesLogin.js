@@ -4,6 +4,7 @@
 const express = require('express');
 const fetch = require('./helproutes/fetch');
 const hash = require('./helproutes/passwordhashing');
+const reformat = require('./helproutes/reformatDate');
 const router = express.Router();
 
 const {
@@ -53,23 +54,31 @@ function getAccess(req, data, res) {
  * @param res
  */
 function getNotificationValues(req, data, res) {
+
     fetch.getFetch("/api/notification/booking/" + data.worker_id)
-        .then(result => req.session.bookingData = result)
-        .then(() => {
-            fetch.getFetch("/api/notification/tuv")
-                .then(result => req.session.tuvData = result)
+        .then(result =>
+            reformat.removeTimestampForBookingNotifcation(result).
+            then( result =>req.session.bookingData = result)
                 .then(() => {
-                    fetch.getFetch("/api/notification/uvv")
-                        .then(result => req.session.uvvData = result)
+                    fetch.getFetch("/api/notification/tuv")
+                .then(result =>
+                    reformat.removeTimestampForNotifcation(result)
+                        .then(()=> req.session.tuvData = result)
                         .then(() => {
-                            fetch.getFetch("/api/notification/maintenance")
-                                .then(result => req.session.maintenanceData = result)
-                                .then(() => {
-                                    res.redirect("/home");
-                                });
-                        });
-                });
-        });
+                            fetch.getFetch("/api/notification/uvv")
+                                .then(result =>
+                                    reformat.removeTimestampForNotifcation(result)
+                                        .then(()=>req.session.uvvData = result)
+                                        .then(() => {
+                                            fetch.getFetch("/api/notification/maintenance")
+                                                .then(result=>
+                                                reformat.removeTimestampForNotifcation(result)
+                                                    .then(result => req.session.maintenanceData = result)
+                                                    .then(() => {res.redirect("/home");
+                                }))
+                        }))
+                }))
+        }));
 }
 
 

@@ -1,4 +1,4 @@
-//TODO function für Comission
+
 
 /**
  * sends toastr notifcations
@@ -67,6 +67,11 @@ function sendMessage(messagetype) {
                     }
                     req.session.bookingShown = true;
                     break;
+
+                case "commission":
+                    req.toastr.success('Die Buchung war erfolgreich', title="Commission", options={});
+                break;
+
 
                 case "editProfil":
                     req.toastr.success(

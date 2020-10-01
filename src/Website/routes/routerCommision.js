@@ -13,7 +13,7 @@ router.post("/setDeviceConstruction",redirect.redirectLogin, authentication.auth
     console.log(req.body);
     fetch.postFetch("/api/commission/booking",req)
         .then(()=>{
-        res.redirect("/commission");
+        res.redirect("/commissionDone");
     });
 
 });
@@ -22,7 +22,7 @@ router.post("/setDeviceRepair",redirect.redirectLogin, authentication.authRight(
     console.log(req.body);
     fetch.postFetch("/api/commission/maintenance",req)
         .then(()=>{
-            res.redirect("/commission");
+            res.redirect("/commissionDone");
         });
 
 });
@@ -31,7 +31,7 @@ router.post("/setDeviceWarehouse",redirect.redirectLogin, authentication.authRig
     console.log(req.body);
     fetch.postFetch("/api/commission/release",req)
         .then(()=>{
-            res.redirect("/commission");
+            res.redirect("/commissionDone");
         });
 
 });

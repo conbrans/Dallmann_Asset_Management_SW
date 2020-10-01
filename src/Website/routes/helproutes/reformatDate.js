@@ -6,7 +6,7 @@
  */
  async function removeTimeStampForDevice(data){
 
-    for (var i=0;i<data.length;i++){
+    for (let i=0; i<data.length; i++){
         data[i].guarantee =splitValues(data[i].guarantee);
         data[i].lastLocationUpdate = splitValues(data[i].lastLocationUpdate);
         data[i].lastTuev = splitValues(data[i].lastTuev);
@@ -21,7 +21,7 @@
  * @return {Promise<*>}
  */
 async function removeTimeStampForBooking(data){
-    for (var i=0;i<data.length;i++){
+    for (let i=0; i<data.length; i++){
         data[i].loanDay =splitValues(data[i].loanDay);
         data[i].loanEnd = splitValues(data[i].loanEnd);
     }
@@ -34,7 +34,7 @@ async function removeTimeStampForBooking(data){
  * @return {Promise<*>}
  */
  async function removeTimeStampForHistory(data){
-     for (var i=0;i<data.length;i++){
+     for (let i=0; i<data.length; i++){
          data[i].guarantee =splitValues(data[i].guarantee);
          data[i].lastLocationUpdate = splitValues(data[i].lastLocationUpdate);
          data[i].lastTuev = splitValues(data[i].lastTuev);
@@ -45,15 +45,29 @@ async function removeTimeStampForBooking(data){
     return await data;
  }
 
+ async function removeTimestampForBookingNotifcation(data){
+     for (let i=0; i<data.length; i++){
+         data[i].loan_end = splitValues(data[i].loan_end);
+     }
+     return data;
+ }
+
+async function removeTimestampForNotifcation(data){
+    for (let i=0; i<data.length; i++){
+        data[i].timestamp = splitValues(data[i].timestamp);
+    }
+    return data;
+}
+
 /**
  * look at the doc for removeTimeStampForDevice
- * @param data
  * @return {Promise<*>}
+ * @param arraytosplit
  */
  function splitValues(arraytosplit){
     if (arraytosplit !== null){
-        var stringArray = arraytosplit.toString();
-        var withoutTime = stringArray.split("T");
+        const stringArray = arraytosplit.toString();
+        const withoutTime = stringArray.split("T");
         return withoutTime[0];
     }else {
         return arraytosplit;
@@ -64,4 +78,7 @@ module.exports = {
     removeTimeStampForDevice,
     removeTimeStampForBooking,
     removeTimeStampForHistory,
+    removeTimestampForBookingNotifcation,
+    removeTimestampForNotifcation,
+
 };

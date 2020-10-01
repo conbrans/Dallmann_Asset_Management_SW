@@ -1,3 +1,7 @@
+window.onload = ()=>{
+    loadData(0);
+}
+
 function changeFieldStatus(input) {
     let textarea = document.getElementById(input);
     textarea.readOnly = !textarea.readOnly;
@@ -31,15 +35,16 @@ function loadData(i){
         document.getElementById("tr"+i.toString()+"td4").innerHTML;
 
     var data ={
-        inventoryNumber : $('#invnumber').val(),
+        workerid : document.getElementById("tr"+i.toString()+"td5").innerHTML,
+        mail : document.getElementById("tr"+i.toString()+"td3").innerHTML,
     } ;
     $.ajax({
         type : 'post',
-        url : '/sendInventoryNumber',
+        url : '/sendWorkerId',
         data: data,
         data_type : 'text'
     }).done(()=>{
-        console.log("Inventorynumber is transported")
+        console.log("Workerid is transported")
     });
 }
 
