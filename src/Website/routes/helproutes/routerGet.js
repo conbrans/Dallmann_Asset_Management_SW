@@ -1,6 +1,5 @@
 /**
  * Require of alll helproutes which are used and declaration of router
- * @type {e | (() => Express)}
  */
 const express = require('express');
 const router = express.Router();
@@ -64,6 +63,7 @@ router.get("/booking", redirect.redirectLogin,
             role: req.session.role,
             rights: req.session.rights,
             inventoryNumber: "23221320",
+            maxDate : "2020-10-23",
         });
 
     });
@@ -122,7 +122,7 @@ router.get("/FAQ",
 
 router.get("/Website-FAQ",
     (req, res) => {
-        res.status(200).render("newFAQWebsite.ejs", {
+        res.status(200).render("FAQWebsite.ejs", {
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
@@ -153,8 +153,19 @@ router.get("/commission",
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
+            req :req,
         });
     });
+
+router.get("/commissionDone", notification.sendMessage("commission"),(req, res) =>{
+    res.render("commission.ejs", {
+        username: req.session.username,
+        role: req.session.role,
+        rights: req.session.rights,
+        req :req,
+    });
+})
+
 
 router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
     notification.sendMessage("booking"),

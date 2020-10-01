@@ -121,12 +121,13 @@
                 werden die Informationen für das Gerät geladen.
             </p>
             <% if (rights.edit_device===1){%>
-                <p>Auf dieser Seite können auch die Informationen für ein einzelnes
-                    Gerät geändert werden, so ist es möglich zum Beispiel die
-                    Inventarnummer zu ändern, das Gerät einer anderen Kategorie
-                    zuzuordnen, den Status des Gerätes zu ändern oder das
-                    TÜV/UVV-Datum zu ändern. Die Änderungen können über die
-                    Schaltfläche "Daten ändern" gespeichert werden.</p>
+                <p>Auf dieser Seite können auch die Informationen für ein
+                    einzelnes Gerät geändert werden, so ist es möglich zum
+                    Beispiel die Inventarnummer zu ändern, das Gerät einer
+                    anderen Kategorie zuzuordnen, den Status des Gerätes zu
+                    ändern oder das TÜV/UVV-Datum zu ändern.
+                    Die Änderungen können über die Schaltfläche "Daten ändern"
+                    gespeichert werden.</p>
             <% } %>
             <p>Ein weiteres Feature ist das Einsehen der Historie eines Gerätes.
                 Dafür muss nachdem die Daten für ein einzelnes Gerät geladen
@@ -137,8 +138,21 @@
             <!-- Bild von Historie ergänzen -->
             <p>Platzhalter</p>
             <p>Über die Schaltfläche "Gerät reservieren" kann das zuvor
-                ausgewählte Gerät reserviert werden. Auf diese Funktion wird im
-                nächsten Teil genauer eingegangen.</p>
+                ausgewählte Gerät reserviert werden. Auf diese Funktion wird
+                im nächsten Teil genauer eingegangen.</p>
+            <p>
+                Ebenfalls befindet sich auf dieser Seite noch die Schaltfläche
+                „Gerät löschen“, diese ist nur für Nutzer sichtbar,
+                die von der Software die Berechtigung zum Löschen von Geräten
+                erhalten haben.
+            </p>
+
+            <p>
+                Unter den Schaltflächen befindet sich eine Karte, auf dieser
+                Karte wird die Position des Gerätes angezeigt, welches aus der
+                linken Tabelle ausgewählt wurde,
+                standardmäßig ist das erste Gerät aus der Liste geladen.
+            </p>
         </div>
     </div><!-- END OF TOGGLE -->
 
@@ -151,20 +165,27 @@
             </h3>
         </div>
         <div class="toggle-inner">
-            <p> Über die Schaltfläche Reservierung gelangen Sie zu einer
-                Übersicht über die bereits reservierten und ausgeliehen
-                Geräte. Ebenfalls enthält diese Seite Informationen über das
-                Anfangsdatum und Enddatum der Reservierung/Leihe.
-                Weiter Informationen die auf dieser Seite sichtbar sind, sind
-                der Entleiher mit Vor und Nachname, die BaustellenID und den
-                Baustellennamen.
+            <p>Über die Schaltfläche „Reservierung“ gelangt man  zu einer
+                Übersicht über die bereits reservierten und ausgeliehen Geräte.
+                Ebenfalls enthält diese Seite Informationen über
+                das Anfangsdatum und Enddatum der Reservierung/Leihe.
+                Weiter Informationen, die auf dieser Seite sichtbar sind,
+                sind der Entleiher mit Vor und Nachname, die BaustellenID
+                und den Baustellennamen. Über die Filterfunktion
+                im oberen Bereich der Seite, kann die die Liste nach bestimmten
+                Werten gefiltert werden.
             <p>
-                Über die Schaltflächen im oberen Bereich der Seite, kann die
-                Reservierungsliste nach bestimmten Werten gefiltert werden.</p>
-            <p> Über den Button "Reservierung vornehmen" kann eine
-                Reservierung für ein beliebiges Gerät vorgenommen werden.
-                Allerdings muss über diesen Weg die Inventarnummer des
-                Gerätes angegeben werden.</p>
+                Über diese Seite kann ebenfalls eine Reservierung vorgenommen
+                werden, allerdings muss so zuerst die Inventarnummer des
+                Gerätes angegeben werden. Auch ob das Gerät zur Verfügung steht,
+                wird erst im Nachhinein geprüft, deshalb empfiehlt es sich
+                Reservierungen direkt über die Geräteseite vorzunehmen.
+            </p>
+            <p>Bei diesem Vorgehen wird die Gerätenummer sofort in das
+                Ausleihformular geladen, die Nummer muss also nicht gemerkt
+                werden. Auf der Seite müssen noch das Start- und Enddatum der
+                Reservierung/Leihe angegeben werden, hier sind nur die
+                Zeiträume möglich, in denen das Gerät auch zur Verfügung steht.</p>
             <% if (rights.delete_booking===1){%>
                 <p>
                     Über die Schaltfläche "Resevierung löschen" können die
@@ -208,15 +229,19 @@
             <p>
                 Diese Schaltfläche ist nur für die Administratoren sichtbar oder
                 für Benutzer mit den Berechtigungen Nutzer hinzufügen und Nutzer
-                löschen.
-                Über die Schaltfläche gelangt man zu einer Übersicht über alle
-                registrierten Nutzer der Anwendung.
+                löschen. Über die Schaltfläche gelangt man zu einer Übersicht
+                über alle registrierten Nutzer der Anwendung.
                 Mit dem Button am rechten oberen Rand der Tabelle mit der
                 Beschriftung "Neuen Benutzer hinzufügen" gelangt man zu einer
-                weiteren Seite
-                Auf dieser könen die Stammdaten, wie Name, Nachname usw.
-                festgelegt werden. Ebenfalls kann hier die Zuordnung von Rechten
-                erfolgen.
+                weiteren Seite. Auf dieser können die Stammdaten, wie Name,
+                Nachname usw. festgelegt werden.
+            </p>
+
+            <p>
+                Ebenfalls kann hier die Zuordnung von Rechten erfolgen.
+                Bevor eine Änderung, die hier vorgenommen wird, greift,
+                erfolgt erst eine Abfrage, ob die Veränderungen wirklich
+                vorgenommen werden sollen.
             </p>
         </div>
     </div><!-- END OF TOGGLE -->
@@ -231,15 +256,23 @@
         </div>
         <div class="toggle-inner">
             <p>
-                ...Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                Diese Schaltfläche steht nur den Werkstattmitarbeitern zur
+                Verfügung, über diesen Menüpunkt können Geräte schneller ein
+                und ausgebucht werden.
             </p>
+
+            <p>
+                Über das Anklicken der Baustelle, kann ein Gerät direkt als
+                ausgeliehen gebucht werden, und es wird der Baustelle
+                direkt zugeordnet.
+                Über das Anklicken des Werkzeugkastens, kann das Gerät als
+                „In Wartung“ gebucht werden, hierfür ist nur die Eingabe der
+                Inventarnummer erforderlich.
+                Über das Anklicken des Lagers kann das Gerät direkt als
+                „Verfügbar“ vermerkt werden, hierfür muss ebenfalls nur die
+                Inventarnummer angegeben werden. Weitere Status stehen nicht zur
+                Verfügung, diese müssen über das
+                Gerätemanagement geändert werden.</p>
         </div>
     </div><!-- END OF TOGGLE -->
 

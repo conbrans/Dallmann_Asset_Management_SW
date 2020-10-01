@@ -1,3 +1,7 @@
+window.onload = ()=>{
+    loadData(0);
+}
+
 function changeFieldStatus(input) {
     let textarea = document.getElementById(input);
     textarea.readOnly = !textarea.readOnly;
@@ -31,15 +35,16 @@ function loadData(i){
         document.getElementById("tr"+i.toString()+"td4").innerHTML;
 
     var data ={
-        inventoryNumber : $('#invnumber').val(),
+        workerid : document.getElementById("tr"+i.toString()+"td5").innerHTML,
+        mail : document.getElementById("tr"+i.toString()+"td3").innerHTML,
     } ;
     $.ajax({
         type : 'post',
-        url : '/sendInventoryNumber',
+        url : '/sendWorkerId',
         data: data,
         data_type : 'text'
     }).done(()=>{
-        console.log("Inventorynumber is transported")
+        console.log("Workerid is transported")
     });
 }
 
@@ -181,4 +186,33 @@ function removeCheckedRadio(radioname)
     {
         document.getElementsByName(radioname)[i].checked = false;
     }
+}
+
+
+function addUserPopUp() {
+   popupCenter({url:"/add", title:"Benutzer hinzufügen", w:500, h: 650})
+}
+
+const popupCenter = ({url, title, w, h}) => {
+    // Fixes dual-screen position                             Most browsers      Firefox
+    const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;
+    const dualScreenTop = window.screenTop !==  undefined   ? window.screenTop  : window.screenY;
+
+    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    const systemZoom = width / window.screen.availWidth;
+    const left = (width - w) / 2 / systemZoom + dualScreenLeft
+    const top = (height - h) / 2 / systemZoom + dualScreenTop
+    const newWindow = window.open(url, title,
+        `
+      scrollbars=yes,
+      width=${w / systemZoom}, 
+      height=${h / systemZoom}, 
+      top=${top}, 
+      left=${left}
+      `
+    )
+
+    if (window.focus) newWindow.focus();
 }

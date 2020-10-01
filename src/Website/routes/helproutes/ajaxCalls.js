@@ -12,4 +12,12 @@ router.post("/sendInventoryNumber",(req, res) => {
     })
 });
 
+router.post("/sendWorkerInfos",(req, res) => {
+   req.session.userMgntID = req.body.workerid;
+   req.session.userMgntMail = req.body.mail;
+   res.json({
+       message : "Erfolg",
+   })
+});
+
 module.exports = router;

@@ -37,13 +37,12 @@ input{
 }
 
 
-
 .content{
     margin-left: 3em;
     grid-area: content;
 }
 
-.deviceInfo {
+.deviceInformation {
     margin-left: 2em;
     grid-area: deviceInfo;
     padding-left: 2em;
@@ -82,6 +81,9 @@ input{
 
 }
 
+.box6{
+    height: 140px;
+}
 
 /* //TODO umstellen auf nen richtiges Element,Validierung */
 
@@ -89,14 +91,7 @@ input{
     color: #eee;
 }
 
-.inputBox{
-    width: 350px;
-    height: 26px;
-}
 
-#courseSelection{
-
-}
 
 .header_button {
     font-family: "Roboto Light";
@@ -150,4 +145,27 @@ input{
 
 #map{
     width: 700px; height: 500px
+}
+
+.newDeviceWrapper{
+    margin: 5px 5px 5px 0;
+    float: left;
+}
+
+.toggle-title{
+    margin: 5px;
+}
+
+.header_button{
+    color: #666 !important;
+    border: none !important;
+}
+
+.actionButton {
+    height: 60px;
+}
+
+.btn-from{
+    float: left;
+    margin: 5px 10px 10px 0;
 }

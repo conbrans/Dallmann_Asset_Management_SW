@@ -33,7 +33,8 @@ router.post("/editUser", authentication.authRight("edit_User"),(req, res) => {
 });
 
 router.post("/updateUser", authentication.authRight("edit_user"),(req,res)=> {
-    fetch.putFetch("/api/user/updateUser/"+req.body.workerid,req)
+    console.log(req.session.userMgntID);
+    fetch.putFetch("/api/user/updateUser/"+req.session.userMgntID,req)
         .then(() => res.redirect("back"))
         .catch((error) => {
             console.error('Error:', error);
@@ -41,7 +42,7 @@ router.post("/updateUser", authentication.authRight("edit_user"),(req,res)=> {
 });
 
 router.post("/deleteU", authentication.authRight("delete_user"),(req,res)=> {
-    fetch.deleteFetch("/api/user/deleteUser/"+req.body.workerid, req)
+    fetch.deleteFetch("/api/user/deleteUser/"+req.session.userMgntID, req)
         .then(() => res.redirect("/userManagement"))
         .catch((error) => {
             console.error('Error:', error);
