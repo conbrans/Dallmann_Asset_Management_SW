@@ -27,84 +27,89 @@
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
-<main>
 
 
-    <div class="grid-container">
-        <div class="side1"></div>
-        <div class="side2"></div>
-        <div class="inner-grid">
 
-            <div class="inputBox box1">
-                <a class="link" href="/devices">
-                    <div style="height: 100%; width: 100%; position: relative">
-                        <div class="hoverColor">
-                        </div>
-                        <h2 class="textAlign">Geräte anzeigen</h2>
-                    </div>
-                </a>
-            </div>
+    <div class="diagonal-box">
+        <div class="right-corner"></div>
+        <div class="left-corner"></div>
+    </div>
+        <div class="grid-container">
+            <div class="side1"></div>
+            <div class="side2"></div>
+            <div class="inner-grid">
 
-            <% if (rights.booking_device === 1 ) { %>
-                <div class="inputBox box2">
-                    <a class="link" href="/bookinglist">
-                        <div class="wrapper">
+                <div class="inputBox box1">
+                    <a class="link" href="/devices">
+                        <div style="height: 100%; width: 100%; position: relative">
                             <div class="hoverColor">
                             </div>
-                            <h2 class="textAlign">Reservieren</h2>
+                            <h2 class="textAlign">Geräte anzeigen</h2>
                         </div>
                     </a>
                 </div>
-            <% } %>
 
-            <div class="inputBox box3">
-                <a class="link" href="profil">
-                    <div class="wrapper">
-                        <div class="hoverColor">
-                        </div>
-                        <h2 class="textAlign">Benutzerprofil</h2>
-                    </div>
-                </a>
-            </div>
-            <% /* access for users with role 1 & 2 */ %>
-            <% if ( rights.picking === 1 ) { %>
-                <div class="inputBox box4">
-                    <div class="wrapper">
-                        <a class="link" href="/commission">
+                <% if (rights.booking_device === 1 ) { %>
+                    <div class="inputBox box2">
+                        <a class="link" href="/bookinglist">
                             <div class="wrapper">
                                 <div class="hoverColor">
                                 </div>
-                                <h2 class="textAlign">Kommisionieren</h2>
+                                <h2 class="textAlign">Reservieren</h2>
                             </div>
                         </a>
                     </div>
-                </div>
-            <% } %>
+                <% } %>
 
-            <div class="inputBox box5">
-                <a class="link" href="/faq">
-                    <div class="wrapper">
-                        <div class="hoverColor">
-                        </div>
-                        <h2 class="textAlign">FAQ</h2>
-                    </div>
-                </a>
-            </div>
-
-            <% /* access for users with role 1 */ %>
-            <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
-                <div class="inputBox box6">
-                    <a class="link" href="/userManagement">
+                <div class="inputBox box3">
+                    <a class="link" href="profil">
                         <div class="wrapper">
                             <div class="hoverColor">
                             </div>
-                            <h2 class="textAlign">Nutzerverwaltung</h2>
+                            <h2 class="textAlign">Benutzerprofil</h2>
                         </div>
                     </a>
                 </div>
-            <% } %>
+                <% /* access for users with role 1 & 2 */ %>
+                <% if ( rights.picking === 1 ) { %>
+                    <div class="inputBox box4">
+                        <div class="wrapper">
+                            <a class="link" href="/commission">
+                                <div class="wrapper">
+                                    <div class="hoverColor">
+                                    </div>
+                                    <h2 class="textAlign">Kommisionieren</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <% } %>
+
+                <div class="inputBox box5">
+                    <a class="link" href="/faq">
+                        <div class="wrapper">
+                            <div class="hoverColor">
+                            </div>
+                            <h2 class="textAlign">FAQ</h2>
+                        </div>
+                    </a>
+                </div>
+
+                <% /* access for users with role 1 */ %>
+                <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
+                    <div class="inputBox box6">
+                        <a class="link" href="/userManagement">
+                            <div class="wrapper">
+                                <div class="hoverColor">
+                                </div>
+                                <h2 class="textAlign">Nutzerverwaltung</h2>
+                            </div>
+                        </a>
+                    </div>
+                <% } %>
+            </div>
         </div>
-    </div>
+
 </main>
 
 <%- include('../Views/general/footer.ejs'); -%>
