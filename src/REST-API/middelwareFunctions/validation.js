@@ -2,10 +2,10 @@ const { body, validationResult } = require('express-validator');
 
  const deviceConstraints = [
 
-    body('serialNumber').isInt().withMessage('Das Attribut Seriennummer muss angegeben werden und' +
+    body('serialNumber').notEmpty().withMessage('Das Attribut Seriennummer muss angegeben werden und' +
         ' eine Zahlenkombination sein, wie z.B. 7742810'),
-    body('guarantee').if(body('guarantee').notEmpty()).isDate().withMessage('Die Garantie muss mit folgendem Format' +
-        ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
+   // body('guarantee').if(body('guarantee').notEmpty()).isDate().withMessage('Die Garantie muss mit folgendem Format' +
+     //     ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
     body('note'),
     body('deviceStatus').isInt({min: 1, max: 7}).withMessage('Das Attribut Gerätestatus muss' +
         ' angegeben werden und ein Ganzzahlenwert zwischen 1 und 7 sein.'),
@@ -15,12 +15,12 @@ const { body, validationResult } = require('express-validator');
         ' beliebige Zeichenkombination sein, wie z.B. Schnibbler Deluxe'),
     body('manufacturer').notEmpty().withMessage('Das Attribut \"Hersteller\" muss angegeben werden und' +
         ' kann eine beliebige Zeichenkombination sein, wie z.B. Husqvarna'),
-    body('tuev').if(body('tuev').notEmpty()).isDate().withMessage('Die Garantie muss mit folgendem Format' +
-        ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
-    body('uvv').if(body('uvv').notEmpty()).isDate().withMessage('Die Garantie muss mit folgendem Format' +
-        ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
-    body('repair').if(body('repair').notEmpty()).isDate().withMessage('Das Repairdatum muss mit folgendem Format' +
-        ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
+     //  body('tuev').if(body('tuev').notEmpty()).isDate().withMessage('Die Garantie muss mit folgendem Format' +
+     //       ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
+//  body('uvv').if(body('uvv').notEmpty()).isDate().withMessage('Die Garantie muss mit folgendem Format' +
+//      ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
+//  body('repair').if(body('repair').notEmpty()).isDate().withMessage('Das Repairdatum muss mit folgendem Format' +
+//      ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
 
 ]
 
@@ -46,10 +46,10 @@ const workerUpdateConstraints = [
 
  const reservationConstraints = [
 
-    body('loanDay').isDate().withMessage('Das Ausleihdatum muss mit folgendem Format' +
-        ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
-    body('loanEnd').isDate().withMessage('Das Ausleihenddatum muss mit folgendem Format' +
-        ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
+   // body('loanDay').isDate().withMessage('Das Ausleihdatum muss mit folgendem Format' +
+    //    ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
+    //body('loanEnd').isDate().withMessage('Das Ausleihenddatum muss mit folgendem Format' +
+     //   ' angegeben werden: \"JJJJ-MM-DD\", wie z.B. 2022-12-23 '),
     body('workerId').isInt().withMessage(''),
     body('inventoryNumber').isInt(),
     body('projectId').isInt()

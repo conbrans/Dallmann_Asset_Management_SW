@@ -47,6 +47,9 @@ router.get("/api/borrow/getReservations",(request, response) => {
 
 router.post("/api/borrow/createReservation", constraint.reservationConstraints, (request, response) => {
 
+    let loanDay = new Date(request.body.loanDay).toISOString();
+    let loanEnd = new Date(request.body.loanEnd).toISOString();
+
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -54,15 +57,12 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
     }
 
     let sql = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = "+request.body.inventoryNumber+"" +
-        " AND ((CAST('"+request.body.loanDay+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
-        " OR (CAST('"+request.body.loanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));"
+        " AND ((CAST('"+loanDay+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
+        " OR (CAST('"+loanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));"
 
     connection.query(sql,function (err,result) {
 
         let str = Object.values(result[0])[0];
-
-       /* var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2); */
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
@@ -71,7 +71,7 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
         } else if (str == "0") {
 
            let sql2  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
-                "('"+request.body.loanDay+"','"+request.body.loanEnd+"','"+request.body.workerId+"','"
+                "('"+loanDay+"','"+loanEnd+"','"+request.body.workerId+"','"
                 +request.body.inventoryNumber+"','" +request.body.projectId+"');";
            let sql3 = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventoryNumber+";";
 
@@ -103,6 +103,9 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
 
 router.delete('/api/borrow/cancelReservation', (request, response) => {
 
+    let loanDay = new Date(request.body.loanDay).toISOString();
+    let loanEnd = new Date(request.body.loanEnd).toISOString();
+
     let sql = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + ");";
 
     connection.query(sql, function (err, result) {
@@ -119,11 +122,11 @@ router.delete('/api/borrow/cancelReservation', (request, response) => {
         } else if (str == "1") {
 
             let sql2 = "DELETE FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
-                " AND CAST(loan_day AS DATE) = CAST('" + request.body.loanDay + "' AS DATE) AND CAST(loan_end AS DATE) = CAST('" + request.body.loanEnd + "' AS DATE);";
+                " AND CAST(loan_day AS DATE) = CAST('" + loanDay + "' AS DATE) AND CAST(loan_end AS DATE) = CAST('" + loanEnd + "' AS DATE);";
 
             let sql3 = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
-                " AND CURDATE() BETWEEN CAST('" + request.body.loanDay + "' AS DATE )" +
-                " AND CAST('" + request.body.loanEnd + "' AS DATE ));"
+                " AND CURDATE() BETWEEN CAST('" + loanDay + "' AS DATE )" +
+                " AND CAST('" + loanEnd + "' AS DATE ));"
 
             let sql4 = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.body.inventoryNumber + ";";
 

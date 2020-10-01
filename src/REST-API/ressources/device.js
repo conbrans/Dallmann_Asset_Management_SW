@@ -190,22 +190,6 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
             "  AND device_status = " + request.body.deviceStatus + " AND model = '" + request.body.model + "'" +
             "  AND manufacturer = '" + request.body.manufacturer + "' GROUP BY serial_number";
 
-        sqlTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
-            "("+sqlSelect+")," +
-            "('" + request.body.tuev + "')," +
-            "('1'));";
-
-        sqlUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
-            "("+sqlSelect+")," +
-            "('" + request.body.uvv + "')," +
-            "('1'));"
-
-        sqlRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
-            "("+sqlSelect+")," +
-            "('" + request.body.repair + "')," +
-            "('1'));"
-
-
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(request);
         console.log(errors);
@@ -213,8 +197,8 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
             return response.json(errors.array());
         }
 
-        sql = "INSERT INTO DEVICE (model, serial_number, gurantee, note, device_status, manufacturer) VALUES " +
-            "('" + request.body.model + "','" + request.body.serialNumber + "','" + request.body.guarantee + "','"
+        sql = "INSERT INTO DEVICE (model, serial_number, note, device_status, manufacturer) VALUES " +
+            "('" + request.body.model + "','" + request.body.serialNumber + "','"
             + request.body.note + "','" + request.body.deviceStatus + "','" + request.body.manufacturer + "');";
 
         connection.query(sql, function (err) {
@@ -222,48 +206,92 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                 response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                 console.log('Error connecting.sqlPostDevice to Db');
                 return;
-            } if (request.body.uvv !== "" ) {  //|| request.body.uvv || request.body.repair
 
-                connection.query(sqlUvv, function (err) {
+            } if (request.body.guarantee !== "" ) {  //|| request.body.uvv || request.body.repair
+
+                connection.query(sqlSelect, function (err, result) {
                     if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                         console.log('Error connecting.sqlUvv to Db');
                         return;
                     }
 
-                    connection.query(sqlSelect, function (err, result) {
+                    let str = Object.values(result[0])[0];
+
+                    let guarantee = new Date(request.body.guarantee).toISOString();
+
+                    sqlGuarantee = "UPDATE DEVICE\n" +
+                                    "SET DEVICE.gurantee = '" +guarantee+ "'\n" +
+                                    "WHERE DEVICE.inventory_number = " + str + ";";
+
+                    connection.query(sqlGuarantee, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                            console.log('Error connecting.sqlSelectUvv to Db');
+                            console.log('Error connecting.sqlUpdateUvv to Db');
                             return;
                         }
-
-                        let str = Object.values(result[0])[0];
-
-                        sqlUpdateUvv = "UPDATE DEVICE\n" +
-
-                            "INNER JOIN UVV ON DEVICE.inventory_number = UVV.inventory_number\n" +
-
-                            "SET DEVICE.latest_uvv = UVV.uvv_id\n" +
-
-                            "WHERE DEVICE.inventory_number = " + str + " AND UVV.timestamp = " +
-                            "  (SELECT MAX(UVV.timestamp) FROM UVV WHERE inventory_number = " +
-                            "  " + str + ") ;";
-
-                        connection.query(sqlUpdateUvv, function (err) {
-                            if (err) {
-                                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                                console.log('Error connecting.sqlUpdateUvv to Db');
-                                return;
-                            }
-
-                        })
 
                     })
 
                 })
 
+            } if (request.body.uvv !== "" ) {  //|| request.body.uvv || request.body.repair
+
+                let uvv = new Date(request.body.uvv).toISOString();
+
+                sqlUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
+                    "("+sqlSelect+")," +
+                    "('" + uvv + "')," +
+                    "('1'));";
+
+                    connection.query(sqlUvv, function (err) {
+                        if (err) {
+                            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                            console.log('Error connecting.sqlUvv to Db');
+                            return;
+                        }
+
+                        connection.query(sqlSelect, function (err, result) {
+                            if (err) {
+                                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                                console.log('Error connecting.sqlSelectUvv to Db');
+                                return;
+                            }
+
+                            let str = Object.values(result[0])[0];
+
+                            sqlUpdateUvv = "UPDATE DEVICE\n" +
+
+                                "INNER JOIN UVV ON DEVICE.inventory_number = UVV.inventory_number\n" +
+
+                                "SET DEVICE.latest_uvv = UVV.uvv_id\n" +
+
+                                "WHERE DEVICE.inventory_number = " + str + " AND UVV.timestamp = " +
+                                "  (SELECT MAX(UVV.timestamp) FROM UVV WHERE inventory_number = " +
+                                "  " + str + ") ;";
+
+                            connection.query(sqlUpdateUvv, function (err) {
+                                if (err) {
+                                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                                    console.log('Error connecting.sqlUpdateUvv to Db');
+                                    return;
+                                }
+
+                            })
+
+                        })
+
+                    })
+
+
             } if (request.body.tuev !== "" ) {
+
+                let tuev = new Date(request.body.tuev).toISOString();
+
+                sqlTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
+                    "("+sqlSelect+")," +
+                    "('" + tuev + "')," +
+                    "('1'));";
 
                 connection.query(sqlTuev, function (err) {
                     if (err) {
@@ -305,6 +333,13 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                 })
 
             } if (request.body.repair !== "" ) {
+
+                let repair = new Date(request.body.repair).toISOString();
+
+                sqlRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
+                    "("+sqlSelect+")," +
+                    "('" + repair + "')," +
+                    "('1'));";
 
                 connection.query(sqlRepair, function (err) {
                     if (err) {
