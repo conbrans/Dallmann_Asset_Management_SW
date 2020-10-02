@@ -30,7 +30,7 @@ function selectPermission()
 {
     var length = document.getElementsByName("adminPermission")
         .length
-    for (var i = 0; i < length ; i++)
+    for (let i = 0; i < length ; i++)
     {
         document.getElementsByName("adminPermission")
             [i].checked = false;
@@ -53,7 +53,7 @@ function selectPermission()
  */
 function removeCheckedRadio(radioname)
 {
-    for (var i = 0; i < document.getElementsByName(radioname).length; i++)
+    for (let i = 0; i < document.getElementsByName(radioname).length; i++)
     {
         document.getElementsByName(radioname)[i].checked = false;
     }

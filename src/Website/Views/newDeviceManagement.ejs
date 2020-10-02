@@ -72,6 +72,7 @@
                     </button>
                 </div>
 
+
                 <div class="toggle-inner">
                     <br>
                     <hr>
@@ -80,23 +81,37 @@
                         <label class="box-b">Kategorie</label>
                         <label class="box-c">Status</label>
 
-                        <input class="form-control input-a" type="text" placeholder="Nach Inventarnummer suchen">
+                        <form method="post" action="/searchInventoryNumber">
 
-                        <select class="browser-default custom-select form-control input-b" id="kategorie"
-                                onchange="getSelectedOption()">
-                            <option value="0" selected disabled>Kategorie zuordnen</option>
-                            <option value="available">Rüttelplatte</option>
-                            <option value="borrowed">Stampfer</option>
-                            <option value="maintenance">Motorflex</option>
-                            <option value="outOfOrder">Rohrgreifer</option>
-                            <option value="lost">Kettensäge</option>
-                            <option value="stolen">Motorhammer</option>
-                            <option value="">Leiter</option>
-                            <option value="">Exoten</option>
-                        </select>
 
+                        <input class="form-control input-a" name="inventoryNumber" type="text"
+                               placeholder="Nach Inventarnummer suchen"
+                               onchange="this.form.submit()">
+                        </form>
+
+                        <form method="post" action="/searchCategory">
+                            <select class="browser-default custom-select
+                            form-control input-b" id="category" name="category"
+                                    onchange="this.form.submit()">
+                                <option value="0" selected disabled>Kategorie zuordnen</option>
+                                <option value="Rüttelplatten">Rüttelplatten</option>
+                                <option value="Stampfer">Stampfer</option>
+                                <option value="Motorflex">Motorflex</option>
+                                <option value="Rohrgreifer">Rohrgreifer</option>
+                                <option value="Kettensäge">Kettensäge</option>
+                                <option value="Motorhammer">Motorhammer</option>
+                                <option value="Leiter">Leiter</option>
+                                <option value="Exoten">Exoten</option>
+                            </select>
+                        </form>
+
+                        <form method="post" action="/searchStatus">
                         <select class="browser-default custom-select form-contro input-cl" id="sort"
-                                onchange="getSelectedOption()" style="width: 100%; display: inline-block">
+                                onchange="this.form.submit()" name="status"
+                                style="width:
+                                100%;
+                                display:
+                                inline-block">
                             <option value="0" selected disabled>Status festlegen/ändern</option>
                             <option value="1">Verfügbar</option>
                             <option value="2">Ausgeliehen</option>
@@ -105,9 +120,24 @@
                             <option value="5">Verschollen/Verschwunden</option>
                             <option value="6">Gestohlen</option>
                         </select>
+                        </form>
                     </div>
                     <hr>
                 </div>
+
+                <div class="newDeviceWrapper">
+
+                    <form class="form" method="get" action="/devices">
+                        <!--onclick="addDeviceWindow()"-->
+
+                        <button class="btn btn-outline-warning" id="btn-newDevice" class="header_button" style="color: #666 !important;
+    border: none !important">Alle Geräte anzeigen
+                            <i class="fa fa-toolbox"></i>
+                        </button>
+                    </form>
+                </div>
+
+
             </div>
             <table style="width: 100%" class="table user-list"
                    onload>

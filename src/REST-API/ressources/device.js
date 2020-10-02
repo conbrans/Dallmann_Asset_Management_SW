@@ -50,6 +50,7 @@ router.get("/api/device/getAllDevices", (request, response) => {
     sql = selectSpecificDevice + " GROUP BY inventoryNumber;"
 
 
+
     connection.query(sql, function (err, result) {
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -100,7 +101,7 @@ router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) " +
         " WHERE category LIKE '%"+request.body.category+"%';";
 
     connection.query(sql, function (err, result) {
