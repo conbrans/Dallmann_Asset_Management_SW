@@ -69,7 +69,8 @@ router.get("/api/device/getAllDevices", (request, response) => {
  */
 
 router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, response) => {
-    sql = selectSpecificDevice + " WHERE DEVICE.inventory_number LIKE'" + request.body.inventoryNumber + "';";
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+        " WHERE CAST(inventoryNumber AS CHAR) LIKE '%" + request.body.inventoryNumber + "%';";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -391,7 +392,7 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
  */
 //in Website enthalten
 router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
-    console.log(request.body);
+
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ");";
 
     connection.query(sql, function (err, result) {
@@ -412,7 +413,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
 
             updateDevice = "UPDATE DEVICE SET model ='" + request.body.model + "', manufacturer ='" + request.body.manufacturer + "'," +
                 "beacon_major ='" + request.body.beaconMajor + "', serial_number ='" + request.body.serialNumber + "'," +
-                "gurantee ='" + request.body.guarantee + "',note ='" + request.body.note + "'," +
+                "note ='" + request.body.note + "'," +
                 "device_status ='" + request.body.deviceStatus + "' WHERE inventory_number = " + request.params.inventoryNumber + ";";
 
             connection.query(updateDevice, function (err) {
@@ -420,110 +421,139 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                     console.log('Error connecting to Db');
                     return;
-                }
 
-                updateUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
-                    "(" + request.params.inventoryNumber + ")," +
-                    "('" + request.body.uvv + "')," +
-                    "('1'));"
+                } if (request.body.uvv !== "") {
 
-                updateTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
-                    "(" + request.params.inventoryNumber + ")," +
-                    "('" + request.body.tuev + "')," +
-                    "('1'));";
+                    let uvv = new Date(request.body.uvv).toISOString();
 
-                updateRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
-                    "(" + request.params.inventoryNumber + ")," +
-                    "('" + request.body.repair + "')," +
-                    "('1'));"
+                    updateUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
+                        "(" + request.params.inventoryNumber + ")," +
+                        "('" + uvv + "')," +
+                        "('1'));"
 
-                connection.query(updateUvv, function (err) {
-                    if (err) {
-                        response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                        console.log('Error connecting to Db');
-                        return;
-                    }
-
-                    sqlUpdateUvv = "UPDATE DEVICE\n" +
-
-                        "INNER JOIN UVV ON DEVICE.inventory_number = UVV.inventory_number\n" +
-
-                        "SET DEVICE.latest_uvv = UVV.uvv_id\n" +
-
-                        "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + " AND UVV.timestamp = " +
-                        "  (SELECT MAX(UVV.timestamp) FROM UVV WHERE inventory_number = " +
-                        "  " + request.params.inventoryNumber + ") ;";
-
-                    connection.query(sqlUpdateUvv, function (err) {
+                    connection.query(updateUvv, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                            console.log('Error connecting.sqlUpdateUvv to Db');
+                            console.log('Error connecting to Db');
                             return;
                         }
 
-                        console.log('DeleteDevice.Connection established');
+                        sqlUpdateUvv = "UPDATE DEVICE\n" +
 
+                            "INNER JOIN UVV ON DEVICE.inventory_number = UVV.inventory_number\n" +
+
+                            "SET DEVICE.latest_uvv = UVV.uvv_id\n" +
+
+                            "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + " AND UVV.timestamp = " +
+                            "  (SELECT MAX(UVV.timestamp) FROM UVV WHERE inventory_number = " +
+                            "  " + request.params.inventoryNumber + ") ;";
+
+                        connection.query(sqlUpdateUvv, function (err) {
+                            if (err) {
+                                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                                console.log('Error connecting.sqlUpdateUvv to Db');
+                                return;
+                            }
+
+                            console.log('DeleteDevice.Connection established');
+
+                        })
                     })
-                })
 
-                connection.query(updateTuev, function (err) {
-                    if (err) {
-                        response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                        console.log('Error connecting to Db');
-                        return;
-                    }
+                } if (request.body.tuev !== "") {
 
-                    sqlUpdateTuev = "UPDATE DEVICE\n" +
+                    let tuev = new Date(request.body.tuev).toISOString();
 
-                        "INNER JOIN TUEV ON DEVICE.inventory_number = TUEV.inventory_number\n" +
+                    updateTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
+                        "(" + request.params.inventoryNumber + ")," +
+                        "('" + tuev + "')," +
+                        "('1'));";
 
-                        "SET DEVICE.latest_tuev = TUEV.tuev_id\n" +
-
-                        "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + " AND TUEV.timestamp = " +
-                        "  (SELECT MAX(TUEV.timestamp) FROM TUEV WHERE inventory_number = " +
-                        "  " + request.params.inventoryNumber + ") ;";
-
-                    connection.query(sqlUpdateTuev, function (err) {
+                    connection.query(updateTuev, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                            console.log('Error connecting.sqlUpdateUvv to Db');
+                            console.log('Error connecting to Db');
                             return;
                         }
 
-                        console.log('DeleteDevice.Connection established');
+                        sqlUpdateTuev = "UPDATE DEVICE\n" +
 
+                            "INNER JOIN TUEV ON DEVICE.inventory_number = TUEV.inventory_number\n" +
+
+                            "SET DEVICE.latest_tuev = TUEV.tuev_id\n" +
+
+                            "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + " AND TUEV.timestamp = " +
+                            "  (SELECT MAX(TUEV.timestamp) FROM TUEV WHERE inventory_number = " +
+                            "  " + request.params.inventoryNumber + ") ;";
+
+                        connection.query(sqlUpdateTuev, function (err) {
+                            if (err) {
+                                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                                console.log('Error connecting.sqlUpdateUvv to Db');
+                                return;
+                            }
+
+                            console.log('DeleteDevice.Connection established');
+
+                        })
                     })
-                })
 
-                connection.query(updateRepair, function (err) {
-                    if (err) {
-                        response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                        console.log('Error connecting to Db');
-                        return;
-                    }
+                } if (request.body.repair !== "") {
 
-                    sqlUpdateRepair = "UPDATE DEVICE\n" +
+                    let repair = new Date(request.body.repair).toISOString();
 
-                        "INNER JOIN REPAIR ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
+                    updateRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
+                        "(" + request.params.inventoryNumber + ")," +
+                        "('" + repair + "')," +
+                        "('1'));"
 
-                        "SET DEVICE.latest_repair = REPAIR.repair_id\n" +
-
-                        "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + " AND REPAIR.timestamp = " +
-                        "  (SELECT MAX(REPAIR.timestamp) FROM REPAIR WHERE inventory_number = " +
-                        "  " + request.params.inventoryNumber + ") ;";
-
-                    connection.query(sqlUpdateRepair, function (err) {
+                    connection.query(updateRepair, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                            console.log('Error connecting.sqlUpdateUvv to Db');
+                            console.log('Error connecting to Db');
                             return;
                         }
 
-                        console.log('DeleteDevice.Connection established');
+                        sqlUpdateRepair = "UPDATE DEVICE\n" +
+
+                            "INNER JOIN REPAIR ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
+
+                            "SET DEVICE.latest_repair = REPAIR.repair_id\n" +
+
+                            "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + " AND REPAIR.timestamp = " +
+                            "  (SELECT MAX(REPAIR.timestamp) FROM REPAIR WHERE inventory_number = " +
+                            "  " + request.params.inventoryNumber + ") ;";
+
+                        connection.query(sqlUpdateRepair, function (err) {
+                            if (err) {
+                                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                                console.log('Error connecting.sqlUpdateUvv to Db');
+                                return;
+                            }
+
+                            console.log('DeleteDevice.Connection established');
+
+                        })
+                    })
+
+                } if (request.body.guarantee !== "") {
+
+                    let guarantee = new Date(request.body.guarantee).toISOString();
+
+                    updateGuarantee = "UPDATE DEVICE\n" +
+                        "SET DEVICE.gurantee = '" +guarantee+ "'\n" +
+                        "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + ";";
+
+                    connection.query(updateGuarantee, function (err) {
+                        if (err) {
+                            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                            console.log('Error connecting to Db');
+                            return;
+                        }
 
                     })
-                })
-                response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich geupdatet"});
+
+                } response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich geupdatet"});
             })
 
         }
@@ -645,4 +675,3 @@ module.exports = router;
  * Port listener
  */
 
-// response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich geupdatet"});
