@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
-<link rel="stylesheet"  href="css/startseite.css">
 <link rel="stylesheet"  href="css/headFootDesign.css">
 <link rel="stylesheet"  href="css/table.css">
     <link rel="stylesheet" href="css/index.css">
@@ -28,8 +27,7 @@
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
 
-
-
+<main>
     <div class="diagonal-box">
         <div class="right-corner"></div>
         <div class="left-corner"></div>
@@ -70,7 +68,6 @@
                         </div>
                     </a>
                 </div>
-                <% /* access for users with role 1 & 2 */ %>
                 <% if ( rights.picking === 1 ) { %>
                     <div class="inputBox box4">
                         <div class="wrapper">
@@ -95,7 +92,6 @@
                     </a>
                 </div>
 
-                <% /* access for users with role 1 */ %>
                 <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
                     <div class="inputBox box6">
                         <a class="link" href="/userManagement">
@@ -109,9 +105,6 @@
                 <% } %>
             </div>
         </div>
-
-</main>
-
 <%- include('../Views/general/footer.ejs'); -%>
 
 

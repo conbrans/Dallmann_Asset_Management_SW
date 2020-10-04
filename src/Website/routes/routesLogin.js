@@ -87,14 +87,14 @@ function getNotificationValues(req, data, res) {
  */
 router.post("/login", function (req, res) {
 
-    var hashedPassword = hash.hash(req.body.password)
+    const hashedPassword = hash.hash(req.body.password)
         .then(function (result) {
             fetch.loginFetch(req, result)
                 .then(data => getAccess(req, data, res))
                 .catch((error) => {
                     console.error('Error:', error);
                 });
-        })
+        });
 });
 
 

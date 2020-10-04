@@ -19,3 +19,4 @@ function submitTheValue()
     setTimeout(()=> {
         document.getElementById("formSearch").submit();},1000)
 }
+

@@ -1,42 +1,53 @@
-<header>
-    <nav id="menu">
-        <label class="logo">
-            <a href="/home">
-                <img src="../img/Logo-Dallmann.png"
-                     alt="Firmenlogo Dallmann"></a>
-        </label>
-        <ul>
-            <li>
+<head>
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <script src="javascript/header.js"></script>
+</head>
 
-            </li>
-            <li>
-                <% if (rights.view_device === 1){ %>
-                    <a href="/devices">
-                        <i class="fas fa-briefcase"></i>
-                        <tab class="header-icons-description">Geräte</tab>
-                    </a>
-                    <% if (rights.add_device === 1){ %>
-                        <ul class="main-menu-sub">
-                            <li>
-                                <a href="/addDevice">Gerät hinzufügen</a>
-                            </li>
-                        </ul>
-                    <% } %>
-            </li>
-            <% } if (rights.booking_device === 1){ %>
-                <!-- Reservierung -->
-                <li>
+<header>
+    <div id="header">
+
+        <div class="logo">
+            <a href="/home" alt="">
+                <img src="../img/Logo-Dallmann.png" alt="Firmenlogo Dallmann">
+            </a>
+        </div>
+        <nav>
+            <form class="search" action="">
+                <input class="input" placeholder="Suchen" type="text" autofocus>
+                <span class="underline"></span>
+            </form>
+            <ul class="navbarList">
+                <li class="searchList">
+                    <input class="input" placeholder="Suchen" type="text">
+                </li>
+                <li class="dropdown">
+                    <!-- Geräte -->
+                    <% if (rights.view_device === 1){ %>
+                        <a href="/devices">
+                            <i class="fas fa-briefcase"></i>
+                            <tab class="header-icons-description">Geräte</tab>
+                        </a>
+                        <% if (rights.add_device === 1){ %>
+                            <ul class="main-menu-sub">
+                                <li>
+                                    <a href="/addDevice">Gerät hinzufügen</a>
+                                </li>
+                            </ul>
+                        <% } %>
+                </li>
+
+                <% } if (rights.booking_device === 1){ %>
+                    <!-- Reservierung -->
+                <li class="dropdown">
                     <a href="/bookinglist">
                         <i class="fas fa-calendar-alt"></i>
-                        <tab class="header-icons-description">
-                            Reservierung
-                        </tab>
+                        <tab class="header-icons-description">Reservierung</tab>
                     </a>
-                    <ul class="main-menu-sub">
+                    <ul>
                         <li>
-                            <a href="/booking">
-                                Reservierung vornehmen
-                            </a>
+                        <a href="/booking">
+                            Reservierung vornehmen
+                        </a>
                         </li>
                         <li>
                             <a href="/bookinglist">
@@ -44,42 +55,39 @@
                             </a>
                         </li>
                     </ul>
-
                 </li>
-            <% } %>
-            <!-- Benutzer -->
-            <li>
-                <a href="/profil">
-                    <i class="fas fa-user"></i>
-                    <tab class="header-icons-description">
-                        <%= username %>
-                    </tab>
-                </a>
-            </li>
-            <!-- Hinzufügen von Nutzern/Rechten -->
-            <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
-                <li>
+                <% } %>
+
+                <li class="dropdown">
+                    <!-- Benutzer -->
+                    <a href="/profil">
+                        <i class="fas fa-user"></i>
+                        <tab class="header-icons-description">
+                            <%= username %>
+                        </tab>
+                    </a>
+                </li>
+
+                <!-- Hinzufügen von Nutzern/Rechten -->
+                <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
+                <li class="dropdown">
                     <a href="/userManagement">
                         <i class="fas fa-cogs"></i>
                         <tab class="header-icons-description">
                             Benutzerverwaltung
                         </tab>
                     </a>
-                    <ul class="main-menu-sub">
+                    <ul>
                         <% if(rights.add_user === 1) { %>
-                            <li>
-                                <a href="/add">Nutzer anlegen</a>
-                            </li>
-                        <% } if (rights.edit_user === 1){ %>
-                            <li>
-                                <a href="/update">Nutzerdaten ändern</a>
-                            </li>
-                        <% } %>
+                        <li><a href="/add">Nutzer anlegen</a></li>
+                            <% } if (rights.edit_user === 1){ %>
+                        <li><a href="update">Nutzerdaten ändern</a></li>
+                            <% } %>
                     </ul>
                 </li>
-            <% } %>
-            <!-- Komissionieren -->
-            <% if ( rights.picking === 1 ) { %>
+                <% } %>
+                <!-- Komissionieren -->
+                <% if ( rights.picking === 1 ) { %>
                 <li>
                     <a href="/commission">
                         <i class="fas fa-list"></i>
@@ -88,35 +96,19 @@
                         </tab>
                     </a>
                 </li>
-            <% } %>
-
-            <!-- Suche -->
-            <li>
-                <div>
-                    <form action="/searchDevice" method="get">
-                        <a href="/search">
-                            <label for="search">
-                                <i class="fas fa-search"></i>
-                            </label>
-                        </a>
-                        <input id="search" width="50%" type="text"
-                               name="inventoryNumber"
-                               onchange="this
-                            .form.submit()" autofocus>
-                    </form>
-                </div>
-            </li>
-
-            <!-- Logout -->
-            <li>
-                <a href="/logout">
-                    <i class="fas fa-power-off fa-1x"></i>
-                    <tab class="header-icons-description">
-                        Logout
-                    </tab>
-                </a>
-            </li>
-        </ul>
-    </nav>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
 </header>
+
 <hr class="clear">
+
+<script>
+    $('#header').prepend('<div id="menu-icon"><span class="first"></span><span class="second"></span><span class="third"></span></div>');
+
+    $("#menu-icon").on("click", function(){
+        $("nav").slideToggle();
+        $(this).toggleClass("active");
+    });
+</script>
