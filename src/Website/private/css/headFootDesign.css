@@ -1,14 +1,17 @@
-:root{
-    --main: transparent  ;
-    --border:     none;
-    --yellow:   #fbbb11;
-    --grey:     #f1f1f1;
-    --font:     #0d0d0d;
+:root {
+    --main: transparent;
+    --border: none;
+    --yellow: #fbbb11;
+    --grey: #f1f1f1;
+    --font: #0d0d0d;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
 
 html {
     padding: 0;
     margin: 0;
+    font-family: "Roboto", sans-serif !important;
 }
 
 body {
@@ -16,44 +19,40 @@ body {
     padding: 0;
     font-size: 100%;
     line-height: 190%;
-    font-family: "acumin-pro", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: #0d0d0d;
     font-weight: 300;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
-body{
     height: 100%;
     width: 100%;
-    font-family: Roboto,bold;
 }
+
 
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
-
 
 
 a {
     text-decoration: none;
-    color:  #1E262D
+    color: #1E262D;
 }
 
 #header {
     background: transparent;
     width: 100%;
     height: 94px;
-    position: relative
+    position: relative;
+    z-index: 1000;
 }
 
 #header:after {
     content: "";
     clear: both;
-    display: block
+    display: block;
 }
 
 .search {
@@ -64,19 +63,19 @@ a {
     margin-right: 100px;
 }
 
-input:active,:focus{
+input:active, :focus {
     outline: 0 !important;
     box-shadow: none !important;
 }
 
 .logo {
     float: left;
-    padding: 26px 0 26px
+    padding: 26px 0 26px;
 }
 
 .logo a {
     display: block;
-    padding: 0 0 0 20px
+    padding: 0 0 0 20px;
 }
 
 nav {
@@ -84,7 +83,7 @@ nav {
 }
 
 nav > ul {
-    float: right;
+    float: left;
 }
 
 nav li {
@@ -107,15 +106,15 @@ nav li a:hover {
 }
 
 nav li ul {
-    display: none
+    display: none;
 }
 
 nav li:hover ul {
-    display: inline
+    display: inline;
 }
 
 nav li li {
-    float: none
+    float: none;
 }
 
 nav .dropdown ul {
@@ -126,13 +125,13 @@ nav .dropdown ul {
 }
 
 nav .dropdown li {
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 nav .dropdown li a {
     padding: 10px 35px;
     font-size: 16px;
-    min-width: 200px
+    min-width: 200px;
 }
 
 nav li li a {
@@ -141,16 +140,16 @@ nav li li a {
     display: block;
     padding: 8px 10px;
     border-radius: 3px;
-    font-size: 16px
+    font-size: 16px;
 }
 
 nav li li a:hover {
-    background: #fff;
+    background: transparent;
 }
 
 .mega-col {
     width: 25%;
-    float: left
+    float: left;
 }
 
 #menu-icon {
@@ -159,7 +158,7 @@ nav li li a:hover {
     top: 50%;
     margin-top: -12px;
     margin-right: 30px;
-    display: none
+    display: none;
 }
 
 #menu-icon span {
@@ -168,11 +167,13 @@ nav li li a:hover {
     margin-bottom: 5px;
     display: block;
     -webkit-transition: all .2s;
-    transition: all .1s
+    transition: all .1s;
 }
 
 
-.searchList{display: none}
+.searchList {
+    display: none
+}
 
 .input {
     background-color: transparent;
@@ -182,7 +183,6 @@ nav li li a:hover {
     box-sizing: border-box;
     font-size: 18px;
     height: 25px;
-
     left: 50%;
     margin: -25px 0 0 -100px;
     position: relative;
@@ -190,7 +190,7 @@ nav li li a:hover {
     width: 200px;
 }
 
-.input:focus{
+.input:focus {
     outline: none;
 }
 
@@ -202,7 +202,7 @@ input:hover::-webkit-input-placeholder {
     color: dodgerblue;
 }
 
-.input:hover+.underline {
+.input:hover + .underline {
     transform: scale(1);
 }
 
@@ -210,18 +210,17 @@ input:focus::-webkit-input-placeholder {
     color: dodgerblue;
 }
 
-.input:focus+.underline {
+.input:focus + .underline {
     transform: scale(1);
 }
 
 .underline {
     background-color: dodgerblue;
     display: inline-block;
-
     height: 2px;
     margin-top: -4px;
     position: absolute;
-    top:78px;
+    top: 78px;
     left: -21px;
     -webkit-transform: scale(0, 1);
     transform: scale(0, 1);
@@ -231,7 +230,7 @@ input:focus::-webkit-input-placeholder {
 }
 
 
-@media screen and (max-width: 1830px){
+@media screen and (max-width: 1830px) {
 
 
     nav li a {
@@ -251,65 +250,66 @@ input:focus::-webkit-input-placeholder {
     }
 
     .search {
-
         margin-left: 15px;
         margin-right: 30px;
     }
-    .input{
+
+    .input {
         font-size: 16px;
     }
 
-    nav li a tab{
+    nav li a tab {
         font-size: 16px;
     }
 
     nav > ul {
         float: right;
-
         margin-left: 0;
         margin-right: 0;
     }
 
 
 }
-@media screen and (max-width: 1450px){
+
+@media screen and (max-width: 1450px) {
 
     nav li a {
         padding: 50px 10px 35px 10px;
     }
-    nav li a tab{
+
+    nav li a tab {
         font-size: 13px;
     }
-    .input{
+
+    .input {
         font-size: 13px;
     }
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
+
     nav > ul {
         float: left;
         margin-left: 0;
         margin-right: 0;
-
         position: unset;
         top: 50%;
         left: unset;
         transform: unset;
-
     }
 
     nav li a {
-
         padding: 50px 15px 35px 15px;
     }
 }
+
 @media only screen and (max-width: 1199px) {
 
-    .input{
+    .input {
         font-size: 16px;
     }
 
-    nav li a tab{
+    nav li a tab {
         font-size: 16px;
     }
 
@@ -327,19 +327,19 @@ input:focus::-webkit-input-placeholder {
     }
 
     nav > ul > li > a {
-        padding: 35px 15px
+        padding: 35px 15px;
     }
 
     #menu-icon {
         display: inline;
         top: 75px;
-        cursor: pointer
+        cursor: pointer;
     }
 
     #menu-icon.active .first {
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
-        margin-top: 10px
+        margin-top: 10px;
     }
 
     #menu-icon.active .second {
@@ -350,29 +350,26 @@ input:focus::-webkit-input-placeholder {
     }
 
     #menu-icon.active .third {
-        display: none
-    }
-
-
-
-    nav {
-
-        padding: 10px
-    }
-
-    .search{
         display: none;
     }
 
-    .input{
-        font-size: 16px;
-        position: relative;
-        margin: 0;
-        left: 0;
-        margin-left: 10px;
+    nav {
+
+        padding: 10px;
     }
 
-    .searchList{
+    .search {
+        display: none;
+    }
+
+    .input {
+        font-size: 16px;
+        position: relative;
+        margin: 0 0 0 10px;
+        left: 0;
+    }
+
+    .searchList {
         display: block;
         margin-bottom: 10px;
     }
@@ -384,14 +381,13 @@ input:focus::-webkit-input-placeholder {
     }
 
     nav li {
-        float: none
+        float: none;
     }
 
     nav ul li a {
         float: none;
         padding: 8px;
         display: block;
-
     }
 
     #header nav ul ul {
@@ -399,11 +395,11 @@ input:focus::-webkit-input-placeholder {
         position: static;
         background: none;
         border: none;
-        padding: 0
+        padding: 0;
     }
 
     #header nav a {
-        padding: 8px
+        padding: 8px;
     }
 
     #header nav a:hover {
@@ -419,16 +415,13 @@ input:focus::-webkit-input-placeholder {
     }
 
     .mega-col {
-        width: 100%
+        width: 100%;
     }
-    .underline{
+
+    .underline {
         display: none;
     }
 }
-
-
-
-
 
 
 .clear {
@@ -438,9 +431,9 @@ input:focus::-webkit-input-placeholder {
 }
 
 
+/* <--- Footer ---> */
 
-footer
-{
+footer {
     background: var(--main);
     width: 100%;
     height: 5%;
@@ -450,46 +443,38 @@ footer
     border-top: 1px solid var(--border);
     text-align: left;
     font-size: 16px;
-    z-index: 10000;
-
+    /*z-index: 10000;*/
 }
 
-.twovalues
-{
+.twovalues {
     width: 50%;
     float: left;
     position: relative;
 }
 
 
-#footer-infos
-{
+#footer-infos {
     float: right;
     margin-right: 2%;
     margin-top: 1%;
 }
 
 
-#footer-caption
-{
+#footer-caption {
     float: left;
     margin-left: 2%;
     margin-top: 1%;
 }
 
-#footer-infos a
-{
+#footer-infos a {
     color: black;
     height: 5%;
 }
 
-#footer-infos a:hover
-{
+#footer-infos a:hover {
     color: #0d0d0d;
     height: 5%;
 }
-
-
 
 
 /* Media Screens */

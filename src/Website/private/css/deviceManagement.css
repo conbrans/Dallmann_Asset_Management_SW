@@ -9,29 +9,32 @@ html {
     -ms-text-size-adjust: 100%;
     letter-spacing: .6px !important;
 }
-body{
+
+body {
     font-family: "Roboto Thin";
     font-size: 16px;
     min-width: 700px;
 }
 
-input{
+input {
     text-align: left;
 }
 
-#btn-newDevice, #btn-filter{
+#btn-newDevice, #btn-filter {
     color: #666 !important;
-    border-color: #666 ;
+    border-color: #666;
 }
+
 #btn-filter:hover, #btn-newDevice:hover {
     border-color: #ffc107;
 }
-.outerBox{
+
+.outerBox {
     width: 100%;
     height: 100%;
 }
 
-.wrapper{
+.wrapper {
     padding-left: 1em;
     display: grid;
     grid-gap: 2em;
@@ -40,7 +43,7 @@ input{
 }
 
 
-.content{
+.content {
     margin-left: 3em;
     grid-area: content;
 }
@@ -51,40 +54,38 @@ input{
     padding-left: 2em;
 }
 
-.deviceInfoBoxes.filter{
+.deviceInfoBoxes.filter {
     margin-right: 10px;
     margin-left: 10px;
 }
 
 
-
-
-.filterDevices{
+.filterDevices {
     height: 100px;
     margin: 20px;
 }
 
 
-.filterBox{
+.filterBox {
     float: right;
 }
 
-.deviceInfoWrapper{
+.deviceInfoWrapper {
     margin-top: 20px;
 }
 
-.deviceInfoBoxes:nth-child(odd){
+.deviceInfoBoxes:nth-child(odd) {
     float: left;
 }
 
-.deviceInfoBoxes{
+.deviceInfoBoxes {
     display: grid;
     width: 350px;
     margin-right: 20px;
 
 }
 
-.box6{
+.box6 {
     height: 140px;
 }
 
@@ -93,7 +94,6 @@ input{
 .deviceInfoBoxes:nth-child {
     color: #eee;
 }
-
 
 
 .header_button {
@@ -107,11 +107,11 @@ input{
     outline: none;
 }
 
-.deviceInfoBoxes{
+.deviceInfoBoxes {
     width: 200px;
 }
 
-.filterWrapper{
+.filterWrapper {
     display: grid;
     grid-column-gap: 20px;
     grid-template-areas:
@@ -119,47 +119,49 @@ input{
             'input-a input-b input-c ';
 }
 
-.input-a{
+.input-a {
     grid-area: input-a;
 }
 
-.input-b{
+.input-b {
     grid-area: input-b;
 }
 
-.input-c{
+.input-c {
     grid-area: input-c;
 }
 
-.box-a{
+.box-a {
     grid-area: box-a;
 }
-.box-b{
+
+.box-b {
     grid-area: box-b;
 }
-.box-c{
+
+.box-c {
     grid-area: box-c;
 }
 
-.hiddendeviceInfos
-{
- display: none;
+.hiddendeviceInfos {
+    display: none;
 }
 
-#map{
-    width: 700px; height: 500px
+#map {
+    width: 700px;
+    height: 500px
 }
 
-.newDeviceWrapper{
+.newDeviceWrapper {
     margin: 5px 5px 5px 0;
     float: left;
 }
 
-.toggle-title{
+.toggle-title {
     margin: 5px;
 }
 
-.header_button{
+.header_button {
     color: #666 !important;
     border: none !important;
 }
@@ -168,7 +170,7 @@ input{
     height: 60px;
 }
 
-.btn-from{
+.btn-from {
     float: left;
     margin: 5px 10px 10px 0;
 }

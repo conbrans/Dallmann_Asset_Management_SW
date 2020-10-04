@@ -27,7 +27,7 @@ body{
     padding-left: 1em;
     display: grid;
     grid-gap: 2em;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 60% 35%;
     grid-template-areas: "userContent userInformation";
 }
 
@@ -41,6 +41,7 @@ body{
     margin-left: 2em;
     grid-area: userInformation;
     padding-left: 2em;
+    width: 100%;
 }
 
 .wrapper > div{
@@ -59,9 +60,8 @@ body{
 }
 
 
-input{
-    float: left;
-}
+
+
 
 label{
     float: left;

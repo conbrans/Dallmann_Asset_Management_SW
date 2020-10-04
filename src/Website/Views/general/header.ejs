@@ -12,8 +12,9 @@
             </a>
         </div>
         <nav>
-            <form class="search" action="">
-                <input class="input" placeholder="Suchen" type="text" autofocus>
+            <form method="post"  class="search" action="/searchInventoryNumber">
+                <input class="input" name="inventoryNumber" placeholder="Suchen" type="text"
+                       autofocus onchange="this.form.submit()">
                 <span class="underline"></span>
             </form>
             <ul class="navbarList">
@@ -38,24 +39,25 @@
 
                 <% } if (rights.booking_device === 1){ %>
                     <!-- Reservierung -->
-                <li class="dropdown">
-                    <a href="/bookinglist">
-                        <i class="fas fa-calendar-alt"></i>
-                        <tab class="header-icons-description">Reservierung</tab>
-                    </a>
-                    <ul>
-                        <li>
-                        <a href="/booking">
-                            Reservierung vornehmen
+                    <li class="dropdown">
+                        <a href="/bookinglist">
+                            <i class="fas fa-calendar-alt"></i>
+                            <tab class="header-icons-description">Reservierung
+                            </tab>
                         </a>
-                        </li>
-                        <li>
-                            <a href="/bookinglist">
-                                Reservierungsliste einsehen
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                        <ul>
+                            <li>
+                                <a href="/booking">
+                                    Reservierung vornehmen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/bookinglist">
+                                    Reservierungsliste einsehen
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 <% } %>
 
                 <li class="dropdown">
@@ -70,33 +72,41 @@
 
                 <!-- Hinzufügen von Nutzern/Rechten -->
                 <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
-                <li class="dropdown">
-                    <a href="/userManagement">
-                        <i class="fas fa-cogs"></i>
-                        <tab class="header-icons-description">
-                            Benutzerverwaltung
-                        </tab>
-                    </a>
-                    <ul>
-                        <% if(rights.add_user === 1) { %>
-                        <li><a href="/add">Nutzer anlegen</a></li>
+                    <li class="dropdown">
+                        <a href="/userManagement">
+                            <i class="fas fa-cogs"></i>
+                            <tab class="header-icons-description">
+                                Benutzerverwaltung
+                            </tab>
+                        </a>
+                        <ul>
+                            <% if(rights.add_user === 1) { %>
+                                <li><a href="/add">Nutzer anlegen</a></li>
                             <% } if (rights.edit_user === 1){ %>
-                        <li><a href="update">Nutzerdaten ändern</a></li>
+                                <li><a href="update">Nutzerdaten ändern</a></li>
                             <% } %>
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
                 <% } %>
                 <!-- Komissionieren -->
                 <% if ( rights.picking === 1 ) { %>
+                    <li>
+                        <a href="/commission">
+                            <i class="fas fa-list"></i>
+                            <tab class="header-icons-description">
+                                Komissonieren
+                            </tab>
+                        </a>
+                    </li>
+                <% } %>
                 <li>
-                    <a href="/commission">
-                        <i class="fas fa-list"></i>
+                    <a href="/logout">
+                        <i class="fas fa-sign-out-alt"></i>
                         <tab class="header-icons-description">
-                            Komissonieren
+                            Logout
                         </tab>
                     </a>
                 </li>
-                <% } %>
             </ul>
         </nav>
     </div>
@@ -107,7 +117,7 @@
 <script>
     $('#header').prepend('<div id="menu-icon"><span class="first"></span><span class="second"></span><span class="third"></span></div>');
 
-    $("#menu-icon").on("click", function(){
+    $("#menu-icon").on("click", function () {
         $("nav").slideToggle();
         $(this).toggleClass("active");
     });

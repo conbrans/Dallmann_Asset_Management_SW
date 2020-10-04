@@ -47,8 +47,8 @@ let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,mo
     "                   ON BEACON.major = CATEGORY.major";
 
 router.get("/api/device/getAllDevices", (request, response) => {
-
     sql = selectSpecificDevice + " GROUP BY inventoryNumber;"
+
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -69,7 +69,6 @@ router.get("/api/device/getAllDevices", (request, response) => {
  */
 
 router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, response) => {
-
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
         " WHERE CAST(inventoryNumber AS CHAR) LIKE '%" + request.body.inventoryNumber + "%';";
 
@@ -102,8 +101,9 @@ router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) AS CategorySelect" +
-        " WHERE category LIKE '%"+request.body.category+"%';";
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS CategorySelect " +
+        " WHERE category LIKE '"+request.body.category+"';";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -118,7 +118,8 @@ router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) AS ModelSelect" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS ModelSelect" +
         " WHERE model LIKE '%"+request.body.model+"%';";
 
     connection.query(sql, function (err, result) {
@@ -134,7 +135,8 @@ router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) AS TuevSelect" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS TuevSelect" +
         " WHERE lastTuev LIKE '%"+request.body.tuev+"%';";
 
     connection.query(sql, function (err, result) {
@@ -150,7 +152,8 @@ router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) AS UVVSelect" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS UVVSelect" +
         " WHERE lastUvv LIKE '%"+request.body.uvv+"%';";
 
     connection.query(sql, function (err, result) {
@@ -166,7 +169,8 @@ router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) AS RepairSelect" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS RepairSelect" +
         " WHERE lastRepair LIKE '%"+request.body.repair+"%';";
 
     connection.query(sql, function (err, result) {
@@ -210,7 +214,7 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                 return;
 
             } if (request.body.guarantee !== "" ) {  //|| request.body.uvv || request.body.repair
-                
+
 
                     connection.query(sqlSelect, function (err, result) {
                         if (err) {
@@ -244,7 +248,7 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
 
                     })
 
-                
+
             } if (request.body.uvv !== "" ) {  //|| request.body.uvv || request.body.repair
 
                 try {
@@ -297,7 +301,7 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                     })
 
                 } catch (error) {
-                    
+
                 }
 
 
@@ -352,7 +356,7 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                     })
 
                 } catch (error) {
-                    
+
                 }
 
             } if (request.body.repair !== "" ) {
@@ -406,7 +410,7 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                     })
 
                 } catch (error) {
-                    
+
                 }
 
             } return response.json({"Message": "Gerät wurde erfolgreich hinzugefügt."})
