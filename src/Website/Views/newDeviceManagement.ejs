@@ -59,15 +59,17 @@
                         <form class="form" method="get" action="/addDevice">
                             <!--onclick="addDeviceWindow()"-->
 
-                            <button class="btn btn-outline-warning" id="btn-newDevice" class="header_button" style="color: #666 !important;
-    border: none !important">Neues Gerät hinzufügen
+                            <button class="btn btn-outline-warning"
+                                    id="btn-newDevice" class="header_button"
+                                    >Neues Gerät hinzufügen
                                 <i class="fa fa-toolbox"></i>
                             </button>
                         </form>
                     <% } %>
                 </div>
                 <div class="toggle-title" style="text-align: right;float: left">
-                    <button class="btn btn-outline-warning" id="btn-filter" class="header_button">Filtern
+                    <button class="btn btn-outline-warning" id="btn-filter"
+                            class="header_button">Filtern
                         <i class="fas fa-filter"></i>
                     </button>
                 </div>
@@ -81,6 +83,8 @@
                         <label class="box-b">Kategorie</label>
                         <label class="box-c">Status</label>
 
+                        <input class="form-control input-a" type="text"
+                               placeholder="Nach Inventarnummer suchen">
                         <form method="post" action="/searchInventoryNumber">
 
 

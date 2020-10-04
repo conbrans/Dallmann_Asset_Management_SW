@@ -19,10 +19,13 @@ input{
     text-align: left;
 }
 
-.header_button:focus{
-    outline: none;
+#btn-newDevice, #btn-filter{
+    color: #666 !important;
+    border-color: #666 ;
 }
-
+#btn-filter:hover, #btn-newDevice:hover {
+    border-color: #ffc107;
+}
 .outerBox{
     width: 100%;
     height: 100%;
