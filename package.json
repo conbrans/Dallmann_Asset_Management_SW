@@ -39,6 +39,6 @@
   },
 
   "scripts": {
-    "test": "mocha 'src/REST-API/test/*.js' --recursive"
+    "test": "mocha 'src/REST-API/test/testedFiles/*.js' --recursive"
   }
 }
