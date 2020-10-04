@@ -249,15 +249,15 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                     })
 
 
-            } if (request.body.latestUvv !== "" ) {  //|| request.body.uvv || request.body.repair
+            } if (request.body.lastUvv !== "" ) {  //|| request.body.uvv || request.body.repair
 
                 try {
 
-                    let latestUvv = new Date(request.body.latestUvv).toISOString();
+                    let lastUvv = new Date(request.body.lastUvv).toISOString();
 
                     sqlUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
                         "(" + sqlSelect + ")," +
-                        "('" + latestUvv + "')," +
+                        "('" + lastUvv + "')," +
                         "('1'));";
 
                     connection.query(sqlUvv, function (err) {
@@ -304,15 +304,15 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                 }
 
 
-            } if (request.body.latestTuev !== "" ) {
+            } if (request.body.lastTuev !== "" ) {
 
                 try {
 
-                    let latestTuev = new Date(request.body.latestTuev).toISOString();
+                    let lastTuev = new Date(request.body.lastTuev).toISOString();
 
                     sqlTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
                         "(" + sqlSelect + ")," +
-                        "('" + latestTuev + "')," +
+                        "('" + lastTuev + "')," +
                         "('1'));";
 
                     connection.query(sqlTuev, function (err) {
@@ -358,15 +358,15 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
 
                 }
 
-            } if (request.body.latestRepair !== "" ) {
+            } if (request.body.lastRepair !== "" ) {
 
                 try {
 
-                    let latestRepair = new Date(request.body.latestRepair).toISOString();
+                    let lastRepair = new Date(request.body.lastRepair).toISOString();
 
                     sqlRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
                         "(" + sqlSelect + ")," +
-                        "('" + latestRepair + "')," +
+                        "('" + lastRepair + "')," +
                         "('1'));";
 
                     connection.query(sqlRepair, function (err) {
@@ -453,7 +453,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     console.log('Error connecting to Db');
                     return;
 
-                } if (request.body.uvv !== "") {
+                } if (request.body.lastUvv !== "") {
                     
                     try {
 
@@ -461,7 +461,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
 
                         updateUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
-                            "('" + uvv + "')," +
+                            "('" + lastUvv + "')," +
                             "('1'));"
 
                         connection.query(updateUvv, function (err) {
@@ -497,15 +497,15 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                         
                     }
 
-                } if (request.body.tuev !== "") {
+                } if (request.body.lastTuev !== "") {
                     
                     try {
 
-                        let tuev = new Date(request.body.tuev).toISOString();
+                        let lastTuev = new Date(request.body.lastTuev).toISOString();
 
                         updateTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
-                            "('" + tuev + "')," +
+                            "('" + lastTuev + "')," +
                             "('1'));";
 
                         connection.query(updateTuev, function (err) {
@@ -541,15 +541,15 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                         
                     }
 
-                } if (request.body.repair !== "") {
+                } if (request.body.lastRepair !== "") {
                     
                     try {
 
-                        let repair = new Date(request.body.repair).toISOString();
+                        let lastRepair = new Date(request.body.lastRepair).toISOString();
 
                         updateRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
-                            "('" + repair + "')," +
+                            "('" + lastRepair + "')," +
                             "('1'));"
 
                         connection.query(updateRepair, function (err) {
