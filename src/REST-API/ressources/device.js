@@ -102,8 +102,9 @@ router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) " +
-        " WHERE category LIKE '%"+request.body.category+"%';";
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS CategorySelect " +
+        " WHERE category LIKE '"+request.body.category+"';";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -118,7 +119,8 @@ router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS ModelSelect" +
         " WHERE model LIKE '%"+request.body.model+"%';";
 
     connection.query(sql, function (err, result) {
@@ -134,7 +136,8 @@ router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS TuevSelect" +
         " WHERE lastTuev LIKE '%"+request.body.tuev+"%';";
 
     connection.query(sql, function (err, result) {
@@ -150,7 +153,8 @@ router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS UVVSelect" +
         " WHERE lastUvv LIKE '%"+request.body.uvv+"%';";
 
     connection.query(sql, function (err, result) {
@@ -166,7 +170,8 @@ router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
 });
 
 router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
+        " DEVICE.inventory_number) AS RepairSelect" +
         " WHERE lastRepair LIKE '%"+request.body.repair+"%';";
 
     connection.query(sql, function (err, result) {

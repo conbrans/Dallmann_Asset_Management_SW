@@ -12,7 +12,6 @@ router.post("/addUser", authentication.authRight("add_user"), (req,res) => {
         .catch((error) => {
             console.error('Error:', error);
         });
-    res.redirect("/userManagement");
 
 });
 
@@ -41,7 +40,7 @@ router.post("/updateUser", authentication.authRight("edit_user"),(req,res)=> {
         });
 });
 
-router.post("/deleteU", authentication.authRight("delete_user"),(req,res)=> {
+router.post("/deleteUser", authentication.authRight("delete_user"),(req,res)=> {
     fetch.deleteFetch("/api/user/deleteUser/"+req.session.userMgntID, req)
         .then(() => res.redirect("/userManagement"))
         .catch((error) => {

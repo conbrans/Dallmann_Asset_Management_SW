@@ -12,8 +12,9 @@
             </a>
         </div>
         <nav>
-            <form class="search" action="">
-                <input class="input" placeholder="Suchen" type="text" autofocus>
+            <form method="post"  class="search" action="/searchInventoryNumber">
+                <input class="input" name="inventoryNumber" placeholder="Suchen" type="text"
+                       autofocus onchange="this.form.submit()">
                 <span class="underline"></span>
             </form>
             <ul class="navbarList">

@@ -35,11 +35,18 @@
             integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
             crossorigin=""></script>
 
+    <!-- Table Management -->
+    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <script
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
 
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
     <title>Dallmann Asset-Management</title>
+
+
 
 </head>
 <body>
@@ -83,8 +90,6 @@
                         <label class="box-b">Kategorie</label>
                         <label class="box-c">Status</label>
 
-                        <input class="form-control input-a" type="text"
-                               placeholder="Nach Inventarnummer suchen">
                         <form method="post" action="/searchInventoryNumber">
 
 
@@ -143,7 +148,8 @@
 
 
             </div>
-            <table style="width: 100%" class="table user-list"
+            <table id="example" style="width: 100%" class="display table
+            user-list"
                    onload>
                 <thead>
                 <tr>
@@ -439,6 +445,7 @@
         display: block !important;
     }
 </style>
+
 <script src="javascript/devicemanagement.js"></script>
 <script>
 

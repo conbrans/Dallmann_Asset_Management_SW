@@ -1,4 +1,4 @@
-window.onload = ()=>{
+window.onload = function (){
     loadData(0);
 }
 
@@ -38,13 +38,14 @@ function loadData(i){
         workerid : document.getElementById("tr"+i.toString()+"td5").innerHTML,
         mail : document.getElementById("tr"+i.toString()+"td3").innerHTML,
     } ;
+    console.log(data);
     $.ajax({
         type : 'post',
-        url : '/sendWorkerId',
+        url : '/sendWorkerInfos',
         data: data,
-        data_type : 'text'
+        data_type : 'json'
     }).done(()=>{
-        console.log("Workerid is transported")
+        console.log("Workerid is transported");
     });
 }
 
