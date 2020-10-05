@@ -203,9 +203,10 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
             return response.json(errors.array());
         }
 
-        sql = "INSERT INTO DEVICE (model, serial_number, note, device_status, manufacturer) VALUES " +
+        sql = "INSERT INTO DEVICE (model, serial_number, note, device_status, beacon_minor, beacon_major, manufacturer) VALUES " +
             "('" + request.body.model + "','" + request.body.serialNumber + "','"
-            + request.body.note + "','" + request.body.deviceStatus + "','" + request.body.manufacturer + "');";
+            + request.body.note + "','" + request.body.deviceStatus + "'," +
+            "'" + request.body.beaconMinor + "','" + request.body.beaconMajor + "','" + request.body.manufacturer + "');";
 
         connection.query(sql, function (err) {
             if (err) {
@@ -457,7 +458,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     
                     try {
 
-                        let uvv = new Date(request.body.uvv).toISOString();
+                        let lastUvv = new Date(request.body.lastUvv).toISOString();
 
                         updateUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
