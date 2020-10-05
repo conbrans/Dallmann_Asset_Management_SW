@@ -45,14 +45,14 @@ async function removeTimeStampForBooking(data){
     return await data;
  }
 
- async function removeTimestampForBookingNotifcation(data){
+ async function removeTimestampForBookingNotification(data){
      for (let i=0; i<data.length; i++){
          data[i].loan_end = splitValues(data[i].loan_end);
      }
      return data;
  }
 
-async function removeTimestampForNotifcation(data){
+async function removeTimestampForNotification(data){
     for (let i=0; i<data.length; i++){
         data[i].timestamp = splitValues(data[i].timestamp);
     }
@@ -78,7 +78,7 @@ module.exports = {
     removeTimeStampForDevice,
     removeTimeStampForBooking,
     removeTimeStampForHistory,
-    removeTimestampForBookingNotifcation,
-    removeTimestampForNotifcation,
+    removeTimestampForBookingNotification,
+    removeTimestampForNotification,
 
 };

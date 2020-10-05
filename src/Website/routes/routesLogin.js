@@ -5,6 +5,7 @@ const express = require('express');
 const fetch = require('./helproutes/fetch');
 const hash = require('./helproutes/passwordhashing');
 const reformat = require('./helproutes/reformatDate');
+
 const router = express.Router();
 
 const {
@@ -12,6 +13,7 @@ const {
     longLifeTime = 1000 * 60 * 60 * 24 * 365,
 
 } = process.env;
+
 
 /**
  * set the session Values
@@ -57,30 +59,29 @@ function getNotificationValues(req, data, res) {
 
     fetch.getFetch("/api/notification/booking/" + data.worker_id)
         .then(result =>
-            reformat.removeTimestampForBookingNotifcation(result).
-            then( result =>req.session.bookingData = result)
+            reformat.removeTimestampForBookingNotification(result).then(result => req.session.bookingData = result)
                 .then(() => {
                     fetch.getFetch("/api/notification/tuv")
-                .then(result =>
-                    reformat.removeTimestampForNotifcation(result)
-                        .then(()=> req.session.tuvData = result)
-                        .then(() => {
-                            fetch.getFetch("/api/notification/uvv")
-                                .then(result =>
-                                    reformat.removeTimestampForNotifcation(result)
-                                        .then(()=>req.session.uvvData = result)
-                                        .then(() => {
-                                            fetch.getFetch("/api/notification/maintenance")
-                                                .then(result=>
-                                                reformat.removeTimestampForNotifcation(result)
-                                                    .then(result => req.session.maintenanceData = result)
-                                                    .then(() => {res.redirect("/home");
+                        .then(result =>
+                            reformat.removeTimestampForNotification(result)
+                                .then(() => req.session.tuvData = result)
+                                .then(() => {
+                                    fetch.getFetch("/api/notification/uvv")
+                                        .then(result =>
+                                            reformat.removeTimestampForNotification(result)
+                                                .then(() => req.session.uvvData = result)
+                                                .then(() => {
+                                                    fetch.getFetch("/api/notification/maintenance")
+                                                        .then(result =>
+                                                            reformat.removeTimestampForNotification(result)
+                                                                .then(result => req.session.maintenanceData = result)
+                                                                .then(() => {
+                                                                    res.redirect("/home");
+                                                                }))
+                                                }))
                                 }))
-                        }))
-                }))
-        }));
+                }));
 }
-
 
 /**
  * send the login values to REST, the password is hashed and compared in REST
@@ -96,6 +97,5 @@ router.post("/login", function (req, res) {
                 });
         });
 });
-
 
 module.exports = router;

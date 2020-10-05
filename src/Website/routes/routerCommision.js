@@ -8,14 +8,12 @@ const fetch = require('./helproutes/fetch');
 const authentication = require('./helproutes/rightAuthentication');
 const redirect = require('./helproutes/redirect');
 
-
 router.post("/setDeviceConstruction",redirect.redirectLogin, authentication.authRight(""),(req, res) => {
     console.log(req.body);
     fetch.postFetch("/api/commission/booking",req)
         .then(()=>{
         res.redirect("/commissionDone");
     });
-
 });
 
 router.post("/setDeviceRepair",redirect.redirectLogin, authentication.authRight(""),(req, res) => {

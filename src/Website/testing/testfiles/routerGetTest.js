@@ -234,6 +234,7 @@ app.get("/profil", (req, res) => {
             firstname: "Teo",
             surname: "Teo Tester",
             email : "t.test@dallmann-bau.de",
+            req : req,
         });
 
 });

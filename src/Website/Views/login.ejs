@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="refresh" content="7200">
     <title>Dallmann Asset-Management</title>
-    <link rel="stylesheet" href="css/login.css" >
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon"
+          href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+    <script src="javascript/login.js"></script>
+    <script src="bower_components/crypto-js/crypto-js.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
@@ -16,14 +26,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
+
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="pragma" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-
 </head>
+<script>
+
+
+
+    function login() {
+
+                     var password = CryptoJS.MD5(document.getElementById
+                    ("password").value);
+                     alert(password);
+
+    }
+
+
+</script>
 
 <body id="loginBody">
 <%- req.toastr.render() %>
@@ -37,18 +62,25 @@
         <img src="https://www.dallmann-bau.de/fileadmin/template/img/Logo-Dallmann.png"
              alt="Firmenlogo Dallmann">
     </h1>
-    <form action="/login" method="post" id="login" >
+    <form action="/login" method="post" id="login">
         <fieldset>
-            <input type="email" name="useremail" id="email" placeholder="E-Mail-Adresse" required>
-            <input type="password" name="password" id="password" placeholder="Passwort" required>
+            <input type="email"  name="useremail" id="email"
+                   placeholder="E-Mail-Adresse"
+                   required>
+            <input type="password" name="password" id="password"
+                   placeholder="Passwort"
+                   required>
 
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="checkbox" id="defaultUnchecked">
-                <label class="custom-control-label" for="defaultUnchecked">Angemeldet bleiben</label>
+                <input type="checkbox" class="custom-control-input"
+                       name="checkbox" id="defaultUnchecked">
+                <label class="custom-control-label" for="defaultUnchecked">Angemeldet
+                    bleiben</label>
             </div>
-            <button class="btn btn-primary" type="submit">Login</button>
+            <button class="btn btn-primary" type="submit">Login
+            </button>
             <h3>
-                <a id="reset-link" class=""  href="/">Passwort vergessen</a>
+                <a id="reset-link" class="" href="/">Passwort vergessen</a>
                 <!-- Password vergessen Seite ersetzen-->
             </h3>
         </fieldset>
@@ -56,14 +88,16 @@
 </div>
 
 
-
-
 <!--[if IE]>
 <style>
-    #loginBox:after { background-color: white !important; }
+    #loginBox:after {
+        background-color: white !important;
+    }
 </style>
 <![endif]-->
-<script type="text/javascript" src="login/jquery-ui-1.12.1.custom.min.js.Download"></script>
+<script type="text/javascript"
+        src="login/jquery-ui-1.12.1.custom.min.js.Download"></script>
 
 
-</body></html>
+</body>
+</html>

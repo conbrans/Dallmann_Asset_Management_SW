@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors');
 const session = require('express-session');
 const flash = require('connect-flash')
 const cookieParser = require('cookie-parser')
@@ -20,11 +19,10 @@ app.use(session({
 }));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'Website/Views'),path.join(__dirname,'Website/Views/FAQ'));
+app.set('views', path.join(__dirname, 'Website/Views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
-app.use(cors());
 app.use(flash());
 app.use(toastr());
 app.use(cookieParser('secret'));

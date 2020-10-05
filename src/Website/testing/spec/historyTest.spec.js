@@ -26,11 +26,10 @@ describe("Test of history",()=>
         it("Status 201", ()=>
         {
             expect(data.status).toBe(201);
-            console.log(data.body);
         });
         it("Body contains Values",()=>
         {
-           expect(data.body).toContain("01.01.2020");
+           expect(data.body).toContain("History Test");
         });
 
     });
