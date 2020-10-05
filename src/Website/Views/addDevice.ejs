@@ -157,7 +157,9 @@
 
 
 
-    <button class="btn btn-outline-primary" type="submit" onclick="">Neues Gerät hinzufügen
+    <button class="btn btn-outline-primary" type="submit" onclick="setTimeout(()=>{
+        window.close();
+        },500)">Neues Gerät hinzufügen
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="glyphicon glyphicon-pencil"
              fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
@@ -176,6 +178,7 @@
         window.opener.location.reload();
     }
 </script>
+
 
 </body>
 </html>

@@ -12,7 +12,6 @@ router.post("/addUser", authentication.authRight("add_user"), (req, res) => {
         .catch((error) => {
             console.error('Error:', error);
         });
-
 });
 
 router.post("/editUser", authentication.authRight("edit_User"), (req, res) => {
