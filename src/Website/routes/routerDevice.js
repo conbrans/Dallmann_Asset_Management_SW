@@ -15,7 +15,7 @@ router.post("/addDevice", redirect.redirectLogin,
             .catch((error) => {
                 console.error('Error:', error);
             });
-        res.redirect("/devices");
+        res.end();
     });
 
 router.post("/updateDevice", redirect.redirectLogin,

@@ -155,7 +155,7 @@ function setView(newLong, newLat) {
 }
 
 function addDevicePopUp() {
-    popupCenter({url:"/addDevicePopup", title:"Gerät hinzufügen", w:500, h: 650})
+    popupCenter({url:"/addDevice", title:"Gerät hinzufügen", w:500, h: 650})
 }
 
 

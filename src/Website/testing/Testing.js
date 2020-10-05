@@ -1,3 +1,9 @@
+/**
+ * Configs for node JS Testing,
+ * Import of jasmine Reporter
+ * @type {jasmine}
+ */
+
 const Jasmine = require('jasmine');
 var jasmine = new Jasmine();
 const JasmineConsoleReporter = require('jasmine-console-reporter');
