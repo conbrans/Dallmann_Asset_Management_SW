@@ -198,7 +198,7 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
 
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(request);
-        console.log(errors);
+        //console.log(errors);
         if (!errors.isEmpty()) {
             return response.json(errors.array());
         }
