@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <!--<script src="javascript/userManagement.js"></script>-->
+    <script src="javascript/userManagement.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
@@ -35,10 +35,6 @@
             integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
             crossorigin=""></script>
 
-    <!-- Table Management -->
-    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-    <script
-            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
 
     <link rel="icon" type="image/x-icon"
@@ -63,8 +59,7 @@
             <div>
                 <div class="newDeviceWrapper">
                     <% if (rights.add_device === 1){ %>
-                        <form class="form" method="get" action="/addDevice">
-                            <!--onclick="addDeviceWindow()"-->
+                        <form class="form"  onclick="addDevicePopUp()">
 
                             <button class="btn btn-outline-warning"
                                     id="btn-newDevice" class="header_button"
@@ -148,6 +143,7 @@
 
 
             </div>
+
             <table id="example" style="width: 100%" class="display table
             user-list"
                    onload>
@@ -188,6 +184,7 @@
                 <% } %>
                 </tbody>
             </table>
+
 
 
         </div>

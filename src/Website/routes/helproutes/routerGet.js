@@ -23,9 +23,7 @@ router.get('/failedLogin', redirect.redirectHome,
         res.status(403).render("login.ejs", {
             req: req,
         });
-
     });
-
 
 router.get("/logout",
     (req, res) => {
@@ -38,21 +36,15 @@ router.get("/logout",
         });
     });
 
-
-router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
+router.get("/addUser", redirect.redirectLogin, authentication.authRight("add_User"),
     (req, res) => {
-        res.status(200).render("adminCreateUser.ejs", {
-            username: req.session.username,
-            role: req.session.role,
-            rights: req.session.rights,
-        })
+        res.status(200).render("adminCreateUser.ejs");
     });
 
 router.get("/addDevice", redirect.redirectLogin,
     authentication.authRight("add_Device"), (req, res) => {
         res.status(200).render("addDevice.ejs");
     });
-
 
 router.get("/booking", redirect.redirectLogin,
     authentication.authRight("booking_device"),
@@ -63,24 +55,22 @@ router.get("/booking", redirect.redirectLogin,
             role: req.session.role,
             rights: req.session.rights,
             inventoryNumber: "23221320",
-            maxDate : "2020-10-23",
+            maxDate: "2020-10-23",
         });
-
     });
+
 router.get("/bookinglist", redirect.redirectLogin,
     authentication.authRight("booking_device"),
     (req, res) => {
         fetch.getFetch("/api/borrow/getReservations")
             .then(data =>
-                reformatDate.removeTimeStampForBooking(data).
-                then(data =>
+                reformatDate.removeTimeStampForBooking(data).then(data =>
                     res.status(200).render("bookinglist.ejs", {
-                    username: req.session.username,
-                    role: req.session.role,
-                    rights: req.session.rights,
-                    data: data,
-                }) )
-
+                        username: req.session.username,
+                        role: req.session.role,
+                        rights: req.session.rights,
+                        data: data,
+                    }))
             )
     });
 
@@ -92,11 +82,12 @@ router.get("/devices", redirect.redirectLogin,
                 reformatDate.removeTimeStampForDevice(data)
                     .then(data =>
                         res.status(200).render("newDeviceManagement.ejs", {
-                    username: req.session.username,
-                    role: req.session.role,
-                    rights: req.session.rights,
-                    data: data,
-                }))
+                            username: req.session.username,
+                            role: req.session.role,
+                            rights: req.session.rights,
+                            data: data,
+                            amount: data.length,
+                        }))
             });
     });
 
@@ -146,26 +137,24 @@ router.get("/Traccar-FAQ",
         });
     });
 
-
 router.get("/commission",
     (req, res) => {
         res.render("commission.ejs", {
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
-            req :req,
+            req: req,
         });
     });
 
-router.get("/commissionDone", notification.sendMessage("commission"),(req, res) =>{
+router.get("/commissionDone", notification.sendMessage("commission"), (req, res) => {
     res.render("commission.ejs", {
         username: req.session.username,
         role: req.session.role,
         rights: req.session.rights,
-        req :req,
+        req: req,
     });
 })
-
 
 router.get("/home", redirect.redirectLogin, notification.sendMessage("login"),
     notification.sendMessage("booking"),
@@ -203,7 +192,6 @@ router.get("/editProfil", notification.sendMessage("editProfil"), (req, res) => 
         req: req,
     });
 });
-
 
 router.get("/update", redirect.redirectLogin,
     authentication.authRight("add_user"),

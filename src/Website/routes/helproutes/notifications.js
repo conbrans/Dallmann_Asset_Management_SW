@@ -32,9 +32,7 @@ function sendMessage(messagetype) {
                         ' Mail-Adresse (m.mustermann@dallmann-bau.de) und' +
                         ' ein personalisertes Passwort oder das' +
                         ' Standardpassword, welches vom Admin festgelegt' +
-                        ' worden ist. ',
-                        title = 'Login nicht möglich',
-                        options = {});
+                        ' worden ist. ', title = 'Login nicht möglich');
                     break;
 
                 case "booking" :
@@ -42,7 +40,7 @@ function sendMessage(messagetype) {
                         if (!req.session.bookingData) {
                             req.toastr.info("In den nächsten 14 Tagen müssen" +
                                 " keine Geräte zurückgegeben werden.",
-                                title = 'Ablaufende Reservierung', options = {});
+                                title = 'Ablaufende Reservierung');
                         } else  {
                             for (i = 0; i < req.session.bookingData.length;
                                  i++) {
@@ -69,7 +67,7 @@ function sendMessage(messagetype) {
                     break;
 
                 case "commission":
-                    req.toastr.success('Die Buchung war erfolgreich', title="Commission", options={});
+                    req.toastr.success('Die Buchung war erfolgreich', title="Commission");
                 break;
 
 
@@ -78,7 +76,7 @@ function sendMessage(messagetype) {
                         'Ihre Benutzerdaten wurden geupdatet, und sind beim' +
                         ' nächsten Login aktiv, bitte melden Sie sich ab und' +
                         ' wieder an, um die Veränderung zu sehen.',
-                        title = 'Update war erfolgreich', options = {});
+                        title = 'Update war erfolgreich');
                     break;
 
                 case "tuv" :
@@ -87,7 +85,7 @@ function sendMessage(messagetype) {
                             req.toastr.info("Innerhalb der nächsten 30" +
                                 " Tage stehen keine" +
                                 " TÜV-Prüfungen an!", title = 'Ablauf des TÜV' +
-                                ' Status', options = {});
+                                ' Status');
                         } else {
                             for (i = 0; i < req.session.tuvData.length;
                                  i++) {
@@ -120,7 +118,7 @@ function sendMessage(messagetype) {
                             req.toastr.info("Innerhalb der nächsten 30" +
                                 " Tage stehen keine" +
                                 " UVV-Prüfungen an!", title = 'Ablauf des UVV' +
-                                ' Status', options = {});
+                                ' Status');
                         } else {
                             for (i = 0; i < req.session.uvvData.length;
                                  i++) {
@@ -169,7 +167,7 @@ function sendMessage(messagetype) {
                                         maintenanceData[i].timestamp +
                                     'Wartungsarbeit : ' + req.session.
                                         maintenanceData[i].note + ' .',
-                                    title = 'Anstehende Wartung', options = {});
+                                    title = 'Anstehende Wartung');
                             }
                         }
                     }

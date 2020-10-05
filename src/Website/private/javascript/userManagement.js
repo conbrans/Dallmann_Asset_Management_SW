@@ -191,7 +191,7 @@ function removeCheckedRadio(radioname)
 
 
 function addUserPopUp() {
-   popupCenter({url:"/add", title:"Benutzer hinzufügen", w:500, h: 650})
+   popupCenter({url:"/addUser", title:"Benutzer hinzufügen", w:500, h: 650})
 }
 
 const popupCenter = ({url, title, w, h}) => {

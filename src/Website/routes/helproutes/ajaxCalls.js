@@ -11,7 +11,10 @@ router.post("/sendInventoryNumber",(req, res) => {
         message: "Erfolg",
     })
 });
-
+/**
+ * get the workerid and mail for a specific user, which is transported with
+ * an ajax call
+ */
 router.post("/sendWorkerInfos",(req, res) => {
    req.session.userMgntID = req.body.workerid;
    req.session.userMgntMail = req.body.mail;
