@@ -20,9 +20,6 @@ html {
     letter-spacing: .6px !important;
 }
 
-
-
-
 body {
     margin: 0;
     padding: 0;
@@ -35,7 +32,6 @@ body {
     width: 100%;
 }
 
-
 *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -43,7 +39,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 
 a {
     text-decoration: none;
@@ -101,9 +96,8 @@ nav li {
     float: left;
 }
 
-
 nav li a {
-    float: right;
+    float: left;
     padding: 50px 35px 35px 35px;
     font-size: 18px !important;
 }
@@ -197,6 +191,7 @@ nav li li a:hover {
     position: relative;
     top: 50%;
     width: 200px;
+    text-align: left;
 }
 
 .input:focus {
@@ -219,9 +214,7 @@ input:focus::-webkit-input-placeholder {
     color: dodgerblue;
 }
 
-.input:focus + .underline {
-    transform: scale(1);
-}
+
 
 .underline {
     background-color: dodgerblue;
@@ -326,10 +319,10 @@ input:focus::-webkit-input-placeholder {
         position: relative;
         display: none;
         width: 100%;
-        height: 520px;
+        height: 565px;
         clear: both;
         float: none;
-        max-height: 520px;
+        max-height: 565px;
         overflow-y: hidden;
         background: #fff;
         z-index: 1000;
@@ -452,7 +445,7 @@ footer {
     border-top: 1px solid var(--border);
     text-align: left;
     font-size: 16px;
-    z-index : -100;
+    z-index : 1000;
 }
 
 .twovalues {
@@ -533,6 +526,3 @@ footer {
         display: none;
     }
 }*/
-ul{
-    direction: rtl;
-}
