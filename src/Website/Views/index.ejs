@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
-
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet"  href="css/headFootDesign.css">
-<link rel="icon" type="image/x-icon"
-      href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
-<link rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-<!--    <script src="javascript/headerSearch.js"></script>-->
+    <link rel="stylesheet" href="css/headFootDesign.css">
+
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <link rel="icon" type="image/x-icon"
+          href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+    <!--    <script src="javascript/headerSearch.js"></script>-->
 
 
 </head>
@@ -32,79 +34,80 @@
         <div class="right-corner"></div>
         <div class="left-corner"></div>
     </div>
-        <div class="grid-container">
-            <div class="side1"></div>
-            <div class="side2"></div>
-            <div class="inner-grid">
+    <div class="grid-container">
+        <div class="side1"></div>
+        <div class="side2"></div>
+        <div class="inner-grid">
 
-                <div class="inputBox box1">
-                    <a class="link" href="/devices">
-                        <div style="height: 100%; width: 100%; position: relative">
-                            <div class="hoverColor">
-                            </div>
-                            <h2 class="textAlign">Geräte anzeigen</h2>
+            <div class="inputBox box1">
+                <a class="link" href="/devices">
+                    <div style="height: 100%; width: 100%; position: relative">
+                        <div class="hoverColor">
                         </div>
-                    </a>
-                </div>
-
-                <% if (rights.booking_device === 1 ) { %>
-                    <div class="inputBox box2">
-                        <a class="link" href="/bookinglist">
-                            <div class="wrapper">
-                                <div class="hoverColor">
-                                </div>
-                                <h2 class="textAlign">Reservieren</h2>
-                            </div>
-                        </a>
+                        <h2 class="textAlign">Geräte anzeigen</h2>
                     </div>
-                <% } %>
-
-                <div class="inputBox box3">
-                    <a class="link" href="profil">
-                        <div class="wrapper">
-                            <div class="hoverColor">
-                            </div>
-                            <h2 class="textAlign">Benutzerprofil</h2>
-                        </div>
-                    </a>
-                </div>
-                <% if ( rights.picking === 1 ) { %>
-                    <div class="inputBox box4">
-                        <div class="wrapper">
-                            <a class="link" href="/commission">
-                                <div class="wrapper">
-                                    <div class="hoverColor">
-                                    </div>
-                                    <h2 class="textAlign">Kommisionieren</h2>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                <% } %>
-
-                <div class="inputBox box5">
-                    <a class="link" href="/faq">
-                        <div class="wrapper">
-                            <div class="hoverColor">
-                            </div>
-                            <h2 class="textAlign">FAQ</h2>
-                        </div>
-                    </a>
-                </div>
-
-                <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
-                    <div class="inputBox box6">
-                        <a class="link" href="/userManagement">
-                            <div class="wrapper">
-                                <div class="hoverColor">
-                                </div>
-                                <h2 class="textAlign">Nutzerverwaltung</h2>
-                            </div>
-                        </a>
-                    </div>
-                <% } %>
+                </a>
             </div>
+
+            <% if (rights.booking_device === 1 ) { %>
+                <div class="inputBox box2">
+                    <a class="link" href="/bookinglist">
+                        <div class="wrapper">
+                            <div class="hoverColor">
+                            </div>
+                            <h2 class="textAlign">Reservieren</h2>
+                        </div>
+                    </a>
+                </div>
+            <% } %>
+
+            <div class="inputBox box3">
+                <a class="link" href="profil">
+                    <div class="wrapper">
+                        <div class="hoverColor">
+                        </div>
+                        <h2 class="textAlign">Benutzerprofil</h2>
+                    </div>
+                </a>
+            </div>
+            <% if ( rights.picking === 1 ) { %>
+                <div class="inputBox box4">
+                    <div class="wrapper">
+                        <a class="link" href="/commission">
+                            <div class="wrapper">
+                                <div class="hoverColor">
+                                </div>
+                                <h2 class="textAlign">Kommisionieren</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            <% } %>
+
+            <div class="inputBox box5">
+                <a class="link" href="/faq">
+                    <div class="wrapper">
+                        <div class="hoverColor">
+                        </div>
+                        <h2 class="textAlign">FAQ</h2>
+                    </div>
+                </a>
+            </div>
+
+            <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
+                <div class="inputBox box6">
+                    <a class="link" href="/userManagement">
+                        <div class="wrapper">
+                            <div class="hoverColor">
+                            </div>
+                            <h2 class="textAlign">Nutzerverwaltung</h2>
+                        </div>
+                    </a>
+                </div>
+            <% } %>
         </div>
+    </div>
+</main>
 <%- include('../Views/general/footer.ejs'); -%>
 
 

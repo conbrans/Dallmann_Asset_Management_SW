@@ -11,15 +11,24 @@
 html {
     padding: 0;
     margin: 0;
-    font-family: "Roboto", sans-serif !important;
+    font-family: Roboto !important;
+
+    height: 100%;
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    letter-spacing: .6px !important;
 }
+
+
+
 
 body {
     margin: 0;
     padding: 0;
-    font-size: 100%;
     line-height: 190%;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto Thin", sans-serif;
+    font-size: 16px;
     color: #0d0d0d;
     font-weight: 300;
     height: 100%;
@@ -83,7 +92,8 @@ nav {
 }
 
 nav > ul {
-    float: left;
+    float: right;
+
 }
 
 nav li {
@@ -102,7 +112,6 @@ nav li a:hover {
     position: relative;
     background: transparent;
     text-decoration: none;
-    font-weight: bold;
 }
 
 nav li ul {
@@ -524,3 +533,6 @@ footer {
         display: none;
     }
 }*/
+ul{
+    direction: rtl;
+}
