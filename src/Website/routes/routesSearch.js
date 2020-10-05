@@ -5,19 +5,19 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('./helproutes/fetch');
 
-router.post("/searchInventoryNumber", (req,res)=>{
-   fetch.postFetch("/api/device/getSpecificDevice/byInventoryNumber",req)
-       .then(data => res.status(200).render("newDeviceManagement.ejs",
-           {
-               username: req.session.username,
-               role: req.session.role,
-               rights: req.session.rights,
-               data: data,
-               amount : data.length,
-           }))
-       .catch((error) => {
-           console.error('Error:', error);
-       })
+router.post("/searchInventoryNumber", (req, res) => {
+    fetch.postFetch("/api/device/getSpecificDevice/byInventoryNumber", req)
+        .then(data => res.status(200).render("newDeviceManagement.ejs",
+            {
+                username: req.session.username,
+                role: req.session.role,
+                rights: req.session.rights,
+                data: data,
+                amount: data.length,
+            }))
+        .catch((error) => {
+            console.error('Error:', error);
+        })
 });
 
 router.post("/searchStatus", (req, res) => {
@@ -28,7 +28,7 @@ router.post("/searchStatus", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
-                amount : data.length,
+                amount: data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -43,7 +43,7 @@ router.post("/searchCategory", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
-                amount : data.length,
+                amount: data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -58,7 +58,7 @@ router.post("/searchModel", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
-                amount : data.length,
+                amount: data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -73,7 +73,7 @@ router.post("/searchTuv", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
-                amount : data.length,
+                amount: data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -88,7 +88,7 @@ router.post("/searchUvv", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
-                amount : data.length,
+                amount: data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -103,7 +103,7 @@ router.post("/searchRepair", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
-                amount : data.length
+                amount: data.length
             }))
         .catch((error) => {
             console.error('Error:', error);

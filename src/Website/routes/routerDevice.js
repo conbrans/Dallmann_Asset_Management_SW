@@ -43,7 +43,7 @@ router.post("/devices", (req, res) => {
     fetch.getFetch("/api/device/getAllDevices")
         .then(data => {
             reformatDate.removeTimeStampForDevice(data)
-                .then(data =>{
+                .then(data => {
                     console.log(data);
                     res.status(200).render("newDeviceManagement.ejs", {
                         username: req.session.username,
@@ -52,7 +52,7 @@ router.post("/devices", (req, res) => {
                         data: data,
                         amount: req.body.amount,
                     });
-        })
+                })
         });
 });
 
