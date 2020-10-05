@@ -6,126 +6,51 @@ app.set('view engine', 'ejs');
 app.post("/historie", function (request, response) {
 
 
-        let datum = [];
-        let bauId = [];
-        let bauBZ = [];
-        let standort = [];
-        let vorStandort = [];
-
-        /* fetch.getFetch("")
-             .then(
-                 data => result = data);
-             )*/
-
-   var result= [
+    response.status(201).render("historie.ejs",
         {
-            "date" : "01.01.2020",
-            "bau_ID" : 20000,
-            "bauBz" : "Parkplatz, Dallmann",
-            "location" : "Bramsche",
-            "lastLocation" : "Hof"
-        },
-        {
-            "date" : "01.02.2020",
-            "bau_ID" : 20001,
-            "bauBz" : "Lingen, Hochschule Osnabrück",
-            "location" : "Lingen",
-            "lastLocation" : "Bramsche"
-        },
-        {
-            "date" : "01.03.2020",
-            "bau_ID" : 20002,
-            "bauBz" : "Musterbaustelle, Münster",
-            "location" : "Münster",
-            "lastLocation" : "Lingen"
-        },
-        {
-            "date" : "01.04.2020",
-            "bau_ID" : 20003,
-            "bauBz" : "Schanze, Hamburg",
-            "location" : "Hamburg",
-            "lastLocation" : "Münster"
-        }
-    ]
-
-
-
-        setTimeout(() => {
-            for (let i = 0; i < result.length; i++) {
-                datum[i] = result[i].date;
-                bauId[i] = result[i].bau_ID;
-                bauBZ[i] = result[i].bauBz;
-                standort[i] = result[i].location;
-                vorStandort[i] = result[i].lastLocation;
-            }
-
-            response.status(201).render("historie.ejs",
-                {
-                    username: "Teo Tester",
-                    role: "Tester",
-                    rights: {
-                        booking_device: 1,
-                    edit_device: 1,
-                    add_device: 1,
-                    view_device: 1,
-                    delete_device: 1,
-                    add_user: 1,
-                    delete_user: 1,
-                    edit_user: 1,
-                    delete_booking: 1,
-                    edit_booking: 1,
-                    picking: 1
+            username: "History Test",
+            role: "Tester",
+            rights: {
+                booking_device: 1,
+                edit_device: 1,
+                add_device: 1,
+                view_device: 1,
+                delete_device: 1,
+                add_user: 1,
+                delete_user: 1,
+                edit_user: 1,
+                delete_booking: 1,
+                edit_booking: 1,
+                picking: 1
             },
-                    geraetenummer:"Placeholder",
-                    datum: datum,
-                    bau_ID: bauId,
-                    bauBZ: bauBZ,
-                    location: standort,
-                    lastLocation: vorStandort,
-                    longitude: "50.32",
-                    latitude: "8.25",
-                    model: "model",
-                    manufacturer:"manufacturer",
-                    serialNumber : "serialNumber",
-                    guarantee : "guarantee",
-                    note : "note",
-                    statusDescription : "statusDescription",
-                    category : "category",
-                    lastTuev : "lastTuev",
-                    lastUvv : "lastUvv",
-                    lastRepair : "lastRepair",
-                    repairNote : "repairNote",
-                    projectId : "projectId",
-                    buildingSite : "buildingSite",
-                });
+            inventoryNumber: "Placeholder",
+            data: {
+                lastChance : "2020-10-20",
+                longitude : 52.30,
+                latitude :8.210,
+                model : "TEST",
+                manufacturer : "TEST",
+                serialNumber : "12345",
+                guarantee : "2020-10-12",
+                note : "TEST",
+                statusDescription :" Verfügbar",
+                category : "Leiter",
+                lastTuev :"2020-10-12",
+                lastUvv:"2020-10-12",
+                lastRepair :"2020-10-12",
+                repairNote : "TEST",
+                projectId: 1,
+                buildingSite : "BAustelle",
+            },
 
-        }, 1);
+        });
 
-
-    });
-
-
-/*
+});
 
 
 
 
-                    longitude: longitude,
-                    latitude: latitude,
-                    model: model,
-                    manufacturer:manufacturer,
-                    serialNumber : serialNumber,
-                    guarantee : guarantee,
-                    note : note,
-                    statusDescription : statusDescription,
-                    category : category,
-                    lastTuev : lastTuev,
-                    lastUvv : lastUvv,
-                    lastRepair : lastRepair,
-                    repairNote : repairNote,
-                    projectId : projectId,
-                    buildingSite : buildingSite,
- */
+
 
 var server = app.listen(3001, () => {
 });

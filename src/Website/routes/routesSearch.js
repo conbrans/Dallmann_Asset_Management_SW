@@ -13,6 +13,7 @@ router.post("/searchInventoryNumber", (req,res)=>{
                role: req.session.role,
                rights: req.session.rights,
                data: data,
+               amount : data.length,
            }))
        .catch((error) => {
            console.error('Error:', error);
@@ -27,6 +28,7 @@ router.post("/searchStatus", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
+                amount : data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -41,6 +43,7 @@ router.post("/searchCategory", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
+                amount : data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -55,6 +58,7 @@ router.post("/searchModel", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
+                amount : data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -69,6 +73,7 @@ router.post("/searchTuv", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
+                amount : data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -83,6 +88,7 @@ router.post("/searchUvv", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
+                amount : data.length,
             }))
         .catch((error) => {
             console.error('Error:', error);
@@ -97,6 +103,7 @@ router.post("/searchRepair", (req, res) => {
                 role: req.session.role,
                 rights: req.session.rights,
                 data: data,
+                amount : data.length
             }))
         .catch((error) => {
             console.error('Error:', error);

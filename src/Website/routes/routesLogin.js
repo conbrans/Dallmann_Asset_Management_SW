@@ -87,6 +87,7 @@ function getNotificationValues(req, data, res) {
  */
 router.post("/login", function (req, res) {
 
+
     const hashedPassword = hash.hash(req.body.password)
         .then(function (result) {
             fetch.loginFetch(req, result)

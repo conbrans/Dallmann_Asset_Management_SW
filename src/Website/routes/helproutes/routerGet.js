@@ -39,13 +39,9 @@ router.get("/logout",
     });
 
 
-router.get("/add", redirect.redirectLogin, authentication.authRight("add_User"),
+router.get("/addUser", redirect.redirectLogin, authentication.authRight("add_User"),
     (req, res) => {
-        res.status(200).render("adminCreateUser.ejs", {
-            username: req.session.username,
-            role: req.session.role,
-            rights: req.session.rights,
-        })
+        res.status(200).render("adminCreateUser.ejs");
     });
 
 router.get("/addDevice", redirect.redirectLogin,
@@ -63,7 +59,7 @@ router.get("/booking", redirect.redirectLogin,
             role: req.session.role,
             rights: req.session.rights,
             inventoryNumber: "23221320",
-            maxDate : "2020-10-23",
+            maxDate: "2020-10-23",
         });
 
     });
@@ -72,15 +68,13 @@ router.get("/bookinglist", redirect.redirectLogin,
     (req, res) => {
         fetch.getFetch("/api/borrow/getReservations")
             .then(data =>
-                reformatDate.removeTimeStampForBooking(data).
-                then(data =>
+                reformatDate.removeTimeStampForBooking(data).then(data =>
                     res.status(200).render("bookinglist.ejs", {
-                    username: req.session.username,
-                    role: req.session.role,
-                    rights: req.session.rights,
-                    data: data,
-                }) )
-
+                        username: req.session.username,
+                        role: req.session.role,
+                        rights: req.session.rights,
+                        data: data,
+                    }))
             )
     });
 
@@ -92,11 +86,12 @@ router.get("/devices", redirect.redirectLogin,
                 reformatDate.removeTimeStampForDevice(data)
                     .then(data =>
                         res.status(200).render("newDeviceManagement.ejs", {
-                    username: req.session.username,
-                    role: req.session.role,
-                    rights: req.session.rights,
-                    data: data,
-                }))
+                            username: req.session.username,
+                            role: req.session.role,
+                            rights: req.session.rights,
+                            data: data,
+                            amount: data.length,
+                        }))
             });
     });
 
@@ -153,16 +148,16 @@ router.get("/commission",
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
-            req :req,
+            req: req,
         });
     });
 
-router.get("/commissionDone", notification.sendMessage("commission"),(req, res) =>{
+router.get("/commissionDone", notification.sendMessage("commission"), (req, res) => {
     res.render("commission.ejs", {
         username: req.session.username,
         role: req.session.role,
         rights: req.session.rights,
-        req :req,
+        req: req,
     });
 })
 
