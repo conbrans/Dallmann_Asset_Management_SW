@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="css/headFootDesign.css">
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="javascript/header.js"></script>
 </head>
 
@@ -35,7 +36,7 @@
                         <% if (rights.add_device === 1){ %>
                             <ul class="main-menu-sub">
                                 <li>
-                                    <a href="/addDevice">Gerät hinzufügen</a>
+                                    <a href="" onclick="addDevicePopUp()">Gerät hinzufügen</a>
                                 </li>
                             </ul>
                         <% } %>
@@ -88,7 +89,7 @@
                         </a>
                         <ul>
                             <% if(rights.add_user === 1) { %>
-                                <li><a href="/add">Nutzer anlegen</a></li>
+                                <li><a href="" onclick="addUserPopUp()">Nutzer anlegen</a></li>
                             <% } %>
                         </ul>
                     </li>
@@ -122,7 +123,6 @@
 </header>
 
 <hr class="clear">
-
 <script>
     $('#header').prepend('<div id="menu-icon"><span class="first"></span><span class="second"></span><span class="third"></span></div>');
 
@@ -131,3 +131,4 @@
         $(this).toggleClass("active");
     });
 </script>
+

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
     <link rel="stylesheet" href="css/headFootDesign.css">
-    <link rel="stylesheet" href="css/reservierung.css">
+    <link rel="stylesheet" href="css/booking.css">
     <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -18,18 +18,14 @@
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
 <main>
-    <div id="bookingcontent">
-        <div id="menu-caption">
-            <% if (inventoryNumber === ""){ %>
-                <h1>Reservierung für ein Gerät vornehmen: </h1>
-            <% } else{ %>
-                <h1>Reservierung für das Gerät mit der Nummer: <span><%=inventoryNumber %></span> vornehmen:</h1>
-            <% } %>
-        </div>
-    </div>
-
+    <br>
+    <br>
     <div id="form">
-        <h3>Gerät reservieren</h3>
+        <% if (inventoryNumber === ""){ %>
+            <h3>Geräte reservieren: </h3>
+        <% } else{ %>
+        <h3>Geräte <span><%=inventoryNumber %></span> reservieren:</h3>
+        <% } %>
         <form method="post" action="/book">
             <% if (inventoryNumber=== ""){ %>
                 <div class="form-group">

@@ -119,6 +119,14 @@ input {
             'input-a input-b input-c ';
 }
 
+
+.form-control{
+    width:
+            100%;
+    display:
+            inline-block
+}
+
 .input-a {
     grid-area: input-a;
 }

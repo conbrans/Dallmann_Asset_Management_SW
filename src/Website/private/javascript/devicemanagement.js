@@ -1,19 +1,16 @@
 window.onload = function () {
     loadData(0);
 }
+let acc = document.getElementsByClassName("toggle-title");
+let panel = document.getElementsByClassName('toggle-inner');
 
 
-var map = L.map('map').setView([52.52, 7, 32], 5);
-L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: ' &copy; <a href="https://www.openstreetmap.org/">' +
-        'OpenStreetMap</a> contributors',
-
-}).addTo(map);
-let marker;
-
-let j = 0;
-
+/**
+ *
+ * @param i
+ */
 function loadData(i) {
+
     document.getElementById("invnumber").value =
         document.getElementById("tr" + i.toString() +
             "td1").innerHTML;
@@ -25,8 +22,7 @@ function loadData(i) {
     document.getElementById("manufacturer").value =
         document.getElementById("tr" + i.toString() +
             "manufacturer").innerHTML;
-    console.log(document.getElementById("tr" + i.toString() +
-        "manufacturer").innerHTML);
+
 
     switch (document.getElementById("tr" + i.toString() +
         "td2").innerHTML) {
@@ -122,11 +118,7 @@ function loadData(i) {
         console.log("Inventorynumber is transported")
     });
 
-    setView(document.getElementById("tr" + i.toString() +
-        "longitude").innerHTML,
-        document.getElementById("tr" + i.toString() +
-            "latitude").innerHTML)
-
+    getPositionData(i);
 }
 
 function deleteDeviceMessage() {
@@ -134,28 +126,32 @@ function deleteDeviceMessage() {
         " löschen.");
 }
 
-var geocodeService = L.esri.Geocoding.geocodeService();
 
-function setView(newLong, newLat) {
+/**
+ * for-loop for the button "Filter" to show or hide the <div>
+ */
+for (var i = 0; i < acc.length; i++) {
+    acc[i].onclick = function () {
+        var setClasses = !this.classList.contains('active');
+        setClass(acc, 'active', 'remove');
+        setClass(panel, 'show', 'remove');
 
-    if (j === 1) {
-        map.removeLayer(marker);
-        j = 0;
+        if (setClasses) {
+            this.classList.toggle("active");
+            this.nextElementSibling.classList.toggle("show");
+        }
     }
-    map.panTo(new L.LatLng(newLong, newLat));
-    //marker = L.marker([long, lat]).addTo(map);
-    geocodeService.reverse().latlng([newLong, newLat]).run
-    (function (error, result) {
-        marker = L.marker(result.latlng).addTo(map)
-            .bindPopup(result.address.Match_addr).openPopup();
-    });
-
-    j = 1;
-
 }
 
-function addDevicePopUp() {
-    popupCenter({url:"/addDevice", title:"Gerät hinzufügen", w:500, h: 950})
+/**
+ *
+ * @param els
+ * @param className
+ * @param fnName
+ */
+function setClass(els, className, fnName) {
+    for (var i = 0; i < els.length; i++) {
+        els[i].classList[fnName](className);
+    }
 }
-
 
