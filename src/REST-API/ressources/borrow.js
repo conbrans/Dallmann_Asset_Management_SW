@@ -45,7 +45,8 @@ router.get("/api/borrow/getReservations",(request, response) => {
  * route for creating a reservation
  */
 
-router.post("/api/borrow/createReservation", constraint.reservationConstraints, (request, response) => {
+router.post("/api/borrow/createReservation",
+    constraint.createReservationConstraints, (request, response) => {
 
     let loanDay = new Date(request.body.loanDay).toISOString();
     let loanEnd = new Date(request.body.loanEnd).toISOString();
@@ -56,11 +57,11 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
         return response.json(errors.array());
     }
 
-    let sql = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = "+request.body.inventoryNumber+"" +
+    let selectExist = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = "+request.body.inventoryNumber+"" +
         " AND ((CAST('"+loanDay+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
         " OR (CAST('"+loanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));"
 
-    connection.query(sql,function (err,result) {
+    connection.query(selectExist,function (err,result) {
 
         let str = Object.values(result[0])[0];
 
@@ -70,19 +71,21 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
             return;
         } else if (str == "0") {
 
-           let sql2  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
+           let insertBorrows  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
                 "('"+loanDay+"','"+loanEnd+"','"+request.body.workerId+"','"
                 +request.body.inventoryNumber+"','" +request.body.projectId+"');";
-           let sql3 = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventoryNumber+";";
 
-            connection.query(sql2,function (err)
+            connection.query(insertBorrows,function (err)
             {
                 if(err){
                     response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
                     console.log('Error connecting to Db');
                     return;
                 }
-                connection.query(sql3,function (err) {
+
+                let updateDevice = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventoryNumber+";";
+
+                connection.query(updateDevice,function (err) {
                     if (err) throw err;
                 })
                 console.log('Connection established');
@@ -101,19 +104,22 @@ router.post("/api/borrow/createReservation", constraint.reservationConstraints, 
  * route for canceling a reservation
  */
 
-router.delete('/api/borrow/cancelReservation', (request, response) => {
+router.delete('/api/borrow/cancelReservation',
+    constraint.deleteReservationConstraints, (request, response) => {
 
     let loanDay = new Date(request.body.loanDay).toISOString();
     let loanEnd = new Date(request.body.loanEnd).toISOString();
+
+    const errors = validationResult(request);
+    if (!errors.isEmpty()) {
+        return response.json(errors.array());
+    }
 
     let sql = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + ");";
 
     connection.query(sql, function (err, result) {
 
         let str = Object.values(result[0])[0];
-
-     /*   var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2); */
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
