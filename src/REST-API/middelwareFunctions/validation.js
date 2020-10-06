@@ -28,9 +28,6 @@ const { body, validationResult } = require('express-validator');
 const workerUpdateConstraints = [
 
     body('eMail').isEmail().withMessage('Die E-Mail muss folgendes Format haben:...@dallmann-bau.de'),
-    body('firstName').notEmpty().withMessage('Es muss ein Vorname angegeben werden.'),
-    body('surname').notEmpty().withMessage('Es muss ein Nachname angegeben werden'),
-    body('role').notEmpty().withMessage('Dem neuen User muss eine Rolle zugewiesen werden.')
 
 ];
 
