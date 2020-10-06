@@ -10,7 +10,8 @@ const router = express();
 
 
 /**
- * route for getting history for a specific device
+ *
+ * @type {string}
  */
 
 let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber, model, manufacturer,\n" +
@@ -43,12 +44,20 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
     "       LEFT JOIN REPAIR\n" +
     "               ON DEVICE_HISTORY.inventory_number = REPAIR.inventory_number\n" +
     "       LEFT JOIN CATEGORY\n" +
-    "               ON DEVICE.category = CATEGORY.category_id";
+    "               ON DEVICE_HISTORY.category = CATEGORY.category_id";
+
+
+/**
+ *
+ * @param request
+ * @param response
+ *
+ */
 
 router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (request,response)
 {
     sql = selectHistory + " WHERE DEVICE_HISTORY.inventory_number ='" + request.params.inventoryNumber + "'\n" +
-          "GROUP BY device_history_id DESC;";
+          "GROUP BY DEVICE_HISTORY.device_history_id DESC;";
 
     connection.query(sql,function (err,result)
     {
@@ -64,7 +73,7 @@ router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function 
 });
 
 /**
- * route for getting all history data
+ *
  */
 
 router.get("/api/history/getHistory",function (request,response)

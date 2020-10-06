@@ -15,6 +15,10 @@ const router = express();
  * route for getting all reservations data
  */
 
+/**
+ *
+ */
+
 router.get("/api/borrow/getReservations",(request, response) => {
 
     sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd," +
