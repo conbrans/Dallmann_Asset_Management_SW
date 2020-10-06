@@ -59,7 +59,8 @@ function getNotificationValues(req, data, res) {
 
     fetch.getFetch("/api/notification/booking/" + data.worker_id)
         .then(result =>
-            reformat.removeTimestampForBookingNotification(result).then(result => req.session.bookingData = result)
+            reformat.removeTimestampForBookingNotification(result).
+            then(result => req.session.bookingData = result)
                 .then(() => {
                     fetch.getFetch("/api/notification/tuv")
                         .then(result =>
@@ -76,7 +77,7 @@ function getNotificationValues(req, data, res) {
                                                             reformat.removeTimestampForNotification(result)
                                                                 .then(result => req.session.maintenanceData = result)
                                                                 .then(() => {
-                                                                    res.redirect("/home");
+                                                                    res.status(202).redirect("/home");
                                                                 }))
                                                 }))
                                 }))
