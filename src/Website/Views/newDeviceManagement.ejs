@@ -13,7 +13,13 @@
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="javascript/userManagement.js"></script>
+    <!-- <script src="javascript/userManagement.js"></script>-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="DataTables/datatables.min.css"/>
+
+    <script src="DataTables/datatables.min.js"></script>
+
 
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
@@ -37,6 +43,7 @@
     <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
             integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
             crossorigin=""></script>
+
 
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
@@ -69,86 +76,75 @@
                         </form>
                     <% } %>
                 </div>
-                <div class="toggle-title" style="text-align: right;float: left">
-                    <button class="btn btn-outline-warning" id="btn-filter"
-                            class="header_button">Filtern
-                        <i class="fas fa-filter"></i>
-                    </button>
-                </div>
+                <!-- <div class="toggle-title" style="text-align: right;float:
+                left">
+                     <button class="btn btn-outline-warning" id="btn-filter"
+                             class="header_button">Filtern
+                         <i class="fas fa-filter"></i>
+                     </button>
+                 </div>
 
 
-                <div class="toggle-inner">
-                    <br>
-                    <hr>
-                    <div class="filterWrapper">
-                        <label class="box-a">Inventarnummer</label>
-                        <label class="box-b">Kategorie</label>
-                        <label class="box-c">Status</label>
+                 <div class="toggle-inner">
+                     <br>
+                     <hr>
+                     <div class="filterWrapper">
+                         <label class="box-a">Inventarnummer</label>
+                         <label class="box-b">Kategorie</label>
+                         <label class="box-c">Status</label>
 
-                        <form method="post" action="/searchInventoryNumber">
+                         <form method="post" action="/searchInventoryNumber">
 
 
-                            <input class="form-control input-a"
-                                   name="inventoryNumber" type="text"
-                                   placeholder="Nach Inventarnummer suchen"
-                                   onchange="this.form.submit()">
-                        </form>
+                             <input class="form-control input-a"
+                                    name="inventoryNumber" type="text"
+                                    placeholder="Nach Inventarnummer suchen"
+                                    onchange="this.form.submit()">
+                         </form>
 
-                        <form method="post" action="/searchCategory">
-                            <select class="browser-default custom-select
-                             form-control input-b" id="sort"
-                                    onchange="this.form.submit()" name="category">
-                                <option value="0" selected disabled hidden>Nach
-                                    Kategorie filtern
-                                </option>
-                                <option value="1">Rüttelplatten</option>
-                                <option value="2">Stampfer</option>
-                                <option value="3">Motorflex</option>
-                                <option value="4">Rohrgreifer</option>
-                                <option value="5">Kettensäge</option>
-                                <option value="6">Motorhammer</option>
-                                <option value="7">Leiter</option>
-                                <option value="8">Exoten</option>
+                         <form method="post" action="/searchCategory">
+                             <select class="browser-default custom-select
+                              form-control input-b" id="sort"
+                                     onchange="this.form.submit()"
+                                     name="category">
+                                 <option value="0" selected disabled hidden>Nach
+                                     Kategorie filtern
+                                 </option>
+                                 <option value="1">Rüttelplatten</option>
+                                 <option value="2">Stampfer</option>
+                                 <option value="3">Motorflex</option>
+                                 <option value="4">Rohrgreifer</option>
+                                 <option value="5">Kettensäge</option>
+                                 <option value="6">Motorhammer</option>
+                                 <option value="7">Leiter</option>
+                                 <option value="8">Exoten</option>
 
-                            </select>
-                        </form>
+                             </select>
+                         </form>
 
-                        <form method="post" action="/searchStatus">
-                            <select class="browser-default custom-select
-                             form-control input-c" id="sort"
-                                    onchange="this.form.submit()" name="status">
-                                <option value="0" selected disabled hidden>Nach
-                                    Status filtern
-                                </option>
-                                <option value="1">Verfügbar</option>
-                                <option value="2">Ausgeliehen</option>
-                                <option value="3">In Wartung</option>
-                                <option value="4">Außer Betrieb</option>
-                                <option value="5">Verschwunden</option>
-                                <option value="6">Gestohlen</option>
-                            </select>
-                        </form>
-                    </div>
-                    <hr>
-                </div>
-
-                <div class="newDeviceWrapper">
-
-                    <form class="form" method="get" action="/devices">
-                        <!--onclick="addDeviceWindow()"-->
-
-                        <button class="btn btn-outline-warning"
-                                id="btn-newDevice" class="header_button">Alle Geräte anzeigen
-                            <i class="fa fa-toolbox"></i>
-                        </button>
-                    </form>
-                </div>
+                         <form method="post" action="/searchStatus">
+                             <select class="browser-default custom-select
+                              form-control input-c" id="sort"
+                                     onchange="this.form.submit()" name="status">
+                                 <option value="0" selected disabled hidden>Nach
+                                     Status filtern
+                                 </option>
+                                 <option value="1">Verfügbar</option>
+                                 <option value="2">Ausgeliehen</option>
+                                 <option value="3">In Wartung</option>
+                                 <option value="4">Außer Betrieb</option>
+                                 <option value="5">Verschwunden</option>
+                                 <option value="6">Gestohlen</option>
+                             </select>
+                         </form>
+                     </div>
+                     <hr>
+                 </div>-->
 
 
             </div>
 
-            <table id="example" style="width: 100%" class="display table
-            user-list"
+            <table id="table" style="width: 100%" class="table user-list"
                    onload>
                 <thead>
                 <tr>
@@ -158,42 +154,14 @@
                     <th>Status</th>
                 </tr>
                 </thead>
-                <tbody id="deviceContent">
-                <% for (var i = 0;i < data.length;i++){ %>
-                    <tr onclick="loadData(<%= i %>);">
-
-                        <td id="tr<%= i %>td1"><%= data[i].inventoryNumber %></td>
-                        <td id="tr<%= i %>td2"><%= data[i].category %></td>
-                        <td id="tr<%= i %>td3"><%= data[i].model %></td>
-                        <td id="tr<%= i %>td4"><%= data[i].statusDescription %></td>
-
-                        <td id="tr<%= i %>serialNumber"
-                            class="hiddendeviceInfos"><%= data[i].serialNumber %></td>
-                        <td id="tr<%= i %>manufacturer"
-                            class="hiddendeviceInfos"><%= data[i].manufacturer %></td>
-                        <td id="tr<%= i %>note"
-                            class="hiddendeviceInfos"><%= data[i].note %></td>
-                        <td id="tr<%= i %>longitude"
-                            class="hiddendeviceInfos"><%= data[i].longitude %></td>
-                        <td id="tr<%= i %>latitude"
-                            class="hiddendeviceInfos"><%= data[i].latitude %></td>
-                        <td id="tr<%= i %>guarantee"
-                            class="hiddendeviceInfos"><%= data[i].guarantee %></td>
-                        <td id="tr<%= i %>technicalInspection"
-                            class="hiddendeviceInfos"><%= data[i].lastTuev %></td>
-                        <td id="tr<%= i %>accidentPrevention"
-                            class="hiddendeviceInfos"><%= data[i].lastUvv %></td>
-                    </tr>
-                <% } %>
-                </tbody>
+                <tbody id="deviceContent"></tbody>
             </table>
 
 
         </div>
         <div class="deviceInformation">
             <div class="inputFields">
-                <form class="box" action="/updateDevice" method="post"
-                      id="updateDevice">
+                <div class="box">
                     <h3>Geräteinformationen</h3>
                     <br>
                     <div class="box1">
@@ -203,9 +171,9 @@
                                     Inventarnummer: </label>
                                 <div>
                                     <input class="form-control"
-                                           form="updateDevice"
                                            type="text" value="Inventarnummer"
                                            id="invnumber"
+                                           form="updateDevice"
                                            name="inventoryNumber">
                                 </div>
                             </div>
@@ -214,9 +182,10 @@
                                     Hersteller: </label>
                                 <div>
                                     <input class="form-control"
-                                           form="updateDevice"
                                            type="text" value="Herstellername"
-                                           id="manufacturer" name="manufacturer"
+                                           id="manufacturer"
+                                           form="updateDevice"
+                                           name="manufacturer"
                                            style="text-align: left">
                                 </div>
                             </div>
@@ -227,6 +196,7 @@
                                 <div>
                                     <select class="browser-default custom-select form-control"
                                             id="category"
+                                            form="updateDevice"
                                             onchange="getSelectedOption()"
                                             style="width: 100%; display: inline-block"
                                             name="beaconMajor">
@@ -252,7 +222,8 @@
                                             for="model">Modell:</label>
                                     <input type="text" class="form-control"
                                            name="model"
-                                           placeholder="Modell" id="model">
+                                           form="updateDevice"
+                                           id="model">
                                 </div>
                             </div>
                         </div>
@@ -264,7 +235,9 @@
                                             id="status"
                                             onchange="getSelectedOption()"
                                             style="width: 100%; display:
-                                    inline-block" name="deviceStatus">
+                                    inline-block"
+                                            form="updateDevice"
+                                            name="deviceStatus">
                                         <option selected disabled>Status
                                         </option>
                                         <option value="1">Verfügbar</option>
@@ -299,6 +272,7 @@
                                     <input id="guarantee"
                                            name="guarantee"
                                            type="date"
+                                           form="updateDevice"
                                            class="form-control">
                                 </div>
                             </div>
@@ -309,6 +283,7 @@
                                     <input id="technicalInspection"
                                            name="technicalInspection"
                                            type="date"
+                                           form="updateDevice"
                                            class="form-control">
                                 </div>
                             </div>
@@ -321,6 +296,7 @@
                                     <input id="accidentPrevention"
                                            name="accidentPrevention"
                                            type="date"
+                                           form="updateDevice"
                                            class="form-control">
                                 </div>
                             </div>
@@ -332,14 +308,14 @@
 
                                         <input id="longitude"
                                                class="form-control"
-                                               type="text" value="52.52"
+                                               type="text" form="updateDevice"
                                                style="width: 170px;" readonly>
                                     </div>
                                     <div style="float: right">
 
                                         <input id="latitude"
                                                class="form-control"
-                                               type="text" value="7.32"
+                                               type="text" form="updateDevice"
                                                style="width: 170px" readonly>
                                     </div>
                                 </div>
@@ -351,7 +327,7 @@
                                 <label for="note">Notiz</label>
                                 <div>
                             <textarea class="form-control" name="note" id="note"
-                                      placeholder="Notiz"
+                                      placeholder="Notiz" form="updateDevice"
                                       rows="4"></textarea>
                                 </div>
                             </div>
@@ -359,24 +335,25 @@
                                 <label for="minor">Minor</label>
                                 <input type="number" class="form-control"
                                        id="minor"
+                                       form="updateDevice"
                                        name="beaconMinor">
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </form>
+
                 <br>
                 <hr>
                 <div class="actionButton">
 
                     <% if (rights.edit_device === 1){ %>
-                        <form class="btn-from" method="post" action="">
+                        <form class="btn-from" method="post"
+                              action="/updateDevice" id="updateDevice">
                             <div>
                                 <p>
                                     <button type="submit"
-                                            class="btn btn-outline-primary"
-                                            onclick="">
-                                        <!--                                    onclick="sendData()"-->
+                                            class="btn btn-outline-primary">
                                         Daten ändern
                                     </button>
                                 </p>

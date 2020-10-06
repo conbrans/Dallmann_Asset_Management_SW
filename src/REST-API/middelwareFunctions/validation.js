@@ -1,7 +1,5 @@
 const { body, validationResult } = require('express-validator');
-
- const deviceConstraints = [
-
+const deviceConstraints = [
     body('serialNumber').notEmpty().withMessage('Das Attribut Seriennummer muss angegeben werden und' +
         ' eine Zahlenkombination sein, wie z.B. 7742810'),
     body('deviceStatus').if(body('deviceStatus')).isInt({min: 1, max: 7}).withMessage('Das Attribut Gerätestatus muss' +
@@ -10,28 +8,21 @@ const { body, validationResult } = require('express-validator');
         ' beliebige Zeichenkombination sein, wie z.B. Schnibbler Deluxe'),
     body('manufacturer').notEmpty().withMessage('Das Attribut Hersteller muss angegeben werden und' +
         ' kann eine beliebige Zeichenkombination sein, wie z.B. Husqvarna'),
-     body('category').if(body('category').notEmpty()).isInt({min: 1, max: 8}).withMessage('Die angegebende Kategorie ist nicht vorhanden.')
-
+    body('category').if(body('category').notEmpty()).isInt({min: 1, max: 8}).withMessage('Die angegebende Kategorie ist nicht vorhanden.')
 ];
-
- const workerConstraints = [
-
-     body('password').notEmpty().withMessage('Es muss ein Passwort angegeben werden.').isLength({min: 6, max: 20}).withMessage('Das Passwort muss mindestens 6 und darf maximal 20 Zeichen lang sein'),
-     body('eMail').isEmail().withMessage('Die E_Mail muss folgendes Format haben:...@dallmann-bau.de'),
-     body('firstName').notEmpty().withMessage('Es muss ein Vorname angegeben werden.'),
-     body('surname').notEmpty().withMessage('Es muss ein Nachname angegeben werden'),
-     body('role').notEmpty().withMessage('Dem neuen User muss eine Rolle zugewiesen werden.')
-
- ];
-
-
+const workerConstraints = [
+    body('password').notEmpty().withMessage('Es muss ein Passwort angegeben werden.').isLength({min: 6, max: 20}).withMessage('Das Passwort muss mindestens 6 und darf maximal 20 Zeichen lang sein'),
+    body('eMail').isEmail().withMessage('Die E_Mail muss folgendes Format haben:...@dallmann-bau.de'),
+    body('firstName').notEmpty().withMessage('Es muss ein Vorname angegeben werden.'),
+    body('surname').notEmpty().withMessage('Es muss ein Nachname angegeben werden'),
+    body('role').notEmpty().withMessage('Dem neuen User muss eine Rolle zugewiesen werden.')
+];
 const workerUpdateConstraints = [
-
     body('eMail').isEmail().withMessage('Die E-Mail muss folgendes Format haben:...@dallmann-bau.de'),
 
 ];
 
- const createReservationConstraints = [
+const createReservationConstraints = [
 
     body('workerId').isInt().withMessage(''),
     body('inventoryNumber').isInt(),
@@ -61,6 +52,3 @@ module.exports = {
     deleteReservationConstraints: deleteReservationConstraints
 
 }
-
-
-

@@ -1,6 +1,41 @@
-window.onload = function () {
+/*window.onload = function () {
     loadData(0);
-}
+}*/
+
+$(document).ready(function() {
+    $.noConflict();
+    var data = $.ajax({
+        url : "/showDevices",
+        method : "GET",
+    }).done(()=>{
+        console.log(data.body);
+        $("#table").DataTable({
+            data : data,
+            columns : [
+                { "data": "inventoryNumber" },
+                { "data": "category" },
+                { "data": "model" },
+                { "data": "statusDescription" }],
+            language:{
+                search: "Suche nach:",
+                info : "Zeige Nr. _START_ bis _END_ von _TOTAL_ Geräten",
+                lengthMenu : "Zeige _MENU_ Geräte",
+                zeroRecords : "Keine Einträge verfügbar",
+                paginate : {
+                        first: "Erste Seite",
+                        last: "Letzte Seite",
+                        next: "Nächste",
+                        previous: "Vorherige"
+                },
+                infoFiltered : "(von _MAX_ Geräten insgesamt)",
+            },
+        });
+    });
+});
+
+
+
+
 let acc = document.getElementsByClassName("toggle-title");
 let panel = document.getElementsByClassName('toggle-inner');
 
@@ -9,7 +44,7 @@ let panel = document.getElementsByClassName('toggle-inner');
  *
  * @param i
  */
-function loadData(i) {
+/*function loadData(i) {
 
     document.getElementById("invnumber").value =
         document.getElementById("tr" + i.toString() +
@@ -119,7 +154,7 @@ function loadData(i) {
     });
 
     getPositionData(i);
-}
+}*/
 
 function deleteDeviceMessage() {
     confirm("ACHTUNG!\nSie sind dabei das gewählte Gerät undwideruflich zu" +

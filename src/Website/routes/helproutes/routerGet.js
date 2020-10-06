@@ -76,17 +76,24 @@ router.get("/bookinglist", redirect.redirectLogin,
 router.get("/devices", redirect.redirectLogin,
     authentication.authRight("view_device"),
     (req, res) => {
+
+        res.status(200).render("newDeviceManagement.ejs", {
+            username: req.session.username,
+            role: req.session.role,
+            rights: req.session.rights,
+        });
+    });
+
+router.get("/showDevices", redirect.redirectLogin,
+    authentication.authRight("view_device"), (req, res) => {
         fetch.getFetch("/api/device/getAllDevices")
             .then(data => {
                 reformatDate.removeTimeStampForDevice(data)
-                    .then(data =>
-                        res.status(200).render("newDeviceManagement.ejs", {
-                            username: req.session.username,
-                            role: req.session.role,
-                            rights: req.session.rights,
-                            data: data,
-                            amount: data.length,
-                        }))
+                    .then(data => {
+                        console.log(data.body);
+                        res.json({ "data": data.body});
+
+                    })
             });
     });
 

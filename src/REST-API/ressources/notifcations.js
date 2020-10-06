@@ -21,14 +21,14 @@ router.get("/api/notification/booking/:userId", function (request,response){
            });
        }else{
            response.json(result);
-           console.log(result)
        }
 
     });
 });
 
 router.get("/api/notification/tuv", function (request,response){
-    var statement = "SELECT DEVICE.inventory_number AS inventoryNumber, category," +
+    var statement = "SELECT DEVICE.inventory_number AS inventoryNumber," +
+        " CATEGORY.category," +
         " TUEV.timestamp  AS timestamp FROM" +
         " TUEV,CATEGORY,DEVICE WHERE DATEDIFF(TUEV.timestamp,CURRENT_DATE)" +
     " BETWEEN 0 and 30 AND CATEGORY.major= DEVICE.beacon_major AND " +
@@ -49,7 +49,8 @@ router.get("/api/notification/tuv", function (request,response){
 });
 
 router.get("/api/notification/uvv", function (request,response){
-    var statement = "SELECT DEVICE.inventory_number AS inventoryNumber, category," +
+    var statement = "SELECT DEVICE.inventory_number AS inventoryNumber," +
+        " CATEGORY.category," +
         " UVV.timestamp  AS timestamp FROM" +
         " UVV,CATEGORY,DEVICE WHERE DATEDIFF(UVV.timestamp,CURRENT_DATE)" +
         " BETWEEN 0 and 30 AND CATEGORY.major= DEVICE.beacon_major AND" +
@@ -71,7 +72,7 @@ router.get("/api/notification/uvv", function (request,response){
 
 
 router.get("/api/notification/maintenance", function (request,response){
-    var statement = "SELECT DEVICE.inventory_number AS inventoryNumber, REPAIR.note,category," +
+    var statement = "SELECT DEVICE.inventory_number AS inventoryNumber, REPAIR.note,CATEGORY.category," +
         " REPAIR.timestamp AS timestamp FROM" +
         " DEVICE,REPAIR, CATEGORY WHERE" +
         " DATEDIFF(REPAIR.timestamp,CURRENT_DATE) BETWEEN 0 and 14 AND " +

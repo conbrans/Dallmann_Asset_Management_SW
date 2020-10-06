@@ -151,7 +151,6 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
  */
 
 router.delete("/api/user/deleteUser/:userId",(request, response) => {
-    console.log("Delete User mit der ID:"+request.params.userId);
 
     let sql = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.userId + ");";
 

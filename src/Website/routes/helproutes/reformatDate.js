@@ -47,7 +47,7 @@ async function removeTimeStampForBooking(data){
 
  async function removeTimestampForBookingNotification(data){
      for (let i=0; i<data.length; i++){
-         data[i].loan_end = splitValues(data[i].loan_end);
+         data[i].timestamp = splitValues(data[i].timestamp);
      }
      return data;
  }

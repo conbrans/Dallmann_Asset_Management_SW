@@ -73,7 +73,7 @@ router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function 
 });
 
 /**
- *
+ * route for getting all history data
  */
 
 router.get("/api/history/getHistory",function (request,response)
