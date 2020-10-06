@@ -17,8 +17,9 @@ router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function 
 {
     sql = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber, model, manufacturer,\n" +
                   "serial_number AS serialNumber,gurantee AS guarantee,\n" +
-                  "DEVICE_HISTORY.note,device_status AS deviceStatus,\n" +
-                  "DEVICE_STATUS.description AS statusDescription,CATEGORY.category ,\n" +
+                  "DEVICE_HISTORY.note,DEVICE_HISTORY.category AS deviceCategory,\n" +
+                  "CATEGORY.category AS categoryDescription, device_status AS deviceStatus,\n" +
+                  "DEVICE_STATUS.description AS statusDescription,\n" +
                   "beacon_major AS beaconMajor,beacon_minor AS beaconMinor,\n" +
                   "LOCATION.longitude,latitude,timesstamp AS lastLocationUpdate, TUEV.timestamp AS lastTuev,\n" +
                   " UVV.timestamp AS lastUvv, REPAIR.timestamp AS lastRepair, REPAIR.note AS repairNote,\n" +
@@ -43,8 +44,8 @@ router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function 
                             "ON DEVICE_HISTORY.inventory_number = UVV.inventory_number\n" +
                   "LEFT JOIN REPAIR\n" +
                             "ON DEVICE_HISTORY.inventory_number = REPAIR.inventory_number\n" +
-                  "INNER JOIN CATEGORY\n" +
-                            "ON BEACON.major = CATEGORY.major\n" +
+                  "LEFT JOIN CATEGORY\n" +
+                            "ON DEVICE.category = CATEGORY.category_id\n" +
           "WHERE DEVICE_HISTORY.inventory_number ='" + request.params.inventoryNumber + "'\n" +
           "GROUP BY device_history_id DESC;";
 
