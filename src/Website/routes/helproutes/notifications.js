@@ -1,5 +1,3 @@
-
-
 /**
  * sends toastr notifcations
  * @param messagetype the type of message which will be send e.g. login or
@@ -41,16 +39,14 @@ function sendMessage(messagetype) {
                             req.toastr.info("In den nächsten 14 Tagen müssen" +
                                 " keine Geräte zurückgegeben werden.",
                                 title = 'Ablaufende Reservierung');
-                        } else  {
+                        } else {
                             for (i = 0; i < req.session.bookingData.length;
                                  i++) {
                                 req.toastr.info(
                                     'Für das Gerät mit der Nummer '
-                                    + req.session.bookingData[i].
-                                        inventory_number + '' +
+                                    + req.session.bookingData[i].inventoryNumber + '' +
                                     ' endet die Reservierung ' +
-                                    'am ' + req.session.bookingData[i].
-                                        loan_end + '.' +
+                                    'am ' + req.session.bookingData[i].timestamp + '.' +
                                     'Bitte geben Sie es bis zu diesem' +
                                     ' Zeitraum wieder zurück.',
                                     title = 'Ablaufende Reservierung',
@@ -67,8 +63,8 @@ function sendMessage(messagetype) {
                     break;
 
                 case "commission":
-                    req.toastr.success('Die Buchung war erfolgreich', title="Commission");
-                break;
+                    req.toastr.success('Die Buchung war erfolgreich', title = "Commission");
+                    break;
 
 
                 case "editProfil":
@@ -81,7 +77,7 @@ function sendMessage(messagetype) {
 
                 case "tuv" :
                     if (!req.session.tuvShown) {
-                        if (!req.session.tuvData &&  req.session.role==="Werkstatt") {
+                        if (!req.session.tuvData && req.session.role === "Werkstatt") {
                             req.toastr.info("Innerhalb der nächsten 30" +
                                 " Tage stehen keine" +
                                 " TÜV-Prüfungen an!", title = 'Ablauf des TÜV' +
@@ -94,12 +90,9 @@ function sendMessage(messagetype) {
                                     'der Nummer : '
                                     + req.session.tuvData[i].inventory_number +
                                     ' läuft ab. ' +
-                                    'Nummer : ' + req.session.tuvData[i].
-                                        inventory_number +
-                                    ' Geräteart : ' + req.session.tuvData[i].
-                                        category +
-                                    ' Ablauf : ' + req.session.tuvData[i].
-                                        timestamp,
+                                    'Nummer : ' + req.session.tuvData[i].inventory_number +
+                                    ' Geräteart : ' + req.session.tuvData[i].category +
+                                    ' Ablauf : ' + req.session.tuvData[i].timestamp,
                                     title = 'Ablauf des TÜV-Status', options = {
                                         "showDuration": "0",
                                         "hideDuration": "0",
@@ -114,7 +107,7 @@ function sendMessage(messagetype) {
 
                 case "uvv" :
                     if (!req.session.uvvShown) {
-                        if (!req.session.uvvData &&  req.session.role==="Werkstatt") {
+                        if (!req.session.uvvData && req.session.role === "Werkstatt") {
                             req.toastr.info("Innerhalb der nächsten 30" +
                                 " Tage stehen keine" +
                                 " UVV-Prüfungen an!", title = 'Ablauf des UVV' +
@@ -127,12 +120,9 @@ function sendMessage(messagetype) {
                                     ' Nummer : '
                                     + req.session.uvvData[i].inventory_number +
                                     ' läuft ab. ' +
-                                    'Nummer : ' + req.session.uvvData[i].
-                                        inventory_number +
-                                    ' Geräteart : ' + req.session.uvvData[i].
-                                        category +
-                                    ' Ablauf : ' + req.session.uvvData[i].
-                                        timestamp,
+                                    'Nummer : ' + req.session.uvvData[i].inventory_number +
+                                    ' Geräteart : ' + req.session.uvvData[i].category +
+                                    ' Ablauf : ' + req.session.uvvData[i].timestamp,
                                     title = 'Ablauf des UVV-Status', options = {
                                         "showDuration": "0",
                                         "hideDuration": "0",
@@ -147,26 +137,21 @@ function sendMessage(messagetype) {
 
                 case "maintenance":
                     if (!req.session.maintenanceShown) {
-                        if (!req.session.maintenanceData ) {
+                        if (!req.session.maintenanceData) {
                             req.toastr.info("Innerhalb der nächsten 14 Tage" +
                                 " Tage stehen keine" +
                                 " Reparaturen an!", title = 'Anstehende' +
                                 ' Reparaturen', options = {});
-                        } else  {
+                        } else {
                             console.log(req.session.maintenanceData);
-                            for (i = 0; i < req.session.maintenanceData.
-                                length; i++) {
+                            for (i = 0; i < req.session.maintenanceData.length; i++) {
                                 req.toastr.info('In zwei Wochen steht für' +
                                     ' folgendes Gerät eine ' +
                                     'Wartung an:' +
-                                    'Gerätenummer: ' + req.session.
-                                        maintenanceData[i].inventory_number +
-                                    'Geräteart : ' + req.session.
-                                        maintenanceData[i].category +
-                                    'Datum : ' + req.session.
-                                        maintenanceData[i].timestamp +
-                                    'Wartungsarbeit : ' + req.session.
-                                        maintenanceData[i].note + ' .',
+                                    'Gerätenummer: ' + req.session.maintenanceData[i].inventory_number +
+                                    'Geräteart : ' + req.session.maintenanceData[i].category +
+                                    'Datum : ' + req.session.maintenanceData[i].timestamp +
+                                    'Wartungsarbeit : ' + req.session.maintenanceData[i].note + ' .',
                                     title = 'Anstehende Wartung');
                             }
                         }
@@ -182,5 +167,5 @@ function sendMessage(messagetype) {
 }
 
 module.exports = {
-        sendMessage
-    }
+    sendMessage
+}

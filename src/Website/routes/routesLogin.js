@@ -57,10 +57,9 @@ function getAccess(req, data, res) {
  */
 function getNotificationValues(req, data, res) {
 
-    fetch.getFetch("/api/notification/booking/" + data.worker_id)
+    fetch.getFetch("/api/notification/booking/" + req.session.userID)
         .then(result =>
-            reformat.removeTimestampForBookingNotification(result).
-            then(result => req.session.bookingData = result)
+            reformat.removeTimestampForBookingNotification(result).then(result => req.session.bookingData = result)
                 .then(() => {
                     fetch.getFetch("/api/notification/tuv")
                         .then(result =>
