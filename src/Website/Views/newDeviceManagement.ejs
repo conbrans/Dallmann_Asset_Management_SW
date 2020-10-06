@@ -13,12 +13,16 @@
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <!-- <script src="javascript/userManagement.js"></script>-->
+    <script src="javascript/userManagement.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" href="DataTables/datatables.min.css"/>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css"
+          href="DataTables/datatables.min.css"/>
 
-    <script src="DataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 
 
     <link rel="stylesheet"
@@ -154,7 +158,9 @@
                     <th>Status</th>
                 </tr>
                 </thead>
-                <tbody id="deviceContent"></tbody>
+                <tbody id="deviceContent">
+
+                </tbody>
             </table>
 
 
@@ -443,6 +449,34 @@
         display: block !important;
     }
 </style>
+<script>
+
+    $(document).ready(function() {
+        $.noConflict();
+        var data = $.ajax({
+            url : "/showDevices",
+            method : "GET",
+        }).done(()=>{
+            console.log(data.responseJSON);
+            $("#table").DataTable({
+                data : data.responseJSON,
+                "columns": [
+                    { "data": "inventoryNumber" },
+                    { "data": "category" },
+                    { "data": "model" },
+                    { "data": "extn" },
+                    { "data": "start_date" },
+                    { "data": "salary" }
+
+
+            })
+        })
+
+    });
+
+
+
+</script>
 <script src="javascript/map.js"></script>
 <script src="javascript/devicemanagement.js"></script>
 

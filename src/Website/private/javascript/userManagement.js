@@ -2,6 +2,9 @@ window.onload = function (){
     loadData(0);
 }
 
+
+
+
 function changeFieldStatus(input) {
     let textarea = document.getElementById(input);
     textarea.readOnly = !textarea.readOnly;

@@ -76,13 +76,16 @@ router.get("/bookinglist", redirect.redirectLogin,
 router.get("/devices", redirect.redirectLogin,
     authentication.authRight("view_device"),
     (req, res) => {
+        fetch.getFetch("/api/device/getAllDevices")
+            .then(data => {
 
         res.status(200).render("newDeviceManagement.ejs", {
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,
         });
-    });
+    })
+});
 
 router.get("/showDevices", redirect.redirectLogin,
     authentication.authRight("view_device"), (req, res) => {
@@ -90,8 +93,7 @@ router.get("/showDevices", redirect.redirectLogin,
             .then(data => {
                 reformatDate.removeTimeStampForDevice(data)
                     .then(data => {
-                        console.log(data.body);
-                        res.json({ "data": data.body});
+                        res.json({ "data": data});
 
                     })
             });
@@ -222,16 +224,19 @@ router.get("/userManagement", redirect.redirectLogin,
     authentication.authRight("add_user"),
     authentication.authRight("delete_User"),
     (req, res) => {
-        fetch.getFetch("/api/user/getAllUsers")
-            .then(data =>
-
                 res.status(200).render("userManagement.ejs", {
                     username: req.session.username,
                     role: req.session.role,
                     rights: req.session.rights,
-                    data: data,
-                })
-            );
+                });
+    });
+
+
+router.get("/showUsers",redirect.redirectLogin,
+    authentication.authRight("add_user"),
+    authentication.authRight("delete_User"),(req, res) => {
+        fetch.getFetch("/api/user/getAllUsers")
+            .then(data => res.json(data));
     });
 
 module.exports = router;

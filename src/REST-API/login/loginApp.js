@@ -82,7 +82,8 @@ router.post('/api/login', (req, res) => {
                         }
 
                     )
-                    console.log(                        {
+                    //Login auskommentiert, verwirrt komplett
+                   /* console.log(                        {
                         "access": true,
                         "worker_id": results[0].worker_id,
                         "e_mail": results[0].e_mail,
@@ -103,7 +104,7 @@ router.post('/api/login', (req, res) => {
                                 "edit_booking": results[0].edit_booking,
                                 "picking": results[0].picking
                             }
-                    })
+                    })*/
                 } else {
                     console.log("LOGIN FAILED - Wrong Password");
                     res.json({"access": false});

@@ -1,6 +1,6 @@
-/*window.onload = function () {
+window.onload = function () {
     loadData(0);
-}*/
+}
 
 $(document).ready(function() {
     $.noConflict();
@@ -8,9 +8,10 @@ $(document).ready(function() {
         url : "/showDevices",
         method : "GET",
     }).done(()=>{
-        console.log(data.body);
+        console.log(data.responseJSON);
         $("#table").DataTable({
-            data : data,
+
+            data : data.responseJSON,
             columns : [
                 { "data": "inventoryNumber" },
                 { "data": "category" },
@@ -28,9 +29,13 @@ $(document).ready(function() {
                         previous: "Vorherige"
                 },
                 infoFiltered : "(von _MAX_ Geräten insgesamt)",
-            },
-        });
+            }
+        })
     });
+});
+
+$('#table tbody').find('tr').click( function(){
+    alert($(this).index());
 });
 
 
@@ -44,7 +49,7 @@ let panel = document.getElementsByClassName('toggle-inner');
  *
  * @param i
  */
-/*function loadData(i) {
+function loadData(i) {
 
     document.getElementById("invnumber").value =
         document.getElementById("tr" + i.toString() +
@@ -154,7 +159,7 @@ let panel = document.getElementsByClassName('toggle-inner');
     });
 
     getPositionData(i);
-}*/
+}
 
 function deleteDeviceMessage() {
     confirm("ACHTUNG!\nSie sind dabei das gewählte Gerät undwideruflich zu" +
