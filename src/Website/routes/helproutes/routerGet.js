@@ -49,7 +49,6 @@ router.get("/addDevice", redirect.redirectLogin,
 router.get("/booking", redirect.redirectLogin,
     authentication.authRight("booking_device"),
     (req, res) => {
-        console.log("TEST");
         res.status(200).render("booking.ejs", {
             username: req.session.username,
             role: req.session.role,

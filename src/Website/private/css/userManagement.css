@@ -34,7 +34,7 @@ body{
 
 .userContent{
     margin-left: 3em;
-    grid-area: content;
+    grid-area: userContent;
 }
 
 .userInformation {

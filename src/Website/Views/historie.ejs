@@ -6,97 +6,102 @@
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/historie.css">
-    <script src="javascript/sortTable.js"></script>
-    <script src="javascript/historie.js"></script>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+    <script src="javascript/deviceHistory.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
+            integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
+            crossorigin=""></script>
+
+    <!-- Load Esri Leaflet Geocoder from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+          integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+          crossorigin="">
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+            integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+            crossorigin=""></script>
+
+    <script src="javascript/sortTable.js"></script>
 </head>
 <body>
 
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
-<div id="historycontent">
-    <div id="menu-caption">
-        <h1>Standorthistorie für das Gerät: <%= inventoryNumber %> </h1>
+<br>
+<div class="wrapper">
+    <div class="historycontent">
+        <div class="box">
+            <div id="menu-caption">
+                <h3>Standorthistorie für das Gerät: <%= inventoryNumber %> </h3>
+            </div>
+
+
+            <!-- Sortieren/java.Filter Start -->
+            <div id="select">
+                <p>
+                    <select class="browser-default custom-select" id="sort"
+                            onchange="getSelectedOption()">
+                        <option value="0" selected disabled>Sortieren nach
+                        </option>
+                        <option value="1">Datum</option>
+                        <option value="2">Status</option>
+                        <option value="3">BaustellenBez.</option>
+                        <option value="4">akuteller Standort</option>
+                        <option value="5">vorheriger Standort</option>
+                    </select>
+                </p>
+            </div>
+
+            <!-- Sortieren/java.Filter Ende -->
+
+            <table id="table">
+                <thead>
+                <tr>
+                    <th onclick="sortTable(1)">Datum</th>
+                    <th onclick="sortTable(1)">Status</th>
+                    <th onclick="sortTable(1)">Längengrade</th>
+                    <th onclick="sortTable(1)">Breitengrad</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (var i = 0; i < data.length;i++) { %>
+                    <tr onclick="getPositionData(<%= i %>)">
+                        <td><%= data[i].lastLocationUpdate %></td>
+                        <td><%= data[i].statusDescription %></td>
+                        <td id="tr<%= i %>longitude"><%= data[i].longitude %></td>
+                        <td id="tr<%= i %>latitude"><%= data[i].latitude %></td>
+                    </tr>
+                <% } %>
+
+                </tbody>
+
+            </table>
+        </div>
+
     </div>
-
-
-    <!-- Sortieren/java.Filter Start -->
-    <div id="select">
-        <p>
-            <select class="browser-default custom-select" id="sort"
-                    onchange="getSelectedOption()">
-                <option value="0" selected disabled>Sortieren nach</option>
-                <option value="1">Datum</option>
-                <option value="2">BaustellenID</option>
-                <option value="3">BaustellenBez.</option>
-                <option value="4">akuteller Standort</option>
-                <option value="5">vorheriger Standort</option>
-            </select>
-        </p>
+    <div class="historyMap">
+        <h3>Geräteinformationen</h3>
+        <br>
+        <div id="map"></div>
     </div>
-
-    <!-- Sortieren/java.Filter Ende -->
-
-    <table id="table">
-        <thead>
-        <tr>
-            <th onclick="sortTable(1)">Datum</th>
-            <th onclick="sortTable(1)">Modell</th>
-            <th onclick="sortTable(1)">Hersteller</th>
-            <th onclick="sortTable(1)">Seriennummer</th>
-            <th onclick="sortTable(1)">Garantie</th>
-            <th onclick="sortTable(1)">Notiz</th>
-            <th onclick="sortTable(1)">Status</th>
-            <th onclick="sortTable(1)">Kategorie/th>
-            <th onclick="sortTable(1)">TÜV</th>
-            <th onclick="sortTable(1)">UVV</th>
-            <th onclick="sortTable(1)">Reparatur</th>
-            <th onclick="sortTable(1)">ReparaturNotiz</th>
-            <th onclick="sortTable(1)">BaustellenId</th>
-            <th onclick="sortTable(1)">BaustellenName</th>
-            <th>Karte</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% for (var i = 0; i < data.length;i++) { %>
-            <tr>
-                <td><%= data[i].lastChance %></td>
-                <input id="longitude<%=i%>" type="hidden"
-                       value="<%=data[i].longitude%>">
-                <input id="latitude<%=i%>" type="hidden"
-                       value="<%=data[i].latitude%>">
-                <td><%= data[i].model %></td>
-                <td><%= data[i].manufacturer %></td>
-                <td><%= data[i].serialNumber %></td>
-                <td><%= data[i].guarantee %></td>
-                <td><%= data[i].note %></td>
-                <td><%= data[i].statusDescription %></td>
-                <td><%= data[i].category %></td>
-                <td><%= data[i].lastTuev %></td>
-                <td><%= data[i].lastUvv %></td>
-                <td><%= data[i].lastRepair %></td>
-                <td><%= data[i].repairNote %></td>
-                <td><%= data[i].projectId %></td>
-                <td><%= data[i].buildingSite %></td>
-                <td></td>
-            </tr>
-        <% } %>
-
-        </tbody>
-
-    </table>
-
-</div>
-<div id="historyMap">
-    <iframe width="" height="500" src=""
-            style='height:500px;width:100%;'></iframe>
 </div>
 
 
 <%- include('../Views/general/footer.ejs'); -%>
 </body>
+<script src="javascript/map.js"></script>
 </html>
