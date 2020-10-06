@@ -5,43 +5,43 @@
     <link rel="stylesheet" href="css/deviceManagement.css">
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="javascript/userManagement.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossorigin=""/>
+
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
             integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
             crossorigin=""></script>
-
 
     <!-- Load Esri Leaflet from CDN -->
     <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
             integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
             crossorigin=""></script>
 
-
     <!-- Load Esri Leaflet Geocoder from CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+    <link rel="stylesheet"
+          href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
           integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
           crossorigin="">
     <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
             integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
             crossorigin=""></script>
 
-
-
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
     <title>Dallmann Asset-Management</title>
-
 
 
 </head>
@@ -59,11 +59,11 @@
             <div>
                 <div class="newDeviceWrapper">
                     <% if (rights.add_device === 1){ %>
-                        <form class="form"  onclick="addDevicePopUp()">
+                        <form class="form" onclick="addDevicePopUp()">
 
                             <button class="btn btn-outline-warning"
                                     id="btn-newDevice" class="header_button"
-                                    >Neues Gerät hinzufügen
+                            >Neues Gerät hinzufügen
                                 <i class="fa fa-toolbox"></i>
                             </button>
                         </form>
@@ -88,42 +88,45 @@
                         <form method="post" action="/searchInventoryNumber">
 
 
-                        <input class="form-control input-a" name="inventoryNumber" type="text"
-                               placeholder="Nach Inventarnummer suchen"
-                               onchange="this.form.submit()">
+                            <input class="form-control input-a"
+                                   name="inventoryNumber" type="text"
+                                   placeholder="Nach Inventarnummer suchen"
+                                   onchange="this.form.submit()">
                         </form>
 
                         <form method="post" action="/searchCategory">
                             <select class="browser-default custom-select
-                            form-control input-b" id="category" name="category"
-                                    onchange="this.form.submit()">
-                                <option value="0" selected disabled>Kategorie zuordnen</option>
-                                <option value="Rüttelplatten">Rüttelplatten</option>
-                                <option value="Stampfer">Stampfer</option>
-                                <option value="Motorflex">Motorflex</option>
-                                <option value="Rohrgreifer">Rohrgreifer</option>
-                                <option value="Kettensäge">Kettensäge</option>
-                                <option value="Motorhammer">Motorhammer</option>
-                                <option value="Leiter">Leiter</option>
-                                <option value="Exoten">Exoten</option>
+                             form-control input-b" id="sort"
+                                    onchange="this.form.submit()" name="category">
+                                <option value="0" selected disabled hidden>Nach
+                                    Kategorie filtern
+                                </option>
+                                <option value="1">Rüttelplatten</option>
+                                <option value="2">Stampfer</option>
+                                <option value="3">Motorflex</option>
+                                <option value="4">Rohrgreifer</option>
+                                <option value="5">Kettensäge</option>
+                                <option value="6">Motorhammer</option>
+                                <option value="7">Leiter</option>
+                                <option value="8">Exoten</option>
+
                             </select>
                         </form>
 
                         <form method="post" action="/searchStatus">
-                        <select class="browser-default custom-select form-contro input-cl" id="sort"
-                                onchange="this.form.submit()" name="status"
-                                style="width:
-                                100%;
-                                display:
-                                inline-block">
-                            <option value="0" selected disabled>Status festlegen/ändern</option>
-                            <option value="1">Verfügbar</option>
-                            <option value="2">Ausgeliehen</option>
-                            <option value="3">In Wartung</option>
-                            <option value="4">Außer Betrieb</option>
-                            <option value="5">Verschollen/Verschwunden</option>
-                            <option value="6">Gestohlen</option>
-                        </select>
+                            <select class="browser-default custom-select
+                             form-control input-c" id="sort"
+                                    onchange="this.form.submit()" name="status">
+                                <option value="0" selected disabled hidden>Nach
+                                    Status filtern
+                                </option>
+                                <option value="1">Verfügbar</option>
+                                <option value="2">Ausgeliehen</option>
+                                <option value="3">In Wartung</option>
+                                <option value="4">Außer Betrieb</option>
+                                <option value="5">Verschwunden</option>
+                                <option value="6">Gestohlen</option>
+                            </select>
                         </form>
                     </div>
                     <hr>
@@ -134,8 +137,8 @@
                     <form class="form" method="get" action="/devices">
                         <!--onclick="addDeviceWindow()"-->
 
-                        <button class="btn btn-outline-warning" id="btn-newDevice" class="header_button" style="color: #666 !important;
-    border: none !important">Alle Geräte anzeigen
+                        <button class="btn btn-outline-warning"
+                                id="btn-newDevice" class="header_button">Alle Geräte anzeigen
                             <i class="fa fa-toolbox"></i>
                         </button>
                     </form>
@@ -186,7 +189,6 @@
             </table>
 
 
-
         </div>
         <div class="deviceInformation">
             <div class="inputFields">
@@ -200,18 +202,22 @@
                                 <label for="inventarnummer" style="float: left">
                                     Inventarnummer: </label>
                                 <div>
-                                    <input class="form-control" form="updateDevice"
+                                    <input class="form-control"
+                                           form="updateDevice"
                                            type="text" value="Inventarnummer"
-                                           id="invnumber" name="inventoryNumber">
+                                           id="invnumber"
+                                           name="inventoryNumber">
                                 </div>
                             </div>
                             <div class="deviceInfoBoxes">
                                 <label for="manufacturer" style="float: left">
                                     Hersteller: </label>
                                 <div>
-                                    <input class="form-control" form="updateDevice"
+                                    <input class="form-control"
+                                           form="updateDevice"
                                            type="text" value="Herstellername"
-                                           id="manufacturer" name="manufacturer" style="text-align: left">
+                                           id="manufacturer" name="manufacturer"
+                                           style="text-align: left">
                                 </div>
                             </div>
                         </div>
@@ -222,14 +228,19 @@
                                     <select class="browser-default custom-select form-control"
                                             id="category"
                                             onchange="getSelectedOption()"
-                                            style="width: 100%; display: inline-block" name="beaconMajor">
-                                        <option selected disabled>Kategorie</option>
-                                        <option value="0001">Rüttelplatte</option>
+                                            style="width: 100%; display: inline-block"
+                                            name="beaconMajor">
+                                        <option selected disabled>Kategorie
+                                        </option>
+                                        <option value="0001">Rüttelplatte
+                                        </option>
                                         <option value="0002">Stampfer</option>
                                         <option value="0003">Motorflex</option>
-                                        <option value="0004">Rohrgreifer</option>
+                                        <option value="0004">Rohrgreifer
+                                        </option>
                                         <option value="0005">Kettensäge</option>
-                                        <option value="0006">Motorhammer</option>
+                                        <option value="0006">Motorhammer
+                                        </option>
                                         <option value="0007">Leiter</option>
                                         <option value="0008">Exoten</option>
                                     </select>
@@ -250,29 +261,33 @@
                                 <label for="status"> Status:</label>
                                 <div>
                                     <select class="browser-default custom-select form-control"
-                                            id="status" onchange="getSelectedOption()"
+                                            id="status"
+                                            onchange="getSelectedOption()"
                                             style="width: 100%; display:
                                     inline-block" name="deviceStatus">
-                                        <option selected disabled>Status</option>
+                                        <option selected disabled>Status
+                                        </option>
                                         <option value="1">Verfügbar</option>
                                         <option value="2">Ausgeliehen</option>
                                         <option value="3">In Wartung</option>
                                         <option value="4">Außer Betrieb</option>
                                         <option value="5">Defekt</option>
-                                        <option value="6">Verschollen/Verschwunden</option>
+                                        <option value="6">
+                                            Verschollen/Verschwunden
+                                        </option>
                                         <option value="7">Gestohlen</option>
                                     </select>
-
-
                                 </div>
                             </div>
                             <div class="deviceInfoBoxes">
                                 <label for="serialNumber" style="float: left">
                                     Seriennummer: </label>
                                 <div>
-                                    <input class="form-control" form="updateDevice"
+                                    <input class="form-control"
+                                           form="updateDevice"
                                            type="text" value="Seriennummer"
-                                           id="serialNumber" name="serialNumber">
+                                           id="serialNumber"
+                                           name="serialNumber">
                                 </div>
                             </div>
                         </div>
@@ -315,13 +330,15 @@
                                 <div>
                                     <div style="float: left;">
 
-                                        <input id="longitude" class="form-control"
+                                        <input id="longitude"
+                                               class="form-control"
                                                type="text" value="52.52"
                                                style="width: 170px;" readonly>
                                     </div>
                                     <div style="float: right">
 
-                                        <input id="latitude" class="form-control"
+                                        <input id="latitude"
+                                               class="form-control"
                                                type="text" value="7.32"
                                                style="width: 170px" readonly>
                                     </div>
@@ -367,11 +384,13 @@
                         </form>
                     <% } %>
 
-                    <form class="btn-from" method="post" action="/historie" id="historie">
+                    <form class="btn-from" method="post" action="/historie"
+                          id="historie">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-info">Historie
+                                    <button type="submit" class="btn btn-info">
+                                        Historie
                                         anzeigen
                                     </button>
                                 </div>
@@ -380,11 +399,13 @@
                     </form>
 
                     <% if (rights.booking_device === 1){ %>
-                        <form class="btn-from" method="post" action="/booking" id="booking">
+                        <form class="btn-from" method="post" action="/booking"
+                              id="booking">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-warning">Gerät
+                                        <button type="submit"
+                                                class="btn btn-warning">Gerät
                                             reservieren
                                         </button>
                                     </div>
@@ -393,13 +414,16 @@
                         </form>
 
                     <% } if (rights.delete_device === 1){ %>
-                        <form class="btn-from" method="post" action="/deleteDevice" id="deleteDevice"
+                        <form class="btn-from" method="post"
+                              action="/deleteDevice" id="deleteDevice"
                               style="float: left">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-danger"
-                                                onclick="deleteDeviceMessage()">Gerät
+                                        <button type="submit"
+                                                class="btn btn-danger"
+                                                onclick="deleteDeviceMessage()">
+                                            Gerät
                                             löschen
                                         </button>
                                     </div>
@@ -442,32 +466,7 @@
         display: block !important;
     }
 </style>
-
+<script src="javascript/map.js"></script>
 <script src="javascript/devicemanagement.js"></script>
-<script>
 
-
-    var acc = document.getElementsByClassName("toggle-title");
-    var panel = document.getElementsByClassName('toggle-inner');
-
-    for (var i = 0; i < acc.length; i++) {
-        acc[i].onclick = function () {
-            var setClasses = !this.classList.contains('active');
-            setClass(acc, 'active', 'remove');
-            setClass(panel, 'show', 'remove');
-
-            if (setClasses) {
-                this.classList.toggle("active");
-                this.nextElementSibling.classList.toggle("show");
-            }
-        }
-    }
-
-    function setClass(els, className, fnName) {
-        for (var i = 0; i < els.length; i++) {
-            els[i].classList[fnName](className);
-        }
-    }
-
-</script>
 </html>

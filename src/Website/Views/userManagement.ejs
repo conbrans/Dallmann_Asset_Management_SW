@@ -27,7 +27,7 @@
 <br>
 <div class="outerBox">
     <div class="wrapper">
-        <div id="userContent">
+        <div class="userContent">
             <h3>Benutzerliste</h3>
             <div class="newUserWrapper">
                 <% if (rights.add_user === 1){ %>
@@ -74,7 +74,7 @@
             </table>
 
         </div>
-        <div id="userInformation">
+        <div class="userInformation">
 
             <div class="box">
                 <h3>Benutzerinfomationen</h3>
@@ -138,7 +138,6 @@
                     </form>
                 </div>
             </div>
-            <hr>
             <br>
             <hr>
             <br>
@@ -157,10 +156,9 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-</div>
+
 <%- include('../Views/general/footer.ejs'); -%>
 <script src="javascript/adminView.js"></script>
 </body>

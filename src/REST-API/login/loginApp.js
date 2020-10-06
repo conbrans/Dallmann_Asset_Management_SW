@@ -50,7 +50,7 @@ router.post('/api/login', (req, res) => {
 
         connection.query(statement, function (err, results) {
 
-            if (results.length != 0){
+            if (results.length !== 0){
 
                 var password = results[0].password;
 
@@ -71,7 +71,7 @@ router.post('/api/login', (req, res) => {
                                     "edit_device": results[0].edit_device,
                                     "add_device": results[0].add_device,
                                     "view_device": results[0].view_device,
-                                    "delete_device": results[0].delete_user,
+                                    "delete_device": results[0].delete_device,
                                     "add_user": results[0].add_user,
                                     "delete_user": results[0].delete_user,
                                     "edit_user": results[0].edit_user,
@@ -80,15 +80,38 @@ router.post('/api/login', (req, res) => {
                                     "picking": results[0].picking
                                 }
                         }
+
                     )
+                    console.log(                        {
+                        "access": true,
+                        "worker_id": results[0].worker_id,
+                        "e_mail": results[0].e_mail,
+                        "firstName": results[0].firstname,
+                        "surname": results[0].surname,
+                        "role": results[0].role,
+                        "rights":
+                            {
+                                "booking_device": results[0].booking_device,
+                                "edit_device": results[0].edit_device,
+                                "add_device": results[0].add_device,
+                                "view_device": results[0].view_device,
+                                "delete_device": results[0].delete_user,
+                                "add_user": results[0].add_user,
+                                "delete_user": results[0].delete_user,
+                                "edit_user": results[0].edit_user,
+                                "delete_booking": results[0].delete_booking,
+                                "edit_booking": results[0].edit_booking,
+                                "picking": results[0].picking
+                            }
+                    })
                 } else {
                     console.log("LOGIN FAILED - Wrong Password");
-                    res.json({"acces": false});
+                    res.json({"access": false});
                 }
             }
             else{
                 console.log("LOGIN FAILED - Wrong Usermail");
-                res.json({"acces": false});
+                res.json({"access": false});
             }
         })
     }
