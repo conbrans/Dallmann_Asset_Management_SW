@@ -17,8 +17,8 @@ const router = express();
  */
 
 let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
-    "        gurantee AS guarantee,DEVICE.note,\n" +
-    "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,CATEGORY.category,\n" +
+    "        gurantee AS guarantee,DEVICE.note, DEVICE.category AS deviceCategory, CATEGORY.category AS categoryDescription,\n" +
+    "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,\n" +
     "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
     "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
     "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
@@ -43,8 +43,8 @@ let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,mo
     "                   ON DEVICE.inventory_number = UVV.inventory_number\n" +
     "        LEFT JOIN REPAIR\n" +
     "                   ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
-    "        INNER JOIN CATEGORY\n" +
-    "                   ON BEACON.major = CATEGORY.major";
+    "        LEFT JOIN CATEGORY\n" +
+    "                   ON DEVICE.category = CATEGORY.category_id";
 
 router.get("/api/device/getAllDevices", (request, response) => {
     sql = selectSpecificDevice + " GROUP BY inventoryNumber;"
@@ -79,14 +79,15 @@ router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, respons
             return;
         }
         console.log('GetAllDevices.Connection established');
+
         response.json(result);
     })
 
 });
 
 router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
-    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
-        " WHERE deviceStatus LIKE '%"+request.body.status+"%';";
+    sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) AS StatusSelect" +
+        " WHERE statusDescription LIKE '%"+request.body.status+"%';";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -102,8 +103,8 @@ router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
 
 router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
-        " DEVICE.inventory_number) AS CategorySelect " +
-        " WHERE category LIKE '"+request.body.category+"';";
+        " DEVICE.inventory_number) AS CategorySelect" +
+        " WHERE CategorySelect.categoryDescription LIKE '%"+request.body.category+"%';";
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -191,11 +192,6 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
 // in Website enthalten
     router.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
 
-        sqlSelect = "SELECT inventory_number FROM DEVICE WHERE serial_number = " + request.body.serialNumber + "" +
-            "  AND note = '" + request.body.note + "'" +
-            "  AND device_status = " + request.body.deviceStatus + " AND model = '" + request.body.model + "'" +
-            "  AND manufacturer = '" + request.body.manufacturer + "' GROUP BY serial_number";
-
         // Finds the validation errors in this request and wraps them in an object with handy functions
         const errors = validationResult(request);
         //console.log(errors);
@@ -203,10 +199,10 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
             return response.json(errors.array());
         }
 
-        sql = "INSERT INTO DEVICE (model, serial_number, note, device_status, beacon_minor, beacon_major, manufacturer) VALUES " +
+        sql = "INSERT INTO DEVICE (model, serial_number, note, device_status, manufacturer, category) VALUES " +
             "('" + request.body.model + "','" + request.body.serialNumber + "','"
             + request.body.note + "','" + request.body.deviceStatus + "'," +
-            "'" + request.body.beaconMinor + "','" + request.body.beaconMajor + "','" + request.body.manufacturer + "');";
+            "'" + request.body.manufacturer + "', '" + request.body.category + "');";
 
         connection.query(sql, function (err) {
             if (err) {
@@ -215,6 +211,11 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
                 return;
 
             } if (request.body.guarantee !== "" ) {  //|| request.body.uvv || request.body.repair
+
+                sqlSelect = "SELECT inventory_number FROM DEVICE WHERE serial_number = " + request.body.serialNumber + "" +
+                    "  AND note = '" + request.body.note + "'" +
+                    "  AND device_status = " + request.body.deviceStatus + " AND model = '" + request.body.model + "'" +
+                    "  AND manufacturer = '" + request.body.manufacturer + "' GROUP BY serial_number";
 
 
                     connection.query(sqlSelect, function (err, result) {
