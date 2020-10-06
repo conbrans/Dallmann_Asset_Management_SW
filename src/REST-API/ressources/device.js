@@ -445,9 +445,9 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
             }
 
             updateDevice = "UPDATE DEVICE SET model ='" + request.body.model + "', manufacturer ='" + request.body.manufacturer + "'," +
-                "beacon_major ='" + request.body.beaconMajor + "', serial_number ='" + request.body.serialNumber + "'," +
+                "serial_number ='" + request.body.serialNumber + "'," +
                 "note ='" + request.body.note + "'," +
-                "device_status ='" + request.body.deviceStatus + "' WHERE inventory_number = " + request.params.inventoryNumber + ";";
+                "device_status ='" + request.body.deviceStatus + "', category = '"+request.body.category+"' WHERE inventory_number = " + request.params.inventoryNumber + ";";
 
             connection.query(updateDevice, function (err) {
                 if (err) {
