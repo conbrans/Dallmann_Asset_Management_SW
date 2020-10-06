@@ -31,24 +31,11 @@ const workerUpdateConstraints = [
 
 ];
 
- const createReservationConstraints = [
+ const reservationConstraints = [
 
     body('workerId').isInt().withMessage(''),
     body('inventoryNumber').isInt(),
     body('projectId').isInt()
-
-]
-
-const deleteReservationConstraints = [
-
-    body('inventoryNumber').notEmpty()
-        .withMessage('Die Inventarnummer muss angegeben werden').isInt()
-        .withMessage('Die Inventarnummer muss ein Integer,' +
-            ' also ein sechstelliger Zahlenwert sein'),
-    body('loanDay').notEmpty().withMessage('Das Ausleihdatum' +
-        ' muss angegeben werden.'),
-    body('loanEnd').notEmpty().withMessage('Das Ausleihenddatum' +
-        ' muss angegeben werden.')
 
 ]
 
@@ -57,8 +44,7 @@ module.exports = {
     deviceConstraints: deviceConstraints,
     workerConstraints: workerConstraints,
     workerUpdateConstraints : workerUpdateConstraints,
-    createReservationConstraints: createReservationConstraints,
-    deleteReservationConstraints: deleteReservationConstraints
+    reservationConstraints: reservationConstraints
 
 }
 

@@ -48,7 +48,7 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
 router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (request,response)
 {
     sql = selectHistory + " WHERE DEVICE_HISTORY.inventory_number ='" + request.params.inventoryNumber + "'\n" +
-          "GROUP BY device_history_id DESC;";
+        "GROUP BY device_history_id DESC;";
 
     connection.query(sql,function (err,result)
     {
