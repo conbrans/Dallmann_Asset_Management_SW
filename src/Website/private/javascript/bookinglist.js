@@ -1,25 +1,54 @@
-window.onload= function ()
-{
-    var acc = document.getElementsByClassName("toggle-title");
-    var panel = document.getElementsByClassName('toggle-inner');
-
-    for (var i = 0; i < acc.length; i++) {
-        acc[i].onclick = function () {
-            var setClasses = !this.classList.contains('active');
-            setClass(acc, 'active', 'remove');
-            setClass(panel, 'show', 'remove');
-
-            if (setClasses) {
-                this.classList.toggle("active");
-                this.nextElementSibling.classList.toggle("show");
+$(document).ready(function () {
+    var table = $("#history");
+    var users = $.ajax({
+        url: "/showBooking",
+    }).done(data => {
+        table.DataTable({
+            data: data,
+            columns: [
+                {"data": "inventoryNumber"},
+                {"data": "loanDay"},
+                {"data": "loanEnd"},
+                {"data": "firstname"},
+                {"data": "surname"},
+                {"data": "projectId"},
+                {"data": "buildingSite"},
+            ],
+            language: {
+                search: "Suche nach:",
+                info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Reservierungen",
+                lengthMenu: "Zeige _MENU_ Nutzer",
+                zeroRecords: "Keine Einträge verfügbar",
+                paginate: {
+                    first: "Erste Seite",
+                    last: "Letzte Seite",
+                    next: "Nächste",
+                    previous: "Vorherige"
+                },
+                infoFiltered: "(von _MAX_ Reservierungen insgesamt)",
             }
-        }
-    }
+        });
 
-    function setClass(els, className, fnName) {
-        for (var i = 0; i < els.length; i++) {
-            els[i].classList[fnName](className);
-        }
-    }
-}
-
+        $('#history tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                $('#history tbody .selected').removeClass('selected');
+                $(this).addClass('selected');
+                var data = {
+                    workerid: this.cells.item(0).innerText,
+                    mail: this.cells.item(3).innerText,
+                };
+                console.log(data);
+                $.ajax({
+                    type: 'post',
+                    url: '/sendWorkerInfos',
+                    data: data,
+                    data_type: 'json'
+                }).done(() => {
+                    console.log("Workerid is transported");
+                });
+            }
+        });
+    });
+});

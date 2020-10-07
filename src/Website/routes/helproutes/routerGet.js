@@ -7,7 +7,6 @@ const fetch = require('./fetch');
 const redirect = require('./redirect');
 const authentication = require('./rightAuthentication');
 const notification = require('./notifications');
-const reformatDate = require('./reformatDate');
 
 
 router.get('/', redirect.redirectHome,
@@ -61,40 +60,26 @@ router.get("/booking", redirect.redirectLogin,
 router.get("/bookinglist", redirect.redirectLogin,
     authentication.authRight("booking_device"),
     (req, res) => {
-        fetch.getFetch("/api/borrow/getReservations")
-            .then(data =>
-                reformatDate.removeTimeStampForBooking(data).then(data =>
-                    res.status(200).render("bookinglist.ejs", {
-                        username: req.session.username,
-                        role: req.session.role,
-                        rights: req.session.rights,
-                        data: data,
-                    }))
-            )
-    });
+            res.status(200).render("bookinglist.ejs", {
+                username: req.session.username,
+                role: req.session.role,
+                rights: req.session.rights,
+            });
+});
+
+
 
 router.get("/devices", redirect.redirectLogin,
     authentication.authRight("view_device"),
     (req, res) => {
-        fetch.getFetch("/api/device/getAllDevices")
-            .then(data => {
-
-        res.status(200).render("newDeviceManagement.ejs", {
-            username: req.session.username,
-            role: req.session.role,
-            rights: req.session.rights,
-        });
-    })
+    res.status(200).render("newDeviceManagement.ejs", {
+        username: req.session.username,
+        role: req.session.role,
+        rights: req.session.rights,
+    });
 });
 
-router.get("/showDevices", redirect.redirectLogin,
-    authentication.authRight("view_device"), (req, res) => {
-        fetch.getFetch("/api/device/getAllDevices")
-            .then(data => {
-                reformatDate.removeTimeStampForDevice(data)
-                    .then(data => res.json(data));
-            });
-    });
+
 
 router.get("/searchDevice", (req, res) => {
     fetch.getFetch("/api/device/getSpecificDevice/byInventoryNumber")
@@ -221,19 +206,20 @@ router.get("/userManagement", redirect.redirectLogin,
     authentication.authRight("add_user"),
     authentication.authRight("delete_User"),
     (req, res) => {
-                res.status(200).render("userManagement.ejs", {
-                    username: req.session.username,
-                    role: req.session.role,
-                    rights: req.session.rights,
-                });
+        res.status(200).render("userManagement.ejs", {
+            username: req.session.username,
+            role: req.session.role,
+            rights: req.session.rights,
+            data : [{
+                firstname : "Vorname",
+                surname : "Nachname",
+                eMail : "E-Mail",
+                role : "Rolle",
+            }]
+        });
     });
 
 
-router.get("/showUsers",redirect.redirectLogin,
-    authentication.authRight("add_user"),
-    authentication.authRight("delete_User"),(req, res) => {
-        fetch.getFetch("/api/user/getAllUsers")
-            .then(data => res.json(data));
-    });
+
 
 module.exports = router;
