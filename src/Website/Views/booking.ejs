@@ -9,9 +9,18 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <script src="javascript/booking.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -71,32 +80,21 @@
 
                     <div class="col">
 
-                        <!-- //TODO Möglichkeit finden, den Kalender so zu erweitern, dass Resevrierungen vorgenommen werden können, wie bei Booking.com o.Ä. -->
-                        <div class="md-form mt-0">
-                            <label for="booking-start">Startdatum der Leihe:</label>
-                            <input type="date" class="form-control" id="booking_start" name="booking_start" min="" max="<%= maxDate%>"  onclick="getCurrentDate()" required>
+                          <div class="md-form mt-0">
+                            <label for="booking-start">Zeitraum der Reservierung wählen:</label>
+                            <input type="text" class="form-control" id="booking_start" name="booking_start" min="" max="<%= maxDate%>"  required>
 
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
 
-                <div class="form-row">
-
-                    <div class="col">
-
-                        <div class="md-form mt-0">
-                            <label for="booking-end">Enddatum der Leihe:</label>
-                            <input type="date" class="form-control" id="booking_end" name="booking_end" max="<%= maxDate%>" required>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
             <button type="submit" id="submit" class="btn btn-outline-primary" >Reservieren<i class="far fa-calendar-plus"></i></button>
+
         </form>
     </div>
 </main>
 <%- include('../Views/general/footer.ejs'); -%>
 
+
+<script src="javascript/booking.js"></script>
