@@ -392,10 +392,10 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
                     let sentTuev = new Date(new Date(request.body.lastTuev).setHours(+2));
                     let newTuev = sentTuev.toISOString();
 
-                    sqlTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
+                    sqlTuev = "INSERT INTO TUEV (inventory_number, status, timestamp) VALUES (" +
                         "(" + str + ")," +
-                        "('" + newTuev + "')," +
-                        "('1'));";
+                        "('1')," +
+                        "('" + newTuev + "'));";
 
                     connection.query(sqlTuev, function (err) {
                         if (err) {
@@ -428,7 +428,6 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
                 }
 
             } if (request.body.lastRepair !== "") {
-                console.log('repair')
 
                 try {
 
