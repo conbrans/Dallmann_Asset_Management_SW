@@ -18,10 +18,10 @@ const connection = require('../../../src/REST-API/databaseConnection/connection'
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
-//const crypto = require('../../Website/routes/helproutes/crypto.js');
+const crypto = require('../../Website/routes/helproutes/crypto.js');
 const bcrypt = require('bcrypt');
 const router = express();
-//const crypto = require('crypto');
+;
 const hashing = require('../login/passwordHashingBcrypt');
 
 /**
