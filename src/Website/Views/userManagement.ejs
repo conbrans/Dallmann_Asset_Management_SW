@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="css/table.css">
 
 
-
-
-
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -17,18 +14,15 @@
     <link rel="stylesheet" type="text/css"
           href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script
-
-
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
+    </script
 
 
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-          rel="stylesheet">
-
-
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 
 
     <link rel="stylesheet"
@@ -114,7 +108,8 @@
                         <div class="userProfilBoxes">
                             <label for="e-Mail">E-Mail:</label>
                             <div>
-                                <input name="eMail" class="form-control" type="text"
+                                <input name="eMail" class="form-control"
+                                       type="text"
                                        value="E-Mail" id="e-Mail">
                             </div>
                         </div>
@@ -158,7 +153,8 @@
                 <div style="margin-top: 1em">
                     <form method="post" action="/deleteUser" id="deleteUser">
                         <button type="submit" form="deleteUser"
-                                class="btn btn-outline-danger" onclick="deleteUserMessage()">
+                                class="btn btn-outline-danger"
+                                onclick="deleteUserMessage()">
                             Benutzer löschen
                         </button>
                     </form>
@@ -168,51 +164,6 @@
         </div>
     </div>
 </div>
-
 <%- include('../Views/general/footer.ejs'); -%>
-<script>
-        var table = $("#example");
-        var users= $.ajax({
-            url : "/showUsers",
-        }).done(data => {
-            console.log(data);
-            table.DataTable({
-                data: data,
-                columns: [
-                    {"data": "workerId"},
-                    {"data": "firstname"},
-                    {"data": "surname"},
-                    {"data": "eMail"},
-                    {"data": "role"},
-                ],
-                language:{
-                    search: "Suche nach:",
-                    info : "Zeige Nr. _START_ bis _END_ von _TOTAL_ Nutzern",
-                    lengthMenu : "Zeige _MENU_ Nutzer",
-                    zeroRecords : "Keine Einträge verfügbar",
-                    paginate : {
-                        first: "Erste Seite",
-                        last: "Letzte Seite",
-                        next: "Nächste",
-                        previous: "Vorherige"
-                    },
-                    infoFiltered : "(von _MAX_ Nutzern insgesamt)",
-                }
-            });
-
-            $('#example tbody').on( 'click', 'tr', function () {
-                if ($(this).hasClass('selected')){
-                    $(this).removeClass('selected');
-                } else{
-                    $('#example tbody .selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    alert(this.cells.item(0).innerText);
-                }
-            });
-        });
-
-</script>
-
-
 </body>
 </html>

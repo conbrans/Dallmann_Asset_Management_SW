@@ -1,8 +1,3 @@
-window.onload = function () {
-    loadData(0);
-}
-
-
 $(document).ready(function() {
     var table = $("#table");
     var devices= $.ajax({
@@ -38,13 +33,22 @@ $(document).ready(function() {
                 $('#table tbody .selected').removeClass('selected');
                 $(this).addClass('selected');
                 // alert(this.cells.item(0).innerText);
+                var data = {
+                    inventoryNumber: this.cells.item(0).innerText,
+                };
+                $.ajax({
+                    type: 'post',
+                    url: '/sendInventoryNumber',
+                    data: data,
+                    data_type: 'text'
+                }).done(() => {
+
+                });
             }
         });
     });
 });
 
-let acc = document.getElementsByClassName("toggle-title");
-let panel = document.getElementsByClassName('toggle-inner');
 
 
 /**
@@ -148,18 +152,6 @@ function loadData(i) {
         document.getElementById("tr" + i.toString() +
             "accidentPrevention").innerHTML;
 
-    var data = {
-        inventoryNumber: $('#invnumber').val(),
-    };
-    $.ajax({
-        type: 'post',
-        url: '/sendInventoryNumber',
-        data: data,
-        data_type: 'text'
-    }).done(() => {
-        console.log("Inventorynumber is transported")
-    });
-
     getPositionData(i);
 }
 
@@ -167,33 +159,3 @@ function deleteDeviceMessage() {
     confirm("ACHTUNG!\nSie sind dabei das gewählte Gerät undwideruflich zu" +
         " löschen.");
 }
-
-
-/**
- * for-loop for the button "Filter" to show or hide the <div>
- */
-for (var i = 0; i < acc.length; i++) {
-    acc[i].onclick = function () {
-        var setClasses = !this.classList.contains('active');
-        setClass(acc, 'active', 'remove');
-        setClass(panel, 'show', 'remove');
-
-        if (setClasses) {
-            this.classList.toggle("active");
-            this.nextElementSibling.classList.toggle("show");
-        }
-    }
-}
-
-/**
- *
- * @param els
- * @param className
- * @param fnName
- */
-function setClass(els, className, fnName) {
-    for (var i = 0; i < els.length; i++) {
-        els[i].classList[fnName](className);
-    }
-}
-

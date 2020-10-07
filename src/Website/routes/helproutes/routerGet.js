@@ -127,7 +127,7 @@ router.get("/Website-FAQ",
 
 router.get("/App-FAQ",
     (req, res) => {
-        res.status(200).render("FAQWebsite.ejs", {
+        res.status(200).render("FAQAndroid.ejs", {
             username: req.session.username,
             role: req.session.role,
             rights: req.session.rights,

@@ -1,18 +1,58 @@
-window.onload = function (){
+window.onload = function () {
     loadData(0);
 }
+$(document).ready(function () {
+    var table = $("#example");
+    var users = $.ajax({
+        url: "/showUsers",
+    }).done(data => {
+        table.DataTable({
+            data: data,
+            columns: [
+                {"data": "workerId"},
+                {"data": "firstname"},
+                {"data": "surname"},
+                {"data": "eMail"},
+                {"data": "role"},
+            ],
+            language: {
+                search: "Suche nach:",
+                info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Nutzern",
+                lengthMenu: "Zeige _MENU_ Nutzer",
+                zeroRecords: "Keine Einträge verfügbar",
+                paginate: {
+                    first: "Erste Seite",
+                    last: "Letzte Seite",
+                    next: "Nächste",
+                    previous: "Vorherige"
+                },
+                infoFiltered: "(von _MAX_ Nutzern insgesamt)",
+            }
+        });
 
-
-
-function changeFieldStatus(input) {
-    let textarea = document.getElementById(input);
-    textarea.readOnly = !textarea.readOnly;
-}
-
-function changeSelectStatus(input) {
-    let dropDown = document.getElementById(input);
-    dropDown.disabled = !dropDown.disabled;
-}
+        $('#example tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                $('#example tbody .selected').removeClass('selected');
+                $(this).addClass('selected');
+                var data = {
+                    workerid: this.cells.item(0).innerText,
+                    mail: this.cells.item(3).innerText,
+                };
+                console.log(data);
+                $.ajax({
+                    type: 'post',
+                    url: '/sendWorkerInfos',
+                    data: data,
+                    data_type: 'json'
+                }).done(() => {
+                    console.log("Workerid is transported");
+                });
+            }
+        });
+    });
+});
 
 function deleteUserMessage() {
     confirm("ACHTUNG!\nSie sind dabei den gewälten User zu löschen.")
@@ -24,43 +64,16 @@ function resetUserPasswordMessage() {
         " zurückzusetzten.");
 }
 
+function loadData(i) {
 
-function loadData(i){
-
-    document.getElementById("firstName").value  =
-        document.getElementById("tr"+i.toString()+"td1").innerHTML;
+    document.getElementById("firstName").value =
+        document.getElementById("tr" + i.toString() + "td1").innerHTML;
     document.getElementById("lastName").value =
-        document.getElementById("tr"+i.toString()+"td2").innerHTML;
-    document.getElementById("e-Mail").value   =
-        document.getElementById("tr"+i.toString()+"td3").innerHTML;
-    document.getElementById("rolle").value    =
-        document.getElementById("tr"+i.toString()+"td4").innerHTML;
-
-    var data ={
-        workerid : document.getElementById("tr"+i.toString()+"td5").innerHTML,
-        mail : document.getElementById("tr"+i.toString()+"td3").innerHTML,
-    } ;
-    console.log(data);
-    $.ajax({
-        type : 'post',
-        url : '/sendWorkerInfos',
-        data: data,
-        data_type : 'json'
-    }).done(()=>{
-        console.log("Workerid is transported");
-    });
-}
-
-
-
-function changeFieldStatus(input) {
-    let textarea = document.getElementById(input);
-    textarea.readOnly = !textarea.readOnly;
-}
-
-function changeSelectStatus(input) {
-    let dropDown = document.getElementById(input);
-    dropDown.disabled = !dropDown.disabled;
+        document.getElementById("tr" + i.toString() + "td2").innerHTML;
+    document.getElementById("e-Mail").value =
+        document.getElementById("tr" + i.toString() + "td3").innerHTML;
+    document.getElementById("rolle").value =
+        document.getElementById("tr" + i.toString() + "td4").innerHTML;
 }
 
 function checkPasswordRequirements() {
@@ -68,9 +81,7 @@ function checkPasswordRequirements() {
     const strengthBar = document.getElementById("strength");
     let password = document.getElementById("password").value;
 
-
-    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/))
-    {
+    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/)) {
         strength += 1;
     }
     if (password.match(/[a-z]/)) {
@@ -85,7 +96,6 @@ function checkPasswordRequirements() {
     if (password.length >= 8) {
         strength += 2;
     }
-
 
     switch (strength) {
         case 0:
@@ -109,9 +119,7 @@ function checkPasswordRequirements() {
         default:
             strengthBar.value = 0;
     }
-
 }
-
 
 function checkPasswords() {
     let password = document.getElementById("password").value;
@@ -124,8 +132,7 @@ function checkPasswords() {
         return false;
     } else {
         passwordBackground.style.background = "lightgreen";
-        document.getElementById("password").style.
-            background = "lightgreen";
+        document.getElementById("password").style.background = "lightgreen";
         return true;
     }
 }
@@ -148,50 +155,6 @@ function setEmail() {
  * triggered with a click on the password input and
  * writes a standard password in the field
  */
-function setDefaultPassword()
-{
+function setDefaultPassword() {
     document.getElementById("password").value = "123456";
 }
-
-
-/**
- * preselect the rights on the tab "Rechte" after which "Rolle"
- * is choosen in the dropdown menu
- */
-function selectPermission()
-{
-    var length = document.getElementsByName("adminPermission")
-        .length
-    for (var i = 0; i < length ; i++)
-    {
-        document.getElementsByName("adminPermission")
-            [i].checked = false;
-        document.getElementsByName("workshopPermission")
-            [i].checked = false;
-        document.getElementsByName("foremanPermission")
-            [i].checked = false;
-        document.getElementsByName("accountingPermission")
-            [i].checked = false;
-    }
-
-    let role = document.getElementById("role").value;
-    let permission = role.toString() + "Inherited";
-    document.getElementById(permission).checked = true;
-}
-
-/**
- * function to delete checked radio buttons
- * @param radioname declares the radio buttons which should be cleared
- */
-function removeCheckedRadio(radioname)
-{
-    for (var i = 0; i < document.getElementsByName(radioname).length; i++)
-    {
-        document.getElementsByName(radioname)[i].checked = false;
-    }
-}
-
-
-
-
-
