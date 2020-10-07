@@ -1,5 +1,15 @@
 /**
+ * author: Kevin Bosse
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /history
+ */
+
+
+/**
  * Import of modules
+ *
  * @type {Connection} database connector
  */
 

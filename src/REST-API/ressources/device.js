@@ -1,19 +1,27 @@
 /**
- * Import of modules
- * @type {Connection} database connector
+ * author: Kevin Bosse
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /device
  */
 
 
+/**
+ * Import of modules
+ *
+ * @type {Connection} database connector
+ */
+
 const connection = require('../../../src/REST-API/databaseConnection/connection');
-//const log = require('../middelwareFunctions/logger');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
 const router = express();
 
-
 /**
- * route for getting all users out of database
+ * sql statement for selecting devices in database
+ * @type {string}
  */
 
 let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
@@ -46,6 +54,14 @@ let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,mo
     "        LEFT JOIN CATEGORY\n" +
     "                   ON DEVICE.category = CATEGORY.category_id";
 
+/**
+ * route for getting all devices out of database
+ *
+ * GET
+ *
+ * @param response - sending the result within a JSON file to client
+ */
+
 router.get("/api/device/getAllDevices", (request, response) => {
     sql = selectSpecificDevice + " GROUP BY inventoryNumber;"
 
@@ -65,7 +81,13 @@ router.get("/api/device/getAllDevices", (request, response) => {
 
 
 /**
- * route for getting all users out of database
+ * route for getting specific device depending
+ * on the given integer inventoryNumber
+ *
+ * POST {int: inventoryNumber}
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
  */
 
 router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, response) => {
@@ -80,10 +102,21 @@ router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, respons
         }
         console.log('GetAllDevices.Connection established');
 
+        console.log(result);
+
         response.json(result);
     })
 
 });
+
+/**
+ * route for getting specific device depending on the given String status
+ *
+ * POST {String: status}
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ */
 
 router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) AS StatusSelect" +
@@ -100,6 +133,15 @@ router.post("/api/device/getSpecificDevice/byStatus", (request, response) => {
     })
 
 });
+
+/**
+ * route for getting specific device depending on the given String category
+ *
+ * POST {String: category}
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ */
 
 router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
@@ -118,6 +160,15 @@ router.post("/api/device/getSpecificDevice/byCategory", (request, response) => {
 
 });
 
+/**
+ * route for getting specific device depending on the given String model
+ *
+ * POST {String: model}
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ */
+
 router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
         " DEVICE.inventory_number) AS ModelSelect" +
@@ -134,6 +185,15 @@ router.post("/api/device/getSpecificDevice/byModel", (request, response) => {
     })
 
 });
+
+/**
+ * route for getting specific device depending on the given date tuev
+ *
+ * POST {date: tuev}
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ */
 
 router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
@@ -152,6 +212,15 @@ router.post("/api/device/getSpecificDevice/byTuev", (request, response) => {
 
 });
 
+/**
+ * route for getting specific device depending on the given date uvv
+ *
+ * POST {date: uvv}
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ */
+
 router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
         " DEVICE.inventory_number) AS UVVSelect" +
@@ -168,6 +237,15 @@ router.post("/api/device/getSpecificDevice/byUvv", (request, response) => {
     })
 
 });
+
+/**
+ * route for getting specific device depending on the given date repair
+ *
+ * POST {date: repair}
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ */
 
 router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY" +
@@ -187,96 +265,102 @@ router.post("/api/device/getSpecificDevice/byRepair", (request, response) => {
 });
 
 /**
- * route for getting all users out of database
+ * route for creating a new device in database
+ *
+ * POST {beaconMinor, beaconMajor, category, deviceStatus, guarantee,
+ * lastRepair, lastTuev, lastUvv, manufacturer, model, note, serialNumber}
+ *
+ * request validation, createDevice without dates, check if dates are given,
+ * insertInto the dates tables, update the date columns in table device
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending a message  within a JSON file to client
  */
-// in Website enthalten
+
 router.post('/api/device/createDevice',constraint.deviceConstraints, (request, response) => {
 
-    // Finds the validation errors in this request and wraps them in an object with handy functions
+    /*
+      validates if send information from client are in the needed form
+      @link (../middlewareFunction/validation)
+      @type {Result}
+      @thrown specified message if validation fails
+      @param request - send information from client within a JSON file
+     */
     const errors = validationResult(request);
-    //console.log(errors);
     if (!errors.isEmpty()) {
         return response.json(errors.array());
     }
 
+    //sql statement for creating a new device without dates
     sql = "INSERT INTO DEVICE (model, serial_number, note, device_status, manufacturer, category) VALUES " +
         "('" + request.body.model + "','" + request.body.serialNumber + "','"
         + request.body.note + "','" + request.body.deviceStatus + "'," +
         "'" + request.body.manufacturer + "', '" + request.body.category + "');";
 
+    //first query: createDevice without dates
     connection.query(sql, function (err) {
+        //if connection to database failed a message will be sent to client
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting.sqlPostDevice to Db');
             return;
 
-        } if (request.body.guarantee !== "" ) {  //|| request.body.uvv || request.body.repair
+        }
+        sqlSelect = "SELECT Max(inventory_number) FROM DEVICE WHERE serial_number = " + request.body.serialNumber + "" +
+            "  AND note = '" + request.body.note + "'" +
+            "  AND device_status = " + request.body.deviceStatus + " AND model = '" + request.body.model + "'" +
+            "  AND manufacturer = '" + request.body.manufacturer + "' GROUP BY serial_number";
 
-            sqlSelect = "SELECT inventory_number FROM DEVICE WHERE serial_number = " + request.body.serialNumber + "" +
-                "  AND note = '" + request.body.note + "'" +
-                "  AND device_status = " + request.body.deviceStatus + " AND model = '" + request.body.model + "'" +
-                "  AND manufacturer = '" + request.body.manufacturer + "' GROUP BY serial_number";
-
-
-            connection.query(sqlSelect, function (err, result) {
-                if (err) {
-                    response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                    console.log('Error connecting.sqlUvv to Db');
-                    return;
-                }
-
+        //query: select inventoryNumber of device
+        connection.query(sqlSelect, function (err, result) {
+            if (err) {
+                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                console.log('Error connecting.sqlUvv to Db');
+                return;
+                //method for getting the inventoryNumber in the needed form from result of query
+            } let str = Object.values(result[0])[0];
+            //Check if there is a value for guarantee
+            if (request.body.guarantee !== "") {
+                // try catch block for the case that there is no guarantee in the sent JSON file
                 try {
-
-                    let str = Object.values(result[0])[0];
-
-                    let guarantee = new Date(request.body.guarantee).toISOString();
+                    //method for parsing the given date into needed form
+                    let sentGuarantee = new Date(new Date(request.body.guarantee).setHours(+2));
+                    let newGuarantee = sentGuarantee.toISOString();
 
                     sqlGuarantee = "UPDATE DEVICE\n" +
-                        "SET DEVICE.gurantee = '" + guarantee + "'\n" +
+                        "SET DEVICE.gurantee = '" + newGuarantee + "'\n" +
                         "WHERE DEVICE.inventory_number = " + str + ";";
-
+                    //updating the created device with the given guarantee
                     connection.query(sqlGuarantee, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                             console.log('Error connecting.sqlUpdateUvv to Db');
                             return;
                         }
-
                     })
 
                 } catch (error) {
 
                 }
 
-            })
+            } if (request.body.lastUvv !== "") {
 
+                try {
 
-        } if (request.body.lastUvv !== "" ) {  //|| request.body.uvv || request.body.repair
+                    let sentUvv = new Date(new Date(request.body.lastUvv).setHours(+2));
+                    let newUvv = sentUvv.toISOString();
 
-            try {
+                    sqlUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
+                        "(" + str + ")," +
+                        "('" + newUvv + "')," +
+                        "('1'));";
 
-                let lastUvv = new Date(request.body.lastUvv).toISOString();
-
-                sqlUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
-                    "(" + sqlSelect + ")," +
-                    "('" + lastUvv + "')," +
-                    "('1'));";
-
-                connection.query(sqlUvv, function (err) {
-                    if (err) {
-                        response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                        console.log('Error connecting.sqlUvv to Db');
-                        return;
-                    }
-
-                    connection.query(sqlSelect, function (err, result) {
+                    connection.query(sqlUvv, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                            console.log('Error connecting.sqlSelectUvv to Db');
+                            console.log('Error connecting.sqlUvv to Db');
                             return;
                         }
-
-                        let str = Object.values(result[0])[0];
 
                         sqlUpdateUvv = "UPDATE DEVICE\n" +
 
@@ -294,44 +378,31 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
                                 console.log('Error connecting.sqlUpdateUvv to Db');
                                 return;
                             }
-
                         })
-
                     })
 
-                })
+                } catch (error) {
 
-            } catch (error) {
+                }
 
-            }
+            } if (request.body.lastTuev !== "") {
 
+                try {
 
-        } if (request.body.lastTuev !== "" ) {
+                    let sentTuev = new Date(new Date(request.body.lastTuev).setHours(+2));
+                    let newTuev = sentTuev.toISOString();
 
-            try {
+                    sqlTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
+                        "(" + str + ")," +
+                        "('" + newTuev + "')," +
+                        "('1'));";
 
-                let lastTuev = new Date(request.body.lastTuev).toISOString();
-
-                sqlTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
-                    "(" + sqlSelect + ")," +
-                    "('" + lastTuev + "')," +
-                    "('1'));";
-
-                connection.query(sqlTuev, function (err) {
-                    if (err) {
-                        response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                        console.log('Error connecting.sqlTuev to Db');
-                        return;
-                    }
-
-                    connection.query(sqlSelect, function (err, result) {
+                    connection.query(sqlTuev, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                            console.log('Error connecting.sqlSelectTuev to Db');
+                            console.log('Error connecting.sqlTuev to Db');
                             return;
                         }
-
-                        let str = Object.values(result[0])[0];
 
                         sqlUpdateTuev = "UPDATE DEVICE\n" +
 
@@ -349,44 +420,32 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
                                 console.log('Error connecting.sqlUpdateTuev to Db');
                                 return;
                             }
-
                         })
-
                     })
 
-                })
+                } catch (error) {
 
-            } catch (error) {
+                }
 
-            }
+            } if (request.body.lastRepair !== "") {
+                console.log('repair')
 
-        } if (request.body.lastRepair !== "" ) {
+                try {
 
-            try {
+                    let sentRepair = new Date(new Date(request.body.lastRepair).setHours(+2));
+                    let newRepair = sentRepair.toISOString();
 
-                let lastRepair = new Date(request.body.lastRepair).toISOString();
+                    sqlRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
+                        "(" + str + ")," +
+                        "('" + newRepair + "')," +
+                        "('1'));";
 
-                sqlRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
-                    "(" + sqlSelect + ")," +
-                    "('" + lastRepair + "')," +
-                    "('1'));";
-
-                connection.query(sqlRepair, function (err) {
-                    if (err) {
-                        response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                        console.log('Error connecting.sqlRepair to Db');
-                        return;
-                    }
-
-                    connection.query(sqlSelect, function (err, result) {
+                    connection.query(sqlRepair, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
-                            console.log('Error connecting.sqlSelectRepair to Db');
+                            console.log('Error connecting.sqlRepair to Db');
                             return;
                         }
-
-                        let str = Object.values(result[0])[0];
-
                         sqlUpdateRepair = "UPDATE DEVICE\n" +
 
                             "INNER JOIN REPAIR ON DEVICE.inventory_number = REPAIR.inventory_number\n" +
@@ -403,19 +462,14 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
                                 console.log('Error connecting.sqlUpdateRepair to Db');
                                 return;
                             }
-
                         })
-
                     })
 
-                })
+                } catch (error) {
 
-            } catch (error) {
-
-            }
-
-        } return response.json({"Message": "Gerät wurde erfolgreich hinzugefügt."})
-
+                }
+            } return response.json({"Message": "Gerät wurde erfolgreich hinzugefügt."})
+        })
     })
 });
 
@@ -459,11 +513,12 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
 
                     try {
 
-                        let lastUvv = new Date(request.body.lastUvv).toISOString();
+                        let sentUvv = new Date(new Date(request.body.lastUvv).setHours(+2));
+                        let newUvv = sentUvv.toISOString();
 
                         updateUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
-                            "('" + lastUvv + "')," +
+                            "('" + newUvv + "')," +
                             "('1'));"
 
                         connection.query(updateUvv, function (err) {
@@ -503,11 +558,12 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
 
                     try {
 
-                        let lastTuev = new Date(request.body.lastTuev).toISOString();
+                        let sentTuev = new Date(new Date(request.body.lastTuev).setHours(+2));
+                        let newTuev = sentTuev.toISOString();
 
                         updateTuev = "INSERT INTO TUEV (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
-                            "('" + lastTuev + "')," +
+                            "('" + newTuev + "')," +
                             "('1'));";
 
                         connection.query(updateTuev, function (err) {
@@ -547,11 +603,12 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
 
                     try {
 
-                        let lastRepair = new Date(request.body.lastRepair).toISOString();
+                        let sentRepair = new Date(new Date(request.body.lastRepair).setHours(+2));
+                        let newRepair = sentRepair.toISOString();
 
                         updateRepair = "INSERT INTO REPAIR (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
-                            "('" + lastRepair + "')," +
+                            "('" + newRepair + "')," +
                             "('1'));"
 
                         connection.query(updateRepair, function (err) {
@@ -591,10 +648,11 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
 
                     try {
 
-                        let guarantee = new Date(request.body.guarantee).toISOString();
+                        let sentGuarantee = new Date(new Date(request.body.guarantee).setHours(+2));
+                        let newGuarantee = sentGuarantee.toISOString();
 
                         updateGuarantee = "UPDATE DEVICE\n" +
-                            "SET DEVICE.gurantee = '" + guarantee + "'\n" +
+                            "SET DEVICE.gurantee = '" + newGuarantee + "'\n" +
                             "WHERE DEVICE.inventory_number = " + request.params.inventoryNumber + ";";
 
                         connection.query(updateGuarantee, function (err) {

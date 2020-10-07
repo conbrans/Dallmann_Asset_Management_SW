@@ -1,5 +1,15 @@
 /**
+ * author: Kevin Bosse
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /worker
+ */
+
+
+/**
  * Import of modules
+ *
  * @type {Connection} database connector
  */
 
@@ -96,7 +106,6 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
         console.log('Connection established');
         response.json({"Message": "User ist erfolgreich angelegt worden."});
     })
-
 });
 
 /**

@@ -75,4 +75,11 @@ app.listen(3000, () => console.log(
     `http://localhost:3000`
 ));
 
+/**
+ * REST documentation
+ */
+
+const documentation = require('../../REST-API/documentation');
+app.use(documentation);
+
 module.exports = app;

@@ -1,24 +1,29 @@
 /**
+ * author: Kevin Bosse
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /borrow
+ */
+
+
+/**
  * Import of modules
+ *
  * @type {Connection} database connector
  */
 
-const connection = require('../../../src/REST-API/databaseConnection/connection')
+const connection = require('../../../src/REST-API/databaseConnection/connection');
 const log = require('../middelwareFunctions/logger');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
 const router = express();
 
-
-/**
- * route for getting all reservations data
- */
-
 /**
  *
+ *
  */
-
 router.get("/api/borrow/getReservations",(request, response) => {
 
     sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd," +
@@ -31,8 +36,8 @@ router.get("/api/borrow/getReservations",(request, response) => {
         "ON BORROWS.worker_id = WORKER.worker_id\n" +
         "WHERE PROJECT.project_id = BORROWS.project_id;\n";
 
-    connection.query(sql,function (err,result)
-    {
+    connection.query(sql,function (err,result) {
+
         if(err){
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
@@ -73,6 +78,7 @@ router.post("/api/borrow/createReservation",
                 response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
                 console.log('Error connecting to Db');
                 return;
+
             } else if (str == "0") {
 
                 let insertBorrows  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +

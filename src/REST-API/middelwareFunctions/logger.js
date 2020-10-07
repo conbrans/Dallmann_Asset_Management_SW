@@ -5,6 +5,7 @@ const path = require('path');
 const uuid = require('node-uuid');
 const router = express();
 
+
 const pad = num => (num > 9 ? "" : "0") + num;
 const generator = (time, index) => {
     if (!time) return "request.log";
