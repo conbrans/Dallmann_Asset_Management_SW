@@ -27,12 +27,14 @@ $(document).ready(function () {
             }
         });
 
+
         $('#history tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
                 $('#history tbody .selected').removeClass('selected');
                 $(this).addClass('selected');
+                setMarker(data[this.rowIndex-1].longitude, data[this.rowIndex-1].latitude);
             }
         });
     });

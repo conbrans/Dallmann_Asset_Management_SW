@@ -101,9 +101,6 @@ router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, respons
             return;
         }
         console.log('GetAllDevices.Connection established');
-
-        console.log(result);
-
         response.json(result);
     })
 

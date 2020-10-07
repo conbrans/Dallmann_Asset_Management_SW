@@ -5,13 +5,14 @@
  * @return {Promise<*>}
  */
  async function removeTimeStampForDevice(data){
-
+    console.log(data);
     for (let i=0; i<data.length; i++){
         data[i].guarantee =splitValues(data[i].guarantee);
         data[i].lastLocationUpdate = splitValues(data[i].lastLocationUpdate);
         data[i].lastTuev = splitValues(data[i].lastTuev);
         data[i].lastUvv = splitValues(data[i].lastUvv);
     }
+    console.log(data);
     return await data;
 }
 
@@ -61,14 +62,14 @@ async function removeTimestampForNotification(data){
 
 /**
  * look at the doc for removeTimeStampForDevice
- * @return {Promise<*>}
+ * @return {string}
  * @param arraytosplit
  */
  function splitValues(arraytosplit){
     if (arraytosplit !== null){
         const stringArray = arraytosplit.toString();
-        const withoutTime = stringArray.split("T");
-        return withoutTime[0];
+        return  withoutTime = stringArray.substring(0,10);
+
     }else {
         return arraytosplit;
     }

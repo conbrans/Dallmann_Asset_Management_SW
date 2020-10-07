@@ -61,4 +61,16 @@ router.get("/showUser", redirect.redirectLogin,
     });
 
 
+router.get("/showDevice",redirect.redirectLogin,
+    authentication.authRight("view_device"), (req, res) =>
+    {
+        req.body.inventoryNumber = req.session.inventoryNumber;
+        fetch.postFetch("/api/device/getSpecificDevice/byInventoryNumber", req)
+            .then(data =>{
+                reformatDate.removeTimeStampForDevice(data)
+                    .then(data => res.json(data))
+            });
+    });
+
+
 module.exports = router;

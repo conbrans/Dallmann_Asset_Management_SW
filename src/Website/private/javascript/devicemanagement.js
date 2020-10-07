@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var table = $("#table");
-    var devices= $.ajax({
-        url : "/showDevices",
+    var devices = $.ajax({
+        url: "/showDevices",
     }).done(data => {
         table.DataTable({
             data: data,
@@ -11,25 +11,25 @@ $(document).ready(function() {
                 {"data": "model"},
                 {"data": "statusDescription"},
             ],
-            language:{
+            language: {
                 search: "Suche nach:",
-                info : "Zeige Nr. _START_ bis _END_ von _TOTAL_ Geräten",
-                lengthMenu : "Zeige _MENU_ Geräte",
-                zeroRecords : "Keine Einträge verfügbar",
-                paginate : {
+                info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Geräten",
+                lengthMenu: "Zeige _MENU_ Geräte",
+                zeroRecords: "Keine Einträge verfügbar",
+                paginate: {
                     first: "Erste Seite",
                     last: "Letzte Seite",
                     next: "Nächste",
                     previous: "Vorherige"
                 },
-                infoFiltered : "(von _MAX_ Geräten insgesamt)",
+                infoFiltered: "(von _MAX_ Geräten insgesamt)",
             }
         });
 
-        $('#table tbody').on( 'click', 'tr', function () {
-            if ($(this).hasClass('selected')){
+        $('#table tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-            } else{
+            } else {
                 $('#table tbody .selected').removeClass('selected');
                 $(this).addClass('selected');
                 // alert(this.cells.item(0).innerText);
@@ -42,118 +42,31 @@ $(document).ready(function() {
                     data: data,
                     data_type: 'text'
                 }).done(() => {
+                    $.ajax({
+                        type: 'get',
+                        url: '/showDevice',
+                    }).done(data => {
+                        document.getElementById("invnumber").value = data[0].inventoryNumber;
+                        document.getElementById("manufacturer").value = data[0].manufacturer;
+                        document.getElementById("category").value = data[0].deviceCategory;
+                        document.getElementById("model").value = data[0].model;
+                        document.getElementById("status").value = data[0].deviceStatus;
+                        document.getElementById("serialNumber").value = data[0].serialNumber;
+                        document.getElementById("guarantee").value = data[0].guarantee;
+                        document.getElementById("technicalInspection").value = data[0].lastTuev;
+                        document.getElementById("accidentPrevention").value = data[0].lastUvv;
+                        document.getElementById("longitude").value = data[0].longitude;
+                        document.getElementById("latitude").value = data[0].latitude;
+                        document.getElementById("note").value = data[0].note;
+                        document.getElementById("minor").value = data[0].beaconMinor;
 
+                        setMarker(data[0].longitude, data[0].latitude);
+                    })
                 });
             }
         });
     });
 });
-
-
-
-/**
- *
- * @param i
- */
-function loadData(i) {
-
-    document.getElementById("invnumber").value =
-        document.getElementById("tr" + i.toString() +
-            "td1").innerHTML;
-
-    document.getElementById("serialNumber").value =
-        document.getElementById("tr" + i.toString() +
-            "serialNumber").innerHTML;
-
-    document.getElementById("manufacturer").value =
-        document.getElementById("tr" + i.toString() +
-            "manufacturer").innerHTML;
-
-
-    switch (document.getElementById("tr" + i.toString() +
-        "td2").innerHTML) {
-        case "Rüttelplatten":
-            document.getElementById("category").value = "0001";
-            break;
-        case "Stampfer":
-            document.getElementById("category").value = "0002";
-            break;
-        case "Motorflex":
-            document.getElementById("category").value = "0003";
-            break;
-        case "Rohrgreifer":
-            document.getElementById("category").value = "0004";
-            break;
-        case "Kettensägen":
-            document.getElementById("category").value = "0005";
-            break;
-        case "Motorhammer":
-            document.getElementById("category").value = "0006";
-            break;
-        case "Leiter":
-            document.getElementById("category").value = "0007";
-            break;
-        case "Exoten":
-            document.getElementById("category").value = "0008";
-            break;
-    }
-
-    document.getElementById("model").value =
-        document.getElementById("tr" + i.toString() +
-            "td3").innerHTML;
-
-    switch (document.getElementById("tr" + i.toString() +
-        "td4").innerHTML) {
-        case "Verfügbar":
-            document.getElementById("status").value = "1";
-            break;
-        case "Ausgeliehen":
-            document.getElementById("status").value = "2";
-            break;
-        case "In Wartung":
-            document.getElementById("status").value = "3";
-            break;
-        case "Außer Betrieb":
-            document.getElementById("status").value = "4";
-            break;
-        case "Defekt":
-            document.getElementById("status").value = "5";
-            break;
-        case "Verschollen/Verschwunden":
-            document.getElementById("status").value = "6";
-            break;
-        case "Gestohlen":
-            document.getElementById("status").value = "7";
-            break;
-
-    }
-
-    document.getElementById("note").value =
-        document.getElementById("tr" + i.toString() +
-            "note").innerHTML;
-
-    document.getElementById("longitude").value =
-        document.getElementById("tr" + i.toString() +
-            "longitude").innerHTML;
-
-    document.getElementById("latitude").value =
-        document.getElementById("tr" + i.toString() +
-            "latitude").innerHTML;
-
-    document.getElementById("guarantee").value =
-        document.getElementById("tr" + i.toString() +
-            "guarantee").innerHTML;
-
-    document.getElementById("technicalInspection").value =
-        document.getElementById("tr" + i.toString() +
-            "technicalInspection").innerHTML;
-
-    document.getElementById("accidentPrevention").value =
-        document.getElementById("tr" + i.toString() +
-            "accidentPrevention").innerHTML;
-
-    getPositionData(i);
-}
 
 function deleteDeviceMessage() {
     confirm("ACHTUNG!\nSie sind dabei das gewählte Gerät undwideruflich zu" +
