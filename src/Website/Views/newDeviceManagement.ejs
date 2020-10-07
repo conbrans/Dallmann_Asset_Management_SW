@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <! //TODO ab hier css aus html entfernen -->
     <link rel="stylesheet" href="css/deviceManagement.css">
-    <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,15 +12,18 @@
           href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="javascript/userManagement.js"></script>
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <script src="javascript/header.js"></script>
 
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css"
-          href="DataTables/datatables.min.css"/>
+          href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
 
     <link rel="stylesheet"
@@ -449,34 +450,6 @@
         display: block !important;
     }
 </style>
-<script>
-
-    $(document).ready(function() {
-        $.noConflict();
-        var data = $.ajax({
-            url : "/showDevices",
-            method : "GET",
-        }).done(()=>{
-            console.log(data.responseJSON);
-            $("#table").DataTable({
-                data : data.responseJSON,
-                "columns": [
-                    { "data": "inventoryNumber" },
-                    { "data": "category" },
-                    { "data": "model" },
-                    { "data": "extn" },
-                    { "data": "start_date" },
-                    { "data": "salary" }
-
-
-            })
-        })
-
-    });
-
-
-
-</script>
 <script src="javascript/map.js"></script>
 <script src="javascript/devicemanagement.js"></script>
 

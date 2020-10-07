@@ -92,10 +92,7 @@ router.get("/showDevices", redirect.redirectLogin,
         fetch.getFetch("/api/device/getAllDevices")
             .then(data => {
                 reformatDate.removeTimeStampForDevice(data)
-                    .then(data => {
-                        res.json({ "data": data});
-
-                    })
+                    .then(data => res.json(data));
             });
     });
 

@@ -4,7 +4,6 @@ window.onload = function (){
 
 
 
-
 function changeFieldStatus(input) {
     let textarea = document.getElementById(input);
     textarea.readOnly = !textarea.readOnly;

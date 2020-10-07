@@ -2,44 +2,46 @@ window.onload = function () {
     loadData(0);
 }
 
-$(document).ready(function() {
-    $.noConflict();
-    var data = $.ajax({
-        url : "/showDevices",
-        method : "GET",
-    }).done(()=>{
-        console.log(data.responseJSON);
-        $("#table").DataTable({
 
-            data : data.responseJSON,
-            columns : [
-                { "data": "inventoryNumber" },
-                { "data": "category" },
-                { "data": "model" },
-                { "data": "statusDescription" }],
+$(document).ready(function() {
+    var table = $("#table");
+    var devices= $.ajax({
+        url : "/showDevices",
+    }).done(data => {
+        table.DataTable({
+            data: data,
+            columns: [
+                {"data": "inventoryNumber"},
+                {"data": "categoryDescription"},
+                {"data": "model"},
+                {"data": "statusDescription"},
+            ],
             language:{
                 search: "Suche nach:",
                 info : "Zeige Nr. _START_ bis _END_ von _TOTAL_ Geräten",
                 lengthMenu : "Zeige _MENU_ Geräte",
                 zeroRecords : "Keine Einträge verfügbar",
                 paginate : {
-                        first: "Erste Seite",
-                        last: "Letzte Seite",
-                        next: "Nächste",
-                        previous: "Vorherige"
+                    first: "Erste Seite",
+                    last: "Letzte Seite",
+                    next: "Nächste",
+                    previous: "Vorherige"
                 },
                 infoFiltered : "(von _MAX_ Geräten insgesamt)",
             }
-        })
+        });
+
+        $('#table tbody').on( 'click', 'tr', function () {
+            if ($(this).hasClass('selected')){
+                $(this).removeClass('selected');
+            } else{
+                $('#table tbody .selected').removeClass('selected');
+                $(this).addClass('selected');
+                // alert(this.cells.item(0).innerText);
+            }
+        });
     });
 });
-
-$('#table tbody').find('tr').click( function(){
-    alert($(this).index());
-});
-
-
-
 
 let acc = document.getElementsByClassName("toggle-title");
 let panel = document.getElementsByClassName('toggle-inner');

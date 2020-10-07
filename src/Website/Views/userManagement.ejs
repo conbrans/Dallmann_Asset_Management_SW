@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
     <link rel="stylesheet" href="css/userManagement.css">
-    <link rel="stylesheet" href="css/headFootDesign.css">
+    <link rel="stylesheet" href="css/table.css">
 
 
 
 
 
-    <script src="DataTables/datatables.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css"
-          href="DataTables/datatables.min.css"/>
+          href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+
+
 
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
-    <link rel="stylesheet" href="css/table.css">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
           rel="stylesheet">
 
@@ -28,7 +34,10 @@
     <!--<script src="https://kit.fontawesome.com/a076d05399.js"></script>-->
     <script src="javascript/userManagement.js"></script>
 
-    <title>Benutzerverwaltung</title>
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <script src="javascript/header.js"></script>
+
+    <title>Dallmann Asset-Management</title>
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -159,28 +168,15 @@
 </div>
 
 <%- include('../Views/general/footer.ejs'); -%>
+<script>
+        var devices= $.ajax({
+            url : "/showUsers",
+        }).done(data => {
+            console.log(data);
+        });
+
+</script>
 
 
 </body>
-<script>
-
-    $(document).ready(function() {
-        $.noConflict();
-        $('#example').DataTable()({
-            ajax : "/showUsers",
-            dataSrc: "",
-            language:{
-                search: "Suche nach:",
-                info : "Zeige Nr. _START_ bis _END_ von _TOTAL_ Geräten",
-                lengthMenu : "Zeige _MENU_ Geräte",
-                zeroRecords : "Keine Einträge verfügbar",
-                paginate : {
-                    first: "Erste Seite",
-                    last: "Letzte Seite",
-                    next: "Nächste",
-                    previous: "Vorherige"
-                },
-                infoFiltered : "(von _MAX_ Geräten insgesamt)",
-            }})});
-</script>
 </html>
