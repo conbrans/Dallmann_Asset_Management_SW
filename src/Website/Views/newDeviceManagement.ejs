@@ -27,6 +27,9 @@
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
+    <script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
+
 
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
@@ -50,7 +53,6 @@
     <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
             integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
             crossorigin=""></script>
-
 
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
@@ -142,7 +144,7 @@
                                             form="updateDevice"
                                             onchange="getSelectedOption()"
                                             style="width: 100%; display: inline-block"
-                                            name="beaconMajor">
+                                            name="category">
                                         <option selected disabled>Kategorie
                                         </option>
                                         <option value="1">Rüttelplatte

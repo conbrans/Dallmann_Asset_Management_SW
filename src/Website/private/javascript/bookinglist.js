@@ -14,10 +14,11 @@ $(document).ready(function () {
                 {"data": "projectId"},
                 {"data": "buildingSite"},
             ],
+            colReorder: true,
             language: {
                 search: "Suche nach:",
                 info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Reservierungen",
-                lengthMenu: "Zeige _MENU_ Nutzer",
+                lengthMenu: "Zeige _MENU_ Reservierungen.",
                 zeroRecords: "Keine Einträge verfügbar",
                 paginate: {
                     first: "Erste Seite",

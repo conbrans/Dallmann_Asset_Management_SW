@@ -18,13 +18,7 @@ router.post("/booking",
 });
 
 router.post("/book", authentication.authRight("booking_device"), (req, res)=> {
-
-    fetch.postFetch("book", req)
-        .then(data => console.log(data))
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    res.redirect("/")
+    console.log(req.body);
 
 });
 

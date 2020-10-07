@@ -11,6 +11,9 @@ $(document).ready(function () {
                 {"data": "model"},
                 {"data": "statusDescription"},
             ],
+            colReorder: {
+                fixedColumnsLeft: 1,
+            },
             language: {
                 search: "Suche nach:",
                 info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Geräten",
@@ -32,7 +35,6 @@ $(document).ready(function () {
             } else {
                 $('#table tbody .selected').removeClass('selected');
                 $(this).addClass('selected');
-                // alert(this.cells.item(0).innerText);
                 var data = {
                     inventoryNumber: this.cells.item(0).innerText,
                 };

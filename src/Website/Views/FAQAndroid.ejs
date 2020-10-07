@@ -42,6 +42,25 @@
         </div>
 
     </div>
+
+    <div class="toggle" id="infos">
+        <div class="toggle-title">
+            <h3>
+                <i></i>
+                <span class="title-name">Sicherheitsinformationen</span>
+            </h3>
+        </div>
+
+        <div class="toggle-inner">
+            <p>
+                Da die App voraussichtlich an Baustellen oder Unterwegs
+                verwendet wird, weisen wir Sie darauf hin, dass Sie während der
+                Benutzung auf Ihre Umgebung achten sollen. Verwenden Sie die App
+                nicht während Sie Auto fahren oder Maschinen bedienen.
+            </p>
+        </div>
+
+    </div>
     <div class="toggle" id="login">
         <div class="toggle-title ">
             <h3>
@@ -53,12 +72,32 @@
             <p>Für die Anmeldung in der Android Applikation werden die gleichen
                 Daten, wie für den Login auf der Website benötigt.
             </p>
-            <p>
-                Falls Sie Ihr Passwort vergessen haben und zurücksetzen müssen,
-                melden Sie sich bei einem Verantwortlichen der Applikation.
-            </p>
         </div>
     </div><!-- END OF TOGGLE -->
+
+    <div class="toggle" id="login">
+        <div class="toggle-title ">
+            <h3>
+                <i></i>
+                <span class="title-name">Passwort</span>
+            </h3>
+        </div>
+        <div class="toggle-inner">
+            <p>
+                Ihr erhaltenes Passwort entspricht bereits der Auflagen eines
+                sicheren Passwortes. Jedoch ist eines der größeren Risiken die
+                Weitergabe des Passwortes oder die Ablegung an nicht sicheren
+                Stellen (z.B. Post-It am Monitor oder unter der Tastatur). Geben
+                Sie ihr Passwort niemals an Dritte weiter. Ein EDV-Mitarbeiter
+                würde Sie nie nach Ihren Passwort fragen.
+            </p>
+            <p>
+                Falls Sie Ihr Passwort vergessen haben und zurücksetzen müssen,
+                melden Sie sich bei einem Verantwortlichen der Applikation in
+                der EDV-Abteilung.
+            </p>
+        </div>
+    </div>
 
     <div class="toggle" id="devices">
         <div class="toggle-title ">
@@ -224,6 +263,88 @@
 
         </div>
     </div><!-- END OF TOGGLE -->
+
+    <div class="toggle" id="userProfil">
+        <div class="toggle-title ">
+            <h3>
+                <i></i>
+                <span class="title-name">Installation</span>
+            </h3>
+        </div>
+        <div class="toggle-inner">
+            <p>
+                Dieser Teil des Handbuch richtet sich an den Verantwortlichen
+                der Applikation. Es werden die Schritte von dem Projektbezugs
+                aus Github bis zur erfolgreichen Installierung der Applikation
+                erläutert.
+            </p>
+            <h6>1. Schritt: Anlegen des Projektes</h6>
+            <p>Für die Erstellung der Applikation wurde Android Studio
+                verwendet. Mit dem am Projektende übergebenen Daten können Sie
+                sich das Projekt aus dem Git Repository anlegen. Dafür nehmen
+                Sie sich den URL Text und wählen in Android Studio „File“ ->
+                „New“ -> „Project from Version Control“. Dort können Sie die URL
+                einfügen und das Projekt anlegen. </p>
+            <h6>2. Erstellung der Applikation(APK)</h6>
+            <p>Für die Erstellung der APK wählen Sie oben in Android Studio
+                „Build“ aus. Je nachdem ob das eine APK für Testzwecke sein,
+                wählen Sie „Build Bundel(s) / APK(s)“ -> „APK“ aus. Diese Form
+                der APK ist nur für Testzwecke geeignet. Eine Installation auf
+                einem Gerät könnte eventuell nicht funktionieren.</p>
+            <p>
+                Eine funktionstüchtige APK erstellen Sie unter „Generate Signed
+                Bundle/ APK..“. Dort wählen Sie dann „APK“ aus und bestätigen
+                mit „Next“. Unter dem Punkt „Key store path“ wählen Sie „Create
+                new…“.
+            </p>
+            <p>
+                In dem neuen Fenster befindet sich wieder der Punkt „Key store
+                path“, wo Sie einen sicheren Ort auswählen müssen. Danach wählen
+                Sie ein sicheres Passwort und bestätigen diesen.
+            </p>
+            <p>
+                Im „Alias“ wählen Sie einen Namen für den Key aus. Das Passwort
+                des Keys muss ein anderen sicheren Passwort sein als das von dem
+                Key Store Path. Die Validation kann bei 25 Jahren bleiben. Das
+                Zertifikat können Sie wie im Bild mit eigenen Informationen
+                ausfüllen.
+                Beim Bestätigen des Fensters kommen Sie auf das vorherige
+                Fenster. Dort betätigen Sie nun „Next“.
+            </p>
+            <p>
+                Im nächsten Fenster wählen Sie nun unten „V1 (Jar Signature) und
+                (V2 Full APK SIgnature) aus und bestätigen mit „Finish“. Es
+                wurde eine APK erstellt.
+            </p>
+            <h6>3.6 Installation der Applikation</h6>
+            <p>
+                Für die Installation muss die APK sich auf dem Smartphone
+                befinden und von dort aus installiert werden. Je nachdem welche
+                Android Version das Gerät besitzt, muss in den Einstellungen
+                „Apps aus Unbekannten Quellen installieren“ aktiviert werden.
+                Mit Android 10 verfällt diese Option. Bei der Installation wird
+                nach bestimmten Rechten gefragt, wie den Standortszugriff oder
+                Internetzugriff. Für den vollen Funktionsumfang müssen alle
+                Berechtigungen bestätigt werden
+            </p>
+        </div>
+    </div>
+
+    <div class="toggle" id="userProfil">
+        <div class="toggle-title ">
+            <h3>
+                <i></i>
+                <span class="title-name">Kosten</span>
+            </h3>
+        </div>
+        <div class="toggle-inner">
+            <p>Die App verbraucht, je nachdem ob sich das Smartphone im WLAN
+                befindet, das mobile Datenvolumen. Wir weisen Sie darauf hin,
+                dass dies zu Kosten führen könnte.
+            </p>
+
+        </div>
+    </div>
 </div>
 </body>
 

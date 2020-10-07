@@ -50,6 +50,26 @@ router.get("/api/borrow/getReservations",(request, response) => {
 
 });
 
+
+router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
+
+    sql = "SELECT DISTINCT loan_day  AS loanDay ,loan_end  AS loanEnd FROM" +
+        " BORROWS WHERE inventory_number =" + req.params.inventoryNumber +";";
+
+    connection.query(sql,(err,result)=>{
+        if (err){
+            res.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+            console.log('Error connecting to Db');
+            return;
+        }
+        console.log(result);
+        res.json(result);
+
+
+    });
+
+})
+
 /**
  * route for creating a reservation
  */

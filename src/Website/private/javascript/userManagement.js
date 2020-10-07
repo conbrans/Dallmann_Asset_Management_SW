@@ -15,11 +15,15 @@ $(document).ready(function () {
                 {"data": "eMail"},
                 {"data": "role"},
             ],
+            colReorder: {
+                fixedColumnsLeft: 1,
+            },
             language: {
                 search: "Suche nach:",
                 info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Nutzern",
                 lengthMenu: "Zeige _MENU_ Nutzer",
                 zeroRecords: "Keine Einträge verfügbar",
+
                 paginate: {
                     first: "Erste Seite",
                     last: "Letzte Seite",

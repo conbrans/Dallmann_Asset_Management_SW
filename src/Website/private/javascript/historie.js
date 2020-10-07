@@ -11,7 +11,7 @@ $(document).ready(function () {
                 {"data": "longitude"},
                 {"data": "latitude"},
             ],
-            processing : true,
+            colReorder: true,
             language: {
                 search: "Suche nach:",
                 info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Einträge",

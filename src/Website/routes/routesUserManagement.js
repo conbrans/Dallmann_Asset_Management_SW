@@ -14,6 +14,15 @@ router.post("/addUser", authentication.authRight("add_user"), (req, res) => {
         });
 });
 
+router.post("/deleteUser", authentication.authRight("delete_user"), (req, res) => {
+    fetch.deleteFetch("/api/user/deleteUser/" + req.session.userMgntID, req)
+        .then(() => res.redirect("/userManagement"))
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+});
+
+
 router.post("/editUser", authentication.authRight("edit_User"), (req, res) => {
     const passwordEncrypt = crypto.encrypt(req.body.password);
     const passwordCorrectEncrypt = crypto.encrypt(req.body.passwordCorrect);
