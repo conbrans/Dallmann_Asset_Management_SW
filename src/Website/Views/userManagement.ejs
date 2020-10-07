@@ -16,6 +16,8 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css"
           href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script
 
 
 
@@ -169,10 +171,44 @@
 
 <%- include('../Views/general/footer.ejs'); -%>
 <script>
-        var devices= $.ajax({
+        var table = $("#example");
+        var users= $.ajax({
             url : "/showUsers",
         }).done(data => {
             console.log(data);
+            table.DataTable({
+                data: data,
+                columns: [
+                    {"data": "workerId"},
+                    {"data": "firstname"},
+                    {"data": "surname"},
+                    {"data": "eMail"},
+                    {"data": "role"},
+                ],
+                language:{
+                    search: "Suche nach:",
+                    info : "Zeige Nr. _START_ bis _END_ von _TOTAL_ Nutzern",
+                    lengthMenu : "Zeige _MENU_ Nutzer",
+                    zeroRecords : "Keine Einträge verfügbar",
+                    paginate : {
+                        first: "Erste Seite",
+                        last: "Letzte Seite",
+                        next: "Nächste",
+                        previous: "Vorherige"
+                    },
+                    infoFiltered : "(von _MAX_ Nutzern insgesamt)",
+                }
+            });
+
+            $('#example tbody').on( 'click', 'tr', function () {
+                if ($(this).hasClass('selected')){
+                    $(this).removeClass('selected');
+                } else{
+                    $('#example tbody .selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    alert(this.cells.item(0).innerText);
+                }
+            });
         });
 
 </script>
