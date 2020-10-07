@@ -52,7 +52,6 @@ router.get("/api/notification/tuv", function (request,response){
             });
         }else{
             response.json(result);
-            console.log(result)
         }
     });
 });
@@ -74,7 +73,6 @@ router.get("/api/notification/uvv", function (request,response){
             });
         }else{
             response.json(result);
-            console.log(result)
         }
     });
 });
@@ -96,7 +94,6 @@ router.get("/api/notification/maintenance", function (request,response){
             });
         }else{
             response.json(result);
-            console.log(result)
         }
     });
 

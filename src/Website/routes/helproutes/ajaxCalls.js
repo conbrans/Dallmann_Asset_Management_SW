@@ -1,4 +1,8 @@
 const express = require('express');
+const fetch = require('./fetch');
+const redirect = require('./redirect');
+const reformatDate = require('./reformatDate');
+const authentication = require('./rightAuthentication');
 const router = express.Router();
 
 /**
@@ -16,11 +20,45 @@ router.post("/sendInventoryNumber", (req, res) => {
  * an ajax call
  */
 router.post("/sendWorkerInfos", (req, res) => {
-   req.session.userMgntID = req.body.workerid;
-   req.session.userMgntMail = req.body.mail;
-   res.json ({
-       message : "Erfolg",
-   });
+    req.session.userMgntID = req.body.workerid;
+    req.session.userMgntMail = req.body.mail;
+    res.json({
+        message: "Erfolg",
+    });
 });
+
+router.get("/showUsers", redirect.redirectLogin,
+    authentication.authRight("add_user"),
+    authentication.authRight("delete_User"), (req, res) => {
+        fetch.getFetch("/api/user/getAllUsers")
+            .then(data => res.json(data));
+    });
+
+
+router.get("/showBooking", redirect.redirectLogin,
+    authentication.authRight("booking_device"), (req, res) => {
+        fetch.getFetch("/api/borrow/getReservations")
+            .then(data =>
+                reformatDate.removeTimeStampForBooking(data).then(data => res.json(data)))
+    });
+
+router.get("/showDevices", redirect.redirectLogin,
+    authentication.authRight("view_device"), (req, res) => {
+        fetch.getFetch("/api/device/getAllDevices")
+            .then(data => {
+                reformatDate.removeTimeStampForDevice(data)
+                    .then(data => res.json(data));
+            });
+    });
+
+
+router.get("/showUser", redirect.redirectLogin,
+    authentication.authRight("add_user"),
+    authentication.authRight("delete_User"), (req, res) => {
+        console.log(req.session.userMgntID);
+        fetch.getFetch("/api/user/getSpecificUser/" + req.session.userMgntID)
+            .then(data => res.json(data))
+    });
+
 
 module.exports = router;

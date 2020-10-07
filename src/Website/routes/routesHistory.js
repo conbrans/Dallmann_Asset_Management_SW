@@ -9,19 +9,25 @@ const fetch = require('./helproutes/fetch');
 const reformatDate = require('./helproutes/reformatDate');
 
 router.post("/historie", redirect.redirectLogin,
-    authentication.authRight("view_device"), function (req, res) {
+    authentication.authRight("view_device"), (req, res) => {
+        res.render("historie.ejs", {
+            username: req.session.username,
+            role: req.session.role,
+            rights: req.session.rights,
+            inventoryNumber: req.session.inventoryNumber,
+        })
+    });
 
-        fetch.getFetch("/api/history/getHistoryForSpecificDevice/" + req.session.inventoryNumber)
-            .then(data => {
-                reformatDate.removeTimeStampForHistory(data).then(data =>
-                    res.render("historie.ejs", {
-                        username: req.session.username,
-                        role: req.session.role,
-                        rights: req.session.rights,
-                        inventoryNumber: req.session.inventoryNumber,
-                        data: data,
-                    }))
-            });
-    })
+router.get("/showHistory",redirect.redirectLogin,
+    authentication.authRight("view_device"), (req,res)=>{
+    fetch.getFetch("/api/history/getHistoryForSpecificDevice/"
+        + req.session.inventoryNumber)
+        .then(data => {
+            reformatDate.removeTimeStampForHistory(data)
+                .then(data => res.json(data))});
+    }
+
+)
+
 
 module.exports = router;

@@ -14,11 +14,8 @@ L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-/**
- *
- * @param i
- */
-function getPositionData(i) {
+
+/*function getPositionData(i) {
 
     // Load the device longitude in variable
     let deviceLongitude = document.getElementById("tr" + i.toString() +
@@ -30,7 +27,7 @@ function getPositionData(i) {
 
     //call setMarker from map.js with the device longitude and latitude
     setMarker(deviceLongitude, deviceLatitude)
-}
+}*/
 
 
 /**

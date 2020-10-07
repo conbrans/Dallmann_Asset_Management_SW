@@ -40,14 +40,21 @@ $(document).ready(function () {
                     workerid: this.cells.item(0).innerText,
                     mail: this.cells.item(3).innerText,
                 };
-                console.log(data);
                 $.ajax({
                     type: 'post',
                     url: '/sendWorkerInfos',
                     data: data,
                     data_type: 'json'
                 }).done(() => {
-                    console.log("Workerid is transported");
+                    $.ajax({
+                        type : 'get',
+                        url : '/showUser',
+                    }).done(data=>{
+                        document.getElementById("firstName"). value = data[0].firstname;
+                        document.getElementById("lastName"). value = data[0].surname;
+                        document.getElementById("e-Mail"). value = data[0].eMail;
+                        document.getElementById("rolle").value = data[0].role;
+                    })
                 });
             }
         });
@@ -64,17 +71,6 @@ function resetUserPasswordMessage() {
         " zurückzusetzten.");
 }
 
-function loadData(i) {
-
-    document.getElementById("firstName").value =
-        document.getElementById("tr" + i.toString() + "td1").innerHTML;
-    document.getElementById("lastName").value =
-        document.getElementById("tr" + i.toString() + "td2").innerHTML;
-    document.getElementById("e-Mail").value =
-        document.getElementById("tr" + i.toString() + "td3").innerHTML;
-    document.getElementById("rolle").value =
-        document.getElementById("tr" + i.toString() + "td4").innerHTML;
-}
 
 function checkPasswordRequirements() {
     let strength = 0;

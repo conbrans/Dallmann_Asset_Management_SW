@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
-    <link rel="stylesheet" href="css/headFootDesign.css">
+
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/historie.css">
+
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
-    <script src="javascript/deviceHistory.js"></script>
+    <script src="javascript/header.js"></script>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
+    </script>
+    <script src="javascript/historie.js"></script>
+
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
@@ -34,7 +48,8 @@
             integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
             crossorigin=""></script>
 
-    <script src="javascript/sortTable.js"></script>
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <script src="javascript/header.js"></script>
 </head>
 <body>
 
@@ -49,45 +64,16 @@
                 <h3>Standorthistorie für das Gerät: <%= inventoryNumber %> </h3>
             </div>
 
-
-            <!-- Sortieren/java.Filter Start -->
-            <div id="select">
-                <p>
-                    <select class="browser-default custom-select" id="sort"
-                            onchange="getSelectedOption()">
-                        <option value="0" selected disabled>Sortieren nach
-                        </option>
-                        <option value="1">Datum</option>
-                        <option value="2">Status</option>
-                        <option value="3">BaustellenBez.</option>
-                        <option value="4">akuteller Standort</option>
-                        <option value="5">vorheriger Standort</option>
-                    </select>
-                </p>
-            </div>
-
-            <!-- Sortieren/java.Filter Ende -->
-
-            <table id="table">
+            <table id="history">
                 <thead>
                 <tr>
-                    <th onclick="sortTable(1)">Datum</th>
-                    <th onclick="sortTable(1)">Status</th>
-                    <th onclick="sortTable(1)">Längengrade</th>
-                    <th onclick="sortTable(1)">Breitengrad</th>
+                    <th>Datum</th>
+                    <th>Status</th>
+                    <th>Längengrade</th>
+                    <th>Breitengrad</th>
                 </tr>
                 </thead>
-                <tbody>
-                <% for (var i = 0; i < data.length;i++) { %>
-                    <tr onclick="getPositionData(<%= i %>)">
-                        <td><%= data[i].lastLocationUpdate %></td>
-                        <td><%= data[i].statusDescription %></td>
-                        <td id="tr<%= i %>longitude"><%= data[i].longitude %></td>
-                        <td id="tr<%= i %>latitude"><%= data[i].latitude %></td>
-                    </tr>
-                <% } %>
-
-                </tbody>
+                <tbody></tbody>
 
             </table>
         </div>
@@ -99,6 +85,9 @@
         <div id="map"></div>
     </div>
 </div>
+<script>
+
+</script>
 
 
 <%- include('../Views/general/footer.ejs'); -%>
