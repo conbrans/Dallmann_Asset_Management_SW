@@ -1,4 +1,13 @@
 /**
+ * author: Constantin Brans
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /notifications
+ */
+
+
+/**
  * Import of modules
  * @type {Connection} database connector
  */
