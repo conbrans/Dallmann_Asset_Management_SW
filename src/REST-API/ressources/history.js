@@ -37,7 +37,7 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
     "       DATE_FORMAT((REPAIR.timestamp),'%Y-%m-%dT%TZ') AS  lastRepair, \n" +
     "       REPAIR.note AS repairNote,\n" +
     "       PROJECT.project_id AS projectId, name AS buildingSite, postcode, city,\n" +
-    "       date_of_change AS lastChange\n" +
+    "       DATE_FORMAT((date_of_change), '%Y-%m-%dT%TZ') AS lastChange\n" +
     "FROM DEVICE_HISTORY\n" +
     "       LEFT JOIN BORROWS\n" +
     "               ON DEVICE_HISTORY.inventory_number = BORROWS.inventory_number\n" +

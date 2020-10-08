@@ -1,4 +1,5 @@
 const { body, validationResult } = require('express-validator');
+
 const deviceConstraints = [
     body('serialNumber').notEmpty().withMessage('Das Attribut Seriennummer muss angegeben werden und' +
         ' eine Zahlenkombination sein, wie z.B. 7742810'),

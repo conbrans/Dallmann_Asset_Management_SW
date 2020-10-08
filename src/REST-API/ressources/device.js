@@ -34,7 +34,7 @@ let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,mo
     "        DATE_FORMAT((Max(REPAIR.timestamp)), '%Y-%m-%dT%TZ') AS" +
     " lastRepair,\n" +
     "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
-    "        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
+    "        name AS buildingSite, street, postcode, city, DATE_FORMAT((DEVICE.date_of_change), '%Y-%m-%dT%TZ')  AS lastChange \n" +
     "FROM DEVICE\n" +
     "        LEFT JOIN BORROWS\n" +
     "                    ON DEVICE.inventory_number = BORROWS.inventory_number\n" +
