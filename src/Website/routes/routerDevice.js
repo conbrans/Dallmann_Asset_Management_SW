@@ -37,23 +37,4 @@ router.post("/deleteDevice", redirect.redirectLogin, authentication.authRight("d
         });
 });
 
-router.post("/devices", (req, res) => {
-    console.log(req.body.amount);
-    fetch.getFetch("/api/device/getAllDevices")
-        .then(data => {
-            reformatDate.removeTimeStampForDevice(data)
-                .then(data => {
-                    console.log(data);
-                    res.status(200).render("newDeviceManagement.ejs", {
-                        username: req.session.username,
-                        role: req.session.role,
-                        rights: req.session.rights,
-                        data: data,
-                        amount: req.body.amount,
-                    });
-                })
-        });
-});
-
-
 module.exports = router;
