@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dallmann Asset-Management</title>
+    <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/booking.css">
     <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
@@ -19,10 +20,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+
+
     <link rel="stylesheet" href="css/headFootDesign.css">
     <script src="javascript/header.js"></script>
-
-
 </head>
 <body>
 <!-- NavigationBar Start -->
@@ -86,13 +87,14 @@
                           <div class="md-form mt-0">
                             <label for="booking-start">Zeitraum der Reservierung wählen:</label>
                             <input type="text" class="form-control" id="booking_start" name="booking_start" min="" max="<%= maxDate%>"  required>
+
                         </div>
                     </div>
                 </div>
             </div>
 
             <button type="submit" id="submit" class="btn btn-outline-primary" >Reservieren<i class="far fa-calendar-plus"></i></button>
-
+            <button onclick="parseDisableDates()"></button>
         </form>
     </div>
 </main>

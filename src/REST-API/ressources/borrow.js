@@ -69,6 +69,7 @@ router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
     sql = "SELECT DISTINCT loan_day  AS loanDay ,loan_end  AS loanEnd FROM" +
         " BORROWS WHERE inventory_number =" + req.params.inventoryNumber +";";
 
+
     connection.query(sql,(err,result)=>{
         if (err){
             res.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
