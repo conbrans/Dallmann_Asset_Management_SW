@@ -47,12 +47,20 @@ router.get("/showOneBooking",redirect.redirectLogin, authentication.authRight("b
     fetch.getFetch("/api/borrow/getReservation/"+req.session.inventoryNumber)
         .then(data =>
         reformatDate.removeTimeStampForBooking(data).then(data=>{
-         for (let i=0;i<data.length;i++){
-             var test = Object.values(data[i]);
-         }
-            return res.json(test);
-        })
-        );
+            var resultstring = "["
+            var from = [];
+            var to = [];
+            for (let i=0;i<data.length;i++){
+                 from[i] = "from : '"+ data[i].loanDay+"'";
+                to[i] = "to : '"+data[i].loanEnd+"'";
+                resultstring += "{"+from[i] + "," + to[i] + "},";
+            }
+            resultstring += "]";
+
+            res.json({data:resultstring});
+
+            }
+        ));
 });
 
 router.get("/showDevices", redirect.redirectLogin,
