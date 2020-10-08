@@ -66,8 +66,8 @@ async function removeTimestampForNotification(data){
  function splitValues(arraytosplit){
     if (arraytosplit !== null){
         const stringArray = arraytosplit.toString();
-        return  withoutTime = stringArray.substring(0,10);
-
+        const withoutTime = stringArray.split("T");
+        return withoutTime[0];
     }else {
         return arraytosplit;
     }

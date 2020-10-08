@@ -6,7 +6,7 @@ let end;
 let oneRange;
 
 let json
-let test= [];
+let test;
 let tt;
 var ts;
 $(document).ready(function () {
@@ -14,15 +14,14 @@ $(document).ready(function () {
     var bookings = $.ajax({
         url: "/showOneBooking",
     }).done(data => {
+        console.log(data);
 
-        console.log(JSON.stringify(data))
-        console.log(data)
-        test= data;
+
         bookingCalendar = flatpickr("#booking_start", {
             disableTime: true,
             mode: "range",
             dateFormat: "Y-m-d",
-            disable:test,
+            disable: [{from : '2020-10-01',to : '2020-10-03'},{from : '2020-10-04',to : '2020-10-04'},] ,
             onChange: [function (selectedDates) {
                 //dateArr = selectedDates.map(date => this.formatDate(date, "d-m-Y"));
 

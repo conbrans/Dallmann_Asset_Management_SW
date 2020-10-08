@@ -27,8 +27,12 @@ let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,mo
     "        gurantee AS guarantee,DEVICE.note, DEVICE.category AS deviceCategory, CATEGORY.category AS categoryDescription,\n" +
     "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,\n" +
     "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
-    "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
-    "        Max(TUEV.timestamp) AS lastTuev, DATE_FORMAT((Max(UVV.timestamp)), '%Y-%m-%dT%TZ') AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
+    "        LOCATION.longitude,latitude,\n" +
+    " DATE_FORMAT((Max(timesstamp)),'%Y-%m-%dT%TZ') AS lastLocationUpdate,\n"+
+    "        DATE_FORMAT((Max(TUEV.timestamp)), '%Y-%m-%dT%TZ') AS lastTuev,\n"+
+    "        DATE_FORMAT((Max(UVV.timestamp)), '%Y-%m-%dT%TZ') AS lastUvv,\n" +
+    "        DATE_FORMAT((Max(REPAIR.timestamp)), '%Y-%m-%dT%TZ') AS" +
+    " lastRepair,\n" +
     "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
     "        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
     "FROM DEVICE\n" +

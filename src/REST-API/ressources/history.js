@@ -29,8 +29,13 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
     "       CATEGORY.category AS categoryDescription, device_status AS deviceStatus,\n" +
     "       DEVICE_STATUS.description AS statusDescription,\n" +
     "       beacon_major AS beaconMajor,beacon_minor AS beaconMinor,\n" +
-    "       LOCATION.longitude,latitude,timesstamp AS lastLocationUpdate, TUEV.timestamp AS lastTuev,\n" +
-    "       UVV.timestamp AS lastUvv, REPAIR.timestamp AS lastRepair, REPAIR.note AS repairNote,\n" +
+    "       LOCATION.longitude,latitude,DATE_FORMAT((timesstamp)," +
+    " '%Y-%m-%dT%TZ') AS" +
+    "       lastLocationUpdate, DATE_FORMAT((TUEV.timestamp), '%Y-%m-%dT%TZ')" +
+    "        AS lastTuev,\n" +
+    "       DATE_FORMAT((UVV.timestamp), '%Y-%m-%dT%TZ') AS lastUvv,\n" +
+    "       DATE_FORMAT((REPAIR.timestamp),'%Y-%m-%dT%TZ') AS  lastRepair, \n" +
+    "       REPAIR.note AS repairNote,\n" +
     "       PROJECT.project_id AS projectId, name AS buildingSite, postcode, city,\n" +
     "       date_of_change AS lastChange\n" +
     "FROM DEVICE_HISTORY\n" +

@@ -43,11 +43,9 @@ router.get("/showBooking", redirect.redirectLogin,
     });
 
 router.get("/showOneBooking",redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
-    console.log(req.session.inventoryNumber);
     fetch.getFetch("/api/borrow/getReservation/"+req.session.inventoryNumber)
-        .then(data =>
-        reformatDate.removeTimeStampForBooking(data).then(data=>{
-            var resultstring = "["
+        .then(data =>{
+            var resultstring = "";
             var from = [];
             var to = [];
             for (let i=0;i<data.length;i++){
@@ -55,11 +53,10 @@ router.get("/showOneBooking",redirect.redirectLogin, authentication.authRight("b
                 to[i] = "to : '"+data[i].loanEnd+"'";
                 resultstring += "{"+from[i] + "," + to[i] + "},";
             }
-            resultstring += "]";
+            res.json(resultstring);
+        }
 
-            res.send(resultstring);}
-
-        ));
+        )
 });
 
 router.get("/showDevices", redirect.redirectLogin,
