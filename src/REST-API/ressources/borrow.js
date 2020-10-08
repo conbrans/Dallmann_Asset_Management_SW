@@ -35,7 +35,7 @@ router.get("/api/borrow/getReservations",(request, response) => {
         "PROJECT.project_id AS projectId, PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
         "FROM BORROWS\n" +
         "INNER JOIN PROJECT\n" +
-        "ON BORROWS.project_id = BORROWS.project_id\n" +
+        "ON BORROWS.project_id = PROJECT.project_id\n" +
         "LEFT JOIN WORKER\n" +
         "ON BORROWS.worker_id = WORKER.worker_id\n" +
         "WHERE PROJECT.project_id = BORROWS.project_id;\n";
@@ -67,8 +67,16 @@ router.get("/api/borrow/getReservations",(request, response) => {
 
 router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
 
-    sql = "SELECT DISTINCT loan_day  AS loanDay ,loan_end  AS loanEnd FROM" +
-        " BORROWS WHERE inventory_number =" + req.params.inventoryNumber +";";
+    sql = "SELECT DISTINCT DATE_FORMAT(loan_day, '%Y-%m-%dT%TZ')  AS loanDay,\n" +
+        " DATE_FORMAT(loan_end, '%Y-%m-%dT%TZ')  AS loanEnd,\n" +
+        " WORKER.firstname, WORKER.surname, PROJECT.project_id AS projectId,\n" +
+        " PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
+        " FROM BORROWS\n" +
+        " INNER JOIN PROJECT\n" +
+        " ON BORROWS.project_id = PROJECT.project_id" +
+        " LEFT JOIN WORKER\n" +
+        " ON BORROWS.worker_id = WORKER.worker_id\n" +
+        " WHERE inventory_number =" + req.params.inventoryNumber +";";
 
 
     connection.query(sql,(err,result)=>{
