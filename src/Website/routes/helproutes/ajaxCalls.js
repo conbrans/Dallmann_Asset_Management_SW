@@ -46,7 +46,13 @@ router.get("/showOneBooking",redirect.redirectLogin, authentication.authRight("b
     console.log(req.session.inventoryNumber);
     fetch.getFetch("/api/borrow/getReservation/"+req.session.inventoryNumber)
         .then(data =>
-        reformatDate.removeTimeStampForBooking(data).then(data=> res.json(data)))
+        reformatDate.removeTimeStampForBooking(data).then(data=>{
+         for (let i=0;i<data.length;i++){
+             var test = Object.values(data[i]);
+         }
+            return res.json(test);
+        })
+        );
 });
 
 router.get("/showDevices", redirect.redirectLogin,
