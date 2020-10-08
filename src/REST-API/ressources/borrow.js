@@ -27,9 +27,10 @@ const router = express();
  * @param request - send information from client within a JSON file
  * @param response - sending the result within a JSON file to client
  */
+
 router.get("/api/borrow/getReservations",(request, response) => {
 
-    sql = "SELECT DISTINCT loan_day AS loanDay,loan_end AS loanEnd," +
+    sql = "SELECT DISTINCT DATE_FORMAT(loan_day, '%Y-%m-%dT%TZ') AS loanDay, DATE_FORMAT(loan_end, '%Y-%m-%dT%TZ') AS loanEnd," +
         " WORKER.firstname, WORKER.surname,\n" +
         "PROJECT.project_id AS projectId, PROJECT.name AS buildingSite, inventory_number AS inventoryNumber\n" +
         "FROM BORROWS\n" +
