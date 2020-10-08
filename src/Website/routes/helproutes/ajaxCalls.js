@@ -57,9 +57,8 @@ router.get("/showOneBooking",redirect.redirectLogin, authentication.authRight("b
             }
             resultstring += "]";
 
-            res.json({data:resultstring});
+            res.send(resultstring);}
 
-            }
         ));
 });
 
