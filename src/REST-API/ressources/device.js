@@ -28,7 +28,7 @@ let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,mo
     "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,\n" +
     "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
     "        LOCATION.longitude,latitude,Max(timesstamp) AS lastLocationUpdate,\n" +
-    "        Max(TUEV.timestamp) AS lastTuev, Max(UVV.timestamp) AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
+    "        Max(TUEV.timestamp) AS lastTuev, DATE_FORMAT((Max(UVV.timestamp)), '%Y-%m-%dT%TZ') AS lastUvv, Max(REPAIR.timestamp) AS lastRepair,\n" +
     "        REPAIR.note AS repairNote, PROJECT.project_id AS projectId,\n" +
     "        name AS buildingSite, street, postcode, city, DEVICE.date_of_change AS lastChange \n" +
     "FROM DEVICE\n" +
@@ -63,7 +63,9 @@ let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,mo
 
 router.get("/api/device/getAllDevices", (request, response) => {
     sql = selectSpecificDevice + " GROUP BY inventoryNumber;"
-
+    let date = new Date();
+    let newdate = date.toISOString();
+    console.log(newdate);
 
     connection.query(sql, function (err, result) {
         if (err) {
@@ -72,6 +74,7 @@ router.get("/api/device/getAllDevices", (request, response) => {
             return;
         }
         console.log('GetAllDevices.Connection established');
+
         response.json(result);
     });
 
@@ -291,7 +294,7 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
     sql = "INSERT INTO DEVICE (model, serial_number, note, device_status, manufacturer, category) VALUES " +
         "('" + request.body.model + "','" + request.body.serialNumber + "','"
         + request.body.note + "','" + request.body.deviceStatus + "'," +
-        "'" + request.body.manufacturer + "', '" + request.body.category + "');";
+        "'" + request.body.manufacturer + "', '" + request.body.deviceCategory + "');";
 
     //first query: createDevice without dates
     connection.query(sql, function (err) {
