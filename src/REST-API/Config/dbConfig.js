@@ -1,3 +1,10 @@
+/**
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /dbConfig
+ */
+
 const config = {
 
     host: '131.173.64.49',
@@ -9,4 +16,5 @@ const config = {
 
 }
 
+//export of this module
 module.exports = config;

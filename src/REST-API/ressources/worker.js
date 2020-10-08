@@ -1,5 +1,4 @@
 /**
- * author: Kevin Bosse
  * Version 1.0
  * 06.10.2020
  *
@@ -95,7 +94,6 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
         "('"+hashing.secondHashe(request.body.password)+"','"+request.body.eMail+"','"+ request.body.surname+"','"
         +request.body.firstName+"','"+request.body.role+"')";
 
-
     connection.query(sql,function (err)
     {
         if(err){
@@ -117,9 +115,6 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
     console.log(request.body)
 
     connection.query(sql, function (err, result) {
-
-      /*  var string = JSON.stringify(result);
-        var str = string.substring(string.length - 3, string.length - 2); */
 
         let str = Object.values(result[0])[0];
 
@@ -250,9 +245,7 @@ router.post("/api/user/editProfile/:userId", (request, response) => {
 
     })
 });
-//const compare = await bcrypt.compare(hashed, result[0].password);
+//export of this module
 module.exports = router;
-/**
- * Port listener
- */
+
 

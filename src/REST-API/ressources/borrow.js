@@ -1,5 +1,4 @@
 /**
- * author: Kevin Bosse
  * Version 1.0
  * 06.10.2020
  *
@@ -21,8 +20,12 @@ const express = require('express');
 const router = express();
 
 /**
+ * route for getting all borrows out of database
  *
+ * GET
  *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
  */
 router.get("/api/borrow/getReservations",(request, response) => {
 
@@ -47,8 +50,18 @@ router.get("/api/borrow/getReservations",(request, response) => {
         console.log('GetAllDevices.Connection established');
         response.json(result);
     });
-
 });
+
+/**
+ * route for getting specific borrow depending
+ * on the given integer inventoryNumber
+ *
+ * GET
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ * @param inventoryNumber - given inventoryNumber from a specific device
+ */
 
 
 router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
@@ -62,12 +75,9 @@ router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
             console.log('Error connecting to Db');
             return;
         }
-        console.log(result);
         res.json(result);
 
-
     });
-
 })
 
 /**
@@ -77,21 +87,33 @@ router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
 router.post("/api/borrow/createReservation",
     constraint.createReservationConstraints, (request, response) => {
 
-        let loanDay = new Date(request.body.loanDay).toISOString();
-        let loanEnd = new Date(request.body.loanEnd).toISOString();
-
-        // Finds the validation errors in this request and wraps them in an object with handy functions
+        //check if the given information are valid
         const errors = validationResult(request);
         if (!errors.isEmpty()) {
             return response.json(errors.array());
         }
 
+        //converting given dates into needed form
+        let sentLoanDay = new Date(new Date(request.body.loanDay).setHours(+2));
+        let newLoanDay = sentLoanDay.toISOString();
+
+        let sentLoanEnd = new Date(new Date(request.body.loanEnd).setHours(+2));
+        let newLoanEnd = sentLoanEnd.toISOString();
+
+        let today = new Date();
+        let newDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+        let loanDate = new Date(request.body.loanDay);
+        let newLoanDate = loanDate.getFullYear()+'-'+(loanDate.getMonth()+1)+'-'+loanDate.getDate();
+
+
+        //boolean check if there is already a reservation which matches the given dates
         let selectExist = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = "+request.body.inventoryNumber+"" +
-            " AND ((CAST('"+loanDay+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
-            " OR (CAST('"+loanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));"
+            " AND ((CAST('"+newLoanDay+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
+            " OR (CAST('"+newLoanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));"
 
         connection.query(selectExist,function (err,result) {
-
+            //str = 0(there is not) or 1(there is)
             let str = Object.values(result[0])[0];
 
             if (err) {
@@ -102,27 +124,32 @@ router.post("/api/borrow/createReservation",
             } else if (str == "0") {
 
                 let insertBorrows  = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
-                    "('"+loanDay+"','"+loanEnd+"','"+request.body.workerId+"','"
+                    "('"+newLoanDay+"','"+newLoanEnd+"','"+request.body.workerId+"','"
                     +request.body.inventoryNumber+"','" +request.body.projectId+"');";
 
-                connection.query(insertBorrows,function (err)
-                {
-                    if(err){
+                connection.query(insertBorrows,function (err) {
+                    if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
                         console.log('Error connecting to Db');
                         return;
+                    //check if the loan start is at current day
+                    } else if (newDate === newLoanDate) {
+
+                        let updateDevice = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = " + request.body.inventoryNumber + ";";
+
+                        connection.query(updateDevice, function (err) {
+                            if (err) {
+                                response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen."});
+                                console.log('Error connecting to Db');
+                                return;
+                            }
+                        })
                     }
-
-                    let updateDevice = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = "+request.body.inventoryNumber+";";
-
-                    connection.query(updateDevice,function (err) {
-                        if (err) throw err;
-                    })
-                    console.log('Connection established');
+                    //if the reservation was successful a specified message will be sent to client
                     response.json({"Message": "Das Gerät mit der ID: "+request.body.inventoryNumber+" ist refolgreich" +
                             " reserviert worden"});
                 })
-
+              //if reservation was unsuccessful a specified message will be send to client
             } else return response.json({"Message": "Im gewählten Zeitraum ist das Gerät bereits reserviert. Bitte einen " +
                     "anderen Zeitraum wählen!"})
 
@@ -133,12 +160,14 @@ router.post("/api/borrow/createReservation",
 /**
  * route for canceling a reservation
  */
-
 router.delete('/api/borrow/cancelReservation',
     constraint.deleteReservationConstraints, (request, response) => {
 
-        let loanDay = new Date(request.body.loanDay).toISOString();
-        let loanEnd = new Date(request.body.loanEnd).toISOString();
+        let sentLoanDay = new Date(new Date(request.body.loanDay).setHours(+2));
+        let newLoanDay = sentLoanDay.toISOString();
+
+        let sentLoanEnd = new Date(new Date(request.body.loanEnd).setHours(+2));
+        let newLoanEnd = sentLoanEnd.toISOString();
 
         const errors = validationResult(request);
         if (!errors.isEmpty()) {
@@ -158,11 +187,11 @@ router.delete('/api/borrow/cancelReservation',
             } else if (str == "1") {
 
                 let sql2 = "DELETE FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
-                    " AND CAST(loan_day AS DATE) = CAST('" + loanDay + "' AS DATE) AND CAST(loan_end AS DATE) = CAST('" + loanEnd + "' AS DATE);";
+                    " AND CAST(loan_day AS DATE) = CAST('" + newLoanDay + "' AS DATE) AND CAST(loan_end AS DATE) = CAST('" + newLoanEnd + "' AS DATE);";
 
                 let sql3 = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
-                    " AND CURDATE() BETWEEN CAST('" + loanDay + "' AS DATE )" +
-                    " AND CAST('" + loanEnd + "' AS DATE ));"
+                    " AND CURDATE() BETWEEN CAST('" + newLoanDay + "' AS DATE )" +
+                    " AND CAST('" + newLoanEnd + "' AS DATE ));"
 
                 let sql4 = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.body.inventoryNumber + ";";
 
@@ -176,9 +205,6 @@ router.delete('/api/borrow/cancelReservation',
                     connection.query(sql3, function (err, result) {
 
                         let str = Object.values(result[0])[0];
-
-                        /*  var string = JSON.stringify(result);
-                          var str = string.substring(string.length - 3, string.length - 2); */
 
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -212,8 +238,6 @@ router.delete('/api/borrow/cancelReservation',
         })
     });
 
-/**
- * Port listener
- */
 
+//export of this module
 module.exports = router

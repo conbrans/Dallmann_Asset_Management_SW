@@ -1,8 +1,16 @@
+/**
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /connection
+ */
+
 const mysql = require('mysql');
 const config = require('../Config/dbConfig')
 
 var pool = mysql.createPool(config);
 
+//export of this module
 module.exports = {
     query: function(){
         var sql_args = [];

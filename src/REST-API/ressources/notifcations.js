@@ -1,5 +1,4 @@
 /**
- * author: Constantin Brans
  * Version 1.0
  * 06.10.2020
  *
@@ -98,7 +97,7 @@ router.get("/api/notification/maintenance", function (request,response){
     });
 
 });
-
+//export of this module
 module.exports = router;
 
 

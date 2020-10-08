@@ -1,3 +1,10 @@
+/**
+ * Version 1.0
+ * 06.10.2020
+ *
+ * @module /logger
+ */
+
 const morgan = require('morgan');
 const express = require('express');
 const rfs = require('rotating-file-stream');
@@ -20,14 +27,8 @@ const generator = (time, index) => {
 
 var requestLogStream = rfs.createStream(generator, {
 
-
     interval: '5d',
     path : '../ressources/logFiles/'
-    /**
-     * PATH gewechselt, so dass es für alle funktioniert ;)
-     */
-    //path:
-    // path.join('C:/Users/bvb-k/IdeaProjects/Dallmann_Asset_Management_SW/src/REST-API/ressources/logFiles/')
 
 })
 
@@ -47,6 +48,7 @@ router.logRequest = morgan('UUID\: :id :ID TIMESTAMP\: :date METHOD\: :method UR
     next()
 }
 
+//export of this module
 module.exports = router;
 
 
@@ -69,19 +71,6 @@ module.exports = router;
 
 
 
-/* router.logError = morgan(function (tokens, request, response) {
-    return [
-        tokens.method(request, response),
-        tokens.url(request, response),
-        tokens.status(request, response),
-        tokens.res(request, response, 'content-length'), '-',
-        tokens['response-time'](request, response), 'ms'
-    ].join(' ')
-});
-
-router.test = morgan('dev', {
-
-}) */
 
 
 

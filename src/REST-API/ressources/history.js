@@ -1,5 +1,4 @@
 /**
- * author: Kevin Bosse
  * Version 1.0
  * 06.10.2020
  *

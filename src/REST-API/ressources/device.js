@@ -1,5 +1,4 @@
 /**
- * author: Kevin Bosse
  * Version 1.0
  * 06.10.2020
  *
@@ -339,14 +338,15 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
                 } catch (error) {
 
                 }
-
+            //check if there is a given uvv date
             } if (request.body.lastUvv !== "") {
 
                 try {
-
+                    //converting given date into right form
                     let sentUvv = new Date(new Date(request.body.lastUvv).setHours(+2));
                     let newUvv = sentUvv.toISOString();
 
+                    //inserting given data into uvv
                     sqlUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
                         "(" + str + ")," +
                         "('" + newUvv + "')," +
@@ -358,7 +358,7 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
                             console.log('Error connecting.sqlUvv to Db');
                             return;
                         }
-
+                        //setting the right uvv id for the created device
                         sqlUpdateUvv = "UPDATE DEVICE\n" +
 
                             "INNER JOIN UVV ON DEVICE.inventory_number = UVV.inventory_number\n" +
@@ -382,6 +382,7 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
 
                 }
 
+            //same as uvv
             } if (request.body.lastTuev !== "") {
 
                 try {
@@ -424,6 +425,7 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
 
                 }
 
+            //same as uvv
             } if (request.body.lastRepair !== "") {
 
                 try {
@@ -471,23 +473,33 @@ router.post('/api/device/createDevice',constraint.deviceConstraints, (request, r
 
 
 /**
- * route for getting all users out of database
+ * route for updating a specific device depending on the given inventoryNumber
+ *
+ * PUT {serialNumber, note, deviceStatus, model, manufacturer, lastUvv, lastTuev,
+ * lastRepair, guarantee, beaconMinor, beaconMajor, category}
+ *
+ * request validation, updateDevice without dates, check if dates are given,
+ * insertInto the dates tables, update the date columns in table device
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ * @param inventoryNumber - given inventoryNumber from client for device
  */
-//in Website enthalten
-router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
 
+router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstraints, (request, response) => {
+    //check if there is a device with the given inventoryNumber
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ");";
 
     connection.query(sql, function (err, result) {
-
+        //str = 0 (there is no device) or 1 (there is a device)
         let str = Object.values(result[0])[0];
 
         if (err) {
-            response.json({"Message": "Test"});
             console.log('Error connecting to Db');
             return;
         } else if (str == "1") {
 
+            //validating the information which are sent by client
             const errors = validationResult(request);
             console.log(errors);
             if (!errors.isEmpty()) {
@@ -504,14 +516,15 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                     console.log('Error connecting to Db');
                     return;
-
+                //check if there is a given uvv date
                 } if (request.body.lastUvv !== "") {
 
                     try {
-
+                        //converting the given uvv date into needed form
                         let sentUvv = new Date(new Date(request.body.lastUvv).setHours(+2));
                         let newUvv = sentUvv.toISOString();
 
+                        //insert the given uvv information in table uvv
                         updateUvv = "INSERT INTO UVV (inventory_number, timestamp, status) VALUES (" +
                             "(" + request.params.inventoryNumber + ")," +
                             "('" + newUvv + "')," +
@@ -523,7 +536,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                                 console.log('Error connecting to Db');
                                 return;
                             }
-
+                            //setting the right uvv_id from the inserted uvv data
                             sqlUpdateUvv = "UPDATE DEVICE\n" +
 
                                 "INNER JOIN UVV ON DEVICE.inventory_number = UVV.inventory_number\n" +
@@ -549,7 +562,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     } catch (error) {
 
                     }
-
+                //same as uvv
                 } if (request.body.lastTuev !== "") {
 
                     try {
@@ -594,7 +607,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     } catch (error) {
 
                     }
-
+                //same as uvv
                 } if (request.body.lastRepair !== "") {
 
                     try {
@@ -639,7 +652,7 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     } catch (error) {
 
                     }
-
+                //same as uvv
                 } if (request.body.guarantee !== "") {
 
                     try {
@@ -663,12 +676,12 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
                     } catch (error) {
 
                     }
-
+                //if the specific device is updated a message will be sent to client
                 } response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich geupdatet"});
             })
 
         }
-
+        //if there is no device with the given inventoyNumber a message will be sent to client
         else return response.json({"Message": "Ein Gerät mit der ID: " + request.params.inventoryNumber + " ist nicht vorhanden."})
 
     })
@@ -676,15 +689,23 @@ router.put("/api/device/updateDevice/:inventoryNumber", constraint.deviceConstra
 });
 
 /**
- * route for getting all users out of database
+ * route for deleting a specific device depending on the given inventoryNumber
+ *
+ * DELETE
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ * @param inventoryNumber - given inventoryNumber from client for device
  */
 
 router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, response) {
 
+    //boolean check if there is a device with the given inventoryNumber
     sql = "SELECT EXISTS(SELECT * FROM DEVICE WHERE inventory_number = "+ request.params.inventoryNumber +");";
 
     connection.query(sql, function (err, result) {
 
+        //str = 0 or 1
         let str = Object.values(result[0])[0];
 
         if (err) {
@@ -708,6 +729,8 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
 
             deleteDevice = "DELETE FROM DEVICE WHERE inventory_number = " + request.params.inventoryNumber + ";";
 
+            /*sets the id of latest_tuev, latest_position, latest_repair and latest_uvv
+             equals NULL (because of foreign key constraints) to delete a device */
             connection.query(updateDevice, function (err) {
                 if (err) {
                     response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -716,6 +739,7 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
                 }
                 console.log('DeleteDevice.Connection established');
 
+                /* deleting the reservations which are matched to the specific device */
                 connection.query(deleteBorrows, function (err) {
                     if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -725,6 +749,7 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
 
                 })
 
+                /* deleting the tuev dates which are matched to the specific device */
                 connection.query(deleteTuev, function (err) {
                     if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -733,7 +758,7 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
                     }
 
                 })
-
+                /* deleting the uvv dates  which are matched to the specific device */
                 connection.query(deleteUvv, function (err) {
                     if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -742,7 +767,7 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
                     }
 
                 })
-
+                /* deleting the repair dates which are matched to the specific device */
                 connection.query(deleteRepair, function (err) {
                     if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -751,37 +776,34 @@ router.delete('/api/device/deleteDevice/:inventoryNumber', function (request, re
                     }
 
                 })
-
+                /* deleting the specific device */
                 connection.query(deleteDevice, function (err) {
                     if (err) {
                         response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                         console.log('Error connecting.deleteDeviceHistory to Db');
                         return;
                     }
-
+                    /* deleting the history of the specific device */
                     connection.query(deleteDeviceHistory, function (err) {
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                             console.log('Error connecting.deleteRepair to Db');
                             return;
                         }
-
                     })
 
-
+                    //If the specific device is deleted a message will be returned
                     response.json({"Message": "Gerät mit der ID: " + request.params.inventoryNumber + " wurde erfolgreich gelöscht"});
+
                 })
-
             })
-
         }
 
+        //If there is no device with the given inventoryNumber a message will be returned
         else return response.json({"Message": "Ein Gerät mit der ID: " + request.params.inventoryNumber + " ist nicht vorhanden."})
 
     })
 });
 
+//export of this module
 module.exports = router;
-/**
- * Port listener
- */

@@ -24,9 +24,16 @@ const workerUpdateConstraints = [
 
 const createReservationConstraints = [
 
-    body('workerId').isInt().withMessage(''),
-    body('inventoryNumber').isInt(),
-    body('projectId').isInt()
+    body('workerId').isInt().withMessage('Die workerId muss vom Typ Integer sein.'),
+    body('inventoryNumber').notEmpty()
+        .withMessage('Die Inventarnummer muss angegeben werden.').isInt()
+        .withMessage('Die Inventarnummer muss sechsstellig und vom Typ Integer,' +
+            ' sein.'),
+    body('loanDay').notEmpty().withMessage('Das Ausleihdatum' +
+        ' muss angegeben werden.'),
+    body('loanEnd').notEmpty().withMessage('Das Ausleihenddatum' +
+        ' muss angegeben werden.'),
+    body('projectId').isInt().withMessage('Die projectID muss vom Typ Integer sein.')
 
 ]
 
