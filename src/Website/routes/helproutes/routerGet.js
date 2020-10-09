@@ -119,7 +119,7 @@ router.get("/App-FAQ",
 	});
 router.get("/Traccar-FAQ",
 	(req, res) => {
-		res.status(200).render("FAQWebsite.ejs", {
+		res.status(200).render("FAQTraccar.ejs", {
 			username: req.session.username,
 			role: req.session.role,
 			rights: req.session.rights,

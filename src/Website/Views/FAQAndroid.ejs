@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FAQ</title>
+    <title>FAQ-Android</title>
 
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -10,13 +10,14 @@
           href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/faq.css">
+    <link rel="stylesheet" href="css/FAQAndroid.css">
     <script src="javascript/header.js"></script>
 </head>
 <body>
-<% if (!rights === undefined){%>
-<!-- NavigationBar Start -->
-<%- include('../Views/general/header.ejs'); -%>
-<!--Nav Ende -->
+<% if (!rights === undefined){ %>
+    <!-- NavigationBar Start -->
+    <%- include('../Views/general/header.ejs'); -%>
+    <!--Nav Ende -->
 <% } %>
 <div class="container">
 
@@ -111,33 +112,43 @@
         </div>
         <div class="toggle-inner">
             <h5> Geräte abrufen</h5>
-            <p>Um eine Liste mit allen existierenden Geräten zu bekommen, gehen
+            <p>Um eine Liste mit allen existierenden Geräten zu bekommen,
+                gehen
                 Sie auf die Schaltfläche „Inventar anzeigen“.
             </p>
-            <h5>Geräte suchen</h5>
-            <p>
-                Für die Suche von Geräten haben Sie mehrere Möglichkeiten.
-            </p>
-            <p>
-                Über die Schaltfläche „Scannen" gelangen Sie auf eine Oberfläche
-                in der sich, zum Einlesen eines QR Codes, die Kamera öffnet.
-                Diese richten Sie auf den QR Code am Gerät und bei erfolgreichem
-                Einlesen, werden Sie auf die jeweilige Geräte-Karte des
-                eingescannten Gerätes weitergeleitet.
-            </p>
-            <p>
-                Die zweite Möglichkeit ist, unter der Schaltfläche „Inventar
-                anzeigen" über die oben befindliche Suchzeile, ein Gerät mit
-                Hilfe der Inventarnummer zu suchen. Außerdem können Sie hier
-                Geräte über den Status, die Kategorie, den Hersteller oder auch
-                das Modell finden. Hierfür geben Sie einfach die gewünschte
-                Suchanfrage als Klartext in die Suchzeile ein.
-            </p>
-            <p>
-                Eine weitere Option ist es, nach Start- und Enddatum des TÜV
-                Termins oder nach Status, über die Filterfunktion, welche oben
-                rechts über das Menü zu erreichen ist, zu filtern.
-            </p>
+            <div id="firstPicture">
+                <img class="imageright" src="img/FAQApp/firstPicture.png"
+                     alt="Menü">
+                <h5>Geräte suchen</h5>
+                <p>
+                    Für die Suche von Geräten haben Sie mehrere Möglichkeiten.
+                </p>
+                <p>
+                    Über die Schaltfläche „Scannen" gelangen Sie auf eine
+                    Oberfläche
+                    in der sich, zum Einlesen eines QR Codes, die Kamera öffnet.
+                    Diese richten Sie auf den QR Code am Gerät und bei
+                    erfolgreichem
+                    Einlesen, werden Sie auf die jeweilige Geräte-Karte des
+                    eingescannten Gerätes weitergeleitet.
+                </p>
+                <p>
+                    Die zweite Möglichkeit ist, unter der Schaltfläche „Inventar
+                    anzeigen" über die oben befindliche Suchzeile, ein Gerät mit
+                    Hilfe der Inventarnummer zu suchen. Außerdem können Sie hier
+                    Geräte über den Status, die Kategorie, den Hersteller oder
+                    auch
+                    das Modell finden. Hierfür geben Sie einfach die gewünschte
+                    Suchanfrage als Klartext in die Suchzeile ein.
+                </p>
+                <p>
+                    Eine weitere Option ist es, nach Start- und Enddatum des TÜV
+                    Termins oder nach Status, über die Filterfunktion, welche
+                    oben
+                    rechts über das Menü zu erreichen ist, zu filtern.
+                </p>
+
+            </div>
             <h5>Geräte hinzufügen</h5>
             <p>
                 Um Geräte hinzuzufügen gehen Sie im Hauptmenü auf „Geräte
@@ -145,21 +156,34 @@
                 Herstelle, oder Kategorie anzugeben. Anschließend drücken Sie
                 speichern und das neue Gerät wird in der Datenbank gespeichert.
             </p>
-            <h5>Geräte reservieren</h5>
-            <p>
-                Die Reservierung von Geräten ist über die jeweilige Geräte-Karte
-                möglich. Dafür gehen Sie unten rechts auf das Feld
-                „Reservieren“. Hier müssen Sie neben dem Start und Enddatum der
-                Reservierung, die Baustelle, auf der das Gerät benötigt wird,
-                angeben.
-            </p>
-            <h5>Gerät bearbeiten</h5>
-            <p>
-                Um ein bestimmtes Gerät zu bearbeiten, können Sie in der
-                Geräte-Karte in der Toolbar den Menüpunkt „Bearbeiten“
-                auswählen. Nun können Sie in die einzelnen Werte des Gerätes
-                verändern.
-            </p>
+            <div id="secondPicture">
+                <img class="imageright"
+                     src="img/FAQApp/secondPicture.png" alt="Gerät reservieren">
+
+                <h5>Geräte reservieren</h5>
+                <p>
+                    Die Reservierung von Geräten ist über die jeweilige
+                    Geräte-Karte
+                    möglich. Dafür gehen Sie unten rechts auf das Feld
+                    „Reservieren“. Hier müssen Sie neben dem Start und Enddatum
+                    der
+                    Reservierung, die Baustelle, auf der das Gerät benötigt
+                    wird,
+                    angeben.
+                </p>
+            </div>
+            <div id="thirdPicture">
+                <img class="imageleft" src="img/FAQApp/thirdPicture.png"
+                     alt="Gerät bearbeiten">
+                <h5>Gerät bearbeiten</h5>
+                <p>
+                    Um ein bestimmtes Gerät zu bearbeiten, können Sie in der
+                    Geräte-Karte in der Toolbar den Menüpunkt „Bearbeiten“
+                    auswählen. Nun können Sie in die einzelnen Werte des Gerätes
+                    verändern.
+                </p>
+
+            </div>
             <h5>Geräte Standort abrufen</h5>
             <p>
                 Um den aktuellen Gerätestandort abzurufen, öffnen Sie die
@@ -192,7 +216,7 @@
     </div><!-- END OF TOGGLE -->
 
 
-    <div class="toggle" id="booking">
+    <div class="toggle" id="userManagement">
         <div class="toggle-title ">
             <h3>
                 <i></i>
@@ -200,16 +224,22 @@
             </h3>
         </div>
         <div class="toggle-inner">
-            <p>Für die Benutzerverwaltung sind Admin-Rechte erforderlich.</p>
-            <p>Gehen Sie im Hauptmenü auf Einstellungen, anschließend auf
-                "Nutzer bearbeiten". Dort wird eine Liste von allen Benutzern
-                angezeigt. In der oben angezeigten Suchzeile können Sie nach
-                Vornamen, Nachnamen, Rollen oder der Benutzer ID suchen. </p>
-            <p>Wenn Sie auf den gewünschten Benutzer klicken, sehen Sie die
-                Daten und Rechte des Nutzers. Um den Benutzer zu bearbeiten,
-                gehen Sie oben rechts auf das Menü und anschließend auf
-                „Bearbeiten“. Dort ist es Ihnen auch ermöglicht den Benutzer
-                über „Löschen“ zu entfernen.</p>
+            <div id="fourthPicture">
+                <p>Für die Benutzerverwaltung sind Admin-Rechte
+                    erforderlich.</p>
+                <p>Gehen Sie im Hauptmenü auf Einstellungen, anschließend auf
+                    "Nutzer bearbeiten". Dort wird eine Liste von allen
+                    Benutzern angezeigt.
+                    In der oben angezeigten Suchzeile können Sie nach
+                    Vornamen, Nachnamen, Rollen oder der Benutzer ID
+                    suchen. </p>
+                <p>Wenn Sie auf den gewünschten Benutzer klicken, sehen Sie die
+                    Daten und Rechte des Nutzers. Um den Benutzer zu bearbeiten,
+                    gehen Sie oben rechts auf das Menü und anschließend auf
+                    „Bearbeiten“. Dort ist es Ihnen auch ermöglicht den Benutzer
+                    über „Löschen“ zu entfernen.</p>
+            </div>
+
         </div>
     </div><!-- END OF TOGGLE -->
 
@@ -241,7 +271,7 @@
     </div><!-- END OF TOGGLE -->
 
 
-    <div class="toggle" id="userProfil">
+    <div class="toggle" id="errormessage">
         <div class="toggle-title ">
             <h3>
                 <i></i>
@@ -267,58 +297,87 @@
         </div>
     </div><!-- END OF TOGGLE -->
 
-    <div class="toggle" id="userProfil">
+    <div class="toggle" id="installation">
         <div class="toggle-title ">
             <h3>
                 <i></i>
-                <span class="title-name">Installation</span>
+                <span class="title-name">Installierung</span>
             </h3>
         </div>
         <div class="toggle-inner">
+
             <p>
                 Dieser Teil des Handbuch richtet sich an den Verantwortlichen
                 der Applikation. Es werden die Schritte von dem Projektbezugs
                 aus Github bis zur erfolgreichen Installierung der Applikation
                 erläutert.
             </p>
-            <h6>1. Schritt: Anlegen des Projektes</h6>
-            <p>Für die Erstellung der Applikation wurde Android Studio
-                verwendet. Mit dem am Projektende übergebenen Daten können Sie
-                sich das Projekt aus dem Git Repository anlegen. Dafür nehmen
-                Sie sich den URL Text und wählen in Android Studio „File“ ->
-                „New“ -> „Project from Version Control“. Dort können Sie die URL
-                einfügen und das Projekt anlegen. </p>
-            <h6>2. Erstellung der Applikation(APK)</h6>
-            <p>Für die Erstellung der APK wählen Sie oben in Android Studio
-                „Build“ aus. Je nachdem ob das eine APK für Testzwecke sein,
-                wählen Sie „Build Bundel(s) / APK(s)“ -> „APK“ aus. Diese Form
-                der APK ist nur für Testzwecke geeignet. Eine Installation auf
-                einem Gerät könnte eventuell nicht funktionieren.</p>
-            <p>
-                Eine funktionstüchtige APK erstellen Sie unter „Generate Signed
-                Bundle/ APK..“. Dort wählen Sie dann „APK“ aus und bestätigen
-                mit „Next“. Unter dem Punkt „Key store path“ wählen Sie „Create
-                new…“.
-            </p>
-            <p>
-                In dem neuen Fenster befindet sich wieder der Punkt „Key store
-                path“, wo Sie einen sicheren Ort auswählen müssen. Danach wählen
-                Sie ein sicheres Passwort und bestätigen diesen.
-            </p>
-            <p>
-                Im „Alias“ wählen Sie einen Namen für den Key aus. Das Passwort
-                des Keys muss ein anderen sicheren Passwort sein als das von dem
-                Key Store Path. Die Validation kann bei 25 Jahren bleiben. Das
-                Zertifikat können Sie wie im Bild mit eigenen Informationen
-                ausfüllen.
-                Beim Bestätigen des Fensters kommen Sie auf das vorherige
-                Fenster. Dort betätigen Sie nun „Next“.
-            </p>
-            <p>
-                Im nächsten Fenster wählen Sie nun unten „V1 (Jar Signature) und
-                (V2 Full APK SIgnature) aus und bestätigen mit „Finish“. Es
-                wurde eine APK erstellt.
-            </p>
+            <div id="twoPictures">
+                <div align="center">
+                    <img src="img/FAQAPP/installation_one.png"
+                         id="firstInstallation" alt="Erstellung der
+                         Applikation"></div>
+
+
+                <h6>1. Schritt: Anlegen des Projektes</h6>
+                <p>Für die Erstellung der Applikation wurde Android Studio
+                    verwendet. Mit dem am Projektende übergebenen Daten können
+                    Sie
+                    sich das Projekt aus dem Git Repository anlegen. Dafür
+                    nehmen
+                    Sie sich den URL Text und wählen in Android Studio „File“ ->
+                    „New“ -> „Project from Version Control“. Dort können Sie die
+                    URL
+                    einfügen und das Projekt anlegen. </p>
+                <h6>2. Erstellung der Applikation(APK)</h6>
+
+                <p>Für die Erstellung der APK wählen Sie oben in Android Studio
+                    „Build“ aus. Je nachdem ob das eine APK für Testzwecke sein,
+                    wählen Sie „Build Bundel(s) / APK(s)“ -> „APK“ aus. Diese
+                    Form
+                    der APK ist nur für Testzwecke geeignet. Eine Installation
+                    auf
+                    einem Gerät könnte eventuell nicht funktionieren.</p>
+                <p>
+                    Eine funktionstüchtige APK erstellen Sie unter „Generate
+                    Signed
+                    Bundle/ APK..“. Dort wählen Sie dann „APK“ aus und
+                    bestätigen
+                    mit „Next“. Unter dem Punkt „Key store path“ wählen Sie
+                    „Create
+                    new…“.
+                </p>
+                <p>
+                    In dem neuen Fenster befindet sich wieder der Punkt „Key
+                    store
+                    path“, wo Sie einen sicheren Ort auswählen müssen. Danach
+                    wählen
+                    Sie ein sicheres Passwort und bestätigen diesen.
+                </p>
+                <p>
+                    Im „Alias“ wählen Sie einen Namen für den Key aus. Das
+                    Passwort
+                    des Keys muss ein anderen sicheren Passwort sein als das von
+                    dem
+                    Key Store Path. Die Validation kann bei 25 Jahren bleiben.
+                    Das
+                    Zertifikat können Sie wie im Bild mit eigenen Informationen
+                    ausfüllen.
+                    Beim Bestätigen des Fensters kommen Sie auf das vorherige
+                    Fenster. Dort betätigen Sie nun „Next“.
+
+                </p>
+                <p>
+                    Im nächsten Fenster wählen Sie nun unten „V1 (Jar Signature)
+                    und
+                    (V2 Full APK SIgnature) aus und bestätigen mit „Finish“. Es
+                    wurde eine APK erstellt.
+                </p>
+                <div align="center">
+                <img src="img/FAQAPP/installation_two.png"
+                     alt="Veranschaulichung wo die Haken gesetzt werden müssen">
+                </div>
+            </div>
             <h6>3.6 Installation der Applikation</h6>
             <p>
                 Für die Installation muss die APK sich auf dem Smartphone
@@ -349,6 +408,12 @@
         </div>
     </div>
 </div>
+
+<% if (!rights === undefined){ %>
+    <!-- NavigationBar Start -->
+    <%- include('../Views/general/footer.ejs'); -%>
+    <!--Nav Ende -->
+<% } %>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 

@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('./helproutes/fetch');
 const authentication = require('./helproutes/rightAuthentication');
+const redirect = require('./helproutes/redirect');
 
 router.post("/booking",
 	authentication.authRight("booking_device"), (req, res) => {
@@ -17,14 +18,11 @@ router.post("/booking",
 		});
 	});
 
-router.post("/book", authentication.authRight("booking_device"), (req, res) => {
-	let tobetransformed = req.body.loanEndloanDay;
-
+router.post("/book", redirect.redirectLogin,  authentication.authRight("booking_device"), (req, res) => {
 	req.body.workerId = req.session.userID;
-	req.body.projectId = "test";
-	console.log(req.body);
-	console.log(tobetransformed);
-
+	fetch.postFetch("/api/borrow/createReservation", req).then(()=>{
+		console.log("TEST");
+	});
 });
 
 module.exports = router;

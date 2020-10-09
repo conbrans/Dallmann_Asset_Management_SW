@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <link rel="stylesheet" href="css/faq.css">
+    <link rel="stylesheet" href="css/FAQTraccar.css">
+    <script src="javascript/header.js"></script>
+</head>
+<body>
+<!-- NavigationBar Start -->
+<%- include('../Views/general/header.ejs'); -%>
+<!--Nav Ende -->
+
+<div class="container">
+
+    <section>
+        <h1>FREQUENTLY ASKED QUESTION<span>S</span></h1>
+    </section>
+    <div class="toggle" id="infos">
+        <div class="toggle-title">
+            <h3>
+                <i></i>
+                <span class="title-name">Allgemeines</span>
+            </h3>
+        </div>
+
+        <div class="toggle-inner">
+            <p>
+                Diese Softwarelösung ist im Rahmen des
+                Softwareentwicklungsprojektes der Hochschule Osnabrück Campus
+                Lingen und dem Unternehmen Hermann Dallmann Straßen- und Tiefbau
+                GmbH & Co. KG entstanden. Dies ist das Benutzerhandbuch der
+                Tracking-Software ,
+                es soll dem Nutzer Hilfestellung bei
+                auftretenden Problemen geben und die erste Anlaufstelle sein,
+                wenn sich der Benutzer mit den Funktionen der Anwendung
+                auseinandersetzen möchte.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="toggle" id="infos">
+        <div class="toggle-title">
+            <h3>
+                <i></i>
+                <span class="title-name">Einrichten von BLUE COIN ID
+                    Beacon</span>
+            </h3>
+        </div>
+
+        <div class="toggle-inner">
+            <p>
+                Der BLUE COIN ID Beacon wird von Teltonika hergestellt und über
+                die Applikation Device Manager Mobile eingerichtet. Folgende
+                kann <a href="https://play.google
+                .com/store/apps/details?id=com.ela.mobileapp
+                .elamobileapp&hl=en_US">hier</a> heruntergeladen werden. Das
+                Handy benötigt zum
+                Einrichten der Beacons einen NFC-Reader zum Beschreiben des
+                Beacons.
+            </p>
+        </div>
+    </div>
+
+    <div class="toggle" id="infos">
+        <div class="toggle-title">
+            <h3>
+                <i></i>
+                <span class="title-name">Applikation Device Manager Mobile
+                    Beacon</span>
+            </h3>
+        </div>
+
+        <div class="toggle-inner">
+            <ol>
+                <li>Der einzurichtende Beacon wird nun über den NFC-Reader
+                    eingelesen. War dies Vorgang erfolgreich wird der Datalogger
+                    und BLE-Security freigeschaltet. Falls nicht wiederhole
+                    diesen Schritt.
+                </li>
+                <li>Über die Quick actions kann der Beacon aktiviert oder
+                    deaktiviert werden.
+                </li>
+                <li>Die Tag Parameter sollten nun mit Daten gefüllt sein.</li>
+                <li>Der Advertising Name ist der Name, welcher im Bluetooth
+                    Packet angezeigt wird,
+                </li>
+                <li>Die TAG Enable State, zeigt ob der Tag momentan aktiviert
+                    oder deaktiviert ist.
+                </li>
+                <li>Die TAG Power, definiert die Beacon genutzte Leistung.</li>
+                <li>Das Tag Format, beschreibt das Beacon Format</li>
+                <li>Die BLE Emit Period, ist das Zeitintervall in dem der Beacon
+                    sendet zwischen 1 und 10 Sekunden.
+                </li>
+                <li>Die Manufacturer Data Mode und ID müssen nicht eingerichtet
+                    werden.
+                </li>
+                <li>Unter iBeacon kann die Identität des Beacons verändert
+                    werden.
+                </li>
+                <li>Unter BLE Security kann ein Password für den Beacon gesetzt
+                    werden, dies verhindert unerlaubten Zugriff auf den Beacon.
+                </li>
+
+                <div id="images">
+                    <table>
+                        <tr>
+                            <td>
+                                <img
+                                        src="img/FAQTracking/firstPicture.jpg"
+                                        width="200px" height="350px"
+                                        alt="Einlesen des Beacon">
+                            </td>
+                            <td><img
+                                        src="img/FAQTracking/secondPicture.jpg"
+                                        width="200px" height="350px" alt="Tag
+                                         Parameter">
+                            </td>
+                            <td><img
+                                        src="img/FAQTracking/thirdPicture.jpg"
+                                        width="200px" height="350px" alt="Tag
+                                         Parameters iBeacon">
+                            </td>
+                            <td><img
+                                        src="img/FAQTracking/fourthPicture.jpg"
+                                        width="200px" height="350px"
+                                        alt="Password">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </ol>
+        </div>
+    </div>
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+</script>
+<script src="javascript/faQ.js">
+</script>
+</html>

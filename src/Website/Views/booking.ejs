@@ -37,7 +37,7 @@
 <main>
     <br>
     <br>
-    <form method="post" action="/getBooking">
+    <form>
         <div id="form">
             <% if (inventoryNumber === ""){ %>
                 <h3>Gerät reservieren: </h3>
@@ -72,9 +72,10 @@
                             <div class="col">
 
                                 <div class="md-form mt-0">
-                                    <label for="deviceNumber">Gerätenummer:</label>
+                                    <label
+                                            for="inventoryNumber">Gerätenummer:</label>
                                     <input type="number" class="form-control"
-                                           id="deviceNumber"
+                                           id="inventoryNumber"
                                            name="inventoryNumber"
                                            value="<%= inventoryNumber %>"
                                            readonly>
@@ -85,22 +86,7 @@
                     </div>
 
                 <% } %>
-                <div class="form-group">
 
-                    <div class="form-row">
-
-                        <div class="col">
-
-                            <div class="md-form mt-0">
-                                <label for="projectId">ProjectID:</label>
-                                <input type="number" class="form-control"
-                                       id="projectId" name="projectId"
-                                       value="ProjectID>">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="form-group">
 
                     <div class="form-row">
@@ -113,7 +99,6 @@
                                 </label>
                                 <input type="text" class="form-control"
                                        id="booking_start" name="loandEndloanDay"
-                                       min=""
                                        max="<%= maxDate %>" required>
 
                             </div>
@@ -121,8 +106,25 @@
                     </div>
                 </div>
 
-                <button type="submit" id="submit"
-                        class="btn btn-outline-primary">
+                    <div class="form-group">
+
+                        <div class="form-row">
+
+                            <div class="col">
+
+                                <div class="md-form mt-0">
+                                    <label for="projectId">ProjectID:</label>
+                                    <input type="number" class="form-control"
+                                           id="projectId" name="projectId"
+                                           value="ProjectID>">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <button type="button" id="submit"
+                        class="btn btn-outline-primary" onclick="getSelectedDates()">
                     Reservieren
                     <i class="far fa-calendar-plus"></i></button>
             </form>

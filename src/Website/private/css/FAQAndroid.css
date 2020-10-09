@@ -1,0 +1,19 @@
+.imageright{
+	float: right;
+	width: 200px;
+	height: 350px;
+	border: 1px solid black;
+}
+
+.imageleft{
+	float: left;
+	width: 200px;
+	height: 350px;
+	border: 1px solid black;
+	margin-right: 2%;
+}
+
+#firstInstallation{
+	margin-bottom: 2%;
+	align-items : center;
+}
