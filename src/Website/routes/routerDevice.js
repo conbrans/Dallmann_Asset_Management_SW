@@ -9,32 +9,32 @@ const redirect = require('./helproutes/redirect');
 const reformatDate = require('./helproutes/reformatDate');
 
 router.post("/addDevice", redirect.redirectLogin,
-    authentication.authRight("add_Device"), (req, res) => {
+	authentication.authRight("add_Device"), (req, res) => {
 
-        fetch.postFetch("/api/device/createDevice", req)
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
+		fetch.postFetch("/api/device/createDevice", req)
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+	});
 
 router.post("/updateDevice", redirect.redirectLogin,
-    authentication.authRight("edit_Device"), (req, res) => {
-        fetch.putFetch("/api/device/updateDevice/" + req.body.inventoryNumber, req)
-            .then(() => res.redirect("back"))
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
+	authentication.authRight("edit_Device"), (req, res) => {
+		fetch.putFetch("/api/device/updateDevice/" + req.body.inventoryNumber, req)
+			.then(() => res.redirect("back"))
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+	});
 
 router.post("/deleteDevice", redirect.redirectLogin, authentication.authRight("delete_Device"), (req, res) => {
-    console.log(req.session.inventoryNumber);
-    fetch.deleteFetch("/api/device/deleteDevice/" +
-        req.session.inventoryNumber, req)
+	console.log(req.session.inventoryNumber);
+	fetch.deleteFetch("/api/device/deleteDevice/" +
+		req.session.inventoryNumber, req)
 
-        .then(() => res.redirect("/devices"))
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+		.then(() => res.redirect("/devices"))
+		.catch((error) => {
+			console.error('Error:', error);
+		});
 });
 
 module.exports = router;

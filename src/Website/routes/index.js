@@ -3,7 +3,7 @@
  */
 const app = require('../../app');
 const fs = require('fs');
-const https =require('https');
+const https = require('https');
 const path = require('path');
 
 /**
@@ -45,7 +45,7 @@ const restBorrow = require('../../REST-API/ressources/borrow');
 const restDevice = require('../../REST-API/ressources/device');
 const restHistory = require('../../REST-API/ressources/history');
 const restWorker = require('../../REST-API/ressources/worker');
-const restLogin= require('../../REST-API/login/loginApp');
+const restLogin = require('../../REST-API/login/loginApp');
 const restLogger = require('../../REST-API/middelwareFunctions/logger');
 const restNotification = require('../../REST-API/ressources/notifcations');
 const restCommission = require('../../REST-API/ressources/commission');
@@ -71,7 +71,7 @@ app.use(restCommission);
 ));*/
 
 app.listen(3000, () => console.log(
-    "listening on: " +
-    `http://localhost:3000`
+	"listening on: " +
+	`http://localhost:3000`
 ));
 module.exports = app;

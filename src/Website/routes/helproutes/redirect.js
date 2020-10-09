@@ -6,12 +6,12 @@
  * @param next
  */
 const redirectLogin = (req, res, next) => {
-    if (!req.session.userID) {
-        res.status(403).redirect("/");
-    } else {
-        next()
-    }
-}
+	if (!req.session.userID) {
+		res.status(403).redirect("/");
+	} else {
+		next();
+	}
+};
 
 /**
  * redirects a user to home if he is already logged in
@@ -20,14 +20,14 @@ const redirectLogin = (req, res, next) => {
  * @param next
  */
 const redirectHome = (req, res, next) => {
-    if (req.session.userID) {
-        res.status(403).redirect("/home");
-    } else {
-        next();
-    }
-}
+	if (req.session.userID) {
+		res.status(403).redirect("/home");
+	} else {
+		next();
+	}
+};
 
 module.exports = {
-        redirectLogin: redirectLogin,
-        redirectHome: redirectHome,
-    }
+	redirectLogin: redirectLogin,
+	redirectHome: redirectHome,
+};

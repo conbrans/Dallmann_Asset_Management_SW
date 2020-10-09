@@ -10,84 +10,80 @@ const router = express.Router();
  * management side
  */
 router.post("/sendInventoryNumber", (req, res) => {
-    req.session.inventoryNumber = req.body.inventoryNumber;
-    res.json({
-        message: "Erfolg",
-    });
+	req.session.inventoryNumber = req.body.inventoryNumber;
+	res.json({
+		message: "Erfolg",
+	});
 });
 /**
  * get the workerid and mail for a specific user, which is transported with
  * an ajax call
  */
 router.post("/sendWorkerInfos", (req, res) => {
-    req.session.userMgntID = req.body.workerid;
-    req.session.userMgntMail = req.body.mail;
-    res.json({
-        message: "Erfolg",
-    });
+	req.session.userMgntID = req.body.workerid;
+	req.session.userMgntMail = req.body.mail;
+	res.json({
+		message: "Erfolg",
+	});
 });
 
 router.get("/showUsers", redirect.redirectLogin,
-    authentication.authRight("add_user"),
-    authentication.authRight("delete_User"), (req, res) => {
-        fetch.getFetch("/api/user/getAllUsers")
-            .then(data => res.json(data));
-    });
+	authentication.authRight("add_user"),
+	authentication.authRight("delete_User"), (req, res) => {
+		fetch.getFetch("/api/user/getAllUsers")
+			.then(data => res.json(data));
+	});
 
 
 router.get("/showBooking", redirect.redirectLogin,
-    authentication.authRight("booking_device"), (req, res) => {
-        fetch.getFetch("/api/borrow/getReservations")
-            .then(data =>
-                reformatDate.removeTimeStampForBooking(data).then(data => res.json(data)))
-    });
+	authentication.authRight("booking_device"), (req, res) => {
+		fetch.getFetch("/api/borrow/getReservations")
+			.then(data =>
+				reformatDate.removeTimeStampForBooking(data).then(data => res.json(data)));
+	});
 
-router.get("/showOneBooking",redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
-    fetch.getFetch("/api/borrow/getReservation/"+req.session.inventoryNumber)
-        .then(data =>{
-            var resultstring = "";
-            var from = [];
-            var to = [];
-            for (let i=0;i<data.length;i++){
-                 from[i] = "from : '"+ data[i].loanDay+"'";
-                to[i] = "to : '"+data[i].loanEnd+"'";
-                resultstring += "{"+from[i] + "," + to[i] + "},";
-            }
-            res.json(resultstring);
-        }
-
-        )
+router.get("/showOneBooking", redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
+	fetch.getFetch("/api/borrow/getReservation/" + req.session.inventoryNumber)
+		.then(data => {
+			let resultstring = "";
+			const from = [];
+			const to = [];
+			for (let i = 0; i < data.length; i++) {
+				from[i] = "from : '" + data[i].loanDay + "'";
+				to[i] = "to : '" + data[i].loanEnd + "'";
+				resultstring += "{" + from[i] + "," + to[i] + "},";
+			}
+			res.json(resultstring);
+		});
 });
 
 router.get("/showDevices", redirect.redirectLogin,
-    authentication.authRight("view_device"), (req, res) => {
-        fetch.getFetch("/api/device/getAllDevices")
-            .then(data => {
-                reformatDate.removeTimeStampForDevice(data)
-                    .then(data => res.json(data));
-            });
-    });
+	authentication.authRight("view_device"), (req, res) => {
+		fetch.getFetch("/api/device/getAllDevices")
+			.then(data => {
+				reformatDate.removeTimeStampForDevice(data)
+					.then(data => res.json(data));
+			});
+	});
 
 
 router.get("/showUser", redirect.redirectLogin,
-    authentication.authRight("add_user"),
-    authentication.authRight("delete_User"), (req, res) => {
-        console.log(req.session.userMgntID);
-        fetch.getFetch("/api/user/getSpecificUser/" + req.session.userMgntID)
-            .then(data => res.json(data))
-    });
+	authentication.authRight("add_user"),
+	authentication.authRight("delete_User"), (req, res) => {
+		console.log(req.session.userMgntID);
+		fetch.getFetch("/api/user/getSpecificUser/" + req.session.userMgntID)
+			.then(data => res.json(data));
+	});
 
 
-router.get("/showDevice",redirect.redirectLogin,
-    authentication.authRight("view_device"), (req, res) =>
-    {
-        req.body.inventoryNumber = req.session.inventoryNumber;
-        fetch.postFetch("/api/device/getSpecificDevice/byInventoryNumber", req)
-            .then(data =>{
-                reformatDate.removeTimeStampForDevice(data)
-                    .then(data => res.json(data))
-            });
-    });
-
+router.get("/showDevice", redirect.redirectLogin,
+	authentication.authRight("view_device"), (req, res) => {
+		req.body.inventoryNumber = req.session.inventoryNumber;
+		fetch.postFetch("/api/device/getSpecificDevice/byInventoryNumber", req)
+			.then(data => {
+				reformatDate.removeTimeStampForDevice(data)
+					.then(data => res.json(data));
+			});
+	});
 
 module.exports = router;
