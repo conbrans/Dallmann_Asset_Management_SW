@@ -8,6 +8,10 @@ const authentication = require('./helproutes/rightAuthentication');
 const redirect = require('./helproutes/redirect');
 const reformatDate = require('./helproutes/reformatDate');
 
+/**
+ * post request for creating a new device
+ */
+
 router.post("/addDevice", redirect.redirectLogin,
 	authentication.authRight("add_Device"), (req, res) => {
 
@@ -16,6 +20,10 @@ router.post("/addDevice", redirect.redirectLogin,
 				console.error('Error:', error);
 			});
 	});
+
+/**
+ * post request for updating a device
+ */
 
 router.post("/updateDevice", redirect.redirectLogin,
 	authentication.authRight("edit_Device"), (req, res) => {
@@ -26,6 +34,9 @@ router.post("/updateDevice", redirect.redirectLogin,
 			});
 	});
 
+/**
+ * post request to delete a device
+ */
 router.post("/deleteDevice", redirect.redirectLogin, authentication.authRight("delete_Device"), (req, res) => {
 	console.log(req.session.inventoryNumber);
 	fetch.deleteFetch("/api/device/deleteDevice/" +

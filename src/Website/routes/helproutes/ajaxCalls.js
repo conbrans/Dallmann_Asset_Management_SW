@@ -27,6 +27,9 @@ router.post("/sendWorkerInfos", (req, res) => {
 	});
 });
 
+/**
+ * get the user information
+ */
 router.get("/showUsers", redirect.redirectLogin,
 	authentication.authRight("add_user"),
 	authentication.authRight("delete_User"), (req, res) => {
@@ -34,7 +37,9 @@ router.get("/showUsers", redirect.redirectLogin,
 			.then(data => res.json(data));
 	});
 
-
+/**
+ * get booking information and reformat the timestamp
+ */
 router.get("/showBooking", redirect.redirectLogin,
 	authentication.authRight("booking_device"), (req, res) => {
 		fetch.getFetch("/api/borrow/getReservations")
@@ -42,6 +47,10 @@ router.get("/showBooking", redirect.redirectLogin,
 				reformatDate.removeTimeStampForBooking(data).then(data => res.json(data)));
 	});
 
+
+/**
+ * function to get only one booking, is needed for the borrow function
+ */
 router.get("/showOneBooking", redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
 	fetch.getFetch("/api/borrow/getReservation/" + req.session.inventoryNumber)
 		.then(data => {
@@ -57,6 +66,10 @@ router.get("/showOneBooking", redirect.redirectLogin, authentication.authRight("
 		});
 });
 
+
+/**
+ * get the device information for every device in the database
+ */
 router.get("/showDevices", redirect.redirectLogin,
 	authentication.authRight("view_device"), (req, res) => {
 		fetch.getFetch("/api/device/getAllDevices")
@@ -66,6 +79,9 @@ router.get("/showDevices", redirect.redirectLogin,
 			});
 	});
 
+/**
+ * get one user, needed for update of the user over userManagement
+ */
 
 router.get("/showUser", redirect.redirectLogin,
 	authentication.authRight("add_user"),
@@ -75,7 +91,9 @@ router.get("/showUser", redirect.redirectLogin,
 			.then(data => res.json(data));
 	});
 
-
+/**
+ * get one device, needed for the update of device in deviceManagement
+ */
 router.get("/showDevice", redirect.redirectLogin,
 	authentication.authRight("view_device"), (req, res) => {
 		req.body.inventoryNumber = req.session.inventoryNumber;

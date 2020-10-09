@@ -1,3 +1,7 @@
+/**
+ * initalization of the datatable for the device management, where the german
+ * values are set, and the data which is displayed on the site is loaded
+ */
 $(document).ready(function () {
 	var table = $("#table");
 	var devices = $.ajax({
