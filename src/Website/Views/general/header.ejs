@@ -1,29 +1,27 @@
-
-
 <header>
     <div id="header">
-
         <div class="logo">
-            <a href="/home" alt="">
+            <a href="/home">
                 <img src="../img/Logo-Dallmann.png" alt="Firmenlogo Dallmann">
             </a>
         </div>
         <nav>
-            <form method="post"  class="search" action="/searchInventoryNumber">
-                <input class="input" name="inventoryNumber" placeholder="Suchen" type="text"
+            <form method="post" class="search" action="/searchInventoryNumber">
+                <input class="input" name="inventoryNumber" placeholder="Suchen"
+                       type="text"
                        autofocus onchange="this.form.submit()">
                 <span class="underline"></span>
             </form>
-            <ul class="navbarList" >
+            <ul class="navbarList">
 
-                <!-- Suche -->
+                <!-- search -->
                 <li class="searchList">
                     <input class="input" placeholder="Suchen" type="text">
                 </li>
 
-                <!-- Geräte -->
+                <!-- devices -->
                 <li class="dropdown">
-                    <!-- Geräte -->
+                    <!-- devices-->
                     <% if (rights.view_device === 1){ %>
                         <a href="/devices">
                             <i class="fas fa-briefcase"></i>
@@ -32,16 +30,18 @@
                         <% if (rights.add_device === 1){ %>
                             <ul class="main-menu-sub">
                                 <li>
-                                    <a href="" onclick="addDevicePopUp()">Gerät hinzufügen</a>
+                                    <a href=""
+                                       onclick="addDevicePopUp()">
+                                        Gerät hinzufügen</a>
                                 </li>
                             </ul>
                         <% } %>
                     <% } %>
                 </li>
 
-                <!-- Reservierung -->
-                <%  if (rights.booking_device === 1){ %>
-                    <!-- Reservierung -->
+                <!-- booking -->
+                <% if (rights.booking_device === 1){ %>
+
                     <li class="dropdown">
                         <a href="/bookinglist">
                             <i class="fas fa-calendar-alt"></i>
@@ -65,7 +65,7 @@
 
                 <!-- User -->
                 <li class="dropdown">
-                    <!-- Benutzer -->
+
                     <a href="/profil">
                         <i class="fas fa-user"></i>
                         <tab class="header-icons-description">
@@ -74,7 +74,7 @@
                     </a>
                 </li>
 
-                <!-- Hinzufügen von Nutzern/Rechten -->
+                <!-- addUser -->
                 <% if (rights.add_user === 1 && rights.delete_user === 1){ %>
                     <li class="dropdown">
                         <a href="/userManagement">
@@ -85,13 +85,14 @@
                         </a>
                         <ul>
                             <% if(rights.add_user === 1) { %>
-                                <li><a href="" onclick="addUserPopUp()">Nutzer anlegen</a></li>
+                                <li><a href="" onclick="addUserPopUp()">
+                                        Nutzer anlegen</a></li>
                             <% } %>
                         </ul>
                     </li>
                 <% } %>
 
-                <!-- Kommissionieren -->
+                <!-- commission -->
                 <% if ( rights.picking === 1 ) { %>
                     <li>
                         <a href="/commission">
@@ -112,19 +113,19 @@
                         </tab>
                     </a>
                 </li>
-
             </ul>
         </nav>
     </div>
 </header>
-
 <hr class="clear">
 <script>
-    $('#header').prepend('<div id="menu-icon"><span class="first"></span><span class="second"></span><span class="third"></span></div>');
+    $('#header').prepend('<div id="menu-icon"><span class="first"></span>' +
+        '<span class="second"></span><span class="third"></span></div>');
 
     $("#menu-icon").on("click", function () {
         $("nav").slideToggle();
         $(this).toggleClass("active");
     });
+
 </script>
 

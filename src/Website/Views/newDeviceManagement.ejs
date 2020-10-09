@@ -4,8 +4,6 @@
     <title>Dallmann Asset-Management</title>
     <link rel="stylesheet" href="css/deviceManagement.css">
     <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/headFootDesign.css">
-    <script src="javascript/header.js"></script>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           type="text/css">
@@ -14,7 +12,6 @@
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <!--<script src="javascript/userManagement.js"></script>-->
     <link rel="stylesheet" href="css/headFootDesign.css">
     <script src="javascript/header.js"></script>
 
@@ -28,7 +25,8 @@
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
     <script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
 
 
@@ -71,7 +69,7 @@
 <div class="outerBox">
     <div class="wrapper">
 
-        <div class="content" style="overflow-x: auto">
+        <div class="content">
             <h3>Geräteliste</h3>
             <div>
                 <div class="newDeviceWrapper">
@@ -79,8 +77,9 @@
                         <form class="form" onclick="addDevicePopUp()">
 
                             <button class="btn btn-outline-warning"
-                                    id="btn-newDevice" class="header_button"
-                            >Neues Gerät hinzufügen
+                                    id="btn-newDevice"
+                                    class="header_button">
+                                Neues Gerät hinzufügen
                                 <i class="fa fa-toolbox"></i>
                             </button>
                         </form>
@@ -88,7 +87,7 @@
                 </div>
             </div>
 
-            <table id="table" style="width: 100%" class="table user-list"
+            <table id="table" class="table user-list"
                    onload>
                 <thead>
                 <tr>

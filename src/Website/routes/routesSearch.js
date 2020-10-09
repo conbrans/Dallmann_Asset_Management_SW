@@ -9,6 +9,8 @@ router.post("/searchInventoryNumber", (req, res) => {
     fetch.postFetch("/api/device/getSpecificDevice/byInventoryNumber", req)
         .then(data => res.status(200).render("newDeviceManagement.ejs",
             {
+
+                //Fehler der Suche, muss ich nochmal gucken
                 username: req.session.username,
                 role: req.session.role,
                 rights: req.session.rights,

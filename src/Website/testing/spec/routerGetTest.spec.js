@@ -221,34 +221,6 @@ describe("Test of router.get Methods", () => {
         });
     });
 
-    describe("GET /update", () => {
-        var data = {};
-        beforeEach((done) => {
-            Request.get("http://localhost:3000/update",
-                (error, response, body) => {
-                    data.status = response.statusCode;
-                    data.body = body;
-                    done();
-                });
-        });
-        it("Status 200", () => {
-            expect(data.status).toBe(200);
-        });
-        it("Body not empty", () => {
-            expect(data.body).not.toBe('');
-
-        });
-        it("Body contains html", () => {
-            expect(data.body).toContain("<!DOCTYPE html>");
-        });
-        it('Body contains Teo Tester', () => {
-            expect(data.body).toContain("Teo Tester");
-        });
-        it('Rights contains given values', () => {
-            expect(data.body).toContain("<a href=\"/userManagement\">");
-        });
-    });
-
     describe("GET /userManagement", () => {
         var data = {};
         beforeEach((done) => {

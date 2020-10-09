@@ -20,6 +20,10 @@ input {
     text-align: left;
 }
 
+#table{
+    width: 100%;
+}
+
 #btn-newDevice, #btn-filter {
     color: #666 !important;
     border-color: #666;
@@ -46,6 +50,7 @@ input {
 .content {
     margin-left: 3em;
     grid-area: content;
+    overflow-x: auto;
 }
 
 .deviceInformation {
@@ -89,7 +94,6 @@ input {
     height: 140px;
 }
 
-/* //TODO umstellen auf nen richtiges Element,Validierung */
 
 .deviceInfoBoxes:nth-child {
     color: #eee;

@@ -455,7 +455,7 @@ footer {
 }
 
 
-#footer-infos {
+#footerInfos {
     float: right;
     margin-right: 2%;
     margin-top: 1%;
@@ -468,12 +468,12 @@ footer {
     margin-top: 1%;
 }
 
-#footer-infos a {
+#footerInfos a {
     color: black;
     height: 5%;
 }
 
-#footer-infos a:hover {
+#footerInfos a:hover {
     color: #0d0d0d;
     height: 5%;
 }

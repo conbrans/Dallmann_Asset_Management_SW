@@ -22,11 +22,17 @@
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js">
+
+    </script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js">
+
+    </script>
 
 
     <meta http-equiv="cache-control" content="no-cache">
@@ -38,12 +44,11 @@
 <script>
 
 
-
     function login() {
 
-                     var password = CryptoJS.MD5(document.getElementById
-                    ("password").value);
-                     alert(password);
+        var password = CryptoJS.MD5(document.getElementById
+        ("password").value);
+        alert(password);
 
     }
 
@@ -64,7 +69,7 @@
     </h1>
     <form action="/login" method="post" id="login">
         <fieldset>
-            <input type="email"  name="useremail" id="email"
+            <input type="email" name="useremail" id="email"
                    placeholder="E-Mail-Adresse"
                    required>
             <input type="password" name="password" id="password"
@@ -74,7 +79,8 @@
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input"
                        name="checkbox" id="defaultUnchecked">
-                <label class="custom-control-label" for="defaultUnchecked">Angemeldet
+                <label class="custom-control-label" for="defaultUnchecked">
+                    Angemeldet
                     bleiben</label>
             </div>
             <button class="btn btn-primary" type="submit">Login
@@ -93,7 +99,5 @@
 <![endif]-->
 <script type="text/javascript"
         src="login/jquery-ui-1.12.1.custom.min.js.Download"></script>
-
-
 </body>
 </html>

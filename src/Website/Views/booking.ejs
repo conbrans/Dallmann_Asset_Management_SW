@@ -5,21 +5,26 @@
     <title>Dallmann Asset-Management</title>
     <link rel="stylesheet" href="css/headFootDesign.css">
     <link rel="stylesheet" href="css/booking.css">
-    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+    <link rel="icon" type="image/x-icon"
+          href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js">
+
+    </script>
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 
 
     <link rel="stylesheet" href="css/headFootDesign.css">
@@ -36,11 +41,11 @@
         <% if (inventoryNumber === ""){ %>
             <h3>Gerät reservieren: </h3>
         <% } else{ %>
-        <h3>Gerät mit der Nummer: <span><%=inventoryNumber %></span>
+        <h3>Gerät mit der Nummer: <span><%= inventoryNumber %></span>
             reservieren:</h3>
         <% } %>
         <form method="post" action="/book">
-            <% if (inventoryNumber=== ""){ %>
+            <% if (inventoryNumber === ""){ %>
                 <div class="form-group">
 
                     <div class="form-row">
@@ -50,15 +55,13 @@
                             <div class="md-form mt-0">
 
                                 <label for="deviceNumber">Gerätenummer</label>
-                                <input type="number" class="form-control" id="deviceNumber" name="Gerätenummer"
+                                <input type="number" class="form-control"
+                                       id="deviceNumber" name="Gerätenummer"
                                        placeholder="1234678">
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <!--<label for="booking">Die Verfügbarkeit des Gerätes wird beim Reservieren überprüft:</label>-->
 
             <% } else { %>
                 <div class="form-group">
@@ -85,19 +88,23 @@
 
                     <div class="col">
 
-                          <div class="md-form mt-0">
-                            <label for="booking-start">Zeitraum der Reservierung wählen:</label>
+                        <div class="md-form mt-0">
+                            <label for="booking-start">
+                                Zeitraum der Reservierung wählen:
+                            </label>
                             <input type="text" class="form-control"
                                    id="booking_start" name="loandEndloanDay"
                                    min=""
-                                   max="<%= maxDate%>"  required>
+                                   max="<%= maxDate %>" required>
 
                         </div>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" id="submit" class="btn btn-outline-primary" >Reservieren<i class="far fa-calendar-plus"></i></button>
+            <button type="submit" id="submit" class="btn btn-outline-primary">
+                Reservieren
+                <i class="far fa-calendar-plus"></i></button>
             <button onclick="parseDisableDates()"></button>
         </form>
     </div>

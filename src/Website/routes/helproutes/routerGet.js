@@ -183,16 +183,6 @@ router.get("/editProfil", notification.sendMessage("editProfil"), (req, res) => 
     });
 });
 
-router.get("/update", redirect.redirectLogin,
-    authentication.authRight("add_user"),
-    (req, res) => {
-        res.render("adminUpdateUser.ejs",
-            {
-                username: req.session.username,
-                role: req.session.role,
-                rights: req.session.rights,
-            })
-    });
 
 router.get("/search", redirect.redirectLogin, (req, res) => {
     res.status(200).render("search.ejs", {

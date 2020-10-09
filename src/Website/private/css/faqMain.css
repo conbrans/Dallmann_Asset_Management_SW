@@ -5,8 +5,10 @@
     padding: 2.5%;
     color: #0d0d0d;
     border-radius: 27px;
+}
 
-
+.images{
+    width: 160px; height: 160px
 }
 
 h3

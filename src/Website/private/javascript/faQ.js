@@ -1,30 +1,25 @@
 window.onload = function ()
 {
-    const container = document.getElementById("text");
-    const links = container.getElementsByClassName("link");
-    const picture = document.getElementById("picture");
+    var acc = document.getElementsByClassName("toggle-title");
+    var panel = document.getElementsByClassName('toggle-inner');
 
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].onclick = function () {
+            var setClasses = !this.classList.contains('active');
+            setClass(acc, 'active', 'remove');
+            setClass(panel, 'show', 'remove');
 
-    // show the first icon
-    picture.getElementsByClassName("fas")[0].style.display = "block";
+            if (setClasses) {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+    }
 
-    for (let i = 0; i < links.length; i++) {
-        links[i].addEventListener("click", function () {
-
-            const current = document
-                .getElementsByClassName("active");
-            const clickedIcon = document
-                .getElementsByClassName("fas")[i];
-            const icontoHide = "fa-" + (current[0].id).toString();
-            const iconToShow = "fa-" + (this.id).toString();
-
-            picture.getElementsByClassName(icontoHide)[0].style.display = "none";
-            picture.getElementsByClassName(iconToShow)[0].style.display = "block";
-
-            current[0].className = current[0].className.
-            replace("active", "");
-            this.className += " active";
-        });
+    function setClass(els, className, fnName) {
+        for (var i = 0; i < els.length; i++) {
+            els[i].classList[fnName](className);
+        }
     }
 }
 
