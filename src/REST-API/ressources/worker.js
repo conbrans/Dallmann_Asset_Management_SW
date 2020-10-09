@@ -90,7 +90,7 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
 
     sql = "INSERT INTO WORKER(password,e_mail,surname,firstname,role) VALUES " +
         "('"+hashing.secondHashe(request.body.password)+"','"+request.body.eMail+"','"+ request.body.surname+"','"
-        +request.body.firstName+"','"+request.body.role+"')";
+        +request.body.firstname+"','"+request.body.role+"')";
 
     connection.query(sql,function (err)
     {
@@ -127,7 +127,7 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
             }
 
             update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
-                "surname ='" + request.body.firstName + "', firstname ='" + request.body.surname + "'," +
+                "surname ='" + request.body.firstname + "', firstname ='" + request.body.surname + "'," +
                 "role ='" + request.body.role + "'" +
                 "WHERE worker_id = " + request.params.userId + ";";
             connection.query(update, function (err) {
@@ -205,7 +205,7 @@ router.post("/api/user/editProfile/:userId", (request, response) => {
     let password = crypto.decrypt(request.body.password);
 
     update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
-        "surname ='" + request.body.firstName + "', firstname ='" + request.body.surname + "', password ='" +password+ "'" +
+        "surname ='" + request.body.firstname + "', firstname ='" + request.body.surname + "', password ='" +password+ "'" +
         "WHERE worker_id = " + request.params.userId + ";";
 
 
@@ -236,7 +236,7 @@ router.post("/api/user/editProfile/:userId", (request, response) => {
         console.log('updateUser.Connection established');
 
         if(!hashing.compare(request.body.password, result[0].password)) {
-            return response.json({"Message": "Kombination aus Passwort und EMail stimmt nicht."})                   //Klartextpasswort ist 1234
+            return response.json({"Message": "Kombination aus Passwort und EMail stimmt nicht."})
 
         } else return response.json({"Message": "Kombination ist korrekt."});
 
