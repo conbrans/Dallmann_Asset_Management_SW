@@ -1,106 +1,106 @@
 /* Styles for page */
 .container {
-    width: 70%;
-    margin: 150px auto;
+	margin: 150px auto;
+	width: 70%;
 }
 
 body {
-    color: #4B4B4B;
-    font-family: sans-serif;
+	color: #4b4b4b;
+	font-family: sans-serif;
 }
 
 body a {
-    cursor: pointer;
-    color: #4B4B4B;
-    text-decoration: none;
+	color: #4B4B4B;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 body section {
-    margin-bottom: 90px;
+	margin-bottom: 90px;
 }
 
 body section h1 {
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: normal;
-    letter-spacing: 10px;
-    font-size: 25px;
-    line-height: 1.5;
+	font-size: 25px;
+	font-weight: normal;
+	letter-spacing: 10px;
+	line-height: 1.5;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 body section p, body section a {
-    text-align: center;
-    letter-spacing: 3px;
+	letter-spacing: 3px;
+	text-align: center;
 }
 
 span {
-    letter-spacing: 0px;
+	letter-spacing: 0;
 }
 
 p {
-    font-weight: 200;
-    line-height: 1.5;
-    font-size: 14px;
+	font-size: 14px;
+	font-weight: 200;
+	line-height: 1.5;
 }
 
 /* Styles for Accordion */
 div.toggle-inner {
-    display: none;
+	display: none;
 }
 
 div.toggle-inner.show {
-    display: block !important;
+	display: block !important;
 }
 
 .toggle:last-child {
-    border-bottom: 1px solid #dddddd;
+	border-bottom: 1px solid #ddd;
 }
 
 .toggle .toggle-title {
-    position: relative;
-    display: block;
-    border-top: 1px solid #dddddd;
-    margin-bottom: 6px;
+	border-top: 1px solid #ddd;
+	display: block;
+	margin-bottom: 6px;
+	position: relative;
 }
 
 .toggle .toggle-title h3 {
-    font-size: 20px;
-    margin: 0px;
-    line-height: 1;
-    cursor: pointer;
-    font-weight: 200;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: 200;
+	line-height: 1;
+	margin: 0;
 }
 
 .toggle .toggle-inner {
-    padding: 7px 25px 10px 25px;
-    display: none;
-    margin: -7px 0 6px;
+	display: none;
+	margin: -7px 0 6px;
+	padding: 7px 25px 10px 25px;
 }
 
 .toggle .toggle-inner div {
-    max-width: 100%;
+	max-width: 100%;
 }
 
 .toggle .toggle-title .title-name {
-    display: block;
-    padding: 25px 25px 14px;
+	display: block;
+	padding: 25px 25px 14px;
 }
 
 .toggle .toggle-title a i {
-    font-size: 22px;
-    margin-right: 5px;
+	font-size: 22px;
+	margin-right: 5px;
 }
 
 .toggle .toggle-title i {
-    position: absolute;
+	height: 24px;
 
-    width: 24px;
-    height: 24px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    margin: 20px;
-    right: 0;
+	margin: 20px;
+	position: absolute;
+	right: 0;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	width: 24px;
 }

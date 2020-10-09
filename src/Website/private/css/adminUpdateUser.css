@@ -1,50 +1,44 @@
-/* .tab {
-    overflow: hidden;
-    background-color: #f1f1f1;
-    border-bottom: 1px solid #d0d0d0;
-} */
+
 
 .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    border-right: 1px solid #d0d0d0;
+	background-color: inherit;
+	border: none;
+	border-right: 1px solid #d0d0d0;
+	cursor: pointer;
+	float: left;
+	outline: none;
+	padding: 14px 16px;
+	transition: 0.3s;
 }
 
 .tab button:hover {
-    background-color: #ddd;
+	background-color: #ddd;
 }
 
 .tab button.active {
-    background-color: #ccc;
+	background-color: #ccc;
 }
 
 .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+	border: 1px solid #ccc;
+	border-top: none;
+	display: none;
+	padding: 6px 12px;
 }
 
-#submit, #submit1
-{
-    margin-left: 35%;
-    margin-top: 5%;
-    background-color: #fbbb11;
-    color: black;
-    border-color:#fbb904;
+#submit, #submit1 {
+	background-color: #fb1;
+	border-color: #fbb904;
+	color: black;
+	margin-left: 35%;
+	margin-top: 5%;
 }
 
-#submit:hover, #submit1:hover
-{
-    border-radius: 27px 27px 27px 27px;
-    transform: scale(1.2);
+#submit:hover, #submit1:hover {
+	border-radius: 27px 27px 27px 27px;
+	transform: scale(1.2);
 }
 
-h2{
-    margin-left: 10%;
+h2 {
+	margin-left: 10%;
 }
