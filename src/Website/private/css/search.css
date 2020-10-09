@@ -1,28 +1,28 @@
-table{
-    position: absolute;
-    top: 20%;
-    left: 40%;
-    background-color: #faba31;
-    border-radius: 27px;
+table {
+	background-color: #faba31;
+	border-radius: 27px;
+	left: 40%;
+	position: absolute;
+	top: 20%;
 }
 
-th,tr,td{
-    text-align: center;
-    padding: 20px;
+th, tr, td {
+	padding: 20px;
+	text-align: center;
 }
 
-.searchInputs{
-    width: 100%;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    background-color: #faba31;
+.searchInputs {
+	background-color: #faba31;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	width: 100%;
 }
 
-.searchInputs:focus{
-    outline: none;
+.searchInputs:focus {
+	outline: none;
 }
 
-option{
-    background-color: white;
+option {
+	background-color: white;
 }

@@ -1,213 +1,211 @@
 html {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
-    line-height: 190%;
-    font-family: "Roboto Thin", sans-serif;
-    color: #0d0d0d;
-    font-weight: 300;
+	color: #0d0d0d;
+	font-family: 'Roboto Thin', sans-serif;
+	font-size: 100%;
+	font-weight: 300;
+	line-height: 190%;
+	margin: 0;
+	padding: 0;
 
 }
 
-main{
-    position: relative;
-    margin: 0;
+main {
+	margin: 0;
+	position: relative;
 }
 
 .diagonal-box {
-    position: absolute;
-    top: 550px;
-    left: 0;
-    width: 100%;
-    height: 600px;
-    background-image: linear-gradient(345deg, #808080, #fbbb11);
+	background-image: linear-gradient(345deg, #808080, #fbbb11);
+	height: 600px;
+	left: 0;
+	position: absolute;
+	top: 550px;
+	transform: skewY(25deg);
 
-    transform: skewY(25deg);
-    z-index: -100;
+	width: 100%;
+	z-index: -100;
 }
 
-
-.right-corner{
-    position: absolute;
-    top: -70px;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    background: #fff;
-    transform: skewY(4deg);
+.right-corner {
+	background: #fff;
+	height: 150px;
+	left: 0;
+	position: absolute;
+	top: -70px;
+	transform: skewY(4deg);
+	width: 100%;
 }
 
-.left-corner{
-    position: absolute;
-    bottom: -120px;
-    left: 0;
-    width: 100%;
-    height: 350px;
-    background: #fff;
-    transform: skewY(-6deg);
+.left-corner {
+	background: #fff;
+	bottom: -120px;
+	height: 350px;
+	left: 0;
+	position: absolute;
+	transform: skewY(-6deg);
+	width: 100%;
 }
-.grid-container{
-    position: relative;
-    right: 0;
-    left: 0;
-    height: auto;
-    width: 100%;
 
-    display: grid;
-    margin: 0 auto;
-    grid-template-columns: .1fr 1fr .1fr;
-    grid-template-areas:    "side1 inner-grid side2";
+.grid-container {
+	display: grid;
+	grid-template-areas:    'side1 inner-grid side2';
+	grid-template-columns: .1fr 1fr .1fr;
+	height: auto;
+	left: 0;
+
+	margin: 0 auto;
+	position: relative;
+	right: 0;
+	width: 100%;
 
 }
 
 .inner-grid {
-    grid-area: inner-grid;
-    padding-top: 50px;
-    display: grid;
-    height: auto;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 30px 30px;
-    box-sizing: border-box;
-    text-align: center;
-    justify-content: center;
+	box-sizing: border-box;
+	display: grid;
+	gap: 30px 30px;
+	grid-area: inner-grid;
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	height: auto;
+	justify-content: center;
+	padding-top: 50px;
+	text-align: center;
+	width: 100%;
 }
 
-.side1{
-    grid-area: side1;
+.side1 {
+	grid-area: side1;
 }
 
-.side2{
-    grid-area: side2;
+.side2 {
+	grid-area: side2;
 }
 
 .box1 {
-    background-image: url("../img/construction_3.jpg");
+	background-image: url('../img/construction_3.jpg');
 }
 
 .box2 {
-    background-image: url("../img/calendar.jpg");
+	background-image: url('../img/calendar.jpg');
 }
 
 .box3 {
 
-    background-image: url("../img/user.jpeg");
+	background-image: url('../img/user.jpeg');
 }
 
 .box4 {
 
-    background-image: url("../img/scan.jpg");
+	background-image: url('../img/scan.jpg');
 }
 
 .box5 {
 
-    background-image: url("../img/magnifier.jpg");
+	background-image: url('../img/magnifier.jpg');
 }
 
 .box6 {
 
-    background-image: url("../img/users.jpg");
+	background-image: url('../img/users.jpg');
 }
 
 .inputBox {
 
-    height: 200px;
-    width: 1fr;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 2em;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 2em;
+	height: 200px;
+	text-align: center;
+	vertical-align: middle;
+	width: 1fr;
 }
 
-.wrapper{
-    height: 100%;
-    width: 100%;
-    position: relative
+.wrapper {
+	height: 100%;
+	position: relative;
+	width: 100%;
 }
 
-.textAlign{
-    z-index: 99999;
-    position: absolute;
-    color: black;
-    font-weight: bold;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    opacity: 0;
-    pointer-events: none;
+.textAlign {
+	color: black;
+	font-weight: bold;
+	left: 50%;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	z-index: 99999;
 }
 
-
-
-.inputBoxImage{
-    border-radius: 2em;
-    height: 200px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+.inputBoxImage {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 2em;
+	height: 200px;
 }
 
-.hoverColor{
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 2em;
-    background: #faba31;
-    opacity: 0;
+.hoverColor {
+	background: #faba31;
+	border-radius: 2em;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	position: relative;
+	width: 100%;
+	z-index: 1;
 }
 
-
-
-.hoverColor:hover{
-    opacity: .5;
+.hoverColor:hover {
+	opacity: .5;
 }
 
-.hoverColor:hover + .textAlign{
-    opacity: 1;
+.hoverColor:hover + .textAlign {
+	opacity: 1;
 }
-
 
 @media screen and (max-width: 1023px) {
 
-    html{
-        overflow: visible;
-    }
+	html {
+		overflow: visible;
+	}
 
-    .grid-container{
+	.grid-container {
 
-        gap: 20px 20px;
-        grid-template-columns:  1fr ;
-        grid-template-areas: " inner-grid ";
+		gap: 20px 20px;
+		grid-template-areas: ' inner-grid ';
+		grid-template-columns:  1fr;
 
-    }
-    .side1{
-        display: none;
-    }
-    .side2{
-        display: none;
-    }
+	}
+
+	.side1 {
+		display: none;
+	}
+
+	.side2 {
+		display: none;
+	}
 }
 
 @media screen and (max-width: 900px) {
-    html{
-        overflow: visible;
-    }
+	html {
+		overflow: visible;
+	}
 
-    .inner-grid{
-        gap: 10px;
-    }
+	.inner-grid {
+		gap: 10px;
+	}
 }
+
 /**
 @media screen and (min-width: 960px) and (max-width: 1023px) {
 

@@ -1,5 +1,4 @@
 
-
 const popupCenter = ({url, title, w, h}) => {
     // Fixes dual-screen position                             Most browsers      Firefox
     const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;

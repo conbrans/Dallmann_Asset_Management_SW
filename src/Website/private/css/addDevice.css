@@ -1,55 +1,48 @@
 #submit, #submit1 {
-    margin-left: 35%;
-    margin-top: 5%;
-    background-color: #fbbb11;
-    color: black;
-    border-color:#fbb904;
+	background-color: #fb1;
+	border-color: #fbb904;
+	color: black;
+	margin-left: 35%;
+	margin-top: 5%;
 }
 
-#submit:hover, #submit1:hover
-{
-    border-radius: 27px 27px 27px 27px;
-    transform: scale(1.2);
+#submit:hover, #submit1:hover {
+	border-radius: 27px 27px 27px 27px;
+	transform: scale(1.2);
 }
 
-#form
-{
-    width: 40%;
-    margin-left: 30%;
-    background: #f1f1f1;
-    border: 1px solid black;
-    align-content: center;
+#form {
+	align-content: center;
+	background: #f1f1f1;
+	border: 1px solid black;
+	margin-left: 30%;
+	width: 40%;
 }
-
-
 
 .alert {
-    display: none;
+	display: none;
 }
 
-
-h2{
-    margin-left: 10%;
+h2 {
+	margin-left: 10%;
 }
 
-h3{
-    text-align: center;
+h3 {
+	text-align: center;
 }
 
-
-.fa-times
-{
-    color: white;
+.fa-times {
+	color: white;
 }
 
-tr:last-child{
-    border-bottom: 1px solid black;
+tr:last-child {
+	border-bottom: 1px solid black;
 }
 
 .userProfilContent {
-    margin: 0 1em 1em 1em;
+	margin: 0 1em 1em 1em;
 }
 
-textarea{
-    height: 70px !important;
+textarea {
+	height: 70px !important;
 }

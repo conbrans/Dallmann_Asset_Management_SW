@@ -71,20 +71,6 @@
         <div class="form-row">
             <div class="col">
                 <div class="md-form mt-0">
-                    <label for="produktbezeichnung">Produktbezeichnung</label>
-                    <input type="text" class="form-control"
-                           name="produktbezichnung"
-                           placeholder="Produktbezeichnung"
-                           id="produktbezeichnung" required>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="form-row">
-            <div class="col">
-                <div class="md-form mt-0">
                     <label for="status">Status</label>
                     <select class="custom-select" id="status"
                             name="deviceStatus" required>
@@ -157,10 +143,12 @@
 
 
 
-    <button class="btn btn-outline-primary" type="submit" onclick="setTimeout(()=>{
+    <button class="btn btn-outline-primary" type="submit"
+            onclick="setTimeout(()=>{
         window.close();
         },500)">Neues Gerät hinzufügen
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="glyphicon glyphicon-pencil"
+        <svg width="1em" height="1em" viewBox="0 0 16 16"
+             class="glyphicon glyphicon-pencil"
              fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"

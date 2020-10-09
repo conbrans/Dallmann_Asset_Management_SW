@@ -1,31 +1,32 @@
-.linkcontainer{
-    float: left;
-    margin-left: 12%;
-    margin-top: 10%;
-    padding: 2.5%;
-    color: #0d0d0d;
-    border-radius: 27px;
-
-
+.linkcontainer {
+	border-radius: 27px;
+	color: #0d0d0d;
+	float: left;
+	margin-left: 12%;
+	margin-top: 10%;
+	padding: 2.5%;
 }
 
-h3
-{
-    padding-top: 20%;
-    text-align: center;
+.images {
+	height: 160px;
+	width: 160px;
 }
 
-a
-{
-    text-decoration: none;
+h3 {
+	padding-top: 20%;
+	text-align: center;
 }
 
-#WebFAQ{
-  display: none;
+a {
+	text-decoration: none;
+}
+
+#WebFAQ {
+	display: none;
 }
 
 .linkcontainer:hover {
-   transform: scale(1.02);
+	transform: scale(1.02);
 }
 
 

@@ -1,119 +1,106 @@
-html
-{
-background-color: #f1f1f1 ;
-}
-/* The side navigation menu */
-.sidenav {
-
-    width: 15%;
-    position: fixed;
-    top: 15%;
-    left: 0;
-    overflow: hidden;
-    padding-top: 20px;
+/* Styles for page */
+.container {
+	margin: 150px auto;
+	width: 70%;
 }
 
-/* The navigation menu links */
-.sidenav a {
-    padding: 5% 5% 5% 5% ;
-    margin-top: 2.5%;
-    margin-left: 10%;
-    text-decoration: none;
-    font-size: 156.25%;
-    color:  #0d0d0d;
-    background-color: #faba31;
-    display: block;
-    transition: 0.3s;
+body {
+	color: #4b4b4b;
+	font-family: sans-serif;
 }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #f1f1f1;
-    transform: scale(1.2);
+body a {
+	color: #4B4B4B;
+	cursor: pointer;
+	text-decoration: none;
 }
 
-
-.sidenav .active
-{
-    transform: scale(1.1);
+body section {
+	margin-bottom: 90px;
 }
 
-.sidenav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+body section h1 {
+	font-size: 25px;
+	font-weight: normal;
+	letter-spacing: 10px;
+	line-height: 1.5;
+	text-align: center;
+	text-transform: uppercase;
 }
 
-.sidenav .nav-menu-sub {
-    list-style-type: none;
-    display: none;
-    width: 90%;
-    padding: 5% 5% 5% 5% ;
-    margin-top: 2.5%;
-    overflow: hidden;
+body section p, body section a {
+	letter-spacing: 3px;
+	text-align: center;
 }
 
-#text .nav-menu-sub > li a {
-    font-size: 110%;
-    text-decoration: none;
-    color: #0d0d0d;
-    display: block;
+span {
+	letter-spacing: 0;
 }
 
-#text .nav-menu-sub li:hover a, #nav-menu .nav-menu-sub li.active a {
-
-    transform: scale(1.1);
-    color: #f1f1f1;
+p {
+	font-size: 14px;
+	font-weight: 200;
+	line-height: 1.5;
 }
 
-#text li:hover a, #text li.active a {
-    transform: scale(1.02) ;
+/* Styles for Accordion */
+div.toggle-inner {
+	display: none;
 }
 
-#text li:hover .nav-menu-sub {
-    display: block;
+div.toggle-inner.show {
+	display: block !important;
 }
 
-
-
-
-#picture
-{
-    padding-left: 20%;
- }
-
-#picture i
-{
-    display: none;
-    color: #fbb904;
+.toggle:last-child {
+	border-bottom: 1px solid #ddd;
 }
 
-div.toggle-inner{
-    display: none;
-}
-div.toggle-inner.show{
-    display: block !important;
-}
-
-
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+.toggle .toggle-title {
+	border-top: 1px solid #ddd;
+	display: block;
+	margin-bottom: 6px;
+	position: relative;
 }
 
-
-
-/* Page content */
-.main {
-    border: 1px solid #bfbfbf;
-    margin-left: 20%; /* 450px */
-    margin-right: 20%;
-    padding: 1.5%;
-    text-align: justify;
+.toggle .toggle-title h3 {
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: 200;
+	line-height: 1;
+	margin: 0;
 }
 
-h3{
-    text-align: center;
+.toggle .toggle-inner {
+	display: none;
+	margin: -7px 0 6px;
+	padding: 7px 25px 10px 25px;
+}
+
+.toggle .toggle-inner div {
+	max-width: 100%;
+}
+
+.toggle .toggle-title .title-name {
+	display: block;
+	padding: 25px 25px 14px;
+}
+
+.toggle .toggle-title a i {
+	font-size: 22px;
+	margin-right: 5px;
+}
+
+.toggle .toggle-title i {
+	height: 24px;
+
+	margin: 20px;
+	position: absolute;
+	right: 0;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	width: 24px;
 }

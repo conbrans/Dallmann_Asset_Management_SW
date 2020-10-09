@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Kommissionieren</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="../css/commission.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
@@ -25,30 +27,33 @@
 
 <div class="actionMenu">
     <div class="container">
-        <div class="box"  onclick="toggleElement('inputConstruction')">
+        <div class="box" onclick="toggleElement('inputConstruction')">
             <a href="#">
                 <div class="hoverColor">
-                    <img class="boxImage" src="../img/construction_1.jpeg" alt="Baustelle">
+                    <img class="boxImage" src="../img/construction_1.jpeg"
+                         alt="Baustelle">
                     <div class="bottom-left">
                         <h2>Baustelle</h2>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="box"  onclick="toggleElement('inputRepair')">
+        <div class="box" onclick="toggleElement('inputRepair')">
             <a href="#">
                 <div class="hoverColor">
-                    <img class="boxImage" src="../img/garage.jpeg" alt="Reperatur">
+                    <img class="boxImage" src="../img/garage.jpeg"
+                         alt="Reperatur">
                     <div class="bottom-left">
                         <h2>Reperatur</h2>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="box"  onclick="toggleElement('inputWarehouse')">
+        <div class="box" onclick="toggleElement('inputWarehouse')">
             <a href="#">
                 <div class="hoverColor">
-                    <img class="boxImage" src="../img/warehouse.jpeg" alt="Lager">
+                    <img class="boxImage" src="../img/warehouse.jpeg"
+                         alt="Lager">
                     <div class="bottom-left">
                         <h2>Lager</h2>
                     </div>
@@ -63,60 +68,69 @@
 
     <div class="inputDiv" id="inputConstruction">
         <form method="post" action="/setDeviceConstruction">
-        <br><hr>
-        <h4>Baustelle</h4>
-        <div  class="inputBoxes">
-            <div class="wrapper">
-                <label for="inputBoxConstruction deviceID">Inventar Nummer</label>
-                <input type="text" id="inputBoxConstruction deviceID"
-                       name="inventoryNumber"
-                       class="form-control">
+            <br>
+            <hr>
+            <h4>Baustelle</h4>
+            <div class="inputBoxes">
+                <div class="wrapper">
+                    <label for="inputBoxConstruction deviceID">
+                        Inventar Nummer</label>
+                    <input type="text" id="inputBoxConstruction deviceID"
+                           name="inventoryNumber"
+                           class="form-control">
+                </div>
+                <div class="wrapper">
+                    <label for="inputBoxConstruction constructionID">
+                        KollonenID</label>
+                    <input type="text" id="inputBoxConstruction constructionID"
+                           name="constructionID"
+                           class="form-control">
+                </div>
             </div>
-            <div class="wrapper">
-                <label for="inputBoxConstruction constructionID">KollonenID</label>
-                <input type="text" id="inputBoxConstruction constructionID"
-                       name="constructionID"
-                       class="form-control">
-            </div>
-        </div>
-        <input type="submit" class="btn btn-primary btn-md">
-        <hr><br>
+            <input type="submit" class="btn btn-primary btn-md">
+            <hr>
+            <br>
         </form>
     </div>
 
 
     <div class="inputDiv" id="inputRepair">
         <form method="post" action="/setDeviceRepair">
-        <br><hr>
-        <h4>Reperatur</h4>
-        <div class="inputBoxes">
-            <div class="wrapper">
-                <label for="inputBoxRepair deviceID">Inventar Nummer</label>
-                <input type="text" id="inputBoxRepair deviceID"
-                       name="inventoryNumber"
-                       class="form-control">
+            <br>
+            <hr>
+            <h4>Reperatur</h4>
+            <div class="inputBoxes">
+                <div class="wrapper">
+                    <label for="inputBoxRepair deviceID">Inventar Nummer</label>
+                    <input type="text" id="inputBoxRepair deviceID"
+                           name="inventoryNumber"
+                           class="form-control">
+                </div>
             </div>
-        </div>
-        <input type="submit" class="btn btn-primary btn-md">
-        <hr><br>
+            <input type="submit" class="btn btn-primary btn-md">
+            <hr>
+            <br>
         </form>
     </div>
 
 
     <div class="inputDiv" id="inputWarehouse">
         <form method="post" action="/setDeviceWarehouse">
-        <br><hr>
-        <h4>Lager</h4>
-        <div id="inputDevice" class="inputBoxes">
-            <div class="wrapper">
-                <label for="inputBoxWarehouse deviceID">Inventar Nummer</label>
-                <input type="text" id="inputBoxWarehouse deviceID"
-                       name="inventoryNumber"
-                       class="form-control">
+            <br>
+            <hr>
+            <h4>Lager</h4>
+            <div id="inputDevice" class="inputBoxes">
+                <div class="wrapper">
+                    <label for="inputBoxWarehouse deviceID">Inventar
+                        Nummer</label>
+                    <input type="text" id="inputBoxWarehouse deviceID"
+                           name="inventoryNumber"
+                           class="form-control">
+                </div>
             </div>
-        </div>
-        <input type="submit" class="btn btn-warning btn-md">
-        <hr><br>
+            <input type="submit" class="btn btn-warning btn-md">
+            <hr>
+            <br>
         </form>
     </div>
 </div>

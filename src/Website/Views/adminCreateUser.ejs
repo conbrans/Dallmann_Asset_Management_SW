@@ -1,46 +1,24 @@
 <!DOCTYPE html>
-    <meta charset="UTF-8">
-<title>Dallmann Asset-Management</title>
-    <link rel="stylesheet" href="css/adminCreateUser.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-
-    <link rel="icon" type="image/x-icon" href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <script src="javascript/userManagement.js"></script>
-</head>
-<body>
-
-
-
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Benutzer hinzufügen</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
-    <script src="../../../javascript/addUser.js" type="text/javascript" language="JavaScript"></script>
-
-    <style>
-        .userProfilContent {
-            margin: 1em;
-        }
-
-    </style>
+    <title>Dallmann Asset-Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/adminCreateUser.css">
+    <script src="javascript/addUser.js"></script>
 </head>
 <body>
 <br>
-<h3 style="text-align: center">Benutzer hinzufügen</h3>
+<h3>Benutzer hinzufügen</h3>
 <form class="userProfilContent" method="post" action="/addUser">
     <div class="form-group">
         <div class="form-row">
             <div class="col">
                 <div class="md-form mt-0">
                     <label for="firstName">Vorname</label>
-                    <input type="text" class="form-control" placeholder="Vorname" id="firstName" name="firstName" required>
+                    <input type="text" class="form-control"
+                           placeholder="Vorname" id="firstName"
+                           name="firstName" required>
                 </div>
             </div>
         </div>
@@ -50,8 +28,10 @@
         <div class="form-row">
             <div class="col">
                 <div class="md-form mt-0">
-                    <label for="lastName">Nachname</label>
-                    <input type="text" class="form-control" placeholder="Nachname" id="lastName" name="surname" required>
+                    <label for="surname">Nachname</label>
+                    <input type="text" class="form-control"
+                           placeholder="Nachname" id="surname"
+                           name="surname" required>
                 </div>
             </div>
         </div>
@@ -62,7 +42,7 @@
             <div class="col">
                 <div class="md-form mt-0">
                     <label for="role">Rolle</label>
-                    <select class="custom-select" id="role" onchange="selectPermission()" name="role" >
+                    <select class="custom-select" id="role" name="role">
                         <option value="Admin">Administration</option>
                         <option value="Werkstatt">Werkstatt</option>
                         <option value="Polier">Polier</option>
@@ -75,22 +55,23 @@
 
     <div class="form-group">
         <label for="email">E-Mail:</label>
-        <input type="text" class="form-control" placeholder="E-Mail" id="email" name="eMail" onclick="setEmail()" required>
+        <input type="text" class="form-control"
+               placeholder="E-Mail" id="email" name="eMail"
+               onclick="setEmail()" required>
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input id="password" name="password" type="text" class="form-control" placeholder="Passwort"
+        <input id="password" name="password" type="text"
+               class="form-control" placeholder="Passwort"
                onclick="setDefaultPassword()">
 
     </div>
 
-    <button  class="btn btn-outline-primary" onclick="setTimeout(()=>{
+    <button class="btn btn-outline-primary" onclick="setTimeout(()=>{
         window.close();
-    },500)
-   ">Neuen
-        Benutzer
-        hinzufügen
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="glyphicon glyphicon-pencil"
+    },500)">Neuen Benutzer hinzufügen
+        <svg width="1em" height="1em" viewBox="0 0 16 16"
+             class="glyphicon glyphicon-pencil"
              fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -103,6 +84,7 @@
 </form>
 <script>
     window.onunload = refreshParent;
+
     function refreshParent() {
         window.opener.location.reload();
     }
