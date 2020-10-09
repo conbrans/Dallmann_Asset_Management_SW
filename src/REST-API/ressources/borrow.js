@@ -13,7 +13,7 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection');
-const { body, validationResult } = require('express-validator');
+const {body, validationResult} = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
 const router = express();
@@ -28,31 +28,30 @@ const router = express();
  */
 
 let selectReservation = "SELECT DISTINCT" +
-        " DATE_FORMAT(loan_day, '%Y-%m-%dT%TZ') AS loanDay,\n" +
-        " DATE_FORMAT(loan_end, '%Y-%m-%dT%TZ') AS loanEnd,\n" +
-        " WORKER.firstname, WORKER.surname,\n" +
-        " PROJECT.project_id AS projectId, PROJECT.name AS buildingSite,\n" +
-        " inventory_number AS inventoryNumber\n" +
-        " FROM BORROWS\n" +
-        " INNER JOIN PROJECT\n" +
-        " ON BORROWS.project_id = PROJECT.project_id\n" +
-        " LEFT JOIN WORKER\n" +
-        " ON BORROWS.worker_id = WORKER.worker_id\n" +
-        " WHERE PROJECT.project_id = BORROWS.project_id;\n";
+    " DATE_FORMAT(loan_day, '%Y-%m-%dT%TZ') AS loanDay,\n" +
+    " DATE_FORMAT(loan_end, '%Y-%m-%dT%TZ') AS loanEnd,\n" +
+    " WORKER.firstname, WORKER.surname,\n" +
+    " PROJECT.project_id AS projectId, PROJECT.name AS buildingSite,\n" +
+    " inventory_number AS inventoryNumber\n" +
+    " FROM BORROWS\n" +
+    " INNER JOIN PROJECT\n" +
+    " ON BORROWS.project_id = PROJECT.project_id\n" +
+    " LEFT JOIN WORKER\n" +
+    " ON BORROWS.worker_id = WORKER.worker_id\n" +
+    " WHERE PROJECT.project_id = BORROWS.project_id;\n";
 
-router.get("/api/borrow/getReservations",(request, response) => {
+router.get("/api/borrow/getReservations", (request, response) => {
 
-    connection.query(selectReservation,function (err,result) {
+    connection.query(selectReservation, function (err, result) {
 
-        if(err){
+        if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
         }
 
-        console.log('GetAllDevices.Connection established');
         response.json(result);
-    });
+    })
 });
 
 /**
@@ -67,7 +66,7 @@ router.get("/api/borrow/getReservations",(request, response) => {
  */
 
 
-router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
+router.get("/api/borrow/getReservation/:inventoryNumber", (req, res) => {
 
     sql = "SELECT DISTINCT DATE_FORMAT(loan_day, '%Y-%m-%dT%TZ')  AS loanDay,\n" +
         " DATE_FORMAT(loan_end, '%Y-%m-%dT%TZ')  AS loanEnd,\n" +
@@ -78,19 +77,19 @@ router.get("/api/borrow/getReservation/:inventoryNumber",(req, res) => {
         " ON BORROWS.project_id = PROJECT.project_id" +
         " LEFT JOIN WORKER\n" +
         " ON BORROWS.worker_id = WORKER.worker_id\n" +
-        " WHERE inventory_number =" + req.params.inventoryNumber +";";
+        " WHERE inventory_number =" + req.params.inventoryNumber + ";";
 
 
-    connection.query(sql,(err,result)=>{
-        if (err){
+    connection.query(sql, (err, result) => {
+        if (err) {
             res.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
         }
-        res.json(result);
 
-    });
-})
+        res.json(result);
+    })
+});
 
 /**
  * route for creating a reservation for a specific device depending on inventoryNumber
@@ -112,9 +111,9 @@ router.post("/api/borrow/createReservation",
 
         //boolean check if there is a matching projectId in database
         let checkProjectId = "SELECT EXISTS(SELECT project_id" +
-            " FROM PROJECT WHERE project_id  = "+request.body.projectId+");";
+            " FROM PROJECT WHERE project_id  = " + request.body.projectId + ");";
 
-        connection.query(checkProjectId,function (err,result) {
+        connection.query(checkProjectId, function (err, result) {
             //str = 0(there is not) or 1(there is)
             let str1 = Object.values(result[0])[0];
 
@@ -133,17 +132,17 @@ router.post("/api/borrow/createReservation",
                 let newLoanEnd = sentLoanEnd.toISOString();
 
                 let today = new Date();
-                let newDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                let newDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
                 let loanDate = new Date(request.body.loanDay);
-                let newLoanDate = loanDate.getFullYear()+'-'+(loanDate.getMonth()+1)+'-'+loanDate.getDate();
+                let newLoanDate = loanDate.getFullYear() + '-' + (loanDate.getMonth() + 1) + '-' + loanDate.getDate();
 
                 //boolean check if there is already a reservation which matches the given dates
-                let selectExistReservation = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = "+request.body.inventoryNumber+"" +
-                    " AND ((CAST('"+newLoanDay+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
-                    " OR (CAST('"+newLoanEnd+"' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));";
+                let selectExistReservation = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
+                    " AND ((CAST('" + newLoanDay + "' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
+                    " OR (CAST('" + newLoanEnd + "' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));";
 
-                connection.query(selectExistReservation,function (err, result) {
+                connection.query(selectExistReservation, function (err, result) {
                     //str2 = 0(there is not) or 1(there is)
                     let str2 = Object.values(result[0])[0];
                     console.log(str2);
@@ -175,26 +174,31 @@ router.post("/api/borrow/createReservation",
                                         console.log('Error connecting to Db');
                                         return;
                                         //if the reservation is successful this  message will be sent to client
-                                    } else return response.json({"Message": "Das Gerät mit der ID: "+request.body.inventoryNumber+" ist refolgreich" +
-                                            " reserviert worden"});
+                                    } else return response.json({
+                                        "Message": "Das Gerät mit der ID: " + request.body.inventoryNumber + " ist refolgreich" +
+                                            " reserviert worden"
+                                    });
                                 })
                                 //if the reservation is successful this  message will be sent to client
-                            } else return response.json({"Message": "Das Gerät mit der ID: "+request.body.inventoryNumber+" ist refolgreich" +
-                                    " reserviert worden"});
+                            } else return response.json({
+                                "Message": "Das Gerät mit der ID: " + request.body.inventoryNumber + " ist refolgreich" +
+                                    " reserviert worden"
+                            });
 
                         })
                         //if the dates matches with other reservations  this message will be send to client
-                    } else return response.json({"Message": "Im gewählten Zeitraum ist das Gerät bereits reserviert. Bitte einen " +
-                            "anderen Zeitraum wählen!"})
+                    } else return response.json({
+                        "Message": "Im gewählten Zeitraum ist das Gerät bereits reserviert. Bitte einen " +
+                            "anderen Zeitraum wählen!"
+                    })
 
                 })
-              //if there is no project with the given id this specified message will be send to client
-            } else return response.json({"Message": "Ein Projekt mit der ID: "+request.body.projectId+" existiert nicht!"})
+                //if there is no project with the given id this specified message will be send to client
+            } else return response.json({"Message": "Ein Projekt mit der ID: " + request.body.projectId + " existiert nicht!"})
 
         })
 
     });
-
 
 
 /**
@@ -244,7 +248,7 @@ router.delete('/api/borrow/cancelReservation',
                     //Boolean check if the the reservation matches the status conditions
                     let sql3 = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
                         " AND ((CURDATE() BETWEEN CAST('" + newLoanDay + "' AS DATE)" +
-                        " AND CAST('" + newLoanEnd + "' AS DATE )) OR (CURDATE() >= CAST('"+ newLoanEnd +"' AS DATE))));";
+                        " AND CAST('" + newLoanEnd + "' AS DATE )) OR (CURDATE() >= CAST('" + newLoanEnd + "' AS DATE))));";
 
                     connection.query(sql3, function (err, result) {
                         //str = 0(does not match) or 1(it matches)
@@ -267,22 +271,26 @@ router.delete('/api/borrow/cancelReservation',
                                 }
                             })
                             //If delete was successful this message will be sent to client (with status change)
-                           return response.json({
+                            return response.json({
                                 "Message": "Reservierung des Gerätes mit der ID:" +
                                     " " + request.body.inventoryNumber + "" +
                                     " wurde erfolgreich gelöscht"
 
                             })
                             //If delete was successful this message will be sent to client (without status change)
-                        } else return response.json({"Message": "Die Reservierung des Gerätes " +
-                                "mit der ID: " +request.body.inventoryNumber+ "" +
-                                "wurde erfolgreich gelöscht!"})
+                        } else return response.json({
+                            "Message": "Die Reservierung des Gerätes " +
+                                "mit der ID: " + request.body.inventoryNumber + "" +
+                                "wurde erfolgreich gelöscht!"
+                        })
 
                     })
                 })
                 //If delete was unsuccessful this message will be sent to client
-            } else return response.json({"Message": "Eine Reservation des Gerätes" +
-                        " mit der ID: " + request.body.inventoryNumber + " ist nicht vorhanden."})
+            } else return response.json({
+                "Message": "Eine Reservation des Gerätes" +
+                    " mit der ID: " + request.body.inventoryNumber + " ist nicht vorhanden."
+            })
         })
     });
 
