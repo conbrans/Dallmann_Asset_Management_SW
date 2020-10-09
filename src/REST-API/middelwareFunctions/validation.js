@@ -9,7 +9,8 @@ const deviceConstraints = [
         ' beliebige Zeichenkombination sein, wie z.B. Schnibbler Deluxe'),
     body('manufacturer').notEmpty().withMessage('Das Attribut Hersteller muss angegeben werden und' +
         ' kann eine beliebige Zeichenkombination sein, wie z.B. Husqvarna'),
-    body('category').if(body('category').notEmpty()).isInt({min: 1, max: 8}).withMessage('Die angegebende Kategorie ist nicht vorhanden.')
+    body('deviceCategory').if(body('deviceCategory').notEmpty().withMessage('Die Kategorie muss angegeben werden.'))
+        .isInt({min: 1, max: 9}).withMessage('Die angegebende Kategorie ist nicht vorhanden.')
 ];
 const workerConstraints = [
     body('password').notEmpty().withMessage('Es muss ein Passwort angegeben werden.').isLength({min: 6, max: 20}).withMessage('Das Passwort muss mindestens 6 und darf maximal 20 Zeichen lang sein'),
@@ -25,7 +26,8 @@ const workerUpdateConstraints = [
 
 const createReservationConstraints = [
 
-    body('workerId').isInt().withMessage('Die workerId muss vom Typ Integer sein.'),
+    body('workerId').notEmpty().withMessage('Die User ID muss mitgegeben werden.')
+        .isInt().withMessage('Die workerId muss vom Typ Integer sein.'),
     body('inventoryNumber').notEmpty()
         .withMessage('Die Inventarnummer muss angegeben werden.').isInt()
         .withMessage('Die Inventarnummer muss sechsstellig und vom Typ Integer,' +
@@ -34,7 +36,8 @@ const createReservationConstraints = [
         ' muss angegeben werden.'),
     body('loanEnd').notEmpty().withMessage('Das Ausleihenddatum' +
         ' muss angegeben werden.'),
-    body('projectId').isInt().withMessage('Die projectID muss vom Typ Integer sein.')
+    body('projectId').notEmpty().withMessage('Die Projekt ID muss angegeben werden')
+        .isInt().withMessage('Die projectID muss vom Typ Integer sein.')
 
 ]
 

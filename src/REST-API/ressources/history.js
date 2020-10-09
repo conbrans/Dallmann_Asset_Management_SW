@@ -60,10 +60,13 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
 
 
 /**
+ * route for getting history of an specific device depending on the inventoryNumber
  *
- * @param request
- * @param response
+ * GET {inventoryNumber}
  *
+ * @param request - sent information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
+ * @param inventoryNumber - given inventoryNumber from client for device
  */
 
 router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (request,response)
@@ -85,7 +88,12 @@ router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function 
 });
 
 /**
- * route for getting all history data
+ * route for getting history of all devices
+ *
+ * GET
+ *
+ * @param request - sent information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
  */
 
 router.get("/api/history/getHistory",function (request,response)

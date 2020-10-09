@@ -100,6 +100,8 @@ router.post("/api/device/getSpecificDevice/byInventoryNumber", (request, respons
     sql = "SELECT * FROM ("+selectSpecificDevice+" GROUP BY DEVICE.inventory_number) t" +
         " WHERE CAST(inventoryNumber AS CHAR) LIKE '%" + request.body.inventoryNumber + "%';";
 
+    console.log(new Date().toISOString());
+
     connection.query(sql, function (err, result) {
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});

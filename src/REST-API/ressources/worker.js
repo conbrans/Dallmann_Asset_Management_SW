@@ -80,14 +80,12 @@ router.get("/api/user/getSpecificUser/:workerId",(request, response) => {
  * route for creating an new user
  */
 
-router.post("/api/user/createUser", constraint.workerConstraints, (request, response) =>
-{
-    console.log(request.body)
+router.post("/api/user/createUser", constraint.workerConstraints, (request, response) => {
+
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
         return response.json(errors.array());
-        console.log(errors.array())
     }
 
     sql = "INSERT INTO WORKER(password,e_mail,surname,firstname,role) VALUES " +
@@ -112,7 +110,6 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
 
 router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (request, response) => {
     sql = "SELECT EXISTS(SELECT * FROM WORKER WHERE worker_id = " + request.params.userId + ");";
-    console.log(request.body)
 
     connection.query(sql, function (err, result) {
 
