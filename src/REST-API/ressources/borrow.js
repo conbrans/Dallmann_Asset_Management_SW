@@ -199,10 +199,16 @@ router.post("/api/borrow/createReservation",
 
 /**
  * route for canceling a reservation
+ *
+ * DELETE
+ *
+ * @param request - send information from client within a JSON file
+ * @param response - sending the result within a JSON file to client
  */
+
 router.delete('/api/borrow/cancelReservation',
     constraint.deleteReservationConstraints, (request, response) => {
-
+        //converting given dates into needed form
         let sentLoanDay = new Date(new Date(request.body.loanDay).setHours(+2));
         let newLoanDay = sentLoanDay.toISOString();
 
@@ -213,11 +219,11 @@ router.delete('/api/borrow/cancelReservation',
         if (!errors.isEmpty()) {
             return response.json(errors.array());
         }
-
+        //BOOLEAN check if there is a reservation with the given ID
         let sql = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + ");";
 
         connection.query(sql, function (err, result) {
-
+            //str = 0(there is not) or 1(there is)
             let str = Object.values(result[0])[0];
 
             if (err) {
@@ -235,21 +241,22 @@ router.delete('/api/borrow/cancelReservation',
                         console.log('Error connecting.sql2 to Db');
                         return;
                     }
-
+                    //Boolean check if the the reservation matches the status conditions
                     let sql3 = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
                         " AND ((CURDATE() BETWEEN CAST('" + newLoanDay + "' AS DATE)" +
                         " AND CAST('" + newLoanEnd + "' AS DATE )) OR (CURDATE() >= CAST('"+ newLoanEnd +"' AS DATE))));";
 
                     connection.query(sql3, function (err, result) {
-
+                        //str = 0(does not match) or 1(it matches)
                         let str = Object.values(result[0])[0];
 
                         if (err) {
                             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
                             console.log('Error connecting.sql3 to Db');
                             return;
-                        } else if (str == "1") {
 
+                        } else if (str == "1") {
+                            //updating the device status to "Verfügbar"
                             let sql4 = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.body.inventoryNumber + ";";
 
                             connection.query(sql4, function (err) {
@@ -259,23 +266,22 @@ router.delete('/api/borrow/cancelReservation',
                                     return;
                                 }
                             })
-
+                            //If delete was successful this message will be sent to client (with status change)
                            return response.json({
                                 "Message": "Reservierung des Gerätes mit der ID:" +
                                     " " + request.body.inventoryNumber + "" +
                                     " wurde erfolgreich gelöscht"
 
                             })
-
+                            //If delete was successful this message will be sent to client (without status change)
                         } else return response.json({"Message": "Die Reservierung des Gerätes " +
                                 "mit der ID: " +request.body.inventoryNumber+ "" +
                                 "wurde erfolgreich gelöscht!"})
 
                     })
                 })
-            }
-
-            else return response.json({"Message": "Eine Reservation des Gerätes" +
+                //If delete was unsuccessful this message will be sent to client
+            } else return response.json({"Message": "Eine Reservation des Gerätes" +
                         " mit der ID: " + request.body.inventoryNumber + " ist nicht vorhanden."})
         })
     });

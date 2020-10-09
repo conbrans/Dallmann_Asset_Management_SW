@@ -30,7 +30,7 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
     "       DEVICE_STATUS.description AS statusDescription,\n" +
     "       beacon_major AS beaconMajor,beacon_minor AS beaconMinor,\n" +
     "       LOCATION.longitude,latitude,DATE_FORMAT((timesstamp), '%Y-%m-%dT%TZ') AS lastLocationUpdate,\n" +
-    "       lastLocationUpdate, DATE_FORMAT((TUEV.timestamp), '%Y-%m-%dT%TZ') AS lastTuev,\n" +
+    "       DATE_FORMAT((TUEV.timestamp), '%Y-%m-%dT%TZ') AS lastTuev,\n" +
     "       DATE_FORMAT((UVV.timestamp), '%Y-%m-%dT%TZ') AS lastUvv,\n" +
     "       DATE_FORMAT((REPAIR.timestamp),'%Y-%m-%dT%TZ') AS  lastRepair, \n" +
     "       REPAIR.note AS repairNote,\n" +
@@ -69,8 +69,7 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
  * @param inventoryNumber - given inventoryNumber from client for device
  */
 
-router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function (request,response)
-{
+router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber", function (request,response) {
     sql = selectHistory + " WHERE DEVICE_HISTORY.inventory_number ='" + request.params.inventoryNumber + "'\n" +
           "GROUP BY DEVICE_HISTORY.device_history_id DESC;";
 
@@ -98,7 +97,7 @@ router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber",function 
 
 router.get("/api/history/getHistory",function (request,response)
 {
-    sql = selectHistory + "GROUP BY device_history_id DESC;";
+    sql = selectHistory + " GROUP BY device_history_id DESC;";
 
     connection.query(sql,function (err,result)
     {

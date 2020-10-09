@@ -13,7 +13,6 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection');
-//const log = require('../middelwareFunctions/logger');
 const { body, validationResult } = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
@@ -127,7 +126,7 @@ router.put("/api/user/updateUser/:userId", constraint.workerUpdateConstraints, (
             }
 
             update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
-                "surname ='" + request.body.firstname + "', firstname ='" + request.body.surname + "'," +
+                "surname ='" + request.body.surname + "', firstname ='" + request.body.firstname + "'," +
                 "role ='" + request.body.role + "'" +
                 "WHERE worker_id = " + request.params.userId + ";";
             connection.query(update, function (err) {
