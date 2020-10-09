@@ -1,5 +1,7 @@
 #userContent {
 	overflow-x: auto;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
 }
 
 #button-container {
@@ -12,7 +14,8 @@
 }
 
 #history {
-	width: 100%;
+	width: 80%;
+
 }
 
 div.toggle-inner, div.toggle-inner-button {

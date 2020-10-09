@@ -37,7 +37,7 @@
 <main>
     <br>
     <br>
-    <form>
+    <form onclick="getSelectedDates()">
         <div id="form">
             <% if (inventoryNumber === ""){ %>
                 <h3>Gerät reservieren: </h3>
@@ -72,8 +72,7 @@
                             <div class="col">
 
                                 <div class="md-form mt-0">
-                                    <label
-                                            for="inventoryNumber">Gerätenummer:</label>
+                                    <label for="deviceNumber">Gerätenummer:</label>
                                     <input type="number" class="form-control"
                                            id="inventoryNumber"
                                            name="inventoryNumber"
@@ -99,6 +98,7 @@
                                 </label>
                                 <input type="text" class="form-control"
                                        id="booking_start" name="loandEndloanDay"
+                                       min=""
                                        max="<%= maxDate %>" required>
 
                             </div>
@@ -124,7 +124,7 @@
                     </div>
 
                 <button type="button" id="submit"
-                        class="btn btn-outline-primary" onclick="getSelectedDates()">
+                        class="btn btn-outline-primary">
                     Reservieren
                     <i class="far fa-calendar-plus"></i></button>
             </form>
