@@ -13,9 +13,11 @@
     <script src="javascript/header.js"></script>
 </head>
 <body>
+<% if (!rights === undefined){%>
 <!-- NavigationBar Start -->
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
+<% } %>
 <div class="container">
 
     <section>

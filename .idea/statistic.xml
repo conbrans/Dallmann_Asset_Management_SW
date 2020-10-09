@@ -8,6 +8,8 @@
         <option value="$PROJECT_DIR$/.idea" />
         <option value="$PROJECT_DIR$/node_modules" />
         <option value="$PROJECT_DIR$/src/Website/private/DataTables" />
+        <option value="$PROJECT_DIR$/src/REST-API" />
+        <option value="$PROJECT_DIR$/src/Website/testing" />
       </list>
     </option>
   </component>
