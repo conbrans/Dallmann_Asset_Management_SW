@@ -86,4 +86,9 @@ router.get("/showDevice", redirect.redirectLogin,
 			});
 	});
 
+
+router.get("/getBooking",redirect.redirectLogin,authentication.authRight("booking_device"), ((req, res) => {
+	console.log(req.body);
+}));
+
 module.exports = router;

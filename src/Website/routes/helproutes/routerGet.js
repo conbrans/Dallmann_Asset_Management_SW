@@ -75,6 +75,7 @@ router.get("/devices", redirect.redirectLogin,
 			username: req.session.username,
 			role: req.session.role,
 			rights: req.session.rights,
+			searchValue : "",
 		});
 	});
 
@@ -182,13 +183,7 @@ router.get("/editProfil", notification.sendMessage("editProfil"), (req, res) => 
 });
 
 
-router.get("/search", redirect.redirectLogin, (req, res) => {
-	res.status(200).render("search.ejs", {
-		username: req.session.username,
-		role: req.session.role,
-		rights: req.session.rights,
-	});
-});
+
 
 router.get("/userManagement", redirect.redirectLogin,
 	authentication.authRight("add_user"),

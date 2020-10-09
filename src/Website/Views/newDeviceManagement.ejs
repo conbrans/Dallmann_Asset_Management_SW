@@ -102,6 +102,9 @@
                 </tbody>
             </table>
 
+                <table id="searchTable"></table>
+
+
 
         </div>
         <div class="deviceInformation">
@@ -177,7 +180,8 @@
                             <div class="deviceInfoBoxes">
                                 <label for="status"> Status:</label>
                                 <div>
-                                    <select class="browser-default custom-select form-control"
+                                    <select class="browser-default
+                                    custom-select form-control"
                                             id="status"
                                             onchange="getSelectedOption()"
                                             style="width: 100%; display:
@@ -370,6 +374,11 @@
     </div>
 
 </div>
+<%if (searchValue === "" ){ %>
+<input type="hidden" id="searchValue" value="">
+<% }else {%>
+<input type="hidden" id="searchValue" value="<%=searchValue%>">
+<% } %>
 
 
 <%- include('../Views/general/footer.ejs'); -%>

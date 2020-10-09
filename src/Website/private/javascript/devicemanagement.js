@@ -11,6 +11,9 @@ $(document).ready(function () {
 				{"data": "model"},
 				{"data": "statusDescription"},
 			],
+			search: {
+			search : document.getElementById("searchValue").value,
+			},
 			colReorder: {
 				fixedColumnsLeft: 1,
 			},
