@@ -51,4 +51,7 @@ function numberCharacters(date) {
 }
 
 
-
+function getSelectedDates() {
+	console.log(startDate);
+	console.log(endDate);
+}
