@@ -10,13 +10,13 @@ const initializationVector = crypto.randomBytes(16);
  */
 
 function encrypt(text) {
-    let chiper = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
-    let encrypted = chiper.update(text);
-    encrypted = Buffer.concat([encrypted, chiper.final()]);
-    return {
-        initializationVector: initializationVector.toString('hex'),
-        encryptedData: encrypted.toString('hex')
-    };
+	let chiper = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
+	let encrypted = chiper.update(text);
+	encrypted = Buffer.concat([encrypted, chiper.final()]);
+	return {
+		initializationVector: initializationVector.toString('hex'),
+		encryptedData: encrypted.toString('hex')
+	};
 }
 
 /**
@@ -25,14 +25,15 @@ function encrypt(text) {
  * @return {string}
  */
 function decrypt(text) {
-    let initializationVector  = Buffer.from(text.initializationVector, 'hex');
-    let encryptedText = Buffer.from(text.encryptedData, 'hex');
-    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
-    let decrypted = decipher.update(encryptedText);
-    decrypted = Buffer.concat([decrypted, decipher.final()]);
-    return decrypted.toString();
+	let initializationVector = Buffer.from(text.initializationVector, 'hex');
+	let encryptedText = Buffer.from(text.encryptedData, 'hex');
+	let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
+	let decrypted = decipher.update(encryptedText);
+	decrypted = Buffer.concat([decrypted, decipher.final()]);
+	return decrypted.toString();
 }
+
 module.exports = {
-    encrypt,
-    decrypt
-}
+	encrypt,
+	decrypt
+};
