@@ -13,12 +13,11 @@
  */
 
 const connection = require('../../../src/REST-API/databaseConnection/connection');
-const log = require('../middelwareFunctions/logger');
 const express = require('express');
 const router = express();
 
-
 /**
+ *sql statement for selecting devices
  *
  * @type {string}
  */
@@ -69,21 +68,20 @@ let selectHistory = "SELECT  DEVICE_HISTORY.inventory_number AS inventoryNumber,
  * @param inventoryNumber - given inventoryNumber from client for device
  */
 
-router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber", function (request,response) {
-    sql = selectHistory + " WHERE DEVICE_HISTORY.inventory_number ='" + request.params.inventoryNumber + "'\n" +
-          "GROUP BY DEVICE_HISTORY.device_history_id DESC;";
+router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber", (request, response) => {
 
-    connection.query(sql,function (err,result)
-    {
-        if(err){
+    sql = selectHistory + " WHERE DEVICE_HISTORY.inventory_number ='" + request.params.inventoryNumber + "'\n" +
+        "GROUP BY DEVICE_HISTORY.device_history_id DESC;";
+
+    connection.query(sql, (err, result) => {
+        if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
         }
-        console.log('GetAllDevices.Connection established');
+
         response.json(result);
     });
-
 });
 
 /**
@@ -95,28 +93,20 @@ router.get("/api/history/getHistoryForSpecificDevice/:inventoryNumber", function
  * @param response - sending the result within a JSON file to client
  */
 
-router.get("/api/history/getHistory",function (request,response)
-{
+router.get("/api/history/getHistory", (request, response) => {
     sql = selectHistory + " GROUP BY device_history_id DESC;";
 
-    connection.query(sql,function (err,result)
-    {
-        if(err){
+    connection.query(sql, (err, result) => {
+        if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;
         }
-        console.log('GetAllDevices.Connection established');
+
         response.json(result);
     });
-
 });
 
+//export of this module
 module.exports = router;
-/**
- * Port listener
- */
 
-/*router.listen(3001, () => {
-    console.log('Listening on port 3001...');
-});*/

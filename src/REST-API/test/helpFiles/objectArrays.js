@@ -14,11 +14,31 @@ let deviceObject = [
     'lastChange'
 ]
 
+let workerObject = [
+    'workerId',      'password',
+    'eMail',         'surname',
+    'firstname',     'role',
+    'bookingDevice', 'editDevice',
+    'addDevice',     'viewDevice',
+    'deleteDevice',  'addUser',
+    'deleteUser',    'editUser',
+    'deleteBooking', 'editBooking'
+]
+
+
+let createDeviceMessage = {
+
+    "Message": "Gerät wurde erfolgreich hinzugefügt."
+
+}
+
 
 console.log(deviceObject.toString());
 
 module.exports = {
 
-    deviceObject
+    deviceObject,
+    createDeviceMessage,
+    workerObject
 
 }
