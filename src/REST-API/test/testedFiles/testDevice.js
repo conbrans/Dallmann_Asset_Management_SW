@@ -208,7 +208,7 @@ describe('Test Device ressource', () => {
 
             let object = {
 
-                "uvv": "2020-08-23"
+                "uvv": "Oct 4, 2020 12:00:00 AM"
 
             };
 
@@ -260,6 +260,55 @@ describe('Test Device ressource', () => {
 
 
     //Test createDevice (POST)
+
+    describe('POST /api/device/createDevice', () => {
+
+        it('It should create one device depending on the given information ', (done) => {
+
+            let object = {
+                "deviceCategory": 6,
+                "deviceStatus": 3,
+                "guarantee": "Oct 20, 2020 12:00:00 AM",
+                "lastRepair": "Oct 4, 2020 12:00:00 AM",
+                "lastTuev": "Oct 4, 2020 12:00:00 PM",
+                "lastUvv": "Oct 4, 2020 12:00:00 PM",
+                "manufacturer": "Testmanufacturer",
+                "model": "deluxe",
+                "serialNumber": "T3STNUMB3R",
+                "status": "Verfügbar",
+            };
+
+            chai.request(server)
+                .post('/api/device/createDevice')
+                .set('content-type', 'application/json')
+                .send(object)
+                .end((err, response) => {
+
+                    sql = "SELECT EXISTS(SELECT * FROM DEVICE" +
+                        " WHERE serialNumber = ''" + object.serialNumber + "' AND manufacturer = '" + object.manufacturer + "');";
+                    connection.query(sql, function (err, result) {
+
+                        let str = Object.values(result[0])[0];
+
+                        if (err) {
+                            response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
+                            console.log('Error connecting to Db');
+                            return;
+                        } else if (str == 1) {
+                            console.log('GetAllDevices.Connection established');
+
+                            response.should.have.status(200);
+                            response.body.should.be.a('array');
+                            response.body.length.should.be.eq(1);
+                            (Object.keys(response.body[0])).toString().should.be.eq(expectedObjectArray.createDeviceMessage.toString());
+                            done();
+                        }
+                    })
+                })
+        })
+    })
+
+
 
 
     //Test updateDevice (with param inventoryNumber) (PUT)

@@ -10,6 +10,11 @@
  * Import of modules
  */
 
+/**
+ * This file contains the constraints, which are
+ * used to validate the input data which is sent by client
+ */
+
 const {body, validationResult} = require('express-validator');
 
 const deviceConstraints = [
