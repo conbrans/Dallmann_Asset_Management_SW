@@ -1,4 +1,8 @@
 const fetch = require('node-fetch');
+const {
+	firstUrlPart = "http://localhost:3000",
+
+} = process.env;
 
 /**
  * method for fetch task which need to be posted
@@ -7,7 +11,7 @@ const fetch = require('node-fetch');
  * @returns a json object
  */
 async function postFetch(url, req) {
-	let res = await fetch("http://localhost:3000" + url,
+	let res = await fetch(firstUrlPart + url,
 		{
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
@@ -23,7 +27,7 @@ async function postFetch(url, req) {
  * @returns a json object
  */
 async function putFetch(url, req) {
-	let res = await fetch("http://localhost:3000" + url,
+	let res = await fetch(firstUrlPart + url,
 		{
 			method: 'PUT',
 			headers: {"Content-Type": "application/json"},
@@ -39,7 +43,7 @@ async function putFetch(url, req) {
  * @returns a json object
  */
 async function deleteFetch(url, req) {
-	let res = await fetch("http://localhost:3000" + url,
+	let res = await fetch(firstUrlPart + url,
 		{
 			method: 'DELETE',
 			headers: {"Content-Type": "application/json"},
@@ -55,7 +59,7 @@ async function deleteFetch(url, req) {
  * @returns a json object
  */
 async function loginFetch(request, result) {
-	let res = await fetch('http://localhost:3000/api/login',
+	let res = await fetch(firstUrlPart +'/api/login',
 		{
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
@@ -73,7 +77,7 @@ async function loginFetch(request, result) {
  * @returns {Promise<*>}
  */
 async function getFetch(url) {
-	let res = await fetch('http://localhost:3000' + url);
+	let res = await fetch(firstUrlPart + url);
 	return await res.json();
 }
 
