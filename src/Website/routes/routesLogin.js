@@ -17,9 +17,9 @@ const {
 
 /**
  * set the session Values
- * @param req
+ * @param req request
  * @param data
- * @param res
+ * @param res response
  */
 function getAccess(req, data, res) {
 
@@ -51,9 +51,9 @@ function getAccess(req, data, res) {
 /**
  * method for providing the information about expiring reservations, TUV,
  * UVV and maintenance
- * @param req
+ * @param req request
  * @param data
- * @param res
+ * @param res response
  */
 function getNotificationValues(req, data, res) {
 

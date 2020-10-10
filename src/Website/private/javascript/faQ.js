@@ -1,3 +1,7 @@
+/**
+ * function to hide the values in FAQ and make them visible if the coloum is
+ * clicked
+ */
 window.onload = function () {
 	var acc = document.getElementsByClassName("toggle-title");
 	var panel = document.getElementsByClassName('toggle-inner');

@@ -1,6 +1,6 @@
 /**
  * checks if a specific user has the right to enter a specific page
- * @param right
+ * @param right, string which represents a user right in the database
  * @returns {function(*, *, *): void}
  */
 function authRight(right) {

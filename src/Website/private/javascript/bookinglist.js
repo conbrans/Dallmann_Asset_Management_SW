@@ -1,3 +1,7 @@
+/**
+ * initalization of the datatable for the bookinglist, where the german
+ * values are set, and the data which is displayed on the site is loaded
+ */
 $(document).ready(function () {
 	var table = $("#history");
 	var users = $.ajax({
@@ -14,6 +18,7 @@ $(document).ready(function () {
 				{"data": "projectId"},
 				{"data": "buildingSite"},
 			],
+			pageLength : 15,
 			colReorder: true,
 			language: {
 				search: "Suche nach:",

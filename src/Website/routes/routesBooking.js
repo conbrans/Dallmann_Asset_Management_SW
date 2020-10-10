@@ -5,6 +5,11 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('./helproutes/fetch');
 const authentication = require('./helproutes/rightAuthentication');
+const redirect = require('./helproutes/redirect');
+
+/**
+ * post request to render the booking page with a specific inventoryNumber
+ */
 
 router.post("/booking",
 	authentication.authRight("booking_device"), (req, res) => {
@@ -13,18 +18,17 @@ router.post("/booking",
 			role: req.session.role,
 			rights: req.session.rights,
 			inventoryNumber: req.session.inventoryNumber,
-			maxDate: '2020-08-31',
 		});
 	});
 
-router.post("/book", authentication.authRight("booking_device"), (req, res) => {
-	let tobetransformed = req.body.loanEndloanDay;
-
+/**
+ * post request for booking a device on the user which wants to book a device
+ */
+router.post("/book", redirect.redirectLogin,  authentication.authRight("booking_device"), (req, res) => {
 	req.body.workerId = req.session.userID;
-	req.body.projectId = "test";
-	console.log(req.body);
-	console.log(tobetransformed);
-
+	fetch.postFetch("/api/borrow/createReservation", req).then(()=>{
+		console.log("TEST");
+	});
 });
 
 module.exports = router;

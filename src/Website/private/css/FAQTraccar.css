@@ -1,0 +1,11 @@
+#images img{
+	width: 200px;
+	height: 350px;
+	margin-top: 5%;
+	margin-left: 25%;
+	border: 1px solid black;
+}
+
+a:link{
+	text-decoration: underline blue;
+}

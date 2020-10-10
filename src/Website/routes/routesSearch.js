@@ -3,114 +3,21 @@
  */
 const express = require('express');
 const router = express.Router();
+const authentication = require('./helproutes/rightAuthentication');
 const fetch = require('./helproutes/fetch');
 
-router.post("/searchInventoryNumber", (req, res) => {
-	fetch.postFetch("/api/device/getSpecificDevice/byInventoryNumber", req)
-		.then(data => res.status(200).render("newDeviceManagement.ejs",
-			{
+/**
+ * post request which redirects the user to device management if he enters
+ * something in head search
+ */
 
-				//Fehler der Suche, muss ich nochmal gucken
-				username: req.session.username,
-				role: req.session.role,
-				rights: req.session.rights,
-				data: data,
-				amount: data.length,
-			}))
-		.catch((error) => {
-			console.error('Error:', error);
-		});
+router.post("/search",authentication.authRight("view_device"), (req, res) => {
+	res.status(200).render("newDeviceManagement.ejs", {
+		username: req.session.username,
+		role: req.session.role,
+		rights: req.session.rights,
+		searchValue : req.body.inventoryNumber,
+	});
 });
-
-router.post("/searchStatus", (req, res) => {
-	fetch.postFetch("/api/device/getSpecificDevice/byStatus", req)
-		.then(data => res.status(200).render("newDeviceManagement.ejs",
-			{
-				username: req.session.username,
-				role: req.session.role,
-				rights: req.session.rights,
-				data: data,
-				amount: data.length,
-			}))
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-});
-
-router.post("/searchCategory", (req, res) => {
-	fetch.postFetch("/api/device/getSpecificDevice/byCategory", req)
-		.then(data => res.status(200).render("newDeviceManagement.ejs",
-			{
-				username: req.session.username,
-				role: req.session.role,
-				rights: req.session.rights,
-				data: data,
-				amount: data.length,
-			}))
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-});
-
-router.post("/searchModel", (req, res) => {
-	fetch.postFetch("/api/device/getSpecificDevice/byModel", req)
-		.then(data => res.status(200).render("newDeviceManagement.ejs",
-			{
-				username: req.session.username,
-				role: req.session.role,
-				rights: req.session.rights,
-				data: data,
-				amount: data.length,
-			}))
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-});
-
-router.post("/searchTuv", (req, res) => {
-	fetch.postFetch("/api/device/getSpecificDevice/byTuev", req)
-		.then(data => res.status(200).render("newDeviceManagement.ejs",
-			{
-				username: req.session.username,
-				role: req.session.role,
-				rights: req.session.rights,
-				data: data,
-				amount: data.length,
-			}))
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-});
-
-router.post("/searchUvv", (req, res) => {
-	fetch.postFetch("/api/device/getSpecificDevice/byUvv", req)
-		.then(data => res.status(200).render("newDeviceManagement.ejs",
-			{
-				username: req.session.username,
-				role: req.session.role,
-				rights: req.session.rights,
-				data: data,
-				amount: data.length,
-			}))
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-});
-
-router.post("/searchRepair", (req, res) => {
-	fetch.postFetch("/api/device/getSpecificDevice/byRepair", req)
-		.then(data => res.status(200).render("newDeviceManagement.ejs",
-			{
-				username: req.session.username,
-				role: req.session.role,
-				rights: req.session.rights,
-				data: data,
-				amount: data.length
-			}))
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-});
-
 
 module.exports = router;

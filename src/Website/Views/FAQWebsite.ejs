@@ -33,92 +33,88 @@
         <div class="toggle-inner">
             <p>
                 Diese Softwarelösung ist im Rahmen des
-                Softwareentwicklungsprojektes
-                der Hochschule Osnabrück Campus Lingen
-                und dem Unternehmen Hermann Dallmann Straßen- und Tiefbau GmbH &
-                Co.
-                KG entstanden.
-                Dies ist das Benutzerhandbuch der Web-Anwendung,
-                es soll dem Nutzer Hilfestellung bei auftretenden Problemen
-                geben
-                und die erste Anlaufstelle sein,
+                Softwareentwicklungsprojektes der Hochschule Osnabrück Campus
+                Lingen und dem Unternehmen Hermann Dallmann Straßen- und Tiefbau
+                GmbH & Co. KG entstanden. Dies ist das Benutzerhandbuch der
+                Android Applikation, es soll dem Nutzer Hilfestellung bei
+                auftretenden Problemen geben und die erste Anlaufstelle sein,
                 wenn sich der Benutzer mit den Funktionen der Anwendung
                 auseinandersetzen möchte.
             </p>
         </div>
 
     </div>
-    <div class="toggle" id="homepage">
+    <div class="toggle" id="navigation">
         <div class="toggle-title ">
             <h3>
                 <i></i>
-                <span class="title-name">Dashboard</span>
+                <span class="title-name">Navigation</span>
             </h3>
         </div>
         <div class="toggle-inner">
-            <figure>
-                <% if (role === "Admin"){ %>
-                    <img src="img/adminhomepage.png"
-                         alt=" Standardansicht der Admin Startseite"
-                         width="100%"
-                         height="100%">
-                    <figcaption>
-                        Standardansicht des Admin Dashboards
-                    </figcaption>
-                <% } %>
-                <% if (role === "Werkstatt"){ %>
-                    <img src="img/workshophomepage.png"
-                         alt=" Standardansicht der Werkstatt Startseite"
-                         width="100%" height="100%">
-                    <figcaption>
-                        Standardansicht des Werkstatt Dashboards
-                    </figcaption>
-                <% } %>
-                <% if (role === "Polier"){ %>
-                    <img src="img/foremanhomepage.png"
-                         alt=" Standardansicht der Polier Startseite"
-                         width="100%"
-                         height="100%">
-                    <figcaption>
-                        Standardansicht des Polier Dashboards
-                    </figcaption>
-                <% } %>
-                <% if (role === "Buchhaltung"){ %>
-                    <img src="img/accountinghomepage.png"
-                         alt=" Standardansicht der Buchhaltungs Startseite"
-                         width="100%" height="100%">
-                    <figcaption>
-                        Standardansicht des Buchhaltungs Dashboards
-                    </figcaption>
-                <% } %>
-
-            </figure>
             <p>
-                Über die einzelnen Schaltflächen gelangt man zu den Funktionen
-                der
-                Website,
-                diese reichen von der einfachen Ansicht der Geräte bis hin zum
-                Reservieren einzelner Geräte
-                für einen Zeitraum und/oder für eine Baustelle.
-                Auf die einzelnen Funktionen wird im weiteren Verlauf dieses FAQ
-                genauer eingegangen.
+                Zur Navigation gibt es zwei Möglichkeiten, zum einen die
+                Menüleiste und zum anderen die Startseite, beide bieten die
+                gleichen Links zu den Webseiten mit den Funktionen
             </p>
             <h2>Menüleiste</h2>
             <p>
-                Die Menüleiste am oberen Rand der Seite enthält die gleichen
-                Funktionen wie die Schaltflächen.
-                Durch einen Klick auf das Dallmann Logo gelangt man zurück auf
-                die Startseite,
-                diese Verlinkung kann von allen Seiten aufgerufen werden.
-
-
+                Über die Menüleiste erhalten Sie über die einzelnen Reiter den
+                Zugriff auf die Hauptfunktionen des Programms. Durch einen Klick
+                auf das Dallmann Logo gelangt man zurück auf die Startseite. Die
+                Menüleiste kann von allen Seiten aufgerufen werden.
             </p>
+            <h2>Dashboard</h2>
             <p>
+                Das Dashboard enthält einen leicht gekürzten Funktionsumfang wie
+                die Menüleiste, aber im Grunde die gleichen Funktionen. Jegliche
+                die Menüunterpunkte stehen so nicht zur Verfügung.
             </p>
         </div>
     </div><!-- END OF TOGGLE -->
 
-    <div class="toggle" id="devices">
+    <div class="toggle" id="table">
+        <div class="toggle-title ">
+            <h3>
+                <i></i>
+                <span class="title-name">Tabellen</span>
+            </h3>
+        </div>
+        <div class="toggle-inner">
+            <p>Alle Tabellen der Website verfügen über den gleichen Aufbau, der
+                Aufbau wird anhand der Geräte-Tabelle beschrieben, lässt sich
+                aber auf alle anderen Tabellen ebenfalls anwenden.
+            </p>
+
+            <p>
+                Im oberen Bereich der Tabelle befindet sich die Anzeige „Zeige
+                10 Geräte“, über dieses Menü lässt sich die Zahl der Geräte auf
+                einer Seite bestimmen, die Anzahl der Einträge liegt bei
+                10,25,50 und 100 anzeigebaren Einträgen. Am rechten oberen Rand
+                der Tabelle befindet sich die Suchfunktion, über diese
+                Suchfunktion kann nach allen Einträgen der Tabelle gesucht
+                werden, die Suche funktioniert bereits mit einem Buchstaben oder
+                Zahl.
+            </p>
+
+            <p>
+                Über die Tabellen-Überschriften kann die Tabelle sortiert
+                werden, hierfür muss nur einmal auf die Überschriftgerückt
+                werden, danach wird die Tabelle entweder auf- oder absteigen
+                sortiert.
+            </p>
+
+            <p>
+                Unter der Tabelle befindet sich in der linken Ecke, die
+                Information darüber welche Einträge der Tabelle grade angezeigt
+                werden, auf der rechten Seite kann in den Seiten der Tabelle
+                gewechselt werden, die Anzahl der Seiten richtet sich nach den
+                Einträgen in der Tabelle.
+            </p>
+        </div>
+    </div>
+
+    <div class="toggle" id="device">
         <div class="toggle-title ">
             <h3>
                 <i></i>
@@ -126,41 +122,58 @@
             </h3>
         </div>
         <div class="toggle-inner">
-            <p>Auf der Geräteseite ist eine Tabelle der gesamten Geräte
-                verfügbar, diese Tabelle enthält Informationen zur
-                Inventarnummer, Kategorie, Modell und dem Status des Gerätes.
-                Recht daneben befindet sich eine genauere Information zu den
-                einzelnen Geräten. Die einzelnen Informationen können eingesehen
-                werden, wenn Sie auf eine der Tabellenzeilen drücken, damit
-                werden die Informationen für das Gerät geladen.
-            </p>
-            <% if (rights.edit_device === 1){ %>
-                <p>Auf dieser Seite können auch die Informationen für ein
-                    einzelnes Gerät geändert werden, so ist es möglich zum
-                    Beispiel die Inventarnummer zu ändern, das Gerät einer
-                    anderen Kategorie zuzuordnen, den Status des Gerätes zu
-                    ändern oder das TÜV/UVV-Datum zu ändern.
-                    Die Änderungen können über die Schaltfläche "Daten ändern"
-                    gespeichert werden.</p>
-            <% } %>
-            <p>Ein weiteres Feature ist das Einsehen der Historie eines Gerätes.
-                Dafür muss nachdem die Daten für ein einzelnes Gerät geladen
-                worden sind, auf die Schaltfläche "Historie anzeigen" geklickt
-                werden, damit gelangt man auf eine Übersicht über die letzten
-                Veränderungen eines spezifischen Gerätes.
-            </p>
-            <!-- Bild von Historie ergänzen -->
-            <p>Platzhalter</p>
-            <p>Über die Schaltfläche "Gerät reservieren" kann das zuvor
-                ausgewählte Gerät reserviert werden. Auf diese Funktion wird
-                im nächsten Teil genauer eingegangen.</p>
-            <p>
-                Ebenfalls befindet sich auf dieser Seite noch die Schaltfläche
-                „Gerät löschen“, diese ist nur für Nutzer sichtbar,
-                die von der Software die Berechtigung zum Löschen von Geräten
-                erhalten haben.
-            </p>
-
+            <ol>
+                <li>
+                    Auf der Geräteseite ist eine Tabelle der gesamten Geräte
+                    verfügbar, diese Tabelle enthält Informationen zur
+                    Inventarnummer, Kategorie, Modell und dem Status des
+                    Gerätes.
+                </li>
+                <li>
+                    Rechts daneben befindet sich eine genauere Information zu
+                    den einzelnen Geräten. Die einzelnen Informationen können
+                    eingesehen werden, wenn Sie auf eine der Tabellenzeilen
+                    drücken, damit werden die Informationen für das Gerät
+                    geladen.
+                </li>
+                <% if (rights.edit_device === 1){ %>
+                    <li>
+                        Auf dieser Seite können auch die Informationen für ein
+                        einzelnes Gerät geändert werden, so ist es möglich zum
+                        Beispiel die Inventarnummer zu ändern, das Gerät einer
+                        anderen Kategorie zuzuordnen, den Status des Gerätes zu
+                        ändern oder das TÜV/UVV-Datum zu ändern.
+                        Die Änderungen können über die Schaltfläche "Daten
+                        ändern"
+                        gespeichert werden.
+                    </li>
+                <% } %>
+                <li>
+                    Ein weiteres Feature ist das Einsehen der Historie eines
+                    Gerätes.
+                    Dafür muss nachdem die Daten für ein einzelnes Gerät geladen
+                    worden sind, auf die Schaltfläche "Historie anzeigen"
+                    geklickt
+                    werden, damit gelangt man auf eine Übersicht über die
+                    letzten
+                    Veränderungen eines spezifischen Gerätes.
+                </li>
+                <li>
+                    Über die Schaltfläche "Gerät reservieren" kann das zuvor
+                    ausgewählte Gerät reserviert werden. Auf diese Funktion wird
+                    im nächsten Teil genauer eingegangen.
+                </li>
+                <% if (rights.delete_device === 1){ %>
+                    <li>
+                        Ebenfalls befindet sich auf dieser Seite noch die
+                        Schaltfläche
+                        „Gerät löschen“, diese ist nur für Nutzer sichtbar,
+                        die von der Software die Berechtigung zum Löschen von
+                        Geräten
+                        erhalten haben.
+                    </li>
+                <% } %>
+            </ol>
             <p>
                 Unter den Schaltflächen befindet sich eine Karte, auf dieser
                 Karte wird die Position des Gerätes angezeigt, welches aus der
@@ -179,26 +192,35 @@
                 </h3>
             </div>
             <div class="toggle-inner">
-                <p>Über die Schaltfläche „Reservierung“ gelangt man zu einer
-                    Übersicht über die bereits reservierten und ausgeliehen
-                    Geräte.
-                    Ebenfalls enthält diese Seite Informationen über
-                    das Anfangsdatum und Enddatum der Reservierung/Leihe.
-                    Weiter Informationen, die auf dieser Seite sichtbar sind,
-                    sind der Entleiher mit Vor und Nachname, die BaustellenID
-                    und den Baustellennamen. Über die Filterfunktion
-                    im oberen Bereich der Seite, kann die die Liste nach
-                    bestimmten
-                    Werten gefiltert werden.
-                <p>
-                    Über diese Seite kann ebenfalls eine Reservierung
-                    vorgenommen
-                    werden, allerdings muss so zuerst die Inventarnummer des
-                    Gerätes angegeben werden. Auch ob das Gerät zur Verfügung
-                    steht,
-                    wird erst im Nachhinein geprüft, deshalb empfiehlt es sich
-                    Reservierungen direkt über die Geräteseite vorzunehmen.
-                </p>
+                <ol>
+                    <li>
+                        Über die Schaltfläche „Reservierung“ gelangt man zu
+                        einer
+                        Übersicht über die bereits reservierten und ausgeliehen
+                        Geräte.
+                        Ebenfalls enthält diese Seite Informationen über
+                        das Anfangsdatum und Enddatum der Reservierung/Leihe.
+                        Weiter Informationen, die auf dieser Seite sichtbar
+                        sind,
+                        sind der Entleiher mit Vor und Nachname, die
+                        BaustellenID
+                        und den Baustellennamen. Über die Filterfunktion
+                        im oberen Bereich der Seite, kann die die Liste nach
+                        bestimmten
+                        Werten gefiltert werden.
+                    </li>
+                    <li>
+                        Über diese Seite kann ebenfalls eine Reservierung
+                        vorgenommen
+                        werden, allerdings muss so zuerst die Inventarnummer des
+                        Gerätes angegeben werden. Auch ob das Gerät zur
+                        Verfügung
+                        steht,
+                        wird erst im Nachhinein geprüft, deshalb empfiehlt es
+                        sich
+                        Reservierungen direkt über die Geräteseite vorzunehmen.
+                    </li>
+                </ol>
                 <p>Bei diesem Vorgehen wird die Gerätenummer sofort in das
                     Ausleihformular geladen, die Nummer muss also nicht gemerkt
                     werden. Auf der Seite müssen noch das Start- und Enddatum
@@ -248,60 +270,74 @@
                 </h3>
             </div>
             <div class="toggle-inner">
-                <p>
-                    Diese Schaltfläche ist nur für die Administratoren sichtbar
-                    oder
-                    für Benutzer mit den Berechtigungen Nutzer hinzufügen und
-                    Nutzer
-                    löschen. Über die Schaltfläche gelangt man zu einer
-                    Übersicht
-                    über alle registrierten Nutzer der Anwendung.
-                    Mit dem Button am rechten oberen Rand der Tabelle mit der
-                    Beschriftung "Neuen Benutzer hinzufügen" gelangt man zu
-                    einer
-                    weiteren Seite. Auf dieser können die Stammdaten, wie Name,
-                    Nachname usw. festgelegt werden.
-                </p>
-
-                <p>
-                    Ebenfalls kann hier die Zuordnung von Rechten erfolgen.
-                    Bevor eine Änderung, die hier vorgenommen wird, greift,
-                    erfolgt erst eine Abfrage, ob die Veränderungen wirklich
-                    vorgenommen werden sollen.
-                </p>
+                <ol>
+                    <li>
+                        Diese Schaltfläche ist nur für die Administratoren
+                        sichtbar oder für Benutzer mit den Berechtigungen. Über
+                        die Schaltfläche gelangt man zu einer Übersicht über
+                        alle registrierten Nutzer der Anwendung.
+                    </li>
+                    <li>
+                        2. Mit dem Button am rechten oberen Rand der Tabelle mit
+                        der Beschriftung "Neuen Benutzer hinzufügen" gelangt man
+                        zu einer weiteren Seite. Auf dieser können die
+                        Stammdaten, wie Name, Nachname usw. festgelegt werden.
+                        Ebenfalls kann hier die Zuordnung von Rechten erfolgen.
+                    </li>
+                    <li>
+                        Weiterhin können hier die Stammdaten der Benutzer
+                        angepasst werden und anschließend mit dem Button
+                        "Bestätigen" gespeichert werden.
+                    </li>
+                    <li>
+                        Als letztes ist es möglich sogar einen Benutzer aus
+                        dem Programm zu löschen, so dass dieser kein Zugriff
+                        mehr auf die Software hat.
+                    </li>
+                </ol>
             </div>
         </div><!-- END OF TOGGLE -->
     <% } %>
 
-    <div class="toggle" id="picking">
-        <div class="toggle-title ">
-            <h3>
-                <i></i>
-                <span class="title-name">Kommissionieren</span>
-            </h3>
-        </div>
-        <div class="toggle-inner">
-            <p>
-                Diese Schaltfläche steht nur den Werkstattmitarbeitern zur
-                Verfügung, über diesen Menüpunkt können Geräte schneller ein
-                und ausgebucht werden.
-            </p>
+    <% if (rights.picking === 1){ %>
+        <div class="toggle" id="picking">
+            <div class="toggle-title ">
+                <h3>
+                    <i></i>
+                    <span class="title-name">Kommissionieren</span>
+                </h3>
+            </div>
+            <div class="toggle-inner">
+                <p>
+                    Diese Schaltfläche steht nur den Werkstattmitarbeitern zur
+                    Verfügung, über diesen Menüpunkt können Geräte schneller ein
+                    und ausgebucht werden.
+                </p>
+                <ol>
+                    <li>
+                        Über das Anklicken der Baustelle, kann ein Gerät
+                        direkt als ausgeliehen gebucht werden, und es wird der
+                        Baustelle direkt zugeordnet.
+                    </li>
+                    <li>
+                        Über das Anklicken des Werkzeugkastens, kann das
+                        Gerät als „In Wartung“ gebucht werden, hierfür ist nur
+                        die Eingabe der Inventarnummer erforderlich.
+                    </li>
 
-            <p>
-                Über das Anklicken der Baustelle, kann ein Gerät direkt als
-                ausgeliehen gebucht werden, und es wird der Baustelle
-                direkt zugeordnet.
-                Über das Anklicken des Werkzeugkastens, kann das Gerät als
-                „In Wartung“ gebucht werden, hierfür ist nur die Eingabe der
-                Inventarnummer erforderlich.
-                Über das Anklicken des Lagers kann das Gerät direkt als
-                „Verfügbar“ vermerkt werden, hierfür muss ebenfalls nur die
-                Inventarnummer angegeben werden. Weitere Status stehen nicht zur
-                Verfügung, diese müssen über das
-                Gerätemanagement geändert werden.</p>
-        </div>
-    </div><!-- END OF TOGGLE -->
-
+                    <li>
+                        Über das Anklicken des Lagers kann das Gerät direkt
+                        als „Verfügbar“ vermerkt werden, hierfür muss ebenfalls
+                        nur die Inventarnummer angegeben werden
+                    </li>
+                </ol>
+                <p>
+                    Weitere Status stehen nicht zur Verfügung, diese müssen über
+                    das Gerätemanagement geändert werden.
+                </p>
+            </div>
+        </div><!-- END OF TOGGLE -->
+    <% } %>
     <div class="toggle" id="search">
         <div class="toggle-title ">
             <h3>
@@ -310,19 +346,13 @@
             </h3>
         </div>
         <div class="toggle-inner">
-            <p>
-                Ein Suchfeld befindet sich in der Menüleiste, in dieses Suchfeld
-                können nur Inventarnummern eingegeben werden. Anschließend wird
-                man auf die Geräteübersicht weitergeleitet, in der dortigen
-                Tabelle befindet sich dann nur das gesuchte Element. Wenn keine
-                vollständige Inventarnummer eingegeben wird, werden alle Geräte
-                angezeigt deren Inventarnummer die gesuchte Zahlenfolge enthält.
-
-                Eine Erweiterte Suche befindet sich auf der Seite
-                Geräteübersicht
-                über der Tabelle. In dieses Suchfeld können nicht nur
-                Inventarnumern eingegeben werden, sondern auch Status oder
-                Kateogrien können eingegeben werden.</p>
+            <p>Ein Suchfeld befindet sich in der Menüleiste, in dieses Suchfeld
+                können wie bereits in Kapitel 5.3.2 beschrieben alle Werte der
+                Tabelle Geräte eingegeben werden. Nach der Eingabe gelangt man
+                auf die Geräteseite, in der Tabelle befinden Sich nun nur noch
+                die Einträge, die mit den eingegebenen Werten der Suche
+                übereinstimmen.
+            </p>
         </div>
     </div><!-- END OF TOGGLE -->
 
@@ -346,6 +376,6 @@
 </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
+</script>
 <script src="javascript/faQ.js"></script>
 </html>

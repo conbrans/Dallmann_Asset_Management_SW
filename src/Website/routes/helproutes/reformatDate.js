@@ -1,7 +1,7 @@
 /**
  * this method remove the timestamp for a better customer expierence on the
  * website
- * @param data
+ * @param data from the database, where the Timestamp should be removed
  * @return {Promise<*>}
  */
 async function removeTimeStampForDevice(data) {
@@ -16,7 +16,7 @@ async function removeTimeStampForDevice(data) {
 
 /**
  * look at the doc for removeTimeStampForDevice
- * @param data
+ * @param data data from the database, where the Timestamp should be removed
  * @return {Promise<*>}
  */
 async function removeTimeStampForBooking(data) {
@@ -29,7 +29,7 @@ async function removeTimeStampForBooking(data) {
 
 /**
  * look at the doc for removeTimeStampForDevice
- * @param data
+ * @param data data from the database, where the Timestamp should be removed
  * @return {Promise<*>}
  */
 async function removeTimeStampForHistory(data) {
@@ -61,7 +61,7 @@ async function removeTimestampForNotification(data) {
 /**
  * look at the doc for removeTimeStampForDevice
  * @return {string}
- * @param arraytosplit
+ * @param arraytosplit one specific value from data, which need to be reformed
  */
 function splitValues(arraytosplit) {
 	if (arraytosplit !== null) {

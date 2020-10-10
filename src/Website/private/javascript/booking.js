@@ -14,8 +14,6 @@ $(document).ready(function () {
 	var bookings = $.ajax({
 		url: "/showOneBooking",
 	}).done(data => {
-		console.log(data);
-
 
 		bookingCalendar = flatpickr("#booking_start", {
 			disableTime: true,
@@ -29,12 +27,9 @@ $(document).ready(function () {
 				to: '2020-10-04'
 			},],
 			onChange: [function (selectedDates) {
-				//dateArr = selectedDates.map(date => this.formatDate(date,
-				// "d-m-Y"));
-
 				startDate = selectedDates[0].getFullYear() + "-" + numberCharacters(selectedDates[0].getMonth() + 1) + "-" + numberCharacters(selectedDates[0].getDate());
-
 				endDate = selectedDates[1].getFullYear() + "-" + numberCharacters(selectedDates[1].getMonth() + 1) + "-" + numberCharacters(selectedDates[1].getDate());
+
 			}]
 
 		});
@@ -51,4 +46,18 @@ function numberCharacters(date) {
 }
 
 
+function getSelectedDates() {
+	loanDay = startDate;
+	loanEnd = endDate;
 
+	var selectedDates = $.ajax({
+		url: '/book',
+		method: 'POST',
+		data:{
+			inventoryNumber : document.getElementById("inventoryNumber").value,
+			loanDay : loanDay,
+			loanEnd : loanEnd,
+			projectId : document.getElementById("projectId").value,
+		},
+	});
+}
