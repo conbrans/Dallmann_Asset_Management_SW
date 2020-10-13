@@ -84,6 +84,12 @@
         </table>
     </div>
 </main>
+<% if (searchValue === "" ){ %>
+    <input type="hidden" id="searchValue" value="">
+<% }else { %>
+<input type="hidden" id="searchValue" value="<%= searchValue %>">
+<% } %>
+
 <%- include('../Views/general/footer.ejs'); -%>
 </body>
 </html>

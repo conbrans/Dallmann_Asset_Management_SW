@@ -31,4 +31,17 @@ router.post("/book", redirect.redirectLogin,  authentication.authRight("booking_
 	});
 });
 
+
+router.post("/bookinglist",redirect.redirectLogin, authentication.authRight("booking_request"), (req, res) => {
+
+	fetch.getFetch("/api/borrow/getReservation/"+ req.session.inventoryNumber)
+		.then(() =>
+			res.status(200).render("bookinglist.ejs", {
+				username: req.session.username,
+				role: req.session.role,
+				rights: req.session.rights,
+				searchValue : req.session.inventoryNumber,
+			})
+		);
+});
 module.exports = router;

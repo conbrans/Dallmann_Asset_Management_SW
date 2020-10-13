@@ -18,7 +18,9 @@ $(document).ready(function () {
 				{"data": "projectId"},
 				{"data": "buildingSite"},
 			],
-			pageLength : 15,
+			search: {
+				search : document.getElementById("searchValue").value,
+			},
 			colReorder: true,
 			language: {
 				search: "Suche nach:",
