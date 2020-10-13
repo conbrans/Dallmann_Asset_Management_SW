@@ -64,6 +64,7 @@ router.get("/bookinglist", redirect.redirectLogin,
 			username: req.session.username,
 			role: req.session.role,
 			rights: req.session.rights,
+			searchValue : "",
 		});
 	});
 
@@ -182,9 +183,6 @@ router.get("/editProfil", notification.sendMessage("editProfil"), (req, res) => 
 	});
 });
 
-
-
-
 router.get("/userManagement", redirect.redirectLogin,
 	authentication.authRight("add_user"),
 	authentication.authRight("delete_User"),
@@ -201,5 +199,13 @@ router.get("/userManagement", redirect.redirectLogin,
 			}]
 		});
 	});
+
+router.get("/acceptBorrowRequests", redirect.redirectLogin,authentication.authRight("booking_request"), ((req, res) => {
+	res.status(200).render("acceptBooking.ejs",{
+		username: req.session.username,
+		role: req.session.role,
+		rights: req.session.rights,
+	})
+}))
 
 module.exports = router;

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dallmann Asset-Management</title>
+    <link rel="stylesheet" href="css/acceptBooking.css">
+
+    <link rel="stylesheet" href="css/deviceManagement.css">
+    <link rel="stylesheet" href="css/table.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
+    </script>
+
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
+    <script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
+
+    <script src="javascript/acceptBooking.js"></script>
+    <link rel="icon" type="image/x-icon"
+          href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <link rel="stylesheet" href="css/headFootDesign.css">
+    <script src="javascript/header.js"></script>
+</head>
+<body>
+<!-- NavigationBar Start -->
+<%- include('../Views/general/header.ejs'); -%>
+<!--Nav Ende -->
+<main>
+
+    <table id="acceptbooking" class="table
+            user-list"
+           onload>
+        <thead>
+        <tr>
+            <th>Inventarnummer</th>
+            <th>Starttag Buchung</th>
+            <th>Ende Buchung</th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Baustellennummer</th>
+            <th>Baustellenname</th>
+            <th>Reservierung bestätigen</th>
+        </tr>
+        </thead>
+        <tbody id="deviceContent">
+        </tbody>
+    </table>
+</main>
+<%- include('../Views/general/footer.ejs'); -%>
+</body>
+</html>

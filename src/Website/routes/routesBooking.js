@@ -44,4 +44,10 @@ router.post("/bookinglist",redirect.redirectLogin, authentication.authRight("boo
 			})
 		);
 });
+
+router.post("/bookingRequest",redirect.redirectLogin, authentication.authRight("booking_request"), (req, res) => {
+
+
+
+});
 module.exports = router;

@@ -14,6 +14,7 @@ router.post("/sendInventoryNumber", (req, res) => {
 	res.json({
 		message: "Erfolg",
 	});
+
 });
 /**
  * get the workerid and mail for a specific user, which is transported with
@@ -25,6 +26,7 @@ router.post("/sendWorkerInfos", (req, res) => {
 	res.json({
 		message: "Erfolg",
 	});
+	console.log(req.body);
 });
 
 /**

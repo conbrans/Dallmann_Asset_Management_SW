@@ -38,11 +38,11 @@ let selectReservation = "SELECT DISTINCT" +
     " ON BORROWS.project_id = PROJECT.project_id\n" +
     " LEFT JOIN WORKER\n" +
     " ON BORROWS.worker_id = WORKER.worker_id\n" +
-    " WHERE PROJECT.project_id = BORROWS.project_id;\n";
+    " WHERE PROJECT.project_id = BORROWS.project_id";
 
 router.get("/api/borrow/getReservations", (request, response) => {
 
-    connection.query(selectReservation, function (err, result) {
+    connection.query(selectReservation +";", function (err, result) {
 
         if (err) {
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -293,6 +293,11 @@ router.delete('/api/borrow/cancelReservation',
             })
         })
     });
+
+
+router.get("/api/borrow/checkBookingRequest",(req, res) => {
+   let statment = selectReservation + "AND "
+});
 
 
 //export of this module
