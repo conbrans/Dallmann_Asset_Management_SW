@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
     <script src="javascript/login.js"></script>
-    <script src="bower_components/crypto-js/crypto-js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webcrypto@0.1.1/src/index.min.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -34,7 +34,6 @@
 
     </script>
 
-
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="pragma" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,13 +43,18 @@
 <script>
 
 
-    function login() {
 
-        var password = CryptoJS.MD5(document.getElementById
-        ("password").value);
-        alert(password);
+    $("#login").submit( (event) => {
+	    var salt = CryptoJS.lib.WordArray.random(128/8);
+	    var key = CryptoJS.PBKDF2("Secret Passphrase", salt, { keySize: 512/32,
+            iterations: 1000 });
 
-    }
+	    var
+
+	    alert($(this).serializeArray());
+	    event.preventDefault();
+
+    });
 
 
 </script>
@@ -83,10 +87,12 @@
                     Angemeldet
                     bleiben</label>
             </div>
-            <button class="btn btn-primary" type="submit">Login
+            <button class="btn btn-primary" type="submit" >Login
             </button>
         </fieldset>
+
     </form>
+    <button onclick="login()"></button>
 </div>
 
 

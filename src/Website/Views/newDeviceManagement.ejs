@@ -108,6 +108,10 @@
 
         </div>
         <div class="deviceInformation">
+            <h4>Standort</h4>
+            <br>
+            <div id="map"></div>
+            <br>
             <div class="inputFields">
                 <div class="box">
                     <h3>Geräteinformationen</h3>
@@ -343,6 +347,23 @@
                             </div>
                         </form>
 
+                    <% } if (rights.booking_request === 1){ %>
+                        <form class="btn-from" method="post"
+                              action="/bookinglist"
+                              id="booking">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn
+                                        btn-warning">
+                                            Reservierungen
+                                            für dieses Gerät anzeigen
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                     <% } if (rights.delete_device === 1){ %>
                         <form class="btn-from" method="post"
                               action="/deleteDevice" id="deleteDevice"
@@ -365,9 +386,7 @@
             </div>
             <br>
             <hr>
-            <h4>Standort</h4>
-            <br>
-            <div id="map"></div>
+
 
         </div>
 

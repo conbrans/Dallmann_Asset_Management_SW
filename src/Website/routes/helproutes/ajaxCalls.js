@@ -41,7 +41,7 @@ router.get("/showUsers", redirect.redirectLogin,
  * get booking information and reformat the timestamp
  */
 router.get("/showBooking", redirect.redirectLogin,
-	authentication.authRight("booking_device"), (req, res) => {
+	authentication.authRight("booking_request"), (req, res) => {
 		fetch.getFetch("/api/borrow/getReservations")
 			.then(data =>
 				reformatDate.removeTimeStampForBooking(data).then(data => res.json(data)));

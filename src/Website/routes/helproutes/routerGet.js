@@ -58,7 +58,7 @@ router.get("/booking", redirect.redirectLogin,
 	});
 
 router.get("/bookinglist", redirect.redirectLogin,
-	authentication.authRight("booking_device"),
+	authentication.authRight("booking_request"),
 	(req, res) => {
 		res.status(200).render("bookinglist.ejs", {
 			username: req.session.username,

@@ -269,7 +269,7 @@ router.post("/api/user/editProfile/:userId", (request, response) => {
     let password = crypto.decrypt(request.body.password);
     //update the profile with given information
     update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
-        "surname ='" + request.body.firstname + "', firstname ='" + request.body.surname + "', password ='" + password + "'" +
+        "surname ='" + request.body.surname + "', firstname ='" + request.body.firstname + "', password ='" + password + "'" +
         "WHERE worker_id = " + request.params.userId + ";";
 
 
