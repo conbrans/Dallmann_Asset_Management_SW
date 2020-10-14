@@ -24,30 +24,38 @@ router.post("/booking",
 /**
  * post request for booking a device on the user which wants to book a device
  */
-router.post("/book", redirect.redirectLogin,  authentication.authRight("booking_device"), (req, res) => {
+router.post("/book", redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
 	req.body.workerId = req.session.userID;
-	fetch.postFetch("/api/borrow/createReservation", req).then(()=>{
+	fetch.postFetch("/api/borrow/createReservation", req).then(() => {
 		console.log("TEST");
 	});
 });
 
 
-router.post("/bookinglist",redirect.redirectLogin, authentication.authRight("booking_request"), (req, res) => {
+router.post("/bookinglist", redirect.redirectLogin, authentication.authRight("booking_request"), (req, res) => {
 
-	fetch.getFetch("/api/borrow/getReservation/"+ req.session.inventoryNumber)
+	fetch.getFetch("/api/borrow/getReservation/" + req.session.inventoryNumber)
 		.then(() =>
 			res.status(200).render("bookinglist.ejs", {
 				username: req.session.username,
 				role: req.session.role,
 				rights: req.session.rights,
-				searchValue : req.session.inventoryNumber,
+				searchValue: req.session.inventoryNumber,
 			})
 		);
 });
 
-router.post("/bookingRequest",redirect.redirectLogin, authentication.authRight("booking_request"), (req, res) => {
-
-
+router.post("/acceptBooking", redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
+	fetch.postFetch("/api/borrow/changeRequestStatus", req)
+		.then((data,res) => {
+			console.log(data);
+			res.redirect("back");
+		})
+		.catch(err => {
+			console.error(err);
+		});
 
 });
+
+
 module.exports = router;

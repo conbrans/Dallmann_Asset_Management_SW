@@ -107,4 +107,12 @@ router.get("/showDevice", redirect.redirectLogin,
 	});
 
 
+router.get("/showBookingRequest", redirect.redirectLogin, authentication.authRight("booking_request"), (req, res) => {
+	fetch.getFetch("/api/borrow/checkBookingRequest")
+		.then(data =>
+			reformatDate.removeTimeStampForBooking(data)
+				.then(data => res.json(data)));
+});
+
+
 module.exports = router;
