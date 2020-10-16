@@ -20,7 +20,9 @@ const createTable = ()=>{
 				{"data": "buildingSite"},
 				{"data": ""},
 			],
-			colReorder: true,
+			colReorder: {
+				fixedColumnsLeft: 3,
+			},
 			language: {
 				search: "Suche nach:",
 				info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ zu überprüfenden Reservierungen",
@@ -46,13 +48,15 @@ const createTable = ()=>{
 		$('#acceptbooking tbody').on( 'click', 'button', function () {
 			data = {
 				inventoryNumber: this.closest('tr').cells.item(0).innerText,
+				loanDay : this.closest('tr').cells.item(1).innerText,
+				loanEnd : this.closest('tr').cells.item(2).innerText,
 				button: this.value,
 			};
 			$.ajax({
 				url: "/acceptBooking",
 				method : "POST",
 				data : data,
-			}).done(()=> console.log("war erfolgreich"));
+			}).done(()=> console.log("Gemacht"));
 		} );
 	});
 }

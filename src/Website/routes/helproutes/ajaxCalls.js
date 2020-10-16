@@ -56,15 +56,11 @@ router.get("/showBooking", redirect.redirectLogin,
 router.get("/showOneBooking", redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
 	fetch.getFetch("/api/borrow/getReservation/" + req.session.inventoryNumber)
 		.then(data => {
-			let resultstring = "";
-			const from = [];
-			const to = [];
-			for (let i = 0; i < data.length; i++) {
-				from[i] = "from : '" + data[i].loanDay + "'";
-				to[i] = "to : '" + data[i].loanEnd + "'";
-				resultstring += "{" + from[i] + "," + to[i] + "},";
-			}
-			res.json(resultstring);
+			reformatDate.removeTimeStampForBooking(data)
+				.then(data=>{
+					res.json(data);
+				})
+
 		});
 });
 
@@ -113,6 +109,8 @@ router.get("/showBookingRequest", redirect.redirectLogin, authentication.authRig
 			reformatDate.removeTimeStampForBooking(data)
 				.then(data => res.json(data)));
 });
+
+
 
 
 module.exports = router;

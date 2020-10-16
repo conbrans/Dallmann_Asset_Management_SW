@@ -42,7 +42,7 @@ let selectReservation = "SELECT DISTINCT" +
 
 router.get("/api/borrow/getReservations", (request, response) => {
 
-	connection.query(selectReservation + ";", function (err, result) {
+	connection.query(selectReservation + " and accepted = 'angenommen';", function (err, result) {
 
 		if (err) {
 			response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
@@ -326,7 +326,7 @@ router.get("/api/borrow/checkBookingRequest", (req, res) => {
 	});
 });
 //{ inventoryNumber: '759219', button: 'accept' }
-router.post("/api/borrow/changeRequestStatus", (req, res) => {
+router.put("/api/borrow/changeRequestStatus", (req, res) => {
 	let statement = "UPDATE BORROWS SET accepted= '";
 	switch (req.body.button) {
 		case "accept":
@@ -339,13 +339,16 @@ router.post("/api/borrow/changeRequestStatus", (req, res) => {
 			statement += "ausstehend";
 			break;
 	}
-	statement += " WHERE inventory_number = " + req.body.inventoryNumber + ";";
-	connection.query(statement, function (err){
+	statement += " WHERE inventory_number = " + req.body.inventoryNumber +
+		" and loan_day LIKE '" +req.body.loanDay
+		+"' and loan_end LIKE '" +req.body.loanEnd + "';";
+	connection.query(statement, function (err,result){
 		if (err){
 			console.error(err);
 		}
+		res.json(result);
 	});
-	res.json("Der Status wurde verändert");
+
 });
 
 

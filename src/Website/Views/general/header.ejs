@@ -50,17 +50,24 @@
                         </a>
                         <ul>
                             <% if (rights.booking_device === 1){ %>
-                            <li>
-                                <a href="/booking">
-                                    Reservierung vornehmen
-                                </a>
-                            </li>
-                                <% } %>
-                            <li>
-                                <a href="/bookinglist">
-                                    Reservierungsliste einsehen
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="/booking">
+                                        Reservierung vornehmen
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/acceptBorrowRequests">
+                                        Angefragte Buchungen einsehen
+                                    </a>
+                                </li>
+                            <% }  if (rights.booking_request === 1){ %>
+                                <li>
+                                    <a href="/bookinglist">
+                                        Reservierungsliste einsehen
+                                    </a>
+                                </li>
+                            <% } %>
+
                         </ul>
                     </li>
                 <% } %>
@@ -121,13 +128,13 @@
 </header>
 <hr class="clear">
 <script>
-    $('#header').prepend('<div id="menu-icon"><span class="first"></span>' +
-        '<span class="second"></span><span class="third"></span></div>');
+	$('#header').prepend('<div id="menu-icon"><span class="first"></span>' +
+		'<span class="second"></span><span class="third"></span></div>');
 
-    $("#menu-icon").on("click", function () {
-        $("nav").slideToggle();
-        $(this).toggleClass("active");
-    });
+	$("#menu-icon").on("click", function () {
+		$("nav").slideToggle();
+		$(this).toggleClass("active");
+	});
 
 </script>
 
