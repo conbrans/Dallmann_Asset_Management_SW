@@ -56,7 +56,7 @@ const createTable = ()=>{
 				url: "/acceptBooking",
 				method : "POST",
 				data : data,
-			}).done(()=> console.log("Gemacht"));
+			}).done(()=> window.location.reload());
 		} );
 	});
 }

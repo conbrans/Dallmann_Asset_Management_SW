@@ -42,7 +42,7 @@ function sendMessage(messagetype) {
 						} else {
 							for (i = 0; i < req.session.bookingData.length;
 							     i++) {
-								req.toastr.info(
+								req.toastr.error(
 									'Für das Gerät mit der Nummer '
 									+ req.session.bookingData[i].inventoryNumber + '' +
 									' endet die Reservierung ' +
