@@ -38,25 +38,46 @@
 <%- include('../Views/general/header.ejs'); -%>
 <!--Nav Ende -->
 <main>
+    <div id="table1">
+        <h2>Angefragte Buchungen:</h2>
+        <table id="acceptbooking" class="table user-list">
+            <thead>
+            <tr>
+                <th>Inventarnummer</th>
+                <th>Starttag Buchung</th>
+                <th>Ende Buchung</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Baustellennummer</th>
+                <th>Baustellenname</th>
+                <th>Reservierung bestätigen/ablehnen</th>
+            </tr>
+            </thead>
+            <tbody id="deviceContent">
+            </tbody>
+        </table>
+    </div>
 
-    <table id="acceptbooking" class="table
-            user-list"
-           onload>
-        <thead>
-        <tr>
-            <th>Inventarnummer</th>
-            <th>Starttag Buchung</th>
-            <th>Ende Buchung</th>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>Baustellennummer</th>
-            <th>Baustellenname</th>
-            <th>Reservierung bestätigen/ablehnen</th>
-        </tr>
-        </thead>
-        <tbody id="deviceContent">
-        </tbody>
-    </table>
+
+    <div id="table2">
+        <h2>Bestätigte Buchungen:</h2>
+        <table id="booking" class="table user-list">
+            <thead>
+            <tr>
+                <th>Inventarnummer</th>
+                <th>Starttag Buchung</th>
+                <th>Ende Buchung</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Baustellennummer</th>
+                <th>Baustellenname</th>
+            </tr>
+            </thead>
+            <tbody id="deviceContent">
+            </tbody>
+        </table>
+    </div>
+
 </main>
 <%- include('../Views/general/footer.ejs'); -%>
 </body>

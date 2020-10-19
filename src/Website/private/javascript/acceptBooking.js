@@ -1,9 +1,10 @@
 $(document).ready(function () {
-	createTable();
+	createTableRequest();
+	createTableBooking();
 
 });
 
-const createTable = ()=>{
+const createTableRequest = ()=>{
 	var table = $("#acceptbooking");
 	var notacceptedbookings = $.ajax({
 		url: "/showBookingRequest",
@@ -58,5 +59,39 @@ const createTable = ()=>{
 				data : data,
 			}).done(()=> window.location.reload());
 		} );
+	});
+}
+
+const createTableBooking = ()=>{
+	var table = $("#booking");
+	var users = $.ajax({
+		url: "/showBooking",
+	}).done(data => {
+		table.DataTable({
+			data: data,
+			columns: [
+				{"data": "inventoryNumber"},
+				{"data": "loanDay"},
+				{"data": "loanEnd"},
+				{"data": "firstname"},
+				{"data": "surname"},
+				{"data": "projectId"},
+				{"data": "buildingSite"},
+			],
+			colReorder: true,
+			language: {
+				search: "Suche nach:",
+				info: "Zeige Nr. _START_ bis _END_ von _TOTAL_ Reservierungen",
+				lengthMenu: "Zeige _MENU_ Reservierungen.",
+				zeroRecords: "Keine Einträge verfügbar",
+				paginate: {
+					first: "Erste Seite",
+					last: "Letzte Seite",
+					next: "Nächste",
+					previous: "Vorherige"
+				},
+				infoFiltered: "(von _MAX_ Reservierungen insgesamt)",
+			}
+		});
 	});
 }

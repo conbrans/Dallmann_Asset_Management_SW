@@ -1,50 +1,44 @@
-let disableDates;
-let bookingCalendar;
-let start;
-let end;
-
-let oneRange;
-
-let json;
-let test;
-let tt;
-var ts;
 $(document).ready(function () {
 
 	var bookings = $.ajax({
 		url: "/showOneBooking",
 	}).done(data => {
-
-
-		bookingCalendar = flatpickr("#booking_start", {
-			disableTime: true,
-			mode: "range",
-			minDate: "today",
-			dateFormat: "Y-m-d",
-			disable: testmethode(data),
-			onChange: [function (selectedDates) {
-				startDate = selectedDates[0].getFullYear() + "-" + numberCharacters(selectedDates[0].getMonth() + 1) + "-" + numberCharacters(selectedDates[0].getDate());
-				endDate = selectedDates[1].getFullYear() + "-" + numberCharacters(selectedDates[1].getMonth() + 1) + "-" + numberCharacters(selectedDates[1].getDate());
-
-			}]
-
-		});
+		setBookingCalendar(data);
 	});
 });
 
+const setBookingCalendar = (data) => {
+	bookingCalendar = flatpickr("#booking_start", {
+		disableTime: true,
+		weekNumbers: true,
+		mode: "range",
+		minDate: "today",
+		locale: {
+			firstDayOfWeek: 1,
+		},
+		dateFormat: "Y-m-d",
+		disable: getDates(data),
+		onChange: [function (selectedDates) {
+			loanDay = selectedDates[0].getFullYear() + "-"
+				+ numberCharacters(selectedDates[0].getMonth() + 1)
+				+ "-" + numberCharacters(selectedDates[0].getDate());
+			loanEnd = selectedDates[1].getFullYear()
+				+ "-" + numberCharacters(selectedDates[1].getMonth() + 1)
+				+ "-" + numberCharacters(selectedDates[1].getDate());
+		}]
+	});
+};
 
-function numberCharacters(date) {
+const numberCharacters = (date) => {
 	if (date > 9) {
 		return "" + date;
 	} else {
 		return "0" + date;
 	}
-}
+};
 
 
 function getSelectedDates() {
-	loanDay = startDate;
-	loanEnd = endDate;
 
 	var selectedDates = $.ajax({
 		url: '/book',
@@ -58,22 +52,34 @@ function getSelectedDates() {
 	});
 }
 
-function testmethode(data) {
-	let splittedStart = [];
-	let splittedEnd = [];
-	let startdates = [];
-	let enddates = [];
+const getDates = (data) => {
+	let splitStart = [];
+	let splitEnd = [];
+
 	for (let i = 0; i < data.length; i++) {
-		splittedStart[i] = data[i].loanDay.split("-");
-		splittedEnd[i] = data[i].loanEnd.split("-");
+		splitStart[i] = data[i].loanDay.split("-");
+		splitEnd[i] = data[i].loanEnd.split("-");
 	}
-	let arr = [];
-	for (let i = 0; i < splittedStart.length; i++) {
-		for (let dt = new Date(splittedStart[i][0], splittedStart[i][1] - 1, splittedStart[i][2]);
-		     dt < new Date(splittedEnd[i][0], splittedEnd[i][1] - 1, splittedEnd[i][2]);
+	let dates = [];
+	for (let i = 0; i < splitStart.length; i++) {
+		for (let dt = new Date(splitStart[i][0], splitStart[i][1] - 1, splitStart[i][2]);
+		     dt < new Date(splitEnd[i][0], splitEnd[i][1] - 1, splitEnd[i][2]);
 		     dt.setDate(dt.getDate() + 1)) {
-			arr.push(new Date(dt).toISOString());
+			dates.push(new Date(dt).toISOString());
 		}
 	}
-	return arr;
-}
+	return dates;
+};
+
+const BookingWithBody = () => {
+
+	var bookings = $.ajax({
+		url: "/showOneBookingWithBody",
+		method: "POST",
+		data: {
+			inventoryNumber: document.getElementById("inventoryNumber").value,
+		}
+	}).done(data => {
+		setBookingCalendar(data);
+	});
+};

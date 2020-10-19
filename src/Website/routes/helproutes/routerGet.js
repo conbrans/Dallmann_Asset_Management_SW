@@ -1,5 +1,5 @@
 /**
- * Require of alll helproutes which are used and declaration of router
+ * Require of all helproutes which are used and declaration of router
  */
 const express = require('express');
 const router = express.Router();
@@ -53,7 +53,6 @@ router.get("/booking", redirect.redirectLogin,
 			role: req.session.role,
 			rights: req.session.rights,
 			inventoryNumber: "",
-			maxDate: "2020-10-23",
 		});
 	});
 
