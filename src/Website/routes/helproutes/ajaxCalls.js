@@ -54,7 +54,6 @@ router.get("/showBooking", redirect.redirectLogin,
  * function to get only one booking, is needed for the borrow function
  */
 router.get("/showOneBooking", redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
-	console.log("SESSION");
 	fetch.getFetch("/api/borrow/getReservation/" + req.session.inventoryNumber)
 		.then(data => {
 			reformatDate.removeTimeStampForBooking(data)
@@ -74,7 +73,6 @@ router.post("/showOneBookingWithBody", redirect.redirectLogin, authentication.au
 				.then(data => {
 					res.json(data);
 				});
-
 		});
 });
 

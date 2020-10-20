@@ -13,12 +13,14 @@ const redirect = require('./helproutes/redirect');
 
 router.post("/booking",
 	authentication.authRight("booking_device"), redirect.redirectLogin, (req, res) => {
+
 		res.render("booking.ejs", {
 			username: req.session.username,
 			role: req.session.role,
 			rights: req.session.rights,
 			inventoryNumber: req.session.inventoryNumber,
 		});
+
 	});
 
 /**
@@ -47,7 +49,7 @@ router.post("/bookinglist", redirect.redirectLogin, authentication.authRight("bo
 
 router.post("/acceptBooking", redirect.redirectLogin, authentication.authRight("booking_device"), (req, res) => {
 	fetch.putFetch("/api/borrow/changeRequestStatus", req)
-		.then(()=> res.redirect("/acceptBorrowRequests"));
+		.then(() => res.redirect("/acceptBorrowRequests"));
 });
 
 

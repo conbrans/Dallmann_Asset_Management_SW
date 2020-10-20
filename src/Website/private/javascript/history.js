@@ -30,6 +30,13 @@ $(document).ready(function () {
 				infoFiltered: "(von _MAX_ Einträgen insgesamt)",
 			}
 		});
+		let longitudes = [];
+		let latitudes = [];
+		for (let i=0;i<data.length;i++ ){
+			longitudes.push(data[i].longitude);
+			latitudes.push(data[i].longitude);
+		}
+		setMultipleMarkers(longitudes,latitudes);
 
 
 		$('#history tbody').on('click', 'tr', function () {
