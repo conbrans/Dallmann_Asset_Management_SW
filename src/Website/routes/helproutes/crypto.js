@@ -1,34 +1,39 @@
 const crypto = require('crypto');
 
 const key = crypto.randomBytes(32);
-const initializationVector = crypto.randomBytes(16);
+
 
 /**
  * encrypt a given text
  * @param text, which will be encrypted
- * @return {{encryptedData: string, initializationVector: string}}
+ * @return {{initializationVector: string, encryptedData: string}}
  */
 
 function encrypt(text) {
-	let chiper = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
+	let key = crypto.randomBytes(32);
+	let initializationVector = crypto.randomBytes(16);
+	let chiper = crypto.createCipheriv('aes-256-cbc', Buffer.from(key),
+		initializationVector);
+
 	let encrypted = chiper.update(text);
 	encrypted = Buffer.concat([encrypted, chiper.final()]);
 	return {
-		initializationVector: initializationVector.toString('hex'),
-		encryptedData: encrypted.toString('hex')
+		initializationVector: initializationVector.toString('hex')
+			+ key.toString('hex'),
+		encryptedData: encrypted.toString('hex'),
 	};
 }
 
-/**
- * decrypt a given jsonFile back to text
- * @param text contains the initialization vector and encryptedData
- * @return {string}
- */
 function decrypt(text) {
-	let initializationVector = Buffer.from(text.initializationVector, 'hex');
-	let encryptedText = Buffer.from(text.encryptedData, 'hex');
-	let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), initializationVector);
-	let decrypted = decipher.update(encryptedText);
+
+	let initializationVector =
+		Buffer.from(text.initializationVector.substring(0, 32), 'hex');
+
+	let encryptedData = Buffer.from(text.encryptedData.substring(0), 'hex');
+	let decipher = crypto.createDecipheriv('aes-256-cbc',
+		Buffer.from(text.initializationVector.substring(32), 'hex'),
+		initializationVector);
+	let decrypted = decipher.update(encryptedData);
 	decrypted = Buffer.concat([decrypted, decipher.final()]);
 	return decrypted.toString();
 }

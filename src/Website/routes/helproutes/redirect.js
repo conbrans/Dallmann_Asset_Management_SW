@@ -7,7 +7,7 @@
  */
 const redirectLogin = (req, res, next) => {
 	if (!req.session.userID) {
-		res.redirect(401,"/");
+		res.redirect("/");
 	} else {
 		next();
 	}
@@ -21,7 +21,7 @@ const redirectLogin = (req, res, next) => {
  */
 const redirectHome = (req, res, next) => {
 	if (req.session.userID) {
-		res.redirect(403,"/home");
+		res.redirect("/home");
 	} else {
 		next();
 	}

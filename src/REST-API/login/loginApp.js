@@ -14,6 +14,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const connection = require('../../../src/REST-API/databaseConnection/connection');
+const crypto = require('../../Website/routes/helproutes/crypto');
 const router = express.Router();
 
 
@@ -29,16 +30,15 @@ router.post('/api/login', (req, res) => {
     var givenUserMail = req.body.usermail;
     var givenPassword = req.body.password;
 
-    console.log(givenUserMail,givenPassword);
-
     if (givenUserMail && givenPassword) {
 
         /**
          * sql statement for user information in database
          * @type {string}
          */
-        var statement = "SELECT password, worker_id, e_mail, surname," +
-            " firstname, WORKER.role, booking_device, booking_request," +
+        var statement = "SELECT encryptedData, worker_id, e_mail, surname," +
+            " firstname,initializationVector, WORKER.role, booking_device," +
+            " booking_request," +
             " edit_device, add_device, view_device, delete_device, add_user, delete_user, edit_user, delete_booking, edit_booking, picking " +
             " FROM WORKER,RIGHTS " +
             "WHERE e_mail ='" +
@@ -47,12 +47,16 @@ router.post('/api/login', (req, res) => {
 
 
         connection.query(statement, function (err, result) {
+            let data = {
+                initializationVector : result[0].initializationVector,
+                encryptedData : result[0].encryptedData,
+            };
 
             if (result.length !== 0){
 
-                var password = result[0].password;
 
-                var sync = bcrypt.compareSync(password, givenPassword);
+
+                var sync = bcrypt.compareSync(crypto.decrypt(data), givenPassword);
                 if (sync) {
                     res.json(
                         {

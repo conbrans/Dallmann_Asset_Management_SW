@@ -3,9 +3,9 @@
  * of the first name and transform it to lowercase
  */
 function setEmail() {
-	let firstLetter = (document.getElementById("firstName").value)
+	let firstLetter = (document.getElementById("firstname").value)
 		.charAt(0).toLowerCase();
-	let lastName = (document.getElementById("lastName").value)
+	let lastName = (document.getElementById("surname").value)
 		.toLowerCase();
 
 	document.getElementById("email").value = firstLetter + "."

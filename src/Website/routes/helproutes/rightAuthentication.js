@@ -9,7 +9,7 @@ function authRight(right) {
 			// right.toLowerCase to avoid wrong access because of wrong
 			// uppercase_lowercase
 			if (req.session.rights[right.toLowerCase()] === 0) {
-				res.redirect(403,"/home");
+				res.redirect("/home");
 			} else {
 				next();
 			}

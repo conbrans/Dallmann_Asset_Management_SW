@@ -24,11 +24,22 @@ router.post("/deleteUser", authentication.authRight("delete_user"), (req, res) =
 
 
 router.post("/editUser", authentication.authRight("edit_User"), (req, res) => {
+
 	const passwordEncrypt = crypto.encrypt(req.body.password);
 	const passwordCorrectEncrypt = crypto.encrypt(req.body.passwordCorrect);
+	delete req.body.password;
+	delete req.body.passwordCorrect;
 
-	if (passwordEncrypt.encryptedData === passwordCorrectEncrypt.encryptedData) {
-		req.body.password = passwordEncrypt;
+	console.log(req.body);
+
+	if (crypto.decrypt(passwordEncrypt)===
+	 crypto.decrypt(passwordCorrectEncrypt)) {
+
+		req.body.encryptedData = passwordEncrypt.encryptedData;
+		req.body.initializationVector = passwordEncrypt.initializationVector;
+
+		console.log(req.body);
+
 		fetch.postFetch("/api/user/editProfile/" + req.session.userID, req)
 			.then(res.redirect("/editProfil"))
 			.catch((error) => {

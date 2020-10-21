@@ -32,7 +32,8 @@ const hashing = require('../login/passwordHashingBcrypt');
 
 router.get("/api/user/getAllUsers", (request, response) => {
 
-    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,surname,firstname,\n" +
+    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,encryptedData,e_mail" +
+        " AS eMail,surname,firstname,\n" +
         "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
         "view_device AS viewDevice,delete_device AS deleteDevice,add_user AS addUser,delete_user AS deleteUser,\n" +
         "edit_user AS editUser,delete_booking AS deleteBooking,edit_booking AS editBooking\n" +
@@ -62,7 +63,7 @@ router.get("/api/user/getAllUsers", (request, response) => {
 
 router.get("/api/user/getSpecificUser/:workerId", (request, response) => {
 
-    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,password,e_mail AS eMail,surname,firstname,\n" +
+    sql = "SELECT DISTINCT WORKER.worker_id AS workerId,encryptedData,e_mail AS eMail,surname,firstname,\n" +
         "RIGHTS.role,booking_device AS bookingDevice,edit_device AS editDevice,add_device AS addDevice,\n" +
         "view_device AS viewDevice,delete_device AS deleteDevice,add_user AS addUser,delete_user AS deleteUser,\n" +
         "edit_user AS editUser,delete_booking AS deleteBooking,edit_booking AS editBooking\n" +
@@ -96,10 +97,14 @@ router.post("/api/user/createUser", constraint.workerConstraints, (request, resp
     if (!errors.isEmpty()) {
         return response.json(errors.array());
     }
+
+    let data = crypto.encrypt(request.body.password);
+
     //Inserting a new user in table WORKER
-    sql = "INSERT INTO WORKER(password,e_mail,surname,firstname,role) VALUES " +
-        "('" + hashing.secondHashe(request.body.password) + "','" + request.body.eMail + "','" + request.body.surname + "','"
-        + request.body.firstname + "','" + request.body.role + "')";
+    sql = "INSERT INTO WORKER(encryptedData,e_mail,surname,firstname,role,initializationVector)" +
+        " VALUES " +
+        "('" + data.encryptedData + "','" + request.body.eMail + "','" + request.body.surname + "','"
+        + request.body.firstName + "','" + request.body.role + "','"+ data.initializationVector +"')";
 
     connection.query(sql, (err) => {
         if (err) {
@@ -235,10 +240,10 @@ router.delete("/api/user/deleteUser/:userId", (request, response) => {
  * @param request - send information from client within a JSON file
  * @param response - sending the result within a JSON file to client
  */
-
+//TODO klären ob das noch genutzt wird
 router.put("/api/user/updatePassword", (request, response) => {
     //updating the oass word for the user with the given eMail
-    sql = "UPDATE WORKER SET password='" + hashing.secondHashe(request.body.password) + "' WHERE e_mail ='" + request.body.eMail + "';";
+    sql = "UPDATE WORKER SET encryptedData='" + hashing.secondHashe(request.body.password) + "' WHERE e_mail ='" + request.body.eMail + "';";
 
     connection.query(sql, (err) => {
         if (err) {
@@ -263,15 +268,15 @@ router.put("/api/user/updatePassword", (request, response) => {
  * @param request - send information from client within a JSON file
  * @param response - sending the result within a JSON file to client
  */
-
+//TODO klären ob das noch genutzt wird
 router.post("/api/user/editProfile/:userId", (request, response) => {
 
-    let password = crypto.decrypt(request.body.password);
-    //update the profile with given information
     update = "UPDATE WORKER SET e_mail ='" + request.body.eMail + "'," +
-        "surname ='" + request.body.surname + "', firstname ='" + request.body.firstname + "', password ='" + password + "'" +
-        "WHERE worker_id = " + request.params.userId + ";";
-
+        "surname ='" + request.body.surname +
+        "', firstname ='" + request.body.firstname +
+        "', encryptedData ='" + request.body.encryptedData +
+        "', initializationVector ='" + request.body.initializationVector +
+        "' WHERE worker_id = " + request.params.userId + ";";
 
     connection.query(update, (err) => {
         if (err) {
@@ -286,7 +291,7 @@ router.post("/api/user/editProfile/:userId", (request, response) => {
 
 router.put("/api/user/comparePassword", (request, response) => {
 
-    sql = "SELECT WORKER.password FROM WORKER WHERE e_mail ='" + request.body.eMail + "';";
+    sql = "SELECT WORKER.encryptedData FROM WORKER WHERE e_mail ='" + request.body.eMail + "';";
 
     connection.query(sql, (err, result) => {
         if (err) {
