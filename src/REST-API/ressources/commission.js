@@ -25,13 +25,13 @@ const router = express();
  * @param response - sending the result within a JSON file to client
  */
 
-router.post("/api/commission/booking", (request, response) => {
+router.post("/api/commission/booking", (req, res) => {
 
     var today = new Date().toISOString();
     var date = new Date();
     var newDate = new Date(date.setMonth(date.getMonth() + 6)).toISOString();
 
-    let selectExist = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
+    let selectExist = "SELECT EXISTS(SELECT * FROM BORROWS WHERE inventory_number = " + req.body.inventoryNumber + "" +
         " AND ((CAST('" + today + "' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))" +
         " OR (CAST('" + newDate + "' AS DATE ) BETWEEN CAST(loan_day AS DATE) AND CAST(loan_end AS DATE))));";
     //check if the device is already booked
@@ -45,7 +45,7 @@ router.post("/api/commission/booking", (request, response) => {
 
         } else if (str == "0") {
             //setting new deviceStatus
-            let updateStatus = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = " + request.body.inventoryNumber + ";";
+            let updateStatus = "UPDATE DEVICE SET device_status = 2 WHERE inventory_number = " + req.body.inventoryNumber + ";";
 
             connection.query(updateStatus, (err) => {
                 if (err) {
@@ -56,7 +56,7 @@ router.post("/api/commission/booking", (request, response) => {
             })
             //insert the new borrow for the device with the given inventoryNumber
             let insertBorrow = "INSERT INTO BORROWS(loan_day,loan_end,worker_id,inventory_number,project_id) VALUES " +
-                "('" + today + "','" + newDate + "',NULL,'" + request.body.inventoryNumber + "','" + request.body.projectId + "');";
+                "('" + today + "','" + newDate + "',NULL,'" + req.body.inventoryNumber + "','" + req.body.projectId + "');";
 
             connection.query(insertBorrow, (err) => {
                 if (err) {
@@ -66,12 +66,12 @@ router.post("/api/commission/booking", (request, response) => {
 
             })
             //if commissioning was successful there will be a message sent to the client
-            response.json({
+            res.json({
                 "Message": "Die Kommissionierung" +
                     " war erfolgreich."
             });
             //if the device is already loan, a message will be sent to the client
-        } else response.json({
+        } else res.json({
             "Message": "Das Gerät ist im angegebenen" +
                 " Zeitraum bereits ausgeliehen oder reserviert."
         })
@@ -89,9 +89,9 @@ router.post("/api/commission/booking", (request, response) => {
  * @param response - sending the result within a JSON file to client
  */
 
-router.post("/api/commission/maintenance", (request, response) => {
+router.post("/api/commission/maintenance", (req, res) => {
     //select the status of a device
-    let selectDevice = "SELECT device_status FROM DEVICE WHERE inventory_number = " + request.body.inventoryNumber + ";";
+    let selectDevice = "SELECT device_status FROM DEVICE WHERE inventory_number = " + req.body.inventoryNumber + ";";
 
     connection.query(selectDevice, (err, result) => {
 
@@ -103,7 +103,7 @@ router.post("/api/commission/maintenance", (request, response) => {
             //check if the status is unequal to 3
         } else if (str !== 3) {
             //If status is unequal to 3 the status of the device will be changed to 3
-            let updateStatus = "UPDATE DEVICE SET device_status = 3 WHERE inventory_number = " + request.body.inventoryNumber + ";";
+            let updateStatus = "UPDATE DEVICE SET device_status = 3 WHERE inventory_number = " + req.body.inventoryNumber + ";";
 
             connection.query(updateStatus, (err) => {
                 if (err) {
@@ -114,7 +114,7 @@ router.post("/api/commission/maintenance", (request, response) => {
             })
             //Creating a new Repair in tabele REPAIR
             let insertRepair = "INSERT INTO REPAIR(inventory_number,timestamp,status,note) VALUES " +
-                "('" + request.body.inventoryNumber + "', curDate(), 0 ,NULL);";
+                "('" + req.body.inventoryNumber + "', curDate(), 0 ,NULL);";
 
             connection.query(insertRepair, (err) => {
                 if (err) {
@@ -123,12 +123,12 @@ router.post("/api/commission/maintenance", (request, response) => {
                 }
             })
             //This message will be sent to client if change of status was successful
-            response.json({
+            res.json({
                 "Message": "Die Kommissionierung" +
                     " war erfolgreich."
             });
             //This message will be sent to client if the device is already in repair
-        } else response.json({
+        } else res.json({
             "Message": "Das Gerät befindet sich" +
                 " bereits in einer Reperatur."
         })
@@ -146,10 +146,10 @@ router.post("/api/commission/maintenance", (request, response) => {
  * @param response - sending the result within a JSON file to client
  */
 
-router.post("/api/commission/release", (request, response) => {
+router.post("/api/commission/release", (req, res) => {
 
-    let selectStatus = "SELECT device_status FROM DEVICE WHERE inventory_number = " + request.body.inventoryNumber + ";";
-    let updateStatus = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + request.body.inventoryNumber + ";";
+    let selectStatus = "SELECT device_status FROM DEVICE WHERE inventory_number = " + req.body.inventoryNumber + ";";
+    let updateStatus = "UPDATE DEVICE SET device_status = 1 WHERE inventory_number = " + req.body.inventoryNumber + ";";
     //selecting the status of the device
     connection.query(selectStatus, (err, result) => {
 
@@ -163,7 +163,7 @@ router.post("/api/commission/release", (request, response) => {
 
             try {
 
-                let deleteOldBorrows = "DELETE FROM BORROWS WHERE inventory_number = " + request.body.inventoryNumber + "" +
+                let deleteOldBorrows = "DELETE FROM BORROWS WHERE inventory_number = " + req.body.inventoryNumber + "" +
                     " AND CAST(loan_end AS DATE) <= CURDATE();";
                 //deleting every borrow which is in the past or equals current date
                 connection.query(deleteOldBorrows, (err) => {
@@ -179,7 +179,7 @@ router.post("/api/commission/release", (request, response) => {
                         return;
                     }
                     //If status change is successful this message will be sent to client
-                    return response.json({
+                    return res.json({
                         "Message": "Der Status des" +
                             " Gerätes wurde erfolgreich auf Verfügbar gesetzt."
                     })
@@ -188,7 +188,7 @@ router.post("/api/commission/release", (request, response) => {
 
             } catch (error) {
                 //If there is a error this message will be sent to client
-                return response.json({
+                return res.json({
                     "Message": "Bei der Kommissionierung" +
                         " ist ein Fehler aufgetreten."
                 })
@@ -203,7 +203,7 @@ router.post("/api/commission/release", (request, response) => {
                     return;
                 }
                 //If the update is successful this message will be sent to the client
-                return response.json({
+                return res.json({
                     "Message": "Der Status des Gerätes wurde" +
                         " erfolgreich auf Verfügbar gesetzt."
                 })

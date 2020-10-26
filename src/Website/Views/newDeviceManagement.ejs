@@ -114,8 +114,7 @@
             <br>
             <div class="inputFields">
                 <div class="box">
-                    <h3>Geräteinformationen</h3>
-                    <br>
+                    <h3 id="deviceInfos">Geräteinformationen</h3>
                     <div class="box1">
                         <div class="deviceInfoWrapper box1">
                             <div class="deviceInfoBoxes">
@@ -298,10 +297,7 @@
                         </div>
                     </div>
                 </div>
-
-
                 <br>
-                <hr>
                 <div class="actionButton">
 
                     <% if (rights.edit_device === 1){ %>
@@ -363,31 +359,11 @@
                                 </div>
                             </div>
                         </form>
-
-                    <% } if (rights.delete_device === 1){ %>
-                        <form class="btn-from" method="post"
-                              action="/deleteDevice" id="deleteDevice"
-                              style="float: left">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <button type="submit"
-                                                class="btn btn-danger"
-                                                onclick="deleteDeviceMessage()">
-                                            Gerät
-                                            löschen
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     <% } %>
                 </div>
+
             </div>
             <br>
-            <hr>
-
-
         </div>
 
     </div>

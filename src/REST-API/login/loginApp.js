@@ -8,7 +8,7 @@
 /**
  * Import of modules
  *
- * @type {Connection} database connector
+ * @type {e | (() => Express)} database connector
  */
 
 const express = require('express');
@@ -53,9 +53,7 @@ router.post('/api/login', (req, res) => {
             };
 
             if (result.length !== 0){
-
-
-
+                console.log(crypto.decrypt(data));
                 var sync = bcrypt.compareSync(crypto.decrypt(data), givenPassword);
                 if (sync) {
                     res.json(

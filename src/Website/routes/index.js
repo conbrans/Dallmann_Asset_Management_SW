@@ -61,14 +61,6 @@ app.use(restNotification);
 app.use(restCommission);
 
 
-/*https.createServer(
-    {
-    cert : fs.readFileSync('C:\\Users\\co99b\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\sslfiles\\server.crt'),
-        key : fs.readFileSync('C:\\Users\\co99b\\IdeaProjects\\Dallmann_Asset_Management_SW\\src\\Website\\sslfiles\\server.key')
-    },app).listen(3000, () => console.log(
-    "listening on: " +
-    `https://localhost:3000`
-));*/
 
 app.listen(3000, () => console.log(
 	"listening on: " +

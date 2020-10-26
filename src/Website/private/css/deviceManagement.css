@@ -23,12 +23,12 @@ input {
 	width: 100%;
 }
 
-#btn-newDevice, #btn-filter {
+#btn-newDevice {
 	border-color: #666;
 	color: #666 !important;
 }
 
-#btn-filter:hover, #btn-newDevice:hover {
+ #btn-newDevice:hover {
 	border-color: #ffc107;
 }
 
@@ -57,20 +57,6 @@ input {
 	padding-left: 2em;
 }
 
-.deviceInfoBoxes.filter {
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.filterDevices {
-	height: 100px;
-	margin: 20px;
-}
-
-.filterBox {
-	float: right;
-}
-
 .deviceInfoWrapper {
 	margin-top: 20px;
 }
@@ -78,6 +64,21 @@ input {
 .deviceInfoBoxes:nth-child(odd) {
 	float: left;
 }
+
+
+#deviceInfos:hover{
+	cursor: pointer ;
+}
+
+.box1{
+	display: none;
+}
+
+.box1.clicked{
+	display: block;
+}
+
+
 
 .deviceInfoBoxes {
 	display: grid;
@@ -120,30 +121,6 @@ input {
 .form-control {
 	display: inline-block;
 	width: 100%;
-}
-
-.input-a {
-	grid-area: input-a;
-}
-
-.input-b {
-	grid-area: input-b;
-}
-
-.input-c {
-	grid-area: input-c;
-}
-
-.box-a {
-	grid-area: box-a;
-}
-
-.box-b {
-	grid-area: box-b;
-}
-
-.box-c {
-	grid-area: box-c;
 }
 
 .hiddendeviceInfos {

@@ -10,6 +10,12 @@
         <option value="$PROJECT_DIR$/src/Website/private/DataTables" />
         <option value="$PROJECT_DIR$/src/Website/testing" />
         <option value="$PROJECT_DIR$/src/REST-API" />
+        <option value="$PROJECT_DIR$/src/Website/sslfiles" />
+        <option value="$PROJECT_DIR$/src/Website/testing" />
+        <option value="$PROJECT_DIR$/src/Website/Views" />
+        <option value="$PROJECT_DIR$/src/Website/private" />
+        <option value="$PROJECT_DIR$/src/Website/public" />
+        <option value="$PROJECT_DIR$/src/Website/ressources" />
       </list>
     </option>
   </component>

@@ -78,7 +78,16 @@ $(document).ready(function () {
 	});
 });
 
-function deleteDeviceMessage() {
+const  deleteDeviceMessage = ()=> {
 	confirm("ACHTUNG!\nSie sind dabei das gewählte Gerät undwideruflich zu" +
 		" löschen.");
 }
+
+	$('#deviceInfos').on('click', ()=>{
+		if ($('.box1').hasClass('clicked')) {
+
+			$('.box1').removeClass('clicked');
+		} else {
+			$('.box1').addClass('clicked');
+		}
+	});
