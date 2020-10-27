@@ -205,48 +205,6 @@ div.banner:not(:empty) {
 	box-sizing: border-box;
 }
 
-input[type='submit'],
-input[type='reset'],
-input[type='button'],
-.action-button,
-.button {
-	background-color: #f0f0f0;
-	background-color: rgba(0, 0, 0, 0.02);
-	border: none;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
-	color: #555;
-	cursor: pointer;
-	display: inline-block;
-	font-family: inherit;
-	font-size: 0.8em;
-	height: 24px;
-	line-height: 22px;
-	padding: 2px 11px;
-	text-decoration: none;
-	-webkit-transition: opacity 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease, color 0.1s ease, background 0.1s ease;
-	transition: opacity 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease, color 0.1s ease, background 0.1s ease;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;
-	vertical-align: bottom;
-}
-
-input[type='submit'] i,
-input[type='reset'] i,
-input[type='button'] i,
-.action-button i,
-.button i {
-	margin-right: 0.1em;
-}
-
-.button:hover {
-	text-decoration: none;
-}
-
 button[type=submit], input[type='submit'], .primary.button {
 	background-color: rgba(0, 0, 0, 0.07);
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45) inset;
@@ -262,79 +220,6 @@ button[type=submit]:hover, input[type=submit]:hover, input[type=submit]:active {
 
 input.submit:hover, input.submit:active {
 	background-position: bottom left;
-}
-
-#poweredBy {
-	background-color: rgba(0, 0, 0, 0.3);
-	border-radius: 5px;
-	bottom: 10px;
-	box-shadow: inset 0 0 3px white, 0 0 2px black, inset 0 0 4px black;
-	color: #ccc;
-	font-size: 0.8em;
-	padding: 5px 15px;
-	position: fixed;
-	right: 10px;
-	text-align: center;
-	text-shadow: 0 0 2px black;
-}
-
-#poweredBy a {
-	color: inherit;
-}
-
-#poweredBy .osticket-logo {
-	border: none;
-	-webkit-filter: drop-shadow(0 0 4px black);
-	filter: drop-shadow(0 0 4px black);
-	filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444');
-	height: auto;
-	ms-filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#444');
-	vertical-align: baseline;
-	width: 55px;
-}
-
-#company .content {
-	background-color: rgba(0, 0, 0, 0.3);
-	border-radius: 10px;
-	box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-	color: white;
-	display: inline-block;
-	padding: 0 15px;
-	text-shadow: 0 0 2px black;
-}
-
-.external-auth {
-	display: inline-block;
-}
-
-.external-auth + .external-auth {
-	margin-top: 4px;
-}
-
-a.external-sign-in {
-	text-decoration: none;
-}
-
-.external-auth-box {
-	border: 1px solid #777;
-	border-radius: 4px;
-	vertical-align: middle;
-}
-
-.external-auth-icon {
-	border-right: 1px solid #ddd;
-	color: #333;
-	display: inline-block;
-	padding: 5px 10px;
-	width: 30px;
-}
-
-.external-auth-name {
-	color: #333;
-	font-size: 11pt;
-	line-height: 30px;
-	padding: 5px 10px;
-	width: 100px;
 }
 
 img.sign-in-image {
@@ -354,4 +239,9 @@ input[type=password] {
 
 .hidden {
 	display: none;
+}
+
+.btn-primary{
+	background-color: #FABA31 ;
+	border-color: #FABA31;
 }

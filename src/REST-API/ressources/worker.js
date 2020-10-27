@@ -17,9 +17,7 @@ const {body, validationResult} = require('express-validator');
 const constraint = require('../middelwareFunctions/validation');
 const express = require('express');
 const crypto = require('../../Website/routes/helproutes/crypto.js');
-const bcrypt = require('bcrypt');
 const router = express();
-const hashing = require('../login/passwordHashingBcrypt');
 
 /**
  * route for getting all users out of database
@@ -241,8 +239,9 @@ router.delete("/api/user/deleteUser/:userId", (request, response) => {
  * @param response - sending the result within a JSON file to client
  */
 //TODO klären ob das noch genutzt wird
-router.put("/api/user/updatePassword", (request, response) => {
-    //updating the oass word for the user with the given eMail
+/*router.put("/api/user/updatePassword", (request, response) => {
+
+
     sql = "UPDATE WORKER SET encryptedData='" + hashing.secondHashe(request.body.password) + "' WHERE e_mail ='" + request.body.eMail + "';";
 
     connection.query(sql, (err) => {
@@ -258,7 +257,7 @@ router.put("/api/user/updatePassword", (request, response) => {
         response.json({"Message": "Passwort wurde erfolgreich bearbeitet"});
     })
 
-});
+});*/
 
 /**
  * route for editing user profile

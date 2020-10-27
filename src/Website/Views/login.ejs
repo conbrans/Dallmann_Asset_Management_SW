@@ -40,25 +40,6 @@
 
 
 </head>
-<script>
-
-
-
-    $("#login").submit( (event) => {
-	    var salt = CryptoJS.lib.WordArray.random(128/8);
-	    var key = CryptoJS.PBKDF2("Secret Passphrase", salt, { keySize: 512/32,
-            iterations: 1000 });
-
-	    var
-
-	    alert($(this).serializeArray());
-	    event.preventDefault();
-
-    });
-
-
-</script>
-
 <body id="loginBody">
 <%- req.toastr.render() %>
 <div id="brickwall"></div>
@@ -87,12 +68,11 @@
                     Angemeldet
                     bleiben</label>
             </div>
-            <button class="btn btn-primary" type="submit" >Login
+            <button class="btn btn-primary" id="loginButton" type="submit" >Login
             </button>
         </fieldset>
 
     </form>
-    <button onclick="login()"></button>
 </div>
 
 

@@ -4,6 +4,7 @@
 	--grey: #f1f1f1;
 	--main: transparent;
 	--yellow: #fbbb11;
+	--dallmannbars : #faba31 ;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
@@ -46,8 +47,9 @@ a {
 }
 
 #header {
-	background: transparent;
-	height: 94px;
+	background-color: var(--dallmannbars);
+
+	height: 57px;
 	position: relative;
 	width: 100%;
 	z-index: 1000;
@@ -63,7 +65,7 @@ a {
 	float: right;
 	margin-left: 30px;
 	margin-right: 100px;
-	padding: 50px 30px 0 30px;
+	padding: 13px 30px 0 30px;
 	position: relative;
 }
 
@@ -74,7 +76,7 @@ input:active, :focus {
 
 .logo {
 	float: left;
-	padding: 26px 0 26px;
+	padding: 13px 0 26px;
 }
 
 .logo a {
@@ -99,10 +101,11 @@ nav li {
 nav li a {
 	float: left;
 	font-size: 18px !important;
-	padding: 50px 35px 35px 35px;
+	padding: 13px 35px 35px 35px;
 }
 
 nav li a:hover {
+	color: black;
 	background: transparent;
 	position: relative;
 	text-decoration: none;
@@ -121,10 +124,10 @@ nav li li {
 }
 
 nav .dropdown ul {
-	background: transparent;
+	background: var(--dallmannbars);
 	left: 0;
 	position: absolute;
-	top: 80%;
+	top: 75%;
 }
 
 nav .dropdown li {
@@ -428,7 +431,8 @@ input:focus::-webkit-input-placeholder {
 /* <--- Footer ---> */
 
 footer {
-	background: var(--main);
+	background: var(--dallmannbars);
+	opacity: 0.5;
 	border-top: 1px solid var(--border);
 	bottom: 0;
 	float: left;
