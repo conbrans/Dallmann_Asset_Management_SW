@@ -11,10 +11,10 @@
  */
 
 const mysql = require('mysql');
-const config = require('../Config/dbConfig')
+const confiq = require('../../configs/config');
 
 //creating a pool for connections
-var pool = mysql.createPool(config);
+var pool = mysql.createPool(confiq.dbconfigSEP);
 
 //export of this module
 module.exports = {

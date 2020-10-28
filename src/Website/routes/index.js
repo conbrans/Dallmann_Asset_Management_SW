@@ -5,6 +5,7 @@ const app = require('../../app');
 const fs = require('fs');
 const https = require('https');
 const path = require('path');
+const config = require('../../configs/config');
 
 /**
  * Require of the get Methods
@@ -62,8 +63,8 @@ app.use(restCommission);
 
 
 
-app.listen(3000, () => console.log(
+app.listen(config.configPort, () => console.log(
 	"listening on: " +
-	`http://localhost:3000`
+	`http://localhost:` + config.configPort
 ));
 module.exports = app;

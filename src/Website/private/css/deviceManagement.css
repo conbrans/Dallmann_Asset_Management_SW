@@ -21,6 +21,7 @@ input {
 
 #table {
 	width: 100%;
+	overflow-x: hidden ;
 }
 
 #btn-newDevice {

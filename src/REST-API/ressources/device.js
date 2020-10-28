@@ -22,13 +22,13 @@ const router = express();
  * sql statement for selecting devices in database
  * @type {string}
  */
-
+//TODO remove timestamp
 let selectSpecificDevice = "SELECT DEVICE.inventory_number AS inventoryNumber,model,manufacturer,serial_number AS serialNumber,\n" +
     "        gurantee AS guarantee,DEVICE.note, DEVICE.category AS deviceCategory, CATEGORY.category AS categoryDescription,\n" +
     "        device_status AS deviceStatus,DEVICE_STATUS.description AS statusDescription,\n" +
     "        DEVICE.beacon_major AS beaconMajor, DEVICE.beacon_minor AS beaconMinor,\n" +
     "        LOCATION.longitude,latitude,\n" +
-    " DATE_FORMAT((Max(timesstamp)),'%Y-%m-%dT%TZ') AS lastLocationUpdate,\n" +
+    " DATE_FORMAT((Max(LOCATION.timestamp)),'%Y-%m-%dT%TZ') AS lastLocationUpdate,\n" +
     "        DATE_FORMAT((Max(TUEV.timestamp)), '%Y-%m-%dT%TZ') AS lastTuev,\n" +
     "        DATE_FORMAT((Max(UVV.timestamp)), '%Y-%m-%dT%TZ') AS lastUvv,\n" +
     "        DATE_FORMAT((Max(REPAIR.timestamp)), '%Y-%m-%dT%TZ') AS" +
@@ -70,6 +70,7 @@ router.get("/api/device/getAllDevices", (request, response) => {
 
     connection.query(sql, (err, result) => {
         if (err) {
+            console.log(err);
             response.json({"Message": "Verbindung zur Datenbank fehlgeschlagen"});
             console.log('Error connecting to Db');
             return;

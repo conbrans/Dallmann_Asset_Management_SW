@@ -8,11 +8,10 @@
 /**
  * Import of modules
  *
- * @type {e | (() => Express)} database connector
+ * @type {function(): function(*=, *=, *=): void} database connector
  */
 
 const express = require('express');
-const bcrypt = require('bcrypt');
 const connection = require('../../../src/REST-API/databaseConnection/connection');
 const crypto = require('../../Website/routes/helproutes/crypto');
 const router = express.Router();
@@ -52,10 +51,13 @@ router.post('/api/login', (req, res) => {
                 encryptedData : result[0].encryptedData,
             };
 
+
             if (result.length !== 0){
                 console.log(crypto.decrypt(data));
-                var sync = bcrypt.compareSync(crypto.decrypt(data), givenPassword);
-                if (sync) {
+
+
+
+                if (crypto.decrypt(data) === givenPassword){
                     res.json(
                         {
                             "access": true,

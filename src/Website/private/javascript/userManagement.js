@@ -55,7 +55,7 @@
 						type: 'get',
 						url: '/showUser',
 					}).done(data => {
-						document.getElementById("firstName").value = data[0].firstname;
+						document.getElementById("firstname").value = data[0].firstname;
 						document.getElementById("lastName").value = data[0].surname;
 						document.getElementById("e-Mail").value = data[0].eMail;
 						document.getElementById("rolle").value = data[0].role;

@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
+const config = require('../../../configs/config');
 const {
-	firstUrlPart = "http://localhost:3000",
+	firstUrlPart = "http://localhost:"+config.configPort,
 
 } = process.env;
 
@@ -54,18 +55,17 @@ async function deleteFetch(url, req) {
 
 /**
  * method specially written for the login
- * @param request contains a mail address, which tries to access the service
- * @param result contains a hashed password, which is compared in REST-Service
+ * @param req contains a mail address, which tries to access the service
  * @returns a json object
  */
-async function loginFetch(request, result) {
+async function loginFetch(req) {
 	let res = await fetch(firstUrlPart +'/api/login',
 		{
 			method: 'POST',
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({
-				usermail: request.body.useremail,
-				password: result,
+				usermail: req.body.useremail,
+				password: req.body.password,
 			})
 		});
 	return res.json();

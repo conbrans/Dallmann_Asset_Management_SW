@@ -3,7 +3,6 @@
  */
 const express = require('express');
 const fetch = require('./helproutes/fetch');
-const hash = require('./helproutes/passwordhashing');
 const reformat = require('./helproutes/reformatDate');
 
 const router = express.Router();
@@ -87,16 +86,11 @@ function getNotificationValues(req, data, res) {
  * send the login values to REST, the password is hashed and compared in REST
  */
 router.post("/login", function (req, res) {
-
-	const hashedPassword = hash.hash(req.body.password)
-		.then(function (result) {
-			fetch.loginFetch(req, result)
+			fetch.loginFetch(req)
 				.then(data => getAccess(req, data, res))
 				.catch((error) => {
 					console.error('Error:', error);
 				});
-		});
-
 });
 
 module.exports = router;
