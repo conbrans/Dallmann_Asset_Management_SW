@@ -8,7 +8,7 @@
 /**
  * Import of modules
  *
- * @type {function(): function(*=, *=, *=): void} database connector
+ * @type {e | (() => Express)} database connector
  */
 
 const express = require('express');
@@ -26,8 +26,14 @@ const router = express.Router();
  */
 router.post('/api/login', (req, res) => {
 
+    if (req.body.usermail.indexOf("@dallmann-bau.de")===-1){
+       req.body.usermail = req.body.usermail + "@dallmann-bau.de";
+    }
+
     var givenUserMail = req.body.usermail;
     var givenPassword = req.body.password;
+
+
 
     if (givenUserMail && givenPassword) {
 
@@ -53,9 +59,6 @@ router.post('/api/login', (req, res) => {
 
 
             if (result.length !== 0){
-                console.log(crypto.decrypt(data));
-
-
 
                 if (crypto.decrypt(data) === givenPassword){
                     res.json(

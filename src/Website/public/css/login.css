@@ -23,7 +23,7 @@ body {
 }
 
 #brickwall {
-	background-image: url(../image/werkstatt.jpg);
+	background-image: url(../../../../../AssetTracking/src/Website/public/image/werkstatt.jpg);
 
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -67,7 +67,6 @@ body {
 	bottom: 0;
 	-webkit-filter: blur(7px);
 	filter: url('data:image/svg+xml;utf9,<svg%20version=\'1.1\'%20xmlns=\'http://www.w3.org/2000/svg\'><filter%20id=\'blur\'><feGaussianBlur%20stdDeviation=\'5\'%20/></filter></svg>#blur');
-	filter: blur(7px);
 	left: 0;
 	overflow: hidden;
 	position: absolute;
@@ -92,10 +91,9 @@ body, input {
 	margin-left: -200px;
 	mix-blend-mode: normal;
 	padding: 1em;
-	padding-bottom: 1em;
 	position: fixed;
 	text-align: center;
-	top: 15%;
+	top: 30%;
 	width: 400px;
 }
 
@@ -154,19 +152,6 @@ h3 {
 	text-align: center;
 }
 
-#login-message {
-	font-size: 80%;
-}
-
-#reset-link {
-	color: #f00;
-	font-size: 60%;
-}
-
-#firsttime {
-	font-size: 60%;
-}
-
 form {
 	margin: 0 auto;
 	width: 220px;
@@ -179,10 +164,7 @@ fieldset {
 }
 
 fieldset input {
-	background: white;
-
 	background: rgba(255, 255, 255, 0.5);
-	border: 1px solid #ccc;
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	display: block;
 	padding: 2px 4px;
@@ -226,4 +208,10 @@ input {
 
 button {
 	margin: 10px 0 10px 0 !important;
+}
+
+#loginButton {
+	background-color: #FABA31;
+	border: #FABA31;
+	width: 200px;
 }

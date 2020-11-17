@@ -42,7 +42,7 @@ $(document).ready(function () {
 			} else {
 				$('#table tbody .selected').removeClass('selected');
 				$(this).addClass('selected');
-				/*var data = {
+				var data = {
 					inventoryNumber: this.cells.item(0).innerText,
 				};
 				$.ajax({
@@ -71,7 +71,7 @@ $(document).ready(function () {
 
 						setMarker(data[0].longitude, data[0].latitude);
 					});
-				});*/
+				});
 			}
 		});
 
@@ -83,6 +83,8 @@ const  deleteDeviceMessage = ()=> {
 		" löschen.");
 }
 
+
+
 	$('#deviceInfos').on('click', ()=>{
 		if ($('.box1').hasClass('clicked')) {
 
@@ -91,3 +93,13 @@ const  deleteDeviceMessage = ()=> {
 			$('.box1').addClass('clicked');
 		}
 	});
+
+
+$('#location').on('click', ()=>{
+	if ($('#map').hasClass('clicked')) {
+
+		$('#map').removeClass('clicked');
+	} else {
+		$('#map').addClass('clicked');
+	}
+});

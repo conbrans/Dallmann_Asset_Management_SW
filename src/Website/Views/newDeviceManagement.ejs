@@ -102,13 +102,12 @@
                 </tbody>
             </table>
 
-                <table id="searchTable"></table>
-
+            <table id="searchTable"></table>
 
 
         </div>
         <div class="deviceInformation">
-            <h4>Standort</h4>
+            <h4 id="location">Standort</h4>
             <br>
             <div id="map"></div>
             <br>
@@ -151,6 +150,35 @@
                                             onchange="getSelectedOption()"
                                             style="width: 100%; display: inline-block"
                                             name="category">
+                                        <!--
+                                        <option selected disabled>Kategorie
+                                        </option>
+                                        <option value="1">Motorflex</option>
+                                        <option value="2">Wasserwagen</option>
+                                        <option value="3">Fräse</option>
+                                        <option value="4">Kehrbesen</option>
+                                        <option value="5">Kompressor</option>
+                                        <option value="6">Steinknacker</option>
+                                        <option value="7">Stromaggregat</option>
+                                        <option value="8">Schweißgerät</option>
+                                        <option value="9">Motorsäge</option>
+                                        <option value="10">Rohrgreifer</option>
+                                        <option value="11">Laser</option>
+                                        <option value="12">Schachtheber</option>
+                                        <option value="13">Wacker</option>
+                                        <option
+                                                value="14">Plattenschneider</option>
+                                        <option
+                                                value="15">Rüttelplatten</option>
+                                        <option value="16">Stampfer</option>
+                                        <option
+                                                value="17">Mischmaschine</option>
+                                        <option value="18">Bohrgerät</option>
+                                        <option value="19">Pumpe</option>
+                                        <option value="20">Vakuumpumpe</option>
+                                        -->
+
+
                                         <option selected disabled>Kategorie
                                         </option>
                                         <option value="1">Rüttelplatte
@@ -359,7 +387,20 @@
                                 </div>
                             </div>
                         </form>
-                    <% } %>
+                    <% } if (rights.edit_device === 1){ %>
+                    <form method="get" action="/qrcode" class="btn-from">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <button id="qrcode" type="submit"
+                                            class="btn btn-danger">
+                                        <i class="fas fa-qrcode"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <% }%>
                 </div>
 
             </div>
@@ -369,32 +410,30 @@
     </div>
 
 </div>
-<%if (searchValue === "" ){ %>
-<input type="hidden" id="searchValue" value="">
-<% }else {%>
-<input type="hidden" id="searchValue" value="<%=searchValue%>">
+<% if (searchValue === "" ){ %>
+    <input type="hidden" id="searchValue" value="">
+<% }else { %>
+<input type="hidden" id="searchValue" value="<%= searchValue ;%>">
 <% } %>
-
 
 <%- include('../Views/general/footer.ejs'); -%>
 </body>
 <style>
-    td:nth-of-type(5) {
-        display: none;
-    }
+	td:nth-of-type(5) {
+		display: none;
+	}
 
-    .deviceInfoBoxes {
-        width: 350px;
-    }
+	.deviceInfoBoxes {
+		width: 350px;
+	}
 
+	div.toggle-inner {
+		display: none;
+	}
 
-    div.toggle-inner {
-        display: none;
-    }
-
-    div.toggle-inner.show {
-        display: block !important;
-    }
+	div.toggle-inner.show {
+		display: block !important;
+	}
 </style>
 <script src="javascript/map.js"></script>
 <script src="javascript/devicemanagement.js"></script>

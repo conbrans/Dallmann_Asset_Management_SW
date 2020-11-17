@@ -15,7 +15,6 @@
     <link rel="icon" type="image/x-icon"
           href="https://www.dallmann-bau.de/fileadmin/template/favicon.png">
     <script src="javascript/login.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/webcrypto@0.1.1/src/index.min.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -54,8 +53,8 @@
     </h1>
     <form action="/login" method="post" id="login">
         <fieldset>
-            <input type="email" name="useremail" id="email"
-                   placeholder="E-Mail-Adresse"
+            <input type="text" name="useremail" id="email"
+                   placeholder="E-Mail/Nutzername"
                    required>
             <input type="password" name="password" id="password"
                    placeholder="Passwort"
@@ -68,8 +67,8 @@
                     Angemeldet
                     bleiben</label>
             </div>
-            <button class="btn btn-primary" id="loginButton" type="submit" >Login
-            </button>
+            <button id="loginButton" class="btn btn-primary" type="submit"
+            >Login</button>
         </fieldset>
 
     </form>

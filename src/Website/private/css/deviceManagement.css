@@ -67,7 +67,7 @@ input {
 }
 
 
-#deviceInfos:hover{
+#deviceInfos:hover,#location:hover{
 	cursor: pointer ;
 }
 
@@ -79,7 +79,9 @@ input {
 	display: block;
 }
 
-
+#map.clicked{
+	display: none;
+}
 
 .deviceInfoBoxes {
 	display: grid;
@@ -154,4 +156,8 @@ input {
 .btn-from {
 	float: left;
 	margin: 5px 10px 10px 0;
+}
+
+#qrcode{
+	border-radius: 25px;
 }

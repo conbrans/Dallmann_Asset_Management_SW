@@ -132,6 +132,7 @@ nav .dropdown ul {
 
 nav .dropdown li {
 	white-space: nowrap;
+	border-bottom: 1px solid var(--grey);
 }
 
 nav .dropdown li a {
@@ -164,7 +165,7 @@ nav li li a:hover {
 	margin-top: -12px;
 	position: absolute;
 	right: 0;
-	top: 50%;
+	top: 45%;
 }
 
 #menu-icon span {
@@ -223,7 +224,7 @@ input:focus::-webkit-input-placeholder {
 	left: -21px;
 	margin-top: -4px;
 	position: absolute;
-	top: 78px;
+	top: 44px;
 	-webkit-transform: scale(0, 1);
 	transform: scale(0, 1);
 	-webkit-transition: all 0.5s linear;
